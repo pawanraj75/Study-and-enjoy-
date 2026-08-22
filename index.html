@@ -151,58 +151,208 @@ function explain(){let w=document.getElementById('word').value.trim().toLowerCas
 function add(t,c){let d=document.createElement('div');d.className='msg '+c;d.innerHTML=t;document.getElementById('messages').appendChild(d);document.getElementById('messages').scrollTop=99999}
 function quick(t){document.getElementById('q').value=t;ask()}
 function ask(){let e=document.getElementById('q'),q=e.value.trim();if(!q)return;add(q,'user');e.value='';setTimeout(()=>{let x=q.toLowerCase(),a=x.includes('kirchhoff')?"<b>Kirchhoff’s laws:</b> KCL says current entering a junction equals current leaving it. KVL says the total voltage change around a closed loop is zero.":x.includes('ohm')?"<b>Ohm’s Law:</b> V = IR. Voltage is the push, current is the flow, and resistance opposes that flow.":x.includes('derivative')?"<b>Derivative:</b> it measures how fast something changes. For y=x², dy/dx=2x.":"In the production version, this interface can connect to an LLM plus an AKTU syllabus knowledge base for step-by-step answers.";add(a,'bot')},250)}
-
 const materials = {
-math: {
- title:"Engineering Mathematics-I — Study Material",
- content:`<div class="material-unit"><h4>Unit 1 — Differential Calculus</h4><ul><li>Limits and continuity</li><li>Differentiability and derivatives</li><li>Rolle’s and Mean Value Theorems</li><li>Taylor and Maclaurin series</li></ul><p><span class="formula">d/dx(xⁿ)=n xⁿ⁻¹</span><span class="formula">d/dx(sin x)=cos x</span></p></div>
- <div class="material-unit"><h4>Unit 2 — Integral Calculus</h4><ul><li>Indefinite and definite integration</li><li>Integration by parts</li><li>Reduction formulae</li><li>Applications of integration</li></ul></div>
- <div class="material-unit"><h4>Unit 3 — Matrices</h4><ul><li>Rank and elementary transformations</li><li>System of linear equations</li><li>Eigenvalues and eigenvectors</li><li>Cayley-Hamilton theorem</li></ul></div>
- <div class="material-unit"><h4>Practice Questions</h4><div class="question">Find the derivative of y = x² sin x.</div><div class="question">Evaluate a definite integral using integration by parts.</div><div class="question">Find eigenvalues and eigenvectors of a 2×2 matrix.</div></div>`
-},
-bee: {
- title:"Basic Electrical Engineering — Study Material",
- content:`<div class="material-unit"><h4>Unit 1 — DC Circuits</h4><ul><li>Ohm’s law, KCL and KVL</li><li>Series/parallel circuits</li><li>Network theorems</li></ul><p><span class="formula">V=IR</span><span class="formula">P=VI=I²R=V²/R</span></p></div>
- <div class="material-unit"><h4>Unit 2 — AC Fundamentals</h4><ul><li>Sinusoidal waveform</li><li>RMS and average values</li><li>Power factor and impedance</li></ul></div>
- <div class="material-unit"><h4>Unit 3 — Transformers</h4><ul><li>Construction and working</li><li>EMF equation</li><li>Ideal transformer and losses</li></ul><p><span class="formula">V₁/V₂ ≈ N₁/N₂</span></p></div>
- <div class="material-unit"><h4>Important Questions</h4><div class="question">State and explain KCL and KVL with an example.</div><div class="question">Explain the working principle of a transformer.</div></div>`
-},
-pps: {
- title:"Programming for Problem Solving — Study Material",
- content:`<div class="material-unit"><h4>Unit 1 — C Programming Basics</h4><ul><li>Variables, data types and operators</li><li>Input/output</li><li>Type conversion</li></ul></div>
- <div class="material-unit"><h4>Unit 2 — Control Statements</h4><ul><li>if/else and switch</li><li>for, while and do-while</li><li>break and continue</li></ul></div>
- <div class="material-unit"><h4>Unit 3 — Arrays, Functions & Pointers</h4><ul><li>1D/2D arrays and strings</li><li>Functions and recursion</li><li>Pointers and dynamic memory basics</li></ul></div>
- <div class="material-unit"><h4>Practice</h4><div class="question">Write a C program to find the largest of three numbers.</div><div class="question">Write a program to reverse an array.</div><div class="question">Explain call by value and call by reference.</div></div>`
-},
-physics: {
- title:"Engineering Physics — Study Material",
- content:`<div class="material-unit"><h4>Core Topics</h4><ul><li>Interference and diffraction</li><li>Laser fundamentals and applications</li><li>Quantum mechanics basics</li><li>Semiconductors and devices</li><li>Optical fiber and communication</li></ul></div>
- <div class="material-unit"><h4>Quick Revision</h4><p><span class="formula">E = hν</span><span class="formula">c = νλ</span><span class="formula">E = mc²</span></p></div>
- <div class="material-unit"><h4>Important Questions</h4><div class="question">Explain the principle and applications of laser.</div><div class="question">Differentiate interference and diffraction.</div></div>`
-},
-chem: {
- title:"Engineering Chemistry — Study Material",
- content:`<div class="material-unit"><h4>Core Topics</h4><ul><li>Water treatment and hardness</li><li>Electrochemistry and batteries</li><li>Corrosion and prevention</li><li>Polymers and composites</li><li>Fuels and lubricants</li></ul></div>
- <div class="material-unit"><h4>Exam Focus</h4><div class="question">Explain temporary and permanent hardness of water.</div><div class="question">Explain electrochemical corrosion and its prevention.</div></div>`
-},
-env: {
- title:"Environment & Ecology — Study Material",
- content:`<div class="material-unit"><h4>Core Topics</h4><ul><li>Ecosystem structure and functions</li><li>Renewable and non-renewable resources</li><li>Air, water and soil pollution</li><li>Solid waste management</li><li>Sustainable development</li></ul></div>
- <div class="material-unit"><h4>Important Questions</h4><div class="question">Explain the components of an ecosystem.</div><div class="question">Discuss causes, effects and control of air pollution.</div></div>`
-},
-soft: {
- title:"Soft Skills / Communication — Study Material",
- content:`<div class="material-unit"><h4>Core Topics</h4><ul><li>Verbal and non-verbal communication</li><li>Listening and speaking skills</li><li>Presentation skills</li><li>Group discussion and interview</li><li>Resume and professional email</li></ul></div>
- <div class="material-unit"><h4>Practice</h4><div class="question">Prepare a one-minute self-introduction for an engineering student.</div><div class="question">Write a professional email requesting leave.</div></div>`
-},
-revision: {
- title:"Quick Revision & Exam Practice",
- content:`<div class="material-unit"><h4>7-Day Revision Pattern</h4><ul><li>Day 1–2: Concepts + class notes</li><li>Day 3–4: Formulae + solved examples</li><li>Day 5: Important questions</li><li>Day 6: PYQ practice</li><li>Day 7: Mock test + weak-topic revision</li></ul></div>
- <div class="material-unit"><h4>Golden Rule</h4><p>पहले concept समझो → फिर formula/definition याद करो → फिर 2–3 questions solve करो → अंत में PYQ लगाओ.</p></div>`
-}
-};
+  math: {
+    title: "Engineering Mathematics-I — Study Material",
+    content: `
+      <div class="material-unit">
+        <h4>📚 Notes & Study Material</h4>
+        <p>Unit-wise Engineering Mathematics-I notes and study resources.</p>
+        <a href="https://aktu.edushineclasses.in/2025/07/aktu-1st-year-notes.html" target="_blank">📖 Open Free Notes</a>
+        <br><br>
+        <a href="https://www.aktunotes.in/btech/first-year/1/engineering-mathematics-1" target="_blank">📐 Mathematics-I Resources & PYQs</a>
+      </div>
 
-function openMaterial(key){
+      <div class="material-unit">
+        <h4>📝 Previous Year Questions</h4>
+        <p>Practice previous AKTU examination papers.</p>
+        <a href="https://aktu.edushineclasses.in/2025/07/aktu-1st-year-pyqs.html" target="_blank">📝 Open 1st Year PYQs</a>
+      </div>
+
+      <div class="material-unit">
+        <h4>⭐ Exam Focus</h4>
+        <div class="question">
+          Practice matrices, calculus, differential equations, vector calculus and repeated PYQ patterns.
+        </div>
+      </div>
+    `
+  },
+
+  bee: {
+    title: "Basic Electrical Engineering — Study Material",
+    content: `
+      <div class="material-unit">
+        <h4>📚 Notes & Study Material</h4>
+        <p>Electrical engineering notes and first-year study resources.</p>
+        <a href="https://aktu.edushineclasses.in/2025/07/aktu-1st-year-notes.html" target="_blank">⚡ Open Free Notes</a>
+        <br><br>
+        <a href="https://www.stuhive.in/hub/dr-a-p-j-abdul-kalam-technical-university-aktu/btech-all-branches/1st-year" target="_blank">🔌 Open All-Branch Material</a>
+      </div>
+
+      <div class="material-unit">
+        <h4>📝 Previous Year Questions</h4>
+        <a href="https://notesgallery.com/aktu-pyqs/1st-year-pyqs/" target="_blank">📝 Open Electrical PYQs</a>
+      </div>
+
+      <div class="material-unit">
+        <h4>⭐ Important Areas</h4>
+        <div class="question">
+          DC circuits, AC fundamentals, electrical measurements, machines and transformers.
+        </div>
+      </div>
+    `
+  },
+
+  pps: {
+    title: "Programming for Problem Solving — Study Material",
+    content: `
+      <div class="material-unit">
+        <h4>💻 Notes & Study Material</h4>
+        <p>C programming, algorithms, flowcharts and problem solving.</p>
+        <a href="https://aktu.edushineclasses.in/2025/07/aktu-1st-year-notes.html" target="_blank">📖 Open Free Notes</a>
+        <br><br>
+        <a href="https://www.stuhive.in/hub/dr-a-p-j-abdul-kalam-technical-university-aktu/btech-all-branches/1st-year" target="_blank">💻 Open All-Branch Material</a>
+      </div>
+
+      <div class="material-unit">
+        <h4>📝 Previous Year Questions</h4>
+        <a href="https://notesgallery.com/aktu-pyqs/1st-year-pyqs/" target="_blank">📝 Open PPS PYQs</a>
+      </div>
+
+      <div class="material-unit">
+        <h4>⭐ Practice</h4>
+        <div class="question">
+          Practice C basics, operators, control statements, arrays, functions, pointers and problem-solving programs.
+        </div>
+      </div>
+    `
+  },
+
+  physics: {
+    title: "Engineering Physics — Study Material",
+    content: `
+      <div class="material-unit">
+        <h4>📚 Notes & Study Material</h4>
+        <p>Engineering Physics notes and first-year resources.</p>
+        <a href="https://aktu.edushineclasses.in/2025/07/aktu-1st-year-notes.html" target="_blank">📖 Open Free Notes</a>
+        <br><br>
+        <a href="https://www.stuhive.in/hub/dr-a-p-j-abdul-kalam-technical-university-aktu/btech-all-branches/1st-year" target="_blank">🔬 Open All-Branch Material</a>
+      </div>
+
+      <div class="material-unit">
+        <h4>📝 Previous Year Questions</h4>
+        <a href="https://notesgallery.com/aktu-pyqs/1st-year-pyqs/" target="_blank">📝 Open Physics PYQs</a>
+      </div>
+
+      <div class="material-unit">
+        <h4>⭐ Important Questions</h4>
+        <div class="question">
+          Focus on unit-wise concepts, derivations, numerical problems and frequently repeated PYQs.
+        </div>
+      </div>
+    `
+  },
+
+  chem: {
+    title: "Engineering Chemistry — Study Material",
+    content: `
+      <div class="material-unit">
+        <h4>🧪 Notes & Study Material</h4>
+        <p>Engineering Chemistry notes and first-year resources.</p>
+        <a href="https://aktu.edushineclasses.in/2025/07/aktu-1st-year-notes.html" target="_blank">📖 Open Free Notes</a>
+        <br><br>
+        <a href="https://www.stuhive.in/hub/dr-a-p-j-abdul-kalam-technical-university-aktu/btech-all-branches/1st-year" target="_blank">🧪 Open All-Branch Material</a>
+      </div>
+
+      <div class="material-unit">
+        <h4>📝 Previous Year Questions</h4>
+        <a href="https://notesgallery.com/aktu-pyqs/1st-year-pyqs/" target="_blank">📝 Open Chemistry PYQs</a>
+      </div>
+
+      <div class="material-unit">
+        <h4>⭐ Exam Focus</h4>
+        <div class="question">
+          Revise important definitions, reactions, numerical problems, corrosion, electrochemistry, polymers and repeated questions.
+        </div>
+      </div>
+    `
+  },
+
+  env: {
+    title: "Environment & Ecology — Study Material",
+    content: `
+      <div class="material-unit">
+        <h4>🌱 Notes & Study Material</h4>
+        <p>Environment, ecology and sustainable development resources.</p>
+        <a href="https://aktu.edushineclasses.in/2025/07/aktu-1st-year-notes.html" target="_blank">📖 Open Free Notes</a>
+        <br><br>
+        <a href="https://notesgallery.com/aktu-notes/aktu-1st-year-notes-2/" target="_blank">🌱 Open 1st Year Notes</a>
+      </div>
+
+      <div class="material-unit">
+        <h4>📝 Previous Year Questions</h4>
+        <a href="https://notesgallery.com/aktu-pyqs/1st-year-pyqs/" target="_blank">📝 Open EVS PYQs</a>
+      </div>
+
+      <div class="material-unit">
+        <h4>⭐ Important Topics</h4>
+        <div class="question">
+          Ecosystems, natural resources, biodiversity, pollution, waste management and sustainable development.
+        </div>
+      </div>
+    `
+  },
+
+  soft: {
+    title: "Soft Skills / Communication — Study Material",
+    content: `
+      <div class="material-unit">
+        <h4>🗣️ Notes & Study Material</h4>
+        <p>Communication skills, grammar and professional communication resources.</p>
+        <a href="https://aktu.edushineclasses.in/2025/07/aktu-1st-year-notes.html" target="_blank">📖 Open Free Notes</a>
+        <br><br>
+        <a href="https://notesgallery.com/aktu-notes/aktu-1st-year-notes-2/" target="_blank">🗣️ Open 1st Year Notes</a>
+      </div>
+
+      <div class="material-unit">
+        <h4>📝 Previous Year Questions</h4>
+        <a href="https://notesgallery.com/aktu-pyqs/1st-year-pyqs/" target="_blank">📝 Open Soft Skills PYQs</a>
+      </div>
+
+      <div class="material-unit">
+        <h4>⭐ Practice</h4>
+        <div class="question">
+          Practice communication, grammar, vocabulary, presentation skills, group discussion and professional writing.
+        </div>
+      </div>
+    `
+  },
+
+  revision: {
+    title: "Quick Revision & Exam Practice",
+    content: `
+      <div class="material-unit">
+        <h4>📝 1st Year PYQ Collection</h4>
+        <p>Use previous year papers to understand the AKTU exam pattern and repeated topics.</p>
+        <a href="https://notesgallery.com/aktu-pyqs/1st-year-pyqs/" target="_blank">📚 Open 1st Year PYQs</a>
+      </div>
+
+      <div class="material-unit">
+        <h4>📖 Complete Study Material</h4>
+        <p>All-branch first-year notes, lab material and PYQs.</p>
+        <a href="https://www.stuhive.in/hub/dr-a-p-j-abdul-kalam-technical-university-aktu/btech-all-branches/1st-year" target="_blank">🎓 Open B.Tech 1st Year Hub</a>
+      </div>
+
+      <div class="material-unit">
+        <h4>🎯 7-Day Revision Pattern</h4>
+        <div class="question">
+          Day 1–2: Concepts → Day 3–4: Notes → Day 5: Important Questions → Day 6: PYQs → Day 7: Full Revision.
+        </div>
+      </div>
+    `
+  }
+};
+  functionunctionnctionunctionunction openMaterial(key){
  const m=materials[key]; if(!m)return;
  document.getElementById('materialTitle').textContent=m.title;
  document.getElementById('materialContent').innerHTML=m.content;
