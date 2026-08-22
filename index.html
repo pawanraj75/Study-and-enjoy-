@@ -63,6 +63,84 @@ nbodyy<div class="nav">
 <div class="links"><a href="#subjects">Subjects</a><a href="#ai">AI Doubt Solver</a><a href="#personalized">Personalized Study</a><a href="#tools">Study Tools</a></div>
 <button class="btn" onclick="document.querySelector('#ai').scrollIntoView()">Ask AI</button>
 </div></nav>
+    <section id="subjects">
+
+  <h2>📚 B.Tech 1st Year Study Material</h2>
+  <p class="sub">
+    Unit-wise notes, important topics, formulas and exam-oriented practice
+    for B.Tech 1st Year students across branches and streams.
+  </p>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="icon">📐</div>
+      <h3>Engineering Mathematics</h3>
+      <p><b>Units:</b> Differential Calculus • Integral Calculus • Matrices • Differential Equations • Vector Calculus</p>
+      <button class="btn" onclick="openMaterial('math')">Open Material</button>
+    </div>
+
+    <div class="card">
+      <div class="icon">⚡</div>
+      <h3>Basic Electrical Engineering</h3>
+      <p><b>Units:</b> DC Circuits • AC Circuits • Magnetic Circuits • Transformers • Electrical Machines</p>
+      <button class="btn" onclick="openMaterial('bee')">Open Material</button>
+    </div>
+
+    <div class="card">
+      <div class="icon">💻</div>
+      <h3>Programming for Problem Solving</h3>
+      <p><b>Topics:</b> C Basics • Control Flow • Arrays • Functions • Pointers • Structures</p>
+      <button class="btn" onclick="openMaterial('pps')">Open Material</button>
+    </div>
+
+    <div class="card">
+      <div class="icon">🔬</div>
+      <h3>Engineering Physics</h3>
+      <p><b>Topics:</b> Optics • Lasers • Quantum Physics • Semiconductors • Fiber Optics</p>
+      <button class="btn" onclick="openMaterial('physics')">Open Material</button>
+    </div>
+
+    <div class="card">
+      <div class="icon">🧪</div>
+      <h3>Engineering Chemistry</h3>
+      <p><b>Topics:</b> Water • Electrochemistry • Corrosion • Polymers • Fuels & Materials</p>
+      <button class="btn" onclick="openMaterial('chem')">Open Material</button>
+    </div>
+
+    <div class="card">
+      <div class="icon">🌱</div>
+      <h3>Environment & Ecology</h3>
+      <p><b>Topics:</b> Ecosystem • Natural Resources • Pollution • Waste Management • Sustainability</p>
+      <button class="btn" onclick="openMaterial('env')">Open Material</button>
+    </div>
+
+    <div class="card">
+      <div class="icon">🗣️</div>
+      <h3>Soft Skills / Communication</h3>
+      <p><b>Topics:</b> Communication • Grammar • Presentation • Group Discussion • Professional Skills</p>
+      <button class="btn" onclick="openMaterial('soft')">Open Material</button>
+    </div>
+
+    <div class="card">
+      <div class="icon">📝</div>
+      <h3>PYQ & Exam Revision</h3>
+      <p><b>Includes:</b> Important Questions • Formula Revision • Previous Year Practice • Exam Preparation</p>
+      <button class="btn" onclick="openMaterial('revision')">Open Revision</button>
+    </div>
+
+  </div>
+
+  <div id="materialBox" style="display:none;margin-top:25px;background:#fff;border:1px solid #e8edf4;border-radius:16px;padding:18px;">
+    <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;">
+      <h3 id="materialTitle" style="margin:0"></h3>
+      <button class="outline" onclick="closeMaterial()">✕ Close</button>
+    </div>
+
+    <div id="materialContent" style="margin-top:14px;color:#475569;line-height:1.7;"></div>
+  </div>
+
+    </section>
 nd="ai"><div class="ai">
 <div><span class="pill">✨ AI-Powered Learning</span><h2>AI Doubt Solver</h2>
 <p class="sub">Ask your doubt in English, Hindi or Hinglish. This prototype includes a working demo and is ready to connect to a real AI backend.</p>
