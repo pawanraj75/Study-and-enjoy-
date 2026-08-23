@@ -183,27 +183,52 @@ function add(t,c){let d=document.createElement('div');d.className='msg '+c;d.inn
 function quick(t){document.getElementById('q').value=t;ask()}
 function ask(){let e=document.getElementById('q'),q=e.value.trim();if(!q)return;add(q,'user');e.value='';setTimeout(()=>{let x=q.toLowerCase(),a=x.includes('kirchhoff')?"<b>Kirchhoff’s laws:</b> KCL says current entering a junction equals current leaving it. KVL says the total voltage change around a closed loop is zero.":x.includes('ohm')?"<b>Ohm’s Law:</b> V = IR. Voltage is the push, current is the flow, and resistance opposes that flow.":x.includes('derivative')?"<b>Derivative:</b> it measures how fast something changes. For y=x², dy/dx=2x.":"In the production version, this interface can connect to an LLM plus an AKTU syllabus knowledge base for step-by-step answers.";add(a,'bot')},250)}
 const materials = {
+
   math: {
     title: "Engineering Mathematics-I — Study Material",
     content: `
       <div class="material-unit">
-        <h4>📚 Notes & Study Material</h4>
-        <p>Unit-wise Engineering Mathematics-I notes and study resources.</p>
-        <a href="https://aktu.edushineclasses.in/2025/07/aktu-1st-year-notes.html" target="_blank">📖 Open Free Notes</a>
-        <br><br>
-        <a href="https://www.aktunotes.in/btech/first-year/1/engineering-mathematics-1" target="_blank">📐 Mathematics-I Resources & PYQs</a>
-      </div>
-
-      <div class="material-unit">
-        <h4>📝 Previous Year Questions</h4>
-        <p>Practice previous AKTU examination papers.</p>
-        <a href="https://aktu.edushineclasses.in/2025/07/aktu-1st-year-pyqs.html" target="_blank">📝 Open 1st Year PYQs</a>
-      </div>
-
-      <div class="material-unit">
-        <h4>⭐ Exam Focus</h4>
+        <h4>📘 Unit 1 — Differential Calculus</h4>
+        <p><b>Topics:</b> Limits, Continuity, Differentiability, Successive Differentiation, Leibniz Theorem.</p>
         <div class="question">
-          Practice matrices, calculus, differential equations, vector calculus and repeated PYQ patterns.
+          <b>Important:</b> Standard limits, continuity and differentiability conditions,
+          nth derivatives and Leibniz theorem.
+        </div>
+      </div>
+
+      <div class="material-unit">
+        <h4>📗 Unit 2 — Mean Value Theorems</h4>
+        <p><b>Topics:</b> Rolle's Theorem, Lagrange Mean Value Theorem, Cauchy's Mean Value Theorem, Taylor and Maclaurin Series.</p>
+        <div class="question">
+          <b>Practice:</b> Verify the conditions of Rolle's and Lagrange's theorem
+          and solve expansion problems.
+        </div>
+      </div>
+
+      <div class="material-unit">
+        <h4>📙 Unit 3 — Partial Differentiation</h4>
+        <p><b>Topics:</b> Partial derivatives, Euler's theorem, total derivative,
+        Jacobian, maxima and minima of two variables.</p>
+        <div class="question">
+          <b>Important:</b> Euler's theorem and maxima-minima numerical problems.
+        </div>
+      </div>
+
+      <div class="material-unit">
+        <h4>📕 Unit 4 — Multiple Integration</h4>
+        <p><b>Topics:</b> Double integrals, triple integrals, change of order,
+        change of variables and applications.</p>
+        <div class="question">
+          <b>Practice:</b> Evaluate double and triple integrals and find areas/volumes.
+        </div>
+      </div>
+
+      <div class="material-unit">
+        <h4>📒 Unit 5 — Vector Calculus</h4>
+        <p><b>Topics:</b> Gradient, divergence, curl, directional derivative,
+        line integral, surface integral and volume integral.</p>
+        <div class="question">
+          <b>Important:</b> grad φ, div A, curl A and Green's/Gauss/Stokes theorems.
         </div>
       </div>
     `
@@ -213,23 +238,36 @@ const materials = {
     title: "Basic Electrical Engineering — Study Material",
     content: `
       <div class="material-unit">
-        <h4>📚 Notes & Study Material</h4>
-        <p>Electrical engineering notes and first-year study resources.</p>
-        <a href="https://aktu.edushineclasses.in/2025/07/aktu-1st-year-notes.html" target="_blank">⚡ Open Free Notes</a>
-        <br><br>
-        <a href="https://www.stuhive.in/hub/dr-a-p-j-abdul-kalam-technical-university-aktu/btech-all-branches/1st-year" target="_blank">🔌 Open All-Branch Material</a>
+        <h4>⚡ Unit 1 — DC Circuits</h4>
+        <p><b>Topics:</b> Voltage, current, resistance, Ohm's law, KCL, KVL,
+        series-parallel circuits and network basics.</p>
+        <div class="question"><b>Practice:</b> Solve DC circuit problems using KCL and KVL.</div>
       </div>
 
       <div class="material-unit">
-        <h4>📝 Previous Year Questions</h4>
-        <a href="https://notesgallery.com/aktu-pyqs/1st-year-pyqs/" target="_blank">📝 Open Electrical PYQs</a>
+        <h4>⚡ Unit 2 — AC Circuits</h4>
+        <p><b>Topics:</b> Sinusoidal waveform, RMS value, average value,
+        impedance, power factor and resonance.</p>
+        <div class="question"><b>Important:</b> R-L, R-C and R-L-C circuit numericals.</div>
       </div>
 
       <div class="material-unit">
-        <h4>⭐ Important Areas</h4>
-        <div class="question">
-          DC circuits, AC fundamentals, electrical measurements, machines and transformers.
-        </div>
+        <h4>🔌 Unit 3 — Magnetic Circuits</h4>
+        <p><b>Topics:</b> Magnetic flux, MMF, reluctance, Faraday's law,
+        Lenz's law and electromagnetic induction.</p>
+      </div>
+
+      <div class="material-unit">
+        <h4>🔋 Unit 4 — Transformers</h4>
+        <p><b>Topics:</b> Construction, working principle, EMF equation,
+        losses, efficiency and applications of transformers.</p>
+        <div class="question"><b>Practice:</b> Transformer turns-ratio and efficiency problems.</div>
+      </div>
+
+      <div class="material-unit">
+        <h4>⚙️ Unit 5 — Electrical Machines</h4>
+        <p><b>Topics:</b> DC machines, induction motors, synchronous machines
+        and basic operating principles.</p>
       </div>
     `
   },
@@ -238,23 +276,35 @@ const materials = {
     title: "Programming for Problem Solving — Study Material",
     content: `
       <div class="material-unit">
-        <h4>💻 Notes & Study Material</h4>
-        <p>C programming, algorithms, flowcharts and problem solving.</p>
-        <a href="https://aktu.edushineclasses.in/2025/07/aktu-1st-year-notes.html" target="_blank">📖 Open Free Notes</a>
-        <br><br>
-        <a href="https://www.stuhive.in/hub/dr-a-p-j-abdul-kalam-technical-university-aktu/btech-all-branches/1st-year" target="_blank">💻 Open All-Branch Material</a>
+        <h4>💻 Unit 1 — C Programming Basics</h4>
+        <p><b>Topics:</b> Algorithms, flowcharts, variables, data types,
+        operators, input/output and basic C syntax.</p>
+        <div class="question"><b>Practice:</b> Write simple programs using scanf() and printf().</div>
       </div>
 
       <div class="material-unit">
-        <h4>📝 Previous Year Questions</h4>
-        <a href="https://notesgallery.com/aktu-pyqs/1st-year-pyqs/" target="_blank">📝 Open PPS PYQs</a>
+        <h4>🔁 Unit 2 — Control Flow</h4>
+        <p><b>Topics:</b> if, if-else, nested if, switch, for, while and do-while loops.</p>
+        <div class="question"><b>Practice:</b> Prime number, factorial, Fibonacci and palindrome programs.</div>
       </div>
 
       <div class="material-unit">
-        <h4>⭐ Practice</h4>
-        <div class="question">
-          Practice C basics, operators, control statements, arrays, functions, pointers and problem-solving programs.
-        </div>
+        <h4>📦 Unit 3 — Arrays and Strings</h4>
+        <p><b>Topics:</b> One-dimensional arrays, two-dimensional arrays,
+        strings and common string operations.</p>
+      </div>
+
+      <div class="material-unit">
+        <h4>🧩 Unit 4 — Functions and Pointers</h4>
+        <p><b>Topics:</b> Functions, recursion, call by value, call by reference,
+        pointers and pointer arithmetic.</p>
+      </div>
+
+      <div class="material-unit">
+        <h4>🗂️ Unit 5 — Structures and File Handling</h4>
+        <p><b>Topics:</b> Structures, unions, files, file operations
+        and basic memory concepts.</p>
+        <div class="question"><b>Practice:</b> Programs using structures and file handling.</div>
       </div>
     `
   },
@@ -263,23 +313,33 @@ const materials = {
     title: "Engineering Physics — Study Material",
     content: `
       <div class="material-unit">
-        <h4>📚 Notes & Study Material</h4>
-        <p>Engineering Physics notes and first-year resources.</p>
-        <a href="https://aktu.edushineclasses.in/2025/07/aktu-1st-year-notes.html" target="_blank">📖 Open Free Notes</a>
-        <br><br>
-        <a href="https://www.stuhive.in/hub/dr-a-p-j-abdul-kalam-technical-university-aktu/btech-all-branches/1st-year" target="_blank">🔬 Open All-Branch Material</a>
+        <h4>🔬 Unit 1 — Quantum Mechanics</h4>
+        <p><b>Topics:</b> Wave-particle duality, de Broglie hypothesis,
+        uncertainty principle and basic quantum concepts.</p>
       </div>
 
       <div class="material-unit">
-        <h4>📝 Previous Year Questions</h4>
-        <a href="https://notesgallery.com/aktu-pyqs/1st-year-pyqs/" target="_blank">📝 Open Physics PYQs</a>
+        <h4>🔦 Unit 2 — Optics</h4>
+        <p><b>Topics:</b> Interference, diffraction, polarization and optical instruments.</p>
+        <div class="question"><b>Important:</b> Young's double-slit experiment and diffraction numericals.</div>
       </div>
 
       <div class="material-unit">
-        <h4>⭐ Important Questions</h4>
-        <div class="question">
-          Focus on unit-wise concepts, derivations, numerical problems and frequently repeated PYQs.
-        </div>
+        <h4>💡 Unit 3 — Lasers and Fibre Optics</h4>
+        <p><b>Topics:</b> Laser principle, population inversion, types of lasers,
+        optical fibre, acceptance angle and numerical aperture.</p>
+      </div>
+
+      <div class="material-unit">
+        <h4>⚛️ Unit 4 — Semiconductor Physics</h4>
+        <p><b>Topics:</b> Intrinsic and extrinsic semiconductors, PN junction,
+        diode characteristics and semiconductor applications.</p>
+      </div>
+
+      <div class="material-unit">
+        <h4>🌐 Unit 5 — Electromagnetism</h4>
+        <p><b>Topics:</b> Maxwell's equations, electromagnetic waves,
+        energy flow and basic applications.</p>
       </div>
     `
   },
@@ -288,23 +348,32 @@ const materials = {
     title: "Engineering Chemistry — Study Material",
     content: `
       <div class="material-unit">
-        <h4>🧪 Notes & Study Material</h4>
-        <p>Engineering Chemistry notes and first-year resources.</p>
-        <a href="https://aktu.edushineclasses.in/2025/07/aktu-1st-year-notes.html" target="_blank">📖 Open Free Notes</a>
-        <br><br>
-        <a href="https://www.stuhive.in/hub/dr-a-p-j-abdul-kalam-technical-university-aktu/btech-all-branches/1st-year" target="_blank">🧪 Open All-Branch Material</a>
+        <h4>🧪 Unit 1 — Water Technology</h4>
+        <p><b>Topics:</b> Hardness of water, EDTA method, boiler troubles,
+        water purification and desalination.</p>
+        <div class="question"><b>Practice:</b> Calculate hardness using EDTA titration data.</div>
       </div>
 
       <div class="material-unit">
-        <h4>📝 Previous Year Questions</h4>
-        <a href="https://notesgallery.com/aktu-pyqs/1st-year-pyqs/" target="_blank">📝 Open Chemistry PYQs</a>
+        <h4>⚗️ Unit 2 — Electrochemistry</h4>
+        <p><b>Topics:</b> Electrochemical cells, electrode potential,
+        Nernst equation, batteries and corrosion.</p>
       </div>
 
       <div class="material-unit">
-        <h4>⭐ Exam Focus</h4>
-        <div class="question">
-          Revise important definitions, reactions, numerical problems, corrosion, electrochemistry, polymers and repeated questions.
-        </div>
+        <h4>🧬 Unit 3 — Organic Chemistry</h4>
+        <p><b>Topics:</b> Organic reactions, polymers, fuels and important industrial compounds.</p>
+      </div>
+
+      <div class="material-unit">
+        <h4>🏭 Unit 4 — Engineering Materials</h4>
+        <p><b>Topics:</b> Cement, lubricants, refractories, composites and advanced materials.</p>
+      </div>
+
+      <div class="material-unit">
+        <h4>🌱 Unit 5 — Green Chemistry</h4>
+        <p><b>Topics:</b> Green chemistry principles, sustainable processes,
+        pollution prevention and environmental applications.</p>
       </div>
     `
   },
@@ -313,23 +382,33 @@ const materials = {
     title: "Environment & Ecology — Study Material",
     content: `
       <div class="material-unit">
-        <h4>🌱 Notes & Study Material</h4>
-        <p>Environment, ecology and sustainable development resources.</p>
-        <a href="https://aktu.edushineclasses.in/2025/07/aktu-1st-year-notes.html" target="_blank">📖 Open Free Notes</a>
-        <br><br>
-        <a href="https://notesgallery.com/aktu-notes/aktu-1st-year-notes-2/" target="_blank">🌱 Open 1st Year Notes</a>
+        <h4>🌱 Unit 1 — Ecosystem</h4>
+        <p>Structure and function of ecosystem, food chain, food web,
+        ecological pyramids and energy flow.</p>
       </div>
 
       <div class="material-unit">
-        <h4>📝 Previous Year Questions</h4>
-        <a href="https://notesgallery.com/aktu-pyqs/1st-year-pyqs/" target="_blank">📝 Open EVS PYQs</a>
+        <h4>🌍 Unit 2 — Natural Resources</h4>
+        <p>Water, forest, mineral and energy resources, conservation
+        and sustainable development.</p>
       </div>
 
       <div class="material-unit">
-        <h4>⭐ Important Topics</h4>
-        <div class="question">
-          Ecosystems, natural resources, biodiversity, pollution, waste management and sustainable development.
-        </div>
+        <h4>🐾 Unit 3 — Biodiversity</h4>
+        <p>Biodiversity levels, importance, threats, conservation
+        and endangered species.</p>
+      </div>
+
+      <div class="material-unit">
+        <h4>🏭 Unit 4 — Pollution</h4>
+        <p>Air, water, soil and noise pollution, causes, effects,
+        control measures and environmental standards.</p>
+      </div>
+
+      <div class="material-unit">
+        <h4>♻️ Unit 5 — Waste Management</h4>
+        <p>Solid waste, e-waste, biomedical waste, recycling,
+        reuse and sustainable waste management.</p>
       </div>
     `
   },
@@ -338,52 +417,62 @@ const materials = {
     title: "Soft Skills / Communication — Study Material",
     content: `
       <div class="material-unit">
-        <h4>🗣️ Notes & Study Material</h4>
-        <p>Communication skills, grammar and professional communication resources.</p>
-        <a href="https://aktu.edushineclasses.in/2025/07/aktu-1st-year-notes.html" target="_blank">📖 Open Free Notes</a>
-        <br><br>
-        <a href="https://notesgallery.com/aktu-notes/aktu-1st-year-notes-2/" target="_blank">🗣️ Open 1st Year Notes</a>
+        <h4>🗣️ Unit 1 — Communication Skills</h4>
+        <p>Verbal and non-verbal communication, barriers,
+        listening skills and effective communication.</p>
       </div>
 
       <div class="material-unit">
-        <h4>📝 Previous Year Questions</h4>
-        <a href="https://notesgallery.com/aktu-pyqs/1st-year-pyqs/" target="_blank">📝 Open Soft Skills PYQs</a>
+        <h4>📝 Unit 2 — Grammar & Vocabulary</h4>
+        <p>Parts of speech, tenses, articles, prepositions,
+        sentence formation and vocabulary building.</p>
       </div>
 
       <div class="material-unit">
-        <h4>⭐ Practice</h4>
-        <div class="question">
-          Practice communication, grammar, vocabulary, presentation skills, group discussion and professional writing.
-        </div>
+        <h4>🎤 Unit 3 — Presentation Skills</h4>
+        <p>Public speaking, presentation structure, body language,
+        confidence and effective delivery.</p>
+      </div>
+
+      <div class="material-unit">
+        <h4>👥 Unit 4 — Group Discussion</h4>
+        <p>GD rules, participation, leadership, listening,
+        logical arguments and teamwork.</p>
+      </div>
+
+      <div class="material-unit">
+        <h4>💼 Unit 5 — Professional Communication</h4>
+        <p>Resume writing, email writing, interview skills,
+        formal letters and professional etiquette.</p>
       </div>
     `
   },
 
   revision: {
-    title: "Quick Revision & Exam Practice",
+    title: "PYQ & Exam Revision",
     content: `
       <div class="material-unit">
-        <h4>📝 1st Year PYQ Collection</h4>
-        <p>Use previous year papers to understand the AKTU exam pattern and repeated topics.</p>
-        <a href="https://notesgallery.com/aktu-pyqs/1st-year-pyqs/" target="_blank">📚 Open 1st Year PYQs</a>
+        <h4>📋 Important Questions</h4>
+        <p>Prepare unit-wise definitions, derivations, numerical problems,
+        diagrams and frequently asked concepts.</p>
       </div>
 
       <div class="material-unit">
-        <h4>📖 Complete Study Material</h4>
-        <p>All-branch first-year notes, lab material and PYQs.</p>
-        <a href="https://www.stuhive.in/hub/dr-a-p-j-abdul-kalam-technical-university-aktu/btech-all-branches/1st-year" target="_blank">🎓 Open B.Tech 1st Year Hub</a>
+        <h4>⭐ Last-Minute Revision</h4>
+        <p>Revise formulas, important definitions, short notes,
+        previous-year questions and commonly repeated topics.</p>
       </div>
 
       <div class="material-unit">
-        <h4>🎯 7-Day Revision Pattern</h4>
-        <div class="question">
-          Day 1–2: Concepts → Day 3–4: Notes → Day 5: Important Questions → Day 6: PYQs → Day 7: Full Revision.
-        </div>
+        <h4>📝 Exam Strategy</h4>
+        <p>Attempt questions according to marks, write proper steps,
+        use diagrams wherever required and manage time carefully.</p>
       </div>
     `
   }
+
 };
-  functionunctionnctionunctionunction openMaterial(key){
+  unctionunctionnctionunctionunction openMaterial(kekey
  const m=materials[key]; if(!m)return;
  document.getElementById('materialTitle').textContent=m.title;
  document.getElementById('materialContent').innerHTML=m.content;
