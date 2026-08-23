@@ -181,7 +181,23 @@ const ex={derivative:"A derivative tells us how quickly one quantity changes whe
 function explain(){let w=document.getElementById('word').value.trim().toLowerCase();document.getElementById('answer').innerHTML=ex[w]||"<b>"+(w||"This term")+"</b>: In the full version, AI will explain it using AKTU subject/unit context, with an example and practice question."}
 function add(t,c){let d=document.createElement('div');d.className='msg '+c;d.innerHTML=t;document.getElementById('messages').appendChild(d);document.getElementById('messages').scrollTop=99999}
 function quick(t){document.getElementById('q').value=t;ask()}
-function ask(){let e=document.getElementById('q'),q=e.value.trim();if(!q)return;add(q,'user');e.value='';setTimeout(()=>{let x=q.toLowerCase(),a=x.includes('kirchhoff')?"<b>Kirchhoff’s laws:</b> KCL says current entering a junction equals current leaving it. KVL says the total voltage change around a closed loop is zero.":x.includes('ohm')?"<b>Ohm’s Law:</b> V = IR. Voltage is the push, current is the flow, and resistance opposes that flow.":x.includes('derivative')?"<b>Derivative:</b> it measures how fast something changes. For y=x², dy/dx=2x.":"In the production version, this interface can connect to an LLM plus an AKTU syllabus knowledge base for step-by-step answers.";add(a,'bot')},250)}
+function ask(){
+  let e=document.getElementById('q'),q=e.value.trim();
+  if(!q)return;
+  add(q,'user');
+  e.value='';
+  setTimeout(()=>{
+    let x=q.toLowerCase();
+    let a=x.includes('kirchhoff')
+      ? "<b>Kirchhoff’s laws:</b> KCL says current entering a junction equals current leaving it. KVL says the total voltage change around a closed loop is zero."
+      : x.includes('ohm')
+      ? "<b>Ohm’s Law:</b> V = IR. Voltage is the push, current is the flow, and resistance opposes that flow."
+      : x.includes('derivative')
+      ? "<b>Derivative:</b> it measures how fast something changes. For y=x², dy/dx=2x."
+      : "In the production version, this interface can connect to an LLM plus an AKTU syllabus knowledge base for step-by-step answers.";
+    add(a,'bot');
+  },250);
+}
 const materials = {
 
   math: {
