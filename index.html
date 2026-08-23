@@ -854,15 +854,7 @@ eg: {
   document.getElementById('materialBox').style.display='block';
   document.getElementById('materialBox').scrollIntoView({behavior:'smooth'});}
 function closeMaterial(){document.getElementById('materialBox').style.display='none';}
-document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll('[onclick^="openMaterial"]').forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      const key = this.getAttribute("onclick")
-        .match(/openMaterial\(['"]([^'"]+)['"]\)/)[1];
-      openMaterial(key);
-    });
-  });
-});
+
 function personalAdvice(level){
  const box=document.getElementById('personalAdvice');
  if(level<=2) box.textContent="Start with a simple explanation → watch/read the basic concept → solve 3 easy questions → ask AI about the exact point you still don't understand.";
