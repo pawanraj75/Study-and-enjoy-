@@ -913,5 +913,41 @@ window.closeMaterial = function() {
     materialBox.style.display = "none";
   }
 };
+/* Backup-safe Material opener */
+window.openMaterial = function(key) {
+  const material = window.materials && window.materials[key];
+
+  if (!material) {
+    console.error("Material not found:", key);
+    return;
+  }
+
+  const titleBox = document.getElementById("materialTitle");
+  const contentBox = document.getElementById("materialContent");
+  const materialBox = document.getElementById("materialBox");
+
+  if (!titleBox || !contentBox || !materialBox) {
+    console.error("Material elements not found.");
+    return;
+  }
+
+  titleBox.textContent = material.title || "Study Material";
+  contentBox.innerHTML = material.content || "<p>Material is not available.</p>";
+
+  materialBox.style.display = "block";
+
+  materialBox.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+};
+
+window.closeMaterial = function() {
+  const materialBox = document.getElementById("materialBox");
+
+  if (materialBox) {
+    materialBox.style.display = "none";
+  }
+};
 </script>
 </body></html>
