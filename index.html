@@ -472,7 +472,14 @@ const materials = {
   }
 
 };
-  unctionunctionnctionunctionunction openMaterial(kekey
+  function openMaterial(key){
+  const m=materials[key];
+  if(!m)return;
+  document.getElementById('materialTitle').textContent=m.title;
+  document.getElementById('materialContent').innerHTML=m.content;
+  document.getElementById('materialBox').style.display='block';
+  document.getElementById('materialBox').scrollIntoView({behavior:'smooth'});
+}
  const m=materials[key]; if(!m)return;
  document.getElementById('materialTitle').textContent=m.title;
  document.getElementById('materialContent').innerHTML=m.content;
