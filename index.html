@@ -468,7 +468,7 @@ const materials = {
         <p>Attempt questions according to marks, write proper steps,
         use diagrams wherever required and manage time carefully.</p>
       </div>
-    `
+    
   }
 
 };
@@ -479,14 +479,7 @@ const materials = {
   document.getElementById('materialContent').innerHTML=m.content;
   document.getElementById('materialBox').style.display='block';
   document.getElementById('materialBox').scrollIntoView({behavior:'smooth'});
-}
- const m=materials[key]; if(!m)return;
- document.getElementById('materialTitle').textContent=m.title;
- document.getElementById('materialContent').innerHTML=m.content;
- document.getElementById('materialBox').style.display='block';
- document.getElementById('materialBox').scrollIntoView({behavior:'smooth',block:'start'});
-}
-function closeMaterial(){document.getElementById('materialBox').style.display='none';}
+unctiontion closeMaterial(){document.getElementById('materialBox').style.display='none';}
 
 function personalAdvice(level){
  const box=document.getElementById('personalAdvice');
