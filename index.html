@@ -847,19 +847,19 @@ eg: {
 
 };
   function openMaterial(key){
-  const m=materials[key];
-  if(!m)return;
-  document.getElementById('materialTitle').textContent=m.title;
-  document.getElementById('materialContent').innerHTML=m.content;
-  document.getElementById('materialBox').style.display='block';
-  document.getElementById('materialBox').scrollIntoView({behavior:'smooth'});}
-function closeMaterial(){document.getElementById('materialBox').style.display='none';}
+    const m = materials[key];
+    if(!m) return;
 
-function personalAdvice(level){
- const box=document.getElementById('personalAdvice');
- if(level<=2) box.textContent="Start with a simple explanation → watch/read the basic concept → solve 3 easy questions → ask AI about the exact point you still don't understand.";
- else if(level===3) box.textContent="You are halfway there. Review your notes for 15 minutes → solve 5 questions → mark every mistake in the Weak Topic Tracker.";
- else box.textContent="Good! Move to PYQs or a timed mini-test. If you make a mistake, add that topic to the tracker for your next revision.";
+    document.getElementById('materialTitle').textContent = m.title;
+    document.getElementById('materialContent').innerHTML = m.content;
+    document.getElementById('materialBox').style.display = 'block';
+    document.getElementById('materialBox').scrollIntoView({
+        behavior: 'smooth'
+    });
+}
+
+function closeMaterial(){
+    document.getElementById('materialBox').style.display = 'none';
 }
 </script>
 </body></html>
