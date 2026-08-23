@@ -39,9 +39,32 @@ footer{background:#0d1830;color:#cbd5e1;padding:28px 18px;text-align:center}
 .material-unit{padding:14px 0;border-bottom:1px solid #e8edf4}
 .material-unit:last-child{border-bottom:0}
 .material-unit h4{margin:0 0 6px;color:#10203d}
+.unit-material-btn{margin-top:10px;padding:7px 12px;border:0;border-radius:8px;background:#1264e8;color:#fff;font-size:12px;cursor:pointer}
+.unit-material-btn:active{transform:scale(.98)}
+#unitMaterialBox{display:none;margin-top:18px;background:#fff;border:1px solid #e8edf4;border-radius:16px;padding:18px}
+#unitMaterialBox h3{margin:0 0 12px;color:#10203d}
+.unit-actions{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+.unit-actions button{padding:8px 12px;border:1px solid #d7e3f4;border-radius:9px;background:#fff;color:#1264e8;font-weight:700;cursor:pointer}
+.unit-actions button.primary{background:#1264e8;color:#fff;border-color:#1264e8}
+.study-checklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0}
+.study-checklist label{display:flex;gap:7px;align-items:flex-start;background:#fff;border:1px solid #e4edf7;border-radius:9px;padding:9px;font-size:13px}
+.study-checklist input{margin-top:2px}
+@media(max-width:520px){.study-checklist{grid-template-columns:1fr}}
 .material-unit ul{margin:7px 0 0 20px;padding:0}
 .formula{display:inline-block;background:#f1f6ff;border:1px solid #d9e7fb;border-radius:8px;padding:4px 8px;margin:3px;font-weight:700;color:#174ea6}
 .question{background:#f8fafc;border-left:4px solid #1264e8;padding:9px 12px;margin:8px 0;border-radius:5px}
+ .study-search-wrap{margin:18px 0 22px}
+.study-search{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #dce4ef;border-radius:14px;padding:8px 10px;box-shadow:0 6px 18px #0f1d3a0a}
+.study-search span{font-size:18px}.study-search input{border:0!important;box-shadow:none!important;background:transparent;width:100%;min-width:0;font-size:15px;padding:10px 6px}
+.study-search input:focus{outline:0}.study-search .outline{padding:9px 12px;white-space:nowrap}
+.study-search-status{min-height:20px;margin:7px 3px 0;color:#64748b;font-size:12px}
+.card.search-hidden{display:none}
+
+.unit-notes{margin-top:16px;padding:16px;background:#f7fbff;border:1px solid #dbeaf7;border-radius:14px}
+.unit-notes h4{margin:0 0 10px;color:#1264e8}
+.unit-notes ul{margin:8px 0 12px;padding-left:20px}
+.unit-notes li{margin:5px 0}
+.diagram-box{margin:16px 0;padding:12px;border:1px solid #dbe3ee;border-radius:14px;background:#f8fbff}.diagram-box h5{margin:0 0 10px;font-size:16px}.diagram-box svg{display:block;margin:auto}
 </style>
 </head>
 <body>
@@ -71,7 +94,16 @@ footer{background:#0d1830;color:#cbd5e1;padding:28px 18px;text-align:center}
     for B.Tech 1st Year students across branches and streams.
   </p>
 
-  <div class="grid">
+  <div class="study-search-wrap">
+    <div class="study-search">
+      <span>🔎</span>
+      <input id="studySearch" type="search" placeholder="Search Study & Enjoy material…" autocomplete="off" oninput="searchStudyMaterial()">
+      <button type="button" class="outline" onclick="clearStudySearch()">Clear</button>
+    </div>
+    <div id="studySearchStatus" class="study-search-status" aria-live="polite"></div>
+  </div>
+
+  <div class="grid" id="subjectGrid">
 
     <div class="card">
       <div class="icon">📐</div>
@@ -140,6 +172,14 @@ footer{background:#0d1830;color:#cbd5e1;padding:28px 18px;text-align:center}
     <div id="materialContent" style="margin-top:14px;color:#475569;line-height:1.7;"></div>
   </div>
 
+  <div id="unitMaterialBox">
+    <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;">
+      <h3 id="unitMaterialTitle"></h3>
+      <button class="outline" onclick="closeUnitMaterial()">✕ Close</button>
+    </div>
+    <div id="unitMaterialContent"></div>
+  </div>
+
     </section>
 <section id="ai"><div class="ai">
 <div><span class="pill">✨ AI-Powered Learning</span><h2>AI Doubt Solver</h2>
@@ -204,7 +244,7 @@ const materials = {
     title: "Engineering Mathematics-I — Study Material",
     content: `
       <div class="material-unit">
-        <h4>📘 Unit 1 — Differential Calculus</h4>
+        <h4>📘 Unit 1 — Differential Calculus</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Limits, Continuity, Differentiability, Successive Differentiation, Leibniz Theorem.</p>
         <div class="question">
           <b>Important:</b> Standard limits, continuity and differentiability conditions,
@@ -213,7 +253,7 @@ const materials = {
       </div>
 
       <div class="material-unit">
-        <h4>📗 Unit 2 — Mean Value Theorems</h4>
+        <h4>📗 Unit 2 — Mean Value Theorems</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Rolle's Theorem, Lagrange Mean Value Theorem, Cauchy's Mean Value Theorem, Taylor and Maclaurin Series.</p>
         <div class="question">
           <b>Practice:</b> Verify the conditions of Rolle's and Lagrange's theorem
@@ -222,7 +262,7 @@ const materials = {
       </div>
 
       <div class="material-unit">
-        <h4>📙 Unit 3 — Partial Differentiation</h4>
+        <h4>📙 Unit 3 — Partial Differentiation</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Partial derivatives, Euler's theorem, total derivative,
         Jacobian, maxima and minima of two variables.</p>
         <div class="question">
@@ -231,7 +271,7 @@ const materials = {
       </div>
 
       <div class="material-unit">
-        <h4>📕 Unit 4 — Multiple Integration</h4>
+        <h4>📕 Unit 4 — Multiple Integration</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Double integrals, triple integrals, change of order,
         change of variables and applications.</p>
         <div class="question">
@@ -240,7 +280,7 @@ const materials = {
       </div>
 
       <div class="material-unit">
-        <h4>📒 Unit 5 — Vector Calculus</h4>
+        <h4>📒 Unit 5 — Vector Calculus</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Gradient, divergence, curl, directional derivative,
         line integral, surface integral and volume integral.</p>
         <div class="question">
@@ -254,34 +294,34 @@ const materials = {
     title: "Basic Electrical Engineering — Study Material",
     content: `
       <div class="material-unit">
-        <h4>⚡ Unit 1 — DC Circuits</h4>
+        <h4>⚡ Unit 1 — DC Circuits</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Voltage, current, resistance, Ohm's law, KCL, KVL,
         series-parallel circuits and network basics.</p>
         <div class="question"><b>Practice:</b> Solve DC circuit problems using KCL and KVL.</div>
       </div>
 
       <div class="material-unit">
-        <h4>⚡ Unit 2 — AC Circuits</h4>
+        <h4>⚡ Unit 2 — AC Circuits</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Sinusoidal waveform, RMS value, average value,
         impedance, power factor and resonance.</p>
         <div class="question"><b>Important:</b> R-L, R-C and R-L-C circuit numericals.</div>
       </div>
 
       <div class="material-unit">
-        <h4>🔌 Unit 3 — Magnetic Circuits</h4>
+        <h4>🔌 Unit 3 — Magnetic Circuits</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Magnetic flux, MMF, reluctance, Faraday's law,
         Lenz's law and electromagnetic induction.</p>
       </div>
 
       <div class="material-unit">
-        <h4>🔋 Unit 4 — Transformers</h4>
+        <h4>🔋 Unit 4 — Transformers</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Construction, working principle, EMF equation,
         losses, efficiency and applications of transformers.</p>
         <div class="question"><b>Practice:</b> Transformer turns-ratio and efficiency problems.</div>
       </div>
 
       <div class="material-unit">
-        <h4>⚙️ Unit 5 — Electrical Machines</h4>
+        <h4>⚙️ Unit 5 — Electrical Machines</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> DC machines, induction motors, synchronous machines
         and basic operating principles.</p>
       </div>
@@ -292,32 +332,32 @@ const materials = {
     title: "Programming for Problem Solving — Study Material",
     content: `
       <div class="material-unit">
-        <h4>💻 Unit 1 — C Programming Basics</h4>
+        <h4>💻 Unit 1 — C Programming Basics</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Algorithms, flowcharts, variables, data types,
         operators, input/output and basic C syntax.</p>
         <div class="question"><b>Practice:</b> Write simple programs using scanf() and printf().</div>
       </div>
 
       <div class="material-unit">
-        <h4>🔁 Unit 2 — Control Flow</h4>
+        <h4>🔁 Unit 2 — Control Flow</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> if, if-else, nested if, switch, for, while and do-while loops.</p>
         <div class="question"><b>Practice:</b> Prime number, factorial, Fibonacci and palindrome programs.</div>
       </div>
 
       <div class="material-unit">
-        <h4>📦 Unit 3 — Arrays and Strings</h4>
+        <h4>📦 Unit 3 — Arrays and Strings</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> One-dimensional arrays, two-dimensional arrays,
         strings and common string operations.</p>
       </div>
 
       <div class="material-unit">
-        <h4>🧩 Unit 4 — Functions and Pointers</h4>
+        <h4>🧩 Unit 4 — Functions and Pointers</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Functions, recursion, call by value, call by reference,
         pointers and pointer arithmetic.</p>
       </div>
 
       <div class="material-unit">
-        <h4>🗂️ Unit 5 — Structures and File Handling</h4>
+        <h4>🗂️ Unit 5 — Structures and File Handling</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Structures, unions, files, file operations
         and basic memory concepts.</p>
         <div class="question"><b>Practice:</b> Programs using structures and file handling.</div>
@@ -329,31 +369,31 @@ const materials = {
     title: "Engineering Physics — Study Material",
     content: `
       <div class="material-unit">
-        <h4>🔬 Unit 1 — Quantum Mechanics</h4>
+        <h4>🔬 Unit 1 — Quantum Mechanics</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Wave-particle duality, de Broglie hypothesis,
         uncertainty principle and basic quantum concepts.</p>
       </div>
 
       <div class="material-unit">
-        <h4>🔦 Unit 2 — Optics</h4>
+        <h4>🔦 Unit 2 — Optics</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Interference, diffraction, polarization and optical instruments.</p>
         <div class="question"><b>Important:</b> Young's double-slit experiment and diffraction numericals.</div>
       </div>
 
       <div class="material-unit">
-        <h4>💡 Unit 3 — Lasers and Fibre Optics</h4>
+        <h4>💡 Unit 3 — Lasers and Fibre Optics</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Laser principle, population inversion, types of lasers,
         optical fibre, acceptance angle and numerical aperture.</p>
       </div>
 
       <div class="material-unit">
-        <h4>⚛️ Unit 4 — Semiconductor Physics</h4>
+        <h4>⚛️ Unit 4 — Semiconductor Physics</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Intrinsic and extrinsic semiconductors, PN junction,
         diode characteristics and semiconductor applications.</p>
       </div>
 
       <div class="material-unit">
-        <h4>🌐 Unit 5 — Electromagnetism</h4>
+        <h4>🌐 Unit 5 — Electromagnetism</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Maxwell's equations, electromagnetic waves,
         energy flow and basic applications.</p>
       </div>
@@ -364,30 +404,30 @@ const materials = {
     title: "Engineering Chemistry — Study Material",
     content: `
       <div class="material-unit">
-        <h4>🧪 Unit 1 — Water Technology</h4>
+        <h4>🧪 Unit 1 — Water Technology</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Hardness of water, EDTA method, boiler troubles,
         water purification and desalination.</p>
         <div class="question"><b>Practice:</b> Calculate hardness using EDTA titration data.</div>
       </div>
 
       <div class="material-unit">
-        <h4>⚗️ Unit 2 — Electrochemistry</h4>
+        <h4>⚗️ Unit 2 — Electrochemistry</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Electrochemical cells, electrode potential,
         Nernst equation, batteries and corrosion.</p>
       </div>
 
       <div class="material-unit">
-        <h4>🧬 Unit 3 — Organic Chemistry</h4>
+        <h4>🧬 Unit 3 — Organic Chemistry</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Organic reactions, polymers, fuels and important industrial compounds.</p>
       </div>
 
       <div class="material-unit">
-        <h4>🏭 Unit 4 — Engineering Materials</h4>
+        <h4>🏭 Unit 4 — Engineering Materials</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Cement, lubricants, refractories, composites and advanced materials.</p>
       </div>
 
       <div class="material-unit">
-        <h4>🌱 Unit 5 — Green Chemistry</h4>
+        <h4>🌱 Unit 5 — Green Chemistry</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p><b>Topics:</b> Green chemistry principles, sustainable processes,
         pollution prevention and environmental applications.</p>
       </div>
@@ -398,31 +438,31 @@ const materials = {
     title: "Environment & Ecology — Study Material",
     content: `
       <div class="material-unit">
-        <h4>🌱 Unit 1 — Ecosystem</h4>
+        <h4>🌱 Unit 1 — Ecosystem</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p>Structure and function of ecosystem, food chain, food web,
         ecological pyramids and energy flow.</p>
       </div>
 
       <div class="material-unit">
-        <h4>🌍 Unit 2 — Natural Resources</h4>
+        <h4>🌍 Unit 2 — Natural Resources</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p>Water, forest, mineral and energy resources, conservation
         and sustainable development.</p>
       </div>
 
       <div class="material-unit">
-        <h4>🐾 Unit 3 — Biodiversity</h4>
+        <h4>🐾 Unit 3 — Biodiversity</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p>Biodiversity levels, importance, threats, conservation
         and endangered species.</p>
       </div>
 
       <div class="material-unit">
-        <h4>🏭 Unit 4 — Pollution</h4>
+        <h4>🏭 Unit 4 — Pollution</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p>Air, water, soil and noise pollution, causes, effects,
         control measures and environmental standards.</p>
       </div>
 
       <div class="material-unit">
-        <h4>♻️ Unit 5 — Waste Management</h4>
+        <h4>♻️ Unit 5 — Waste Management</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p>Solid waste, e-waste, biomedical waste, recycling,
         reuse and sustainable waste management.</p>
       </div>
@@ -433,31 +473,31 @@ const materials = {
     title: "Soft Skills / Communication — Study Material",
     content: `
       <div class="material-unit">
-        <h4>🗣️ Unit 1 — Communication Skills</h4>
+        <h4>🗣️ Unit 1 — Communication Skills</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p>Verbal and non-verbal communication, barriers,
         listening skills and effective communication.</p>
       </div>
 
       <div class="material-unit">
-        <h4>📝 Unit 2 — Grammar & Vocabulary</h4>
+        <h4>📝 Unit 2 — Grammar & Vocabulary</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p>Parts of speech, tenses, articles, prepositions,
         sentence formation and vocabulary building.</p>
       </div>
 
       <div class="material-unit">
-        <h4>🎤 Unit 3 — Presentation Skills</h4>
+        <h4>🎤 Unit 3 — Presentation Skills</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p>Public speaking, presentation structure, body language,
         confidence and effective delivery.</p>
       </div>
 
       <div class="material-unit">
-        <h4>👥 Unit 4 — Group Discussion</h4>
+        <h4>👥 Unit 4 — Group Discussion</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p>GD rules, participation, leadership, listening,
         logical arguments and teamwork.</p>
       </div>
 
       <div class="material-unit">
-        <h4>💼 Unit 5 — Professional Communication</h4>
+        <h4>💼 Unit 5 — Professional Communication</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
         <p>Resume writing, email writing, interview skills,
         formal letters and professional etiquette.</p>
       </div>
@@ -467,31 +507,31 @@ eg: {
   title: "Engineering Graphics / Engineering Drawing — Study Material",
   content: `
     <div class="material-unit">
-      <h4>📐 Unit 1 — Engineering Drawing Basics</h4>
+      <h4>📐 Unit 1 — Engineering Drawing Basics</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
       <p><b>Topics:</b> Drawing instruments, BIS conventions, lettering, dimensioning, scales and basic geometrical constructions.</p>
       <div class="question"><b>Important:</b> Types of scales, dimensioning methods and geometrical constructions.</div>
     </div>
 
     <div class="material-unit">
-      <h4>📏 Unit 2 — Orthographic Projection</h4>
+      <h4>📏 Unit 2 — Orthographic Projection</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
       <p><b>Topics:</b> Principles of orthographic projection, projection of points, lines, planes and simple solids.</p>
       <div class="question"><b>Practice:</b> Draw front view, top view and side view of given objects.</div>
     </div>
 
     <div class="material-unit">
-      <h4>🔷 Unit 3 — Projections of Solids</h4>
+      <h4>🔷 Unit 3 — Projections of Solids</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
       <p><b>Topics:</b> Projection of prisms, pyramids, cylinders and cones in different positions.</p>
       <div class="question"><b>Important:</b> Solve projection problems using proper reference planes and construction steps.</div>
     </div>
 
     <div class="material-unit">
-      <h4>✂️ Unit 4 — Sections of Solids</h4>
+      <h4>✂️ Unit 4 — Sections of Solids</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
       <p><b>Topics:</b> Sectional views, cutting planes, true shape of sections and sectional representation of solids.</p>
       <div class="question"><b>Practice:</b> Find the sectional view and true shape of common engineering solids.</div>
     </div>
 
     <div class="material-unit">
-      <h4>🧊 Unit 5 — Isometric Projection</h4>
+      <h4>🧊 Unit 5 — Isometric Projection</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
       <p><b>Topics:</b> Isometric scale, isometric projection, isometric views of simple and combined objects.</p>
       <div class="question"><b>Important:</b> Practice conversion of orthographic views into isometric views.</div>
     </div>
@@ -501,31 +541,31 @@ eg: {
   title: "Universal Human Values & Professional Ethics — Study Material",
   content: `
     <div class="material-unit">
-      <h4>🌱 Unit 1 — Introduction to Human Values</h4>
+      <h4>🌱 Unit 1 — Introduction to Human Values</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
       <p><b>Topics:</b> Need for value education, self-exploration, happiness, prosperity and basic human aspirations.</p>
       <div class="question"><b>Important:</b> Explain self-exploration and the basic aspirations of every human being.</div>
     </div>
 
     <div class="material-unit">
-      <h4>🤝 Unit 2 — Harmony in the Individual</h4>
+      <h4>🤝 Unit 2 — Harmony in the Individual</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
       <p><b>Topics:</b> Understanding the self, body, needs of the self, harmony between self and body, and right understanding.</p>
       <div class="question"><b>Practice:</b> Explain the difference between the needs of the self and the needs of the body.</div>
     </div>
 
     <div class="material-unit">
-      <h4>👨‍👩‍👧 Unit 3 — Harmony in Family and Society</h4>
+      <h4>👨‍👩‍👧 Unit 3 — Harmony in Family and Society</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
       <p><b>Topics:</b> Trust, respect, affection, care, guidance, justice, relationships and harmony in society.</p>
       <div class="question"><b>Important:</b> Explain trust and respect as the foundation of human relationships.</div>
     </div>
 
     <div class="material-unit">
-      <h4>🌍 Unit 4 — Harmony in Nature and Existence</h4>
+      <h4>🌍 Unit 4 — Harmony in Nature and Existence</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
       <p><b>Topics:</b> Four orders of nature, mutual fulfillment, ecological balance, coexistence and harmony in existence.</p>
       <div class="question"><b>Important:</b> Explain the four orders of nature and their mutual relationship.</div>
     </div>
 
     <div class="material-unit">
-      <h4>⚖️ Unit 5 — Professional Ethics and Human Values</h4>
+      <h4>⚖️ Unit 5 — Professional Ethics and Human Values</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
       <p><b>Topics:</b> Ethical conduct, professional responsibility, competence, integrity, social responsibility and sustainable development.</p>
       <div class="question"><b>Practice:</b> Explain the role of human values and professional ethics in engineering practice.</div>
     </div>
@@ -535,31 +575,31 @@ eg: {
   title: "Fundamentals of Electrical Engineering — Study Material",
   content: `
     <div class="material-unit">
-      <h4>⚡ Unit 1 — Basic Electrical Concepts</h4>
+      <h4>⚡ Unit 1 — Basic Electrical Concepts</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
       <p><b>Topics:</b> Electric charge, current, voltage, power, energy, resistance, conductance and Ohm's law.</p>
       <div class="question"><b>Important:</b> Explain Ohm's law and derive the relation between voltage, current and resistance.</div>
     </div>
 
     <div class="material-unit">
-      <h4>🔌 Unit 2 — DC Circuits</h4>
+      <h4>🔌 Unit 2 — DC Circuits</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
       <p><b>Topics:</b> Series and parallel circuits, Kirchhoff's laws, voltage division, current division and network analysis.</p>
       <div class="question"><b>Practice:</b> Solve simple DC circuits using Kirchhoff's Current Law and Kirchhoff's Voltage Law.</div>
     </div>
 
     <div class="material-unit">
-      <h4>〰️ Unit 3 — AC Fundamentals</h4>
+      <h4>〰️ Unit 3 — AC Fundamentals</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
       <p><b>Topics:</b> Alternating voltage and current, RMS value, average value, frequency, phase, phasor representation and power factor.</p>
       <div class="question"><b>Important:</b> Define RMS value and explain the significance of power factor in AC circuits.</div>
     </div>
 
     <div class="material-unit">
-      <h4>🧲 Unit 4 — Magnetic Circuits & Transformers</h4>
+      <h4>🧲 Unit 4 — Magnetic Circuits & Transformers</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
       <p><b>Topics:</b> Magnetic flux, MMF, reluctance, Faraday's law, electromagnetic induction, transformer construction and working.</p>
       <div class="question"><b>Practice:</b> Explain the working principle of a single-phase transformer and derive its transformation ratio.</div>
     </div>
 
     <div class="material-unit">
-      <h4>⚙️ Unit 5 — Electrical Machines & Safety</h4>
+      <h4>⚙️ Unit 5 — Electrical Machines & Safety</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
       <p><b>Topics:</b> DC machines, induction motors, generators, electrical wiring, earthing, fuses, MCB and basic electrical safety.</p>
       <div class="question"><b>Important:</b> Explain the purpose of earthing and compare fuse, MCB and circuit protection.</div>
     </div>
@@ -569,31 +609,31 @@ eg: {
   title: "Engineering Physics — Study Material",
   content: `
   <div class="material-unit">
-    <h4>🔬 Unit 1 — Quantum Mechanics</h4>
+    <h4>🔬 Unit 1 — Quantum Mechanics</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Black body radiation, Planck's quantum theory, photoelectric effect, Compton effect, de Broglie waves, Heisenberg uncertainty principle and wave function.</p>
     <div class="question"><b>Important:</b> Explain de Broglie hypothesis and Heisenberg uncertainty principle.</div>
   </div>
 
   <div class="material-unit">
-    <h4>🌊 Unit 2 — Wave Optics</h4>
+    <h4>🌊 Unit 2 — Wave Optics</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Interference, coherence, Young's double-slit experiment, diffraction, polarization, resolving power and optical instruments.</p>
     <div class="question"><b>Practice:</b> Derive the expression for fringe width in Young's double-slit experiment.</div>
   </div>
 
   <div class="material-unit">
-    <h4>💡 Unit 3 — Lasers & Optical Fibre</h4>
+    <h4>💡 Unit 3 — Lasers & Optical Fibre</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Spontaneous and stimulated emission, population inversion, laser principle, properties of laser, types of lasers, optical fibre, acceptance angle and numerical aperture.</p>
     <div class="question"><b>Important:</b> Explain the working principle of LASER and optical fibre.</div>
   </div>
 
   <div class="material-unit">
-    <h4>⚡ Unit 4 — Electromagnetic Theory</h4>
+    <h4>⚡ Unit 4 — Electromagnetic Theory</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Electric and magnetic fields, Gauss's law, Ampere's law, Faraday's law, Maxwell's equations and electromagnetic waves.</p>
     <div class="question"><b>Practice:</b> State Maxwell's equations and explain their physical significance.</div>
   </div>
 
   <div class="material-unit">
-    <h4>🧲 Unit 5 — Solid State Physics & Materials</h4>
+    <h4>🧲 Unit 5 — Solid State Physics & Materials</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Crystal structure, unit cell, Miller indices, Bragg's law, semiconductors, intrinsic and extrinsic semiconductors, superconductivity and nanomaterials.</p>
     <div class="question"><b>Important:</b> Explain intrinsic and extrinsic semiconductors with suitable examples.</div>
   </div>
@@ -603,31 +643,31 @@ eg: {
   title: "Engineering Chemistry — Study Material",
   content: `
   <div class="material-unit">
-    <h4>🧪 Unit 1 — Water Technology</h4>
+    <h4>🧪 Unit 1 — Water Technology</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Hardness of water, types of hardness, EDTA method, boiler troubles, water softening, ion-exchange process and reverse osmosis.</p>
     <div class="question"><b>Important:</b> Explain the EDTA method for determination of hardness of water.</div>
   </div>
 
   <div class="material-unit">
-    <h4>⚗️ Unit 2 — Electrochemistry & Corrosion</h4>
+    <h4>⚗️ Unit 2 — Electrochemistry & Corrosion</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Electrolytes, conductance, galvanic cells, electrode potential, Nernst equation, batteries, fuel cells and corrosion.</p>
     <div class="question"><b>Practice:</b> Explain electrochemical corrosion and methods of corrosion prevention.</div>
   </div>
 
   <div class="material-unit">
-    <h4>🔬 Unit 3 — Engineering Materials</h4>
+    <h4>🔬 Unit 3 — Engineering Materials</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Polymers, classification of polymers, addition and condensation polymerization, composites, ceramics and nanomaterials.</p>
     <div class="question"><b>Important:</b> Differentiate between thermoplastics and thermosetting polymers.</div>
   </div>
 
   <div class="material-unit">
-    <h4>🛢️ Unit 4 — Fuels & Lubricants</h4>
+    <h4>🛢️ Unit 4 — Fuels & Lubricants</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Solid, liquid and gaseous fuels, calorific value, coal analysis, petroleum refining, octane number, cetane number and properties of lubricants.</p>
     <div class="question"><b>Practice:</b> Explain proximate and ultimate analysis of coal.</div>
   </div>
 
   <div class="material-unit">
-    <h4>🌱 Unit 5 — Green Chemistry & Environmental Chemistry</h4>
+    <h4>🌱 Unit 5 — Green Chemistry & Environmental Chemistry</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Green chemistry principles, renewable energy, air pollution, water pollution, waste management, sustainable development and environmental protection.</p>
     <div class="question"><b>Important:</b> Explain the principles of green chemistry and their importance in engineering.</div>
   </div>
@@ -637,31 +677,31 @@ eg: {
   title: "Engineering Mathematics — Study Material",
   content: `
     <div class="material-unit">
-      <h4>📐 Unit 1 — Differential Calculus</h4>
+      <h4>📐 Unit 1 — Differential Calculus</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
       <p><b>Topics:</b> Limits, continuity, differentiability, successive differentiation, Leibniz theorem and Taylor & Maclaurin series.</p>
       <div class="question"><b>Important:</b> Solve problems based on Taylor and Maclaurin expansions and successive differentiation.</div>
     </div>
 
     <div class="material-unit">
-      <h4>∫ Unit 2 — Integral Calculus</h4>
+      <h4>∫ Unit 2 — Integral Calculus</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
       <p><b>Topics:</b> Definite and improper integrals, reduction formulae, Beta and Gamma functions and applications of integration.</p>
       <div class="question"><b>Practice:</b> Evaluate definite integrals and solve problems using Beta and Gamma functions.</div>
     </div>
 
     <div class="material-unit">
-      <h4>📊 Unit 3 — Matrices & Linear Algebra</h4>
+      <h4>📊 Unit 3 — Matrices & Linear Algebra</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
       <p><b>Topics:</b> Matrices, determinants, rank, system of linear equations, eigenvalues, eigenvectors and Cayley-Hamilton theorem.</p>
       <div class="question"><b>Important:</b> Find eigenvalues and eigenvectors and solve systems of linear equations.</div>
     </div>
 
     <div class="material-unit">
-      <h4>🔢 Unit 4 — Differential Equations</h4>
+      <h4>🔢 Unit 4 — Differential Equations</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
       <p><b>Topics:</b> First-order differential equations, higher-order differential equations, linear differential equations and applications.</p>
       <div class="question"><b>Practice:</b> Solve first-order and higher-order differential equations using standard methods.</div>
     </div>
 
     <div class="material-unit">
-      <h4>📈 Unit 5 — Multivariable Calculus</h4>
+      <h4>📈 Unit 5 — Multivariable Calculus</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
       <p><b>Topics:</b> Partial differentiation, total derivatives, maxima and minima, multiple integrals and applications.</p>
       <div class="question"><b>Important:</b> Find partial derivatives, total derivatives and maxima/minima of functions of several variables.</div>
     </div>
@@ -671,31 +711,31 @@ eg: {
   title: "Programming for Problem Solving — Study Material",
   content: `
   <div class="material-unit">
-    <h4>💻 Unit 1 — Programming Fundamentals</h4>
+    <h4>💻 Unit 1 — Programming Fundamentals</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Algorithms, flowcharts, programming languages, variables, constants, data types, operators and expressions.</p>
     <div class="question"><b>Important:</b> Explain algorithms and flowcharts and write simple programs using basic programming concepts.</div>
   </div>
 
   <div class="material-unit">
-    <h4>🔀 Unit 2 — Control Statements</h4>
+    <h4>🔀 Unit 2 — Control Statements</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Decision making, if-else, nested if, switch, loops, while, do-while and for loop.</p>
     <div class="question"><b>Practice:</b> Write programs using conditional statements and different types of loops.</div>
   </div>
 
   <div class="material-unit">
-    <h4>🔢 Unit 3 — Arrays & Strings</h4>
+    <h4>🔢 Unit 3 — Arrays & Strings</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> One-dimensional arrays, two-dimensional arrays, searching, sorting and string handling.</p>
     <div class="question"><b>Important:</b> Write programs for array operations, searching, sorting and common string functions.</div>
   </div>
 
   <div class="material-unit">
-    <h4>⚙️ Unit 4 — Functions & Pointers</h4>
+    <h4>⚙️ Unit 4 — Functions & Pointers</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Functions, function arguments, recursion, pointers, pointer arithmetic and call by value/reference.</p>
     <div class="question"><b>Practice:</b> Write programs using functions, recursion and pointers.</div>
   </div>
 
   <div class="material-unit">
-    <h4>📂 Unit 5 — Structures & File Handling</h4>
+    <h4>📂 Unit 5 — Structures & File Handling</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Structures, unions, enumeration, file handling, reading and writing files.</p>
     <div class="question"><b>Important:</b> Explain structures and file handling and solve programming problems based on them.</div>
   </div>
@@ -705,31 +745,31 @@ eg: {
   title: "Engineering Mechanics — Study Material",
   content: `
   <div class="material-unit">
-    <h4>⚖️ Unit 1 — Basic Concepts & Force Systems</h4>
+    <h4>⚖️ Unit 1 — Basic Concepts & Force Systems</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Force, vector representation, force systems, resultant force, equilibrium and free-body diagrams.</p>
     <div class="question"><b>Important:</b> Find the resultant of coplanar force systems and draw appropriate free-body diagrams.</div>
   </div>
 
   <div class="material-unit">
-    <h4>📐 Unit 2 — Equilibrium & Moments</h4>
+    <h4>📐 Unit 2 — Equilibrium & Moments</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Moment of force, Varignon's theorem, couples, equilibrium equations and support reactions.</p>
     <div class="question"><b>Practice:</b> Calculate moments and determine support reactions for different loading conditions.</div>
   </div>
 
   <div class="material-unit">
-    <h4>🏗️ Unit 3 — Centroid & Centre of Gravity</h4>
+    <h4>🏗️ Unit 3 — Centroid & Centre of Gravity</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Centroid of simple and composite areas, centre of gravity and standard geometrical sections.</p>
     <div class="question"><b>Important:</b> Find the centroid of composite sections using suitable methods.</div>
   </div>
 
   <div class="material-unit">
-    <h4>🔄 Unit 4 — Friction</h4>
+    <h4>🔄 Unit 4 — Friction</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Laws of friction, coefficient of friction, angle of friction, limiting equilibrium and applications of friction.</p>
     <div class="question"><b>Practice:</b> Solve problems involving blocks, ladders and bodies on inclined planes.</div>
   </div>
 
   <div class="material-unit">
-    <h4>🚀 Unit 5 — Kinematics & Dynamics</h4>
+    <h4>🚀 Unit 5 — Kinematics & Dynamics</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Rectilinear motion, curvilinear motion, Newton's laws, work-energy principle and impulse-momentum.</p>
     <div class="question"><b>Important:</b> Solve numerical problems based on equations of motion, work-energy and momentum principles.</div>
   </div>
@@ -739,31 +779,31 @@ eg: {
   title: "Basic Electronics Engineering — Study Material",
   content: `
   <div class="material-unit">
-    <h4>🔌 Unit 1 — Semiconductor Fundamentals</h4>
+    <h4>🔌 Unit 1 — Semiconductor Fundamentals</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Semiconductor materials, intrinsic and extrinsic semiconductors, PN junction, diode characteristics and applications.</p>
     <div class="question"><b>Important:</b> Explain PN junction formation and the working characteristics of a semiconductor diode.</div>
   </div>
 
   <div class="material-unit">
-    <h4>⚡ Unit 2 — Diodes & Rectifiers</h4>
+    <h4>⚡ Unit 2 — Diodes & Rectifiers</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Rectifiers, half-wave and full-wave rectifiers, bridge rectifier, filters, Zener diode and voltage regulation.</p>
     <div class="question"><b>Practice:</b> Draw rectifier circuits and explain their working with input-output waveforms.</div>
   </div>
 
   <div class="material-unit">
-    <h4>🔋 Unit 3 — Transistors</h4>
+    <h4>🔋 Unit 3 — Transistors</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> BJT construction, transistor configurations, transistor action, biasing and transistor as an amplifier and switch.</p>
     <div class="question"><b>Important:</b> Explain the working of BJT and compare CB, CE and CC configurations.</div>
   </div>
 
   <div class="material-unit">
-    <h4>📈 Unit 4 — Operational Amplifiers</h4>
+    <h4>📈 Unit 4 — Operational Amplifiers</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Ideal op-amp, characteristics, inverting and non-inverting amplifiers, summing amplifier and comparator.</p>
     <div class="question"><b>Practice:</b> Derive the voltage gain of inverting and non-inverting op-amp configurations.</div>
   </div>
 
   <div class="material-unit">
-    <h4>💡 Unit 5 — Digital Electronics Basics</h4>
+    <h4>💡 Unit 5 — Digital Electronics Basics</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Number systems, logic gates, Boolean algebra, combinational circuits, flip-flops and basic digital concepts.</p>
     <div class="question"><b>Important:</b> Simplify Boolean expressions and design basic logic circuits using logic gates.</div>
         </div>
@@ -774,31 +814,31 @@ eg: {
   title: "Environmental Studies — Study Material",
   content: `
   <div class="material-unit">
-    <h4>🌍 Unit 1 — Environment & Ecosystem</h4>
+    <h4>🌍 Unit 1 — Environment & Ecosystem</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Environment, ecosystem, biotic and abiotic components, food chain, food web, ecological pyramids and energy flow.</p>
     <div class="question"><b>Important:</b> Explain the structure and functions of an ecosystem with suitable examples.</div>
   </div>
 
   <div class="material-unit">
-    <h4>🌳 Unit 2 — Natural Resources</h4>
+    <h4>🌳 Unit 2 — Natural Resources</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Forest resources, water resources, mineral resources, energy resources, land resources and conservation methods.</p>
     <div class="question"><b>Practice:</b> Explain renewable and non-renewable resources and methods of their conservation.</div>
   </div>
 
   <div class="material-unit">
-    <h4>🏭 Unit 3 — Environmental Pollution</h4>
+    <h4>🏭 Unit 3 — Environmental Pollution</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Air pollution, water pollution, soil pollution, noise pollution, their sources, effects and control measures.</p>
     <div class="question"><b>Important:</b> Explain the causes, effects and control measures of air and water pollution.</div>
   </div>
 
   <div class="material-unit">
-    <h4>🌡️ Unit 4 — Climate Change & Global Issues</h4>
+    <h4>🌡️ Unit 4 — Climate Change & Global Issues</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Greenhouse effect, global warming, ozone layer depletion, acid rain, climate change and sustainable development.</p>
     <div class="question"><b>Important:</b> Explain global warming and the role of greenhouse gases in climate change.</div>
   </div>
 
   <div class="material-unit">
-    <h4>♻️ Unit 5 — Waste Management & Sustainability</h4>
+    <h4>♻️ Unit 5 — Waste Management & Sustainability</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Solid waste management, e-waste, recycling, renewable energy, biodiversity conservation and sustainable development.</p>
     <div class="question"><b>Practice:</b> Explain the principles of waste management and the importance of sustainable development.</div>
   </div>
@@ -808,31 +848,31 @@ eg: {
   title: "Soft Skills & Professional Communication — Study Material",
   content: `
   <div class="material-unit">
-    <h4>🗣️ Unit 1 — Communication Skills</h4>
+    <h4>🗣️ Unit 1 — Communication Skills</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Communication process, types of communication, verbal and non-verbal communication, barriers and effective communication.</p>
     <div class="question"><b>Important:</b> Explain the communication process and different barriers to effective communication.</div>
   </div>
 
   <div class="material-unit">
-    <h4>✍️ Unit 2 — English Grammar & Vocabulary</h4>
+    <h4>✍️ Unit 2 — English Grammar & Vocabulary</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Parts of speech, tenses, articles, prepositions, sentence structure, common errors, vocabulary and word formation.</p>
     <div class="question"><b>Practice:</b> Correct grammatical errors and construct clear and effective sentences.</div>
   </div>
 
   <div class="material-unit">
-    <h4>📄 Unit 3 — Writing Skills</h4>
+    <h4>📄 Unit 3 — Writing Skills</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Paragraph writing, formal letters, emails, applications, reports, notices, summaries and technical writing.</p>
     <div class="question"><b>Important:</b> Practice writing formal emails, applications and technical reports.</div>
   </div>
 
   <div class="material-unit">
-    <h4>🎤 Unit 4 — Presentation & Interview Skills</h4>
+    <h4>🎤 Unit 4 — Presentation & Interview Skills</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Presentation techniques, public speaking, group discussion, interview preparation, body language and confidence building.</p>
     <div class="question"><b>Practice:</b> Prepare a short technical presentation and practice common interview questions.</div>
   </div>
 
   <div class="material-unit">
-    <h4>🤝 Unit 5 — Professional Skills</h4>
+    <h4>🤝 Unit 5 — Professional Skills</h4><button class="unit-material-btn" type="button" onclick="openUnitMaterial(this)">📖 View Material</button>
     <p><b>Topics:</b> Teamwork, leadership, time management, problem solving, decision making, workplace etiquette and professional ethics.</p>
     <div class="question"><b>Important:</b> Explain the importance of teamwork, leadership and time management for engineering students.</div>
   </div>
@@ -858,7 +898,7 @@ eg: {
         <p>Attempt questions according to marks, write proper steps,
         use diagrams wherever required and manage time carefully.</p>
       </div>
-    
+    `
   }
 
 };
@@ -878,5 +918,415 @@ function closeMaterial(){
     document.getElementById('materialBox').style.display = 'none';
 }
 
+// Search only filters the existing subject cards. It does not change the
+// materials object or the working Open Material buttons.
+function searchStudyMaterial(){
+  const input=document.getElementById('studySearch');
+  const status=document.getElementById('studySearchStatus');
+  const query=(input ? input.value : '').trim().toLowerCase();
+  const cards=[...document.querySelectorAll('#subjectGrid .card')];
+  let shown=0;
+
+  cards.forEach(card=>{
+    const text=card.textContent.toLowerCase();
+    const match=!query || text.includes(query);
+    card.classList.toggle('search-hidden',!match);
+    if(match) shown++;
+  });
+
+  if(!status) return;
+  if(!query){
+    status.textContent='';
+  }else if(shown){
+    status.textContent=shown+' material result'+(shown===1?'':'s')+' found — tap Open Material.';
+  }else{
+    status.textContent='No matching material found. Try Mathematics, Electrical, Physics, Chemistry, Environment, Electronics, Soft Skills or Revision.';
+  }
+}
+
+function clearStudySearch(){
+  const input=document.getElementById('studySearch');
+  if(input) input.value='';
+  searchStudyMaterial();
+  if(input) input.focus();
+}
+
+function buildStudyDiagram(lower, title){
+  const style='width:100%;max-width:760px;height:auto;background:#fff;border:1px solid #dbe3ee;border-radius:12px;padding:8px;';
+  const wrap=(label,svg)=>`<div class="diagram-box"><h5>📊 Visual Explanation — ${label}</h5>${svg}</div>`;
+  if(lower.includes('ohm')||lower.includes('dc circuit')||lower.includes('dc circuits')) return wrap('Simple DC Circuit',`<svg viewBox="0 0 700 210" style="${style}"><rect x="60" y="65" width="100" height="70" fill="none" stroke="currentColor" stroke-width="3"/><text x="110" y="105" text-anchor="middle" font-size="17">Battery</text><path d="M160 100H270M350 100H600V160H60V135" fill="none" stroke="currentColor" stroke-width="3"/><rect x="270" y="80" width="80" height="40" fill="none" stroke="currentColor" stroke-width="3"/><text x="310" y="105" text-anchor="middle">R</text><path d="M500 90h45" stroke="currentColor" stroke-width="3"/><path d="M545 90l-10-7m10 7l-10 7" stroke="currentColor" fill="none" stroke-width="3"/><text x="520" y="78">I</text><text x="310" y="150" text-anchor="middle">V = IR</text></svg>`);
+  if(lower.includes('transformer')||lower.includes('magnetic circuit')||lower.includes('ac circuit')) return wrap('Transformer / AC Energy Transfer',`<svg viewBox="0 0 700 220" style="${style}"><rect x="325" y="35" width="50" height="150" fill="none" stroke="currentColor" stroke-width="4"/><path d="M270 50q-55 15 0 30t0 30t0 30t0 30" fill="none" stroke="currentColor" stroke-width="4"/><path d="M430 50q55 15 0 30t0 30t0 30t0 30" fill="none" stroke="currentColor" stroke-width="4"/><text x="270" y="25" text-anchor="middle">Primary</text><text x="430" y="25" text-anchor="middle">Secondary</text><text x="350" y="210" text-anchor="middle">Magnetic flux links both windings</text></svg>`);
+  if(lower.includes('semiconductor')||lower.includes('pn junction')||lower.includes('diode')||lower.includes('rectifier')) return wrap('PN Junction / Diode',`<svg viewBox="0 0 700 210" style="${style}"><rect x="120" y="55" width="190" height="90" fill="none" stroke="currentColor" stroke-width="3"/><rect x="390" y="55" width="190" height="90" fill="none" stroke="currentColor" stroke-width="3"/><text x="215" y="110" text-anchor="middle" font-size="28">P</text><text x="485" y="110" text-anchor="middle" font-size="28">N</text><path d="M350 50v100" stroke="currentColor" stroke-width="5" stroke-dasharray="8 6"/><text x="350" y="180" text-anchor="middle">Depletion region</text></svg>`);
+  if(lower.includes('op-amp')||lower.includes('operational amplifier')) return wrap('Inverting Op-Amp',`<svg viewBox="0 0 700 230" style="${style}"><polygon points="320,45 320,185 500,115" fill="none" stroke="currentColor" stroke-width="3"/><text x="335" y="95" font-size="24">−</text><text x="335" y="150" font-size="24">+</text><path d="M80 95H320" stroke="currentColor" stroke-width="3"/><rect x="180" y="75" width="80" height="40" fill="none" stroke="currentColor" stroke-width="3"/><text x="220" y="101" text-anchor="middle">Rin</text><path d="M500 115H620" stroke="currentColor" stroke-width="3"/><text x="615" y="105" text-anchor="end">Vout</text><path d="M560 115V35H260V75" fill="none" stroke="currentColor" stroke-width="3"/><rect x="400" y="15" width="80" height="40" fill="none" stroke="currentColor" stroke-width="3"/><text x="440" y="41" text-anchor="middle">Rf</text><text x="220" y="215" text-anchor="middle">Av = −Rf / Rin</text></svg>`);
+  if(lower.includes('force')||lower.includes('equilibrium')||lower.includes('friction')||lower.includes('kinematics')||lower.includes('dynamics')) return wrap('Free-Body Diagram',`<svg viewBox="0 0 700 230" style="${style}"><line x1="100" y1="175" x2="600" y2="175" stroke="currentColor" stroke-width="4"/><rect x="300" y="120" width="100" height="55" fill="none" stroke="currentColor" stroke-width="3"/><path d="M350 120V65M350 175V220M400 148H520M300 148H190" stroke="currentColor" stroke-width="3"/><path d="M350 65l-8 14m8-14l8 14M350 220l-8-14m8 14l8-14M520 148l-12-7m12 7l-12 7M190 148l12-7m-12 7l12 7" stroke="currentColor" fill="none" stroke-width="3"/><text x="360" y="78">N</text><text x="360" y="212">mg</text><text x="455" y="138">F</text><text x="225" y="138">friction</text></svg>`);
+  if(lower.includes('ecosystem')||lower.includes('food chain')||lower.includes('environment')||lower.includes('pollution')) return wrap('Ecosystem / Energy Flow',`<svg viewBox="0 0 700 170" style="${style}"><rect x="40" y="55" width="120" height="50" rx="10" fill="none" stroke="currentColor" stroke-width="3"/><text x="100" y="86" text-anchor="middle">Producer</text><rect x="210" y="55" width="120" height="50" rx="10" fill="none" stroke="currentColor" stroke-width="3"/><text x="270" y="86" text-anchor="middle">Herbivore</text><rect x="380" y="55" width="120" height="50" rx="10" fill="none" stroke="currentColor" stroke-width="3"/><text x="440" y="86" text-anchor="middle">Carnivore</text><rect x="550" y="55" width="100" height="50" rx="10" fill="none" stroke="currentColor" stroke-width="3"/><text x="600" y="86" text-anchor="middle">Decomposer</text><path d="M160 80h50m120 0h50m120 0h50" stroke="currentColor" stroke-width="3"/><text x="350" y="140" text-anchor="middle">Energy flows through trophic levels</text></svg>`);
+  if(lower.includes('communication')||lower.includes('writing')||lower.includes('interview')) return wrap('Communication Process',`<svg viewBox="0 0 700 170" style="${style}"><rect x="40" y="55" width="120" height="50" rx="10" fill="none" stroke="currentColor" stroke-width="3"/><text x="100" y="86" text-anchor="middle">Sender</text><rect x="290" y="55" width="120" height="50" rx="10" fill="none" stroke="currentColor" stroke-width="3"/><text x="350" y="86" text-anchor="middle">Message</text><rect x="540" y="55" width="120" height="50" rx="10" fill="none" stroke="currentColor" stroke-width="3"/><text x="600" y="86" text-anchor="middle">Receiver</text><path d="M160 80h130m120 0h130" stroke="currentColor" stroke-width="3"/><path d="M600 120C450 155 250 155 100 120" fill="none" stroke="currentColor" stroke-width="3"/><text x="350" y="160" text-anchor="middle">Feedback</text></svg>`);
+  if(lower.includes('calculus')||lower.includes('derivative')||lower.includes('integral')||lower.includes('vector')) return wrap('Graph / Tangent Idea',`<svg viewBox="0 0 700 210" style="${style}"><line x1="90" y1="175" x2="620" y2="175" stroke="currentColor" stroke-width="3"/><line x1="110" y1="195" x2="110" y2="30" stroke="currentColor" stroke-width="3"/><path d="M120 160C210 145 240 65 340 75S480 145 600 55" fill="none" stroke="currentColor" stroke-width="4"/><line x1="275" y1="110" x2="470" y2="50" stroke="currentColor" stroke-width="3" stroke-dasharray="7 5"/><text x="480" y="42">Tangent / slope</text></svg>`);
+  return '';
+}
+
+function buildUnitNotes(title, sourceHtml){
+  const temp = document.createElement('div');
+  temp.innerHTML = sourceHtml;
+  const p = temp.querySelector('p');
+  const q = temp.querySelector('.question');
+  const topicText = p ? p.textContent.replace(/^Topics:\s*/i,'').trim() : '';
+  const questionText = q ? q.textContent.replace(/^(Important|Practice):\s*/i,'').trim() : '';
+  const lower = (title + ' ' + topicText).toLowerCase();
+
+  let core = [];
+  let formulas = [];
+  let practice = [];
+  let examples = [];
+  let important = [];
+
+  const add = (c,f,p)=>{ if(c) core.push(c); if(f) formulas.push(f); if(p) practice.push(p); };
+  const addExample = (e)=>{ if(e) examples.push(e); };
+  const addQuestion = (q)=>{ if(q) important.push(q); };
+
+  if(lower.includes('differential calculus') || lower.includes('differentiability'))
+    add('Limits describe the value approached by a function. Continuity at x=a requires the function value and the two-sided limit to agree. Differentiability gives the instantaneous rate of change and implies continuity at the point.',
+        'Useful results: d(xⁿ)/dx = nxⁿ⁻¹, d(sin x)/dx = cos x, d(eˣ)/dx = eˣ. Practise standard limits before applying L’Hospital’s rule where it is permitted by your syllabus.',
+        'Solve limit, continuity, successive-derivative and Leibniz-theorem problems step by step.');
+  if(lower.includes('mean value') || lower.includes('taylor') || lower.includes('maclaurin'))
+    add('Rolle’s theorem, Lagrange’s Mean Value Theorem and Cauchy’s theorem are applied only after checking their hypotheses. Taylor/Maclaurin series represent a function locally as a power series.',
+        'Maclaurin examples: eˣ = 1+x+x²/2!+…, sin x = x−x³/3!+…, cos x = 1−x²/2!+….',
+        'Write theorem conditions first, then substitute the interval and verify each condition before finding the required point.');
+  if(lower.includes('partial differentiation'))
+    add('For a function of several variables, a partial derivative changes one variable while the others are held constant. Total differentiation combines the effects of all independent variables.',
+        'Euler’s theorem for a homogeneous function of degree n: x fₓ + y fᵧ = n f. Jacobians are used for variable transformation and related-rate calculations.',
+        'Practise first and second partial derivatives, Euler’s theorem, Jacobians and maxima/minima of two variables.');
+  if(lower.includes('multiple integration') || lower.includes('integral calculus'))
+    add('Double and triple integrals extend integration to areas and volumes. Changing the order of integration can make a difficult region easier to evaluate.',
+        'For polar coordinates: x=r cosθ, y=r sinθ and dx dy = r dr dθ. For cylindrical/spherical coordinates, remember the correct Jacobian.',
+        'Sketch the region first, write correct limits, then integrate. Check whether changing the order simplifies the calculation.');
+  if(lower.includes('vector calculus'))
+    add('A scalar field assigns a scalar to each point; a vector field assigns a vector. Gradient points toward greatest increase, divergence measures net outward flow, and curl measures local rotation.',
+        'grad φ = ∇φ; div A = ∇·A; curl A = ∇×A. Learn the statements and conditions of Green’s, Gauss’s and Stokes’ theorems.',
+        'Practise computing grad/div/curl and then applying the relevant integral theorem to a standard region.');
+  if(lower.includes('matrix') || lower.includes('linear algebra'))
+    add('Matrices represent linear systems and transformations. Rank, determinant and inverse help determine whether a system has a unique solution, infinitely many solutions or no solution.',
+        'For a 2×2 matrix [[a,b],[c,d]], determinant = ad−bc. An inverse exists when the determinant is non-zero.',
+        'Practise row reduction, rank, inverse and solving simultaneous linear equations.');
+  if(lower.includes('differential equation'))
+    add('A differential equation relates an unknown function to its derivatives. Identify the order, degree and type before selecting a solution method.',
+        'For first-order equations, common methods include variable separation and linear equations. For linear constant-coefficient higher-order equations, use the auxiliary equation.',
+        'Always state the complementary function/particular integral where applicable and apply initial conditions at the end.');
+  if(lower.includes('dc circuit') || lower.includes('basic electrical concepts') || lower.includes('ohm'))
+    add('Voltage is electrical potential difference, current is charge flow per unit time, and resistance opposes current. Series elements carry the same current; parallel branches share the same voltage.',
+        'Ohm’s law: V=IR. KCL: algebraic sum of currents at a node is zero. KVL: algebraic sum of voltages around a closed loop is zero. Power: P=VI=I²R=V²/R.',
+        'Draw the circuit, choose current directions, write KCL/KVL equations, solve and check units and power balance.');
+  if(lower.includes('ac circuit') || lower.includes('ac fundamentals'))
+    add('A sinusoidal AC quantity varies periodically. Resistance, inductive reactance and capacitive reactance determine magnitude and phase in AC circuits.',
+        'Xₗ=ωL, Xc=1/(ωC), Z for a series R-L-C circuit = R + j(Xₗ−Xc). Vᵣₘₛ=Vₘ/√2 for a sine wave. Power factor = cosφ.',
+        'Practise phasor diagrams, impedance, phase angle, power factor and resonance numericals.');
+  if(lower.includes('magnetic circuit') || lower.includes('electromagnetic induction'))
+    add('Magnetic flux is produced by magnetomotive force and opposed by reluctance. Faraday’s law links induced emf to the rate of change of flux; Lenz’s law gives its direction.',
+        'MMF = NI. Reluctance ℜ = l/(μA). Flux Φ = MMF/ℜ. Induced emf e = −N dΦ/dt.',
+        'Solve magnetic-circuit problems and clearly identify flux, MMF, reluctance and their units.');
+  if(lower.includes('transformer'))
+    add('A transformer transfers AC power between circuits by mutual electromagnetic induction. The primary and secondary are magnetically coupled but electrically isolated in an ideal transformer.',
+        'Ideal turns ratio: V₁/V₂=N₁/N₂≈I₂/I₁. Efficiency η=(output/input)×100%. Study copper loss, core loss, voltage regulation and equivalent circuit basics.',
+        'Practise turns-ratio, current-ratio, efficiency and loss numericals; draw a labelled transformer diagram.');
+  if(lower.includes('electrical machines'))
+    add('Electrical machines convert electrical and mechanical energy. DC machines use commutation, induction motors use electromagnetic induction, and synchronous machines operate at synchronous speed.',
+        'Synchronous speed: Nₛ=120f/P rpm. Learn torque, slip, losses, efficiency and basic construction for each machine in the syllabus.',
+        'Draw construction diagrams and compare operating principles, applications and important characteristics.');
+  if(lower.includes('c programming') || lower.includes('programming fundamentals'))
+    add('A C program is built from variables, data types, operators, expressions, input/output and control structures. Write the algorithm before coding when the problem is unfamiliar.',
+        'Remember operator precedence, integer vs floating-point division, format specifiers and the difference between assignment (=) and equality (==).',
+        'Write small programs, dry-run them with sample input, test boundary cases and compile mentally for common syntax errors.');
+  if(lower.includes('control flow') || lower.includes('control statements'))
+    add('Selection chooses a path (if/else, switch); iteration repeats a block (for, while, do-while). Use loops when the number of repetitions or stopping condition is clear.',
+        'Trace loop initialization → condition → body → update. Be careful with off-by-one errors and switch fall-through.',
+        'Practise factorial, Fibonacci, prime, palindrome, pattern and menu-driven programs.');
+  if(lower.includes('arrays') || lower.includes('strings'))
+    add('An array stores same-type elements in contiguous indexed memory. A C string is a character array terminated by the null character \\0.',
+        'For an n-element array indexed from 0, valid indices are 0…n−1. Common string functions include strlen, strcpy, strcat and strcmp; know their purpose and limitations.',
+        'Practise searching, sorting, matrix operations, string reversal, palindrome checking and frequency counting.');
+  if(lower.includes('functions') || lower.includes('pointers'))
+    add('Functions divide a program into reusable blocks. A pointer stores an address and allows indirect access to data. Passing an address enables a function to modify the caller’s variable.',
+        'Use & to obtain an address and * to dereference a pointer. Keep pointer type compatible with the data being accessed.',
+        'Trace function calls and pointer values on paper. Practise recursion, swapping using pointers and array-pointer relationships.');
+  if(lower.includes('structures') || lower.includes('file handling'))
+    add('A structure groups related variables of different types under one name. File handling lets a program store and retrieve data beyond program execution.',
+        'Know fopen/fclose and the basic read/write functions used in the syllabus. Always check whether a file opened successfully.',
+        'Practise student-record structures, searching/sorting records and simple text/binary file operations.');
+  if(lower.includes('quantum mechanics'))
+    add('Quantum mechanics describes microscopic systems where classical intuition is insufficient. Matter shows wave-particle duality and measurements have fundamental limits.',
+        'de Broglie wavelength: λ=h/p. Heisenberg uncertainty relation: ΔxΔp ≥ ħ/2.',
+        'Prepare short derivations, definitions, physical meaning and standard numerical applications.');
+  if(lower.includes('optics') || lower.includes('wave optics'))
+    add('Interference results from superposition of coherent waves; diffraction describes spreading around apertures/edges; polarization concerns the orientation of transverse-wave vibrations.',
+        'For Young’s double-slit experiment, fringe width β=λD/d. Keep symbols and unit conversions consistent.',
+        'Draw ray/wave diagrams and practise fringe-width and diffraction problems.');
+  if(lower.includes('laser') || lower.includes('optical fibre') || lower.includes('fibre optics'))
+    add('Laser light is highly directional and coherent because stimulated emission is dominant. Optical fibre guides light by total internal reflection when the core-cladding conditions are satisfied.',
+        'For a step-index fibre, numerical aperture in air is commonly written NA=√(n₁²−n₂²), subject to the model used in your course.',
+        'Learn population inversion, laser construction/working, fibre acceptance angle, NA and applications.');
+  if(lower.includes('semiconductor physics') || lower.includes('semiconductor fundamentals') || lower.includes('diode'))
+    add('Intrinsic semiconductors are pure; doping produces n-type or p-type material. A PN junction forms a depletion region and built-in potential.',
+        'Know forward/reverse bias, diode I–V characteristics, rectification and the role of the Zener diode where included.',
+        'Draw labelled characteristics and practise rectifier, ripple and regulation questions when present in the unit.');
+  if(lower.includes('electromagnetism') || lower.includes('electromagnetic theory'))
+    add('Electromagnetic theory connects electric and magnetic fields. Maxwell’s equations describe their sources and coupling, while electromagnetic waves transport energy through space.',
+        'Remember the differential/integral meaning of Gauss, Faraday, Ampère-Maxwell and Gauss-for-magnetism laws as taught in the course.',
+        'Practise derivations, field relations, wave properties and energy-flow concepts.');
+  if(lower.includes('water technology'))
+    add('Water hardness is mainly due to dissolved calcium and magnesium salts. Treatment methods depend on the type and required water quality.',
+        'EDTA complexometric titration is used for hardness estimation. Learn units used for hardness and the steps of softening/purification processes.',
+        'Practise hardness calculations and compare lime-soda, zeolite/ion-exchange and membrane methods according to your syllabus.');
+  if(lower.includes('electrochemistry') || lower.includes('corrosion'))
+    add('Electrochemistry relates chemical reactions to electrical potential. Corrosion is an electrochemical deterioration of a material in its environment.',
+        'Nernst equation connects electrode potential with concentration; learn the exact form and temperature convention used in your course. For corrosion, know anodic/cathodic areas and prevention methods.',
+        'Practise cell-potential numericals and explain corrosion mechanisms with labelled diagrams.');
+  if(lower.includes('organic chemistry'))
+    add('Organic chemistry studies carbon compounds and their transformations. Learn functional groups first, then reaction type, reagent and product.',
+        'Make a reaction map rather than memorising isolated reactions. Distinguish addition, substitution, elimination and oxidation/reduction where relevant.',
+        'Practise predicting products and writing balanced reaction equations.');
+  if(lower.includes('engineering materials') || lower.includes('fuels') || lower.includes('lubricants'))
+    add('Engineering materials are selected according to properties such as strength, hardness, thermal stability, corrosion resistance and manufacturability. Fuels and lubricants are evaluated by performance-related properties.',
+        'Learn standard definitions, classifications, important properties, testing methods and applications rather than memorising lists without context.',
+        'Prepare comparison tables and short-answer notes for each material/fuel/lubricant category.');
+  if(lower.includes('green chemistry'))
+    add('Green chemistry aims to reduce hazardous substances, waste and energy use at the source. Sustainable design considers the full life cycle of a process or product.',
+        'Learn the principles of prevention, atom economy, safer solvents/conditions, catalysis and renewable feedstocks as covered in the syllabus.',
+        'For each principle, prepare one simple industrial or laboratory example.');
+  if(lower.includes('ecosystem') || lower.includes('environment & ecosystem'))
+    add('An ecosystem contains biotic and abiotic components linked by energy flow and nutrient cycling. Producers capture energy, while consumers and decomposers form interconnected food relationships.',
+        'Learn food chains, food webs, ecological pyramids and the difference between energy flow and nutrient cycling.',
+        'Draw one labelled ecosystem diagram and explain energy flow in a short answer.');
+  if(lower.includes('natural resources'))
+    add('Natural resources include water, forests, minerals and energy resources. Sustainable use balances present needs with long-term availability.',
+        'For every resource, study availability, uses, major threats and conservation strategies.',
+        'Prepare cause–effect–solution answers and include one practical conservation example.');
+  if(lower.includes('biodiversity'))
+    add('Biodiversity exists at genetic, species and ecosystem levels. Major threats include habitat loss, overexploitation, pollution and invasive species.',
+        'Compare in-situ and ex-situ conservation and learn the role of protected areas and restoration.',
+        'Practise 5-mark answers using definition → importance → threats → conservation.');
+  if(lower.includes('pollution'))
+    add('Pollution is the introduction of harmful substances or energy into the environment. Good answers identify source, pollutant, effect and control measure.',
+        'For air/water/soil/noise pollution, make a four-column revision table: sources, effects, monitoring/indicators, control.',
+        'Practise one complete cause–effect–control answer for each pollution type.');
+  if(lower.includes('climate change'))
+    add('Climate change involves long-term shifts in climate patterns. Greenhouse gases absorb outgoing infrared radiation and contribute to warming.',
+        'Distinguish greenhouse effect, global warming, ozone depletion and acid rain; they are related environmental issues but not the same process.',
+        'Prepare short notes on causes, impacts, mitigation, adaptation and sustainable development.');
+  if(lower.includes('waste management'))
+    add('Waste management prioritises prevention, reduction, reuse, recycling, recovery and safe disposal. Different waste streams need different handling methods.',
+        'Know segregation at source, collection, treatment and final disposal, plus special handling of e-waste/biomedical waste where applicable.',
+        'Draw a simple waste-management flow and explain why segregation improves recovery and safety.');
+  if(lower.includes('communication skills'))
+    add('Effective communication transfers meaning clearly between sender and receiver using an appropriate channel and feedback. Listening and non-verbal cues strongly affect understanding.',
+        'Remember the communication cycle: sender → message → channel → receiver → feedback, with noise/barriers affecting the process.',
+        'Practise concise introductions, active listening and examples of overcoming communication barriers.');
+  if(lower.includes('grammar') || lower.includes('vocabulary'))
+    add('Good technical communication depends on sentence structure, correct tense, articles, prepositions and precise vocabulary.',
+        'Revise parts of speech and common error patterns. Prefer simple, direct sentences in professional writing.',
+        'Practise error correction, sentence transformation and 10 new technical/professional words regularly.');
+  if(lower.includes('writing skills'))
+    add('Professional writing should be clear, structured and audience-aware. Use headings, short paragraphs and a logical order.',
+        'Learn the standard format of formal email, application, report, notice and summary as required by your course.',
+        'Write one timed response for each format and check grammar, tone, formatting and completeness.');
+  if(lower.includes('presentation') || lower.includes('interview'))
+    add('A strong presentation has a clear opening, organised body and concise conclusion. Interviews assess knowledge as well as communication, confidence and professionalism.',
+        'Use simple slides, readable text and one key idea per visual. In interviews, answer directly, support claims with examples and avoid guessing.',
+        'Practise a 2-minute technical introduction and record yourself once before an important presentation/interview.');
+  if(lower.includes('group discussion'))
+    add('A group discussion evaluates listening, relevance, reasoning, teamwork and communication. Speaking more is not automatically speaking better.',
+        'Use the structure: point → reason → example → conclusion. Build on others’ ideas instead of interrupting or repeating.',
+        'Practise opening a topic, adding one evidence-based point and summarising the group’s discussion.');
+  if(lower.includes('professional skills'))
+    add('Professional skills include reliability, teamwork, time management, problem solving, communication and workplace etiquette.',
+        'Use the STAR pattern (Situation, Task, Action, Result) when describing experiences or achievements in interviews.',
+        'Prepare short examples showing teamwork, leadership, problem solving and handling a mistake.');
+  if(lower.includes('engineering drawing') || lower.includes('orthographic') || lower.includes('projection') || lower.includes('isometric'))
+    add('Engineering drawing communicates shape and size using standard conventions. Projection problems depend on reference planes, projectors and correct view relationships.',
+        'Keep line types, dimensions, scale and projection conventions consistent with the drawing standard taught in class.',
+        'Practise construction from a clean starting layout: reference line → projectors → required view → dimensions → final visible/hidden lines.');
+  if(lower.includes('human values') || lower.includes('harmony in'))
+    add('Human values study right understanding, relationships, responsible behaviour and harmony at individual, family, social and natural levels.',
+        'For theory answers, define the value, explain its purpose, give a practical example and finish with its relevance to professional life.',
+        'Practise short reflective answers instead of memorising isolated sentences.');
+  if(lower.includes('force systems') || lower.includes('equilibrium') || lower.includes('moments'))
+    add('Engineering mechanics begins with forces, moments and equilibrium. A free-body diagram is the most important first step in many numerical problems.',
+        'Moment = force × perpendicular distance. For planar equilibrium, use ΣFx=0, ΣFy=0 and ΣM=0 as applicable.',
+        'Draw the FBD, mark reactions, choose signs consistently and check whether the final units are correct.');
+  if(lower.includes('centroid') || lower.includes('centre of gravity'))
+    add('The centroid is the geometric centre of an area/shape, while centre of gravity is the point through which the resultant weight acts.',
+        'For composite areas, use x̄=Σ(Aᵢxᵢ)/ΣAᵢ and ȳ=Σ(Aᵢyᵢ)/ΣAᵢ, with signed areas when holes/cut-outs are involved.',
+        'Break the figure into standard shapes, tabulate A, x and y, then calculate the weighted averages.');
+  if(lower.includes('friction'))
+    add('Friction opposes relative motion or impending motion between surfaces. Static friction adjusts up to a limiting value; kinetic friction acts during sliding.',
+        'Limiting friction F=μN. Angle of friction φ satisfies tanφ=μ in the standard model.',
+        'Draw the FBD and identify whether the body is at rest, impending motion or sliding before applying the friction relation.');
+  if(lower.includes('kinematics') || lower.includes('dynamics'))
+    add('Kinematics describes motion without focusing on its cause; dynamics connects motion with forces and mass. Choose coordinates and sign convention before writing equations.',
+        'For constant acceleration: v=u+at, s=ut+½at², v²=u²+2as. Use the equation that matches the known quantities.',
+        'Practise free-body diagrams, motion graphs and step-by-step numerical solutions with units.');
+  if(lower.includes('electronics') || lower.includes('op-amp') || lower.includes('digital electronics'))
+    add('Electronic devices control current/voltage and are analysed using characteristic curves and circuit models. Digital electronics represents information using discrete logic levels.',
+        'For ideal op-amp analysis, use the standard assumptions taught in the course: very high open-loop gain and input resistance, with virtual short under negative feedback.',
+        'Draw circuits neatly, label input/output nodes and state assumptions before solving.');
+
+  // Short worked examples and exam questions are generated only from topics already present in this unit.
+  if(lower.includes('ohm') || lower.includes('dc circuit')){
+    addExample('<b>Ohm’s law:</b> If R = 5 Ω and I = 2 A, then V = IR = 2×5 = <b>10 V</b>.');
+    addQuestion('Using KCL/KVL, solve a simple DC network and verify the result using power balance.');
+  }
+  if(lower.includes('ac circuit') || lower.includes('ac fundamentals')){
+    addExample('<b>Inductive reactance:</b> For f = 50 Hz and L = 0.1 H, Xₗ = 2πfL ≈ <b>31.42 Ω</b>.');
+    addQuestion('Draw the phasor diagram of a series R-L-C circuit and explain resonance and power factor.');
+  }
+  if(lower.includes('transformer')){
+    addExample('<b>Turns ratio:</b> If N₁ = 1000, N₂ = 200 and V₁ = 230 V, ideal V₂ = V₁(N₂/N₁) = <b>46 V</b>.');
+    addQuestion('A transformer has given turns and voltage. Calculate secondary voltage/current and comment on losses and efficiency.');
+  }
+  if(lower.includes('electrical machines')){
+    addExample('<b>Synchronous speed:</b> For f = 50 Hz and P = 4 poles, Nₛ = 120f/P = <b>1500 rpm</b>.');
+    addQuestion('Compare the construction, working principle, speed relation and applications of the machines listed in this unit.');
+  }
+  if(lower.includes('matrix')){
+    addExample('<b>2×2 determinant:</b> For [[2, 3], [1, 4]], det = (2×4) − (3×1) = <b>5</b>. Since det ≠ 0, the matrix is invertible.');
+    addQuestion('Find the rank/inverse of a given matrix and use it to solve a system of simultaneous equations.');
+  }
+  if(lower.includes('differential calculus') || lower.includes('differentiability')){
+    addExample('<b>Derivative:</b> If y = x³ + 2x, then dy/dx = 3x² + 2. At x = 2, the slope is <b>14</b>.');
+    addQuestion('Test continuity/differentiability at a point and then find the derivative using the appropriate rule.');
+  }
+  if(lower.includes('integral calculus')){
+    addExample('<b>Basic integration:</b> ∫(2x + 3)dx = x² + 3x + C. Always include the constant of integration for an indefinite integral.');
+    addQuestion('Evaluate a definite/indefinite integral and show the limits or substitution steps clearly.');
+  }
+  if(lower.includes('differential equation')){
+    addExample('<b>Separable example:</b> dy/dx = 2x gives dy = 2x dx; integrating gives <b>y = x² + C</b>.');
+    addQuestion('Identify the type/order of the differential equation, choose the method, solve it and apply the given initial condition.');
+  }
+  if(lower.includes('vector calculus')){
+    addExample('<b>Gradient:</b> For φ = x² + y², ∇φ = (2x)i + (2y)j. At (1,2), ∇φ = <b>2i + 4j</b>.');
+    addQuestion('Calculate grad/div/curl for the given field and state which integral theorem is appropriate.');
+  }
+  if(lower.includes('c programming') || lower.includes('programming fundamentals') || lower.includes('control flow')){
+    addExample('<b>Loop example:</b> To find the sum 1+2+3+4+5, initialise sum=0 and add i for i=1…5; the final sum is <b>15</b>.');
+    addQuestion('Write, dry-run and explain a C program for the main problem represented by this unit; include sample input/output.');
+  }
+  if(lower.includes('arrays') || lower.includes('strings')){
+    addExample('<b>Array search:</b> In [4, 7, 2, 9], a linear search for 2 checks 4 → 7 → 2, so the 0-based index is <b>2</b>.');
+    addQuestion('Write a program to search/sort/process an array or string and explain the time-consuming steps.');
+  }
+  if(lower.includes('functions') || lower.includes('pointers')){
+    addExample('<b>Pointer idea:</b> If int x = 10 and p points to x, then *p reads <b>10</b>; changing *p changes x because both refer to the same memory location.');
+    addQuestion('Trace a function/pointer program line by line and predict the final values before compiling it.');
+  }
+  if(lower.includes('kinematics') || lower.includes('dynamics')){
+    addExample('<b>Constant acceleration:</b> With u = 0, a = 2 m/s² and t = 3 s, v = u+at = <b>6 m/s</b> and s = ut+½at² = <b>9 m</b>.');
+    addQuestion('Draw the free-body/motion diagram, choose a sign convention and solve the numerical problem with units.');
+  }
+  if(lower.includes('semiconductor') || lower.includes('diode')){
+    addExample('<b>Diode check:</b> First identify the biasing condition, then use the diode model specified by the course (ideal/constant-drop) before calculating current.');
+    addQuestion('Draw the PN-junction/rectifier circuit, explain its working and sketch the expected input/output waveforms.');
+  }
+  if(lower.includes('op-amp') || lower.includes('operational amplifier')){
+    addExample('<b>Ideal inverting amplifier:</b> With Rf = 20 kΩ, Rin = 10 kΩ and Vin = 0.5 V, Av = −Rf/Rin = −2, so Vout = <b>−1 V</b>.');
+    addQuestion('Derive the gain of the inverting/non-inverting configuration and state the ideal op-amp assumptions used.');
+  }
+  if(lower.includes('communication')){
+    addExample('<b>Communication example:</b> Sender → message → channel → receiver, with feedback used to confirm understanding; identify where a barrier/noise can occur.');
+    addQuestion('Explain the communication process, barriers and methods for improving effectiveness with suitable examples.');
+  }
+  if(lower.includes('environment') || lower.includes('pollution') || lower.includes('sustainability')){
+    addExample('<b>Exam-answer method:</b> For any pollution problem, organise the answer as <b>sources → effects → control measures</b>, then add one relevant example.');
+    addQuestion('Write a structured answer on the causes, effects and control/prevention measures of the major environmental issue in this unit.');
+  }
+  if(questionText) addQuestion(questionText);
+  if(!important.length) addQuestion('Define the key terms of this unit, explain the main concept in your own words and solve one representative question.');
+
+  if(!core.length)
+    add('Start with the meaning of each listed topic, then connect the topics through one worked example or application. Keep definitions, key relations and common mistakes together on one revision sheet.',
+        '',
+        'Practise at least two representative questions and one short-answer explanation from the unit.');
+
+  const topicList = topicText.split(/,|;|\n/).map(x=>x.trim().replace(/^and\s+/i,'')).filter(Boolean).slice(0,10).map(x=>`<li>${x}</li>`).join('');
+  const unique = arr => [...new Set(arr)];
+
+  return `
+    <div class="unit-notes">
+      <h4>📚 Student Notes — Quick Study Sheet</h4>
+      <p><b>What to learn:</b></p>
+      <ul>${topicList || '<li>Prepare the definitions, key concepts, formulas and examples listed for this unit.</li>'}</ul>
+      <div class="note-section"><h5>💡 Core Concepts</h5>${unique(core).map(n=>`<p>${n}</p>`).join('')}</div>
+      ${formulas.length ? `<div class="note-section"><h5>🧮 Key Formula / Memory Points</h5>${unique(formulas).map(n=>`<p>${n}</p>`).join('')}</div>` : ''}
+      <div class="note-section"><h5>✍️ Practice Plan</h5>${unique(practice).map(n=>`<p>${n}</p>`).join('')}</div>
+      ${questionText ? `<div class="question"><b>🎯 Exam Focus:</b> ${questionText}</div>` : ''}
+      ${examples.length ? `<div class="note-section"><h5>🧩 Solved Example / Application</h5>${unique(examples).map(n=>`<p>${n}</p>`).join('')}</div>` : ''}
+      ${buildStudyDiagram(lower, title)}
+      <div class="note-section"><h5>📝 Important Questions</h5><ol>${unique(important).map(n=>`<li>${n}</li>`).join('')}</ol></div>
+      <div class="question"><b>📌 Formula & Revision Sheet:</b> Memorise only the relations shown above, understand each symbol/unit, and practise using them in a question.</div>
+      <div class="question"><b>✅ Quick Revision:</b> Close the notes and explain the unit in your own words in 2–3 minutes. Then solve one question without looking at the solution.</div>
+    </div>`;
+}
+
+function openUnitMaterial(button){
+  const unit = button.closest('.material-unit');
+  if(!unit) return;
+
+  const title = unit.querySelector('h4');
+  const titleBox = document.getElementById('unitMaterialTitle');
+  const contentBox = document.getElementById('unitMaterialContent');
+  const box = document.getElementById('unitMaterialBox');
+  if(!title || !titleBox || !contentBox || !box) return;
+
+  const clone = unit.cloneNode(true);
+  const clonedButton = clone.querySelector('.unit-material-btn');
+  if(clonedButton) clonedButton.remove();
+  const clonedTitle = clone.querySelector('h4');
+  if(clonedTitle) clonedTitle.remove();
+
+  const cleanTitle = title.textContent.trim();
+  titleBox.textContent = cleanTitle;
+  const safeId = 'study_' + Math.random().toString(36).slice(2,9);
+  contentBox.innerHTML = `
+    <div class="unit-actions">
+      <button class="primary" type="button" onclick="printUnitMaterial()">🖨️ Print / Save PDF</button>
+      <button type="button" onclick="copyUnitMaterial()">📋 Copy Notes</button>
+    </div>
+    <div id="${safeId}">${clone.innerHTML + buildUnitNotes(cleanTitle, clone.innerHTML)}</div>`;
+  contentBox.dataset.activeStudyId = safeId;
+  box.style.display = 'block';
+  box.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function closeUnitMaterial(){
+  const box = document.getElementById('unitMaterialBox');
+  if(box) box.style.display = 'none';
+}
+
+function copyUnitMaterial(){
+  const box = document.getElementById('unitMaterialContent');
+  if(!box) return;
+  const text = box.innerText.replace(/\n{3,}/g,'\n\n').trim();
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(text).then(()=>alert('✅ Unit notes copied!')).catch(()=>fallbackCopy(text));
+  } else fallbackCopy(text);
+}
+
+function fallbackCopy(text){
+  const area=document.createElement('textarea');
+  area.value=text; document.body.appendChild(area); area.select();
+  try{document.execCommand('copy'); alert('✅ Unit notes copied!');}catch(e){alert('Notes copy nahi ho paye. Please long-press and copy.');}
+  area.remove();
+}
+
+function printUnitMaterial(){
+  const content=document.getElementById('unitMaterialContent');
+  const title=document.getElementById('unitMaterialTitle');
+  if(!content || !title) return;
+  const win=window.open('','_blank','width=900,height=700');
+  if(!win){ alert('Please allow pop-ups to print/save the notes.'); return; }
+  win.document.write(`<!doctype html><html><head><title>${title.textContent}</title><style>
+    body{font-family:Arial,sans-serif;line-height:1.55;padding:28px;color:#172033}h2{margin-top:0}h4,h5{color:#1264e8}.question{background:#f5f8fc;border-left:4px solid #1264e8;padding:10px;margin:10px 0}.unit-notes{background:#f7fbff;padding:15px;border:1px solid #dbeaf7;border-radius:10px}li{margin:5px 0}@media print{body{padding:10px}}
+  </style></head><body><h2>${title.textContent}</h2>${content.innerHTML}</body></html>`);
+  win.document.close(); win.focus(); setTimeout(()=>win.print(),300);
+}
 </script>
 </body></html>
