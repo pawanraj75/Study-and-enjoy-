@@ -1330,4 +1330,17 @@ function printUnitMaterial(){
   win.document.close(); win.focus(); setTimeout(()=>win.print(),300);
 }
 </script>
+  <script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("/Study-and-enjoy/sw.js")
+      .then(function () {
+        console.log("Service Worker registered successfully");
+      })
+      .catch(function (error) {
+        console.log("Service Worker registration failed:", error);
+      });
+  });
+}
+  </script>
 </body></html>
