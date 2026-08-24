@@ -1,6 +1,7 @@
 {
   "name": "Study & Enjoy",
   "short_name": "Study & Enjoy",
+  "id": "/Study-and-enjoy/"
   "description": "Learn Better, Study Smarter, Enjoy Learning. Study materials, notes, lectures, syllabus, practice questions and useful resources for students.",
   "start_url": "/Study-and-enjoy-/",
   "scope": "/Study-and-enjoy-/",
