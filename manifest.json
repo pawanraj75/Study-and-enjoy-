@@ -1,0 +1,11 @@
+{
+  "name": "Study and Enjoy – AKTU B.Tech 1st Year Study Material",
+  "short_name": "Study & Enjoy",
+  "description": "AKTU B.Tech 1st Year Study Material, Notes, Syllabus, PYQs and helpful resources.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563EB",
+  "orientation": "portrait-primary"
+}
