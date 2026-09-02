@@ -1,1 +1,3246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Study and Enjoy | AKTU B.Tech 1st Year Complete Study Material</title>
+
+<meta name="description" content="AKTU B.Tech 1st Year complete study material with definitions, formulas, examples, assignments and AI doubt support for Mathematics, Physics, Chemistry, Electrical, C Programming and Soft Skills.">
+
+<meta name="keywords" content="Study and Enjoy, AKTU B.Tech 1st Year, AKTU notes, REC Mainpuri, Mathematics, Physics, Chemistry, Electrical, C programming, soft skills, AI doubt">
+
+<meta name="author" content="Pawan Raj">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://pawanraj75.github.io/Study-and-enjoy-/">
+
+<style>
+*{
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f6f8ff;
+    color:#172554;
+}
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:#fff;
+    border-bottom:1px solid #e5e7eb;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 5%;
+    box-shadow:0 3px 15px rgba(0,0,0,.06);
+}
+
+.logo{
+    font-size:22px;
+    font-weight:800;
+    color:#1d4ed8;
+}
+
+.logo span{
+    color:#172554;
+}
+
+nav a{
+    color:#334155;
+    text-decoration:none;
+    margin-left:18px;
+    font-weight:600;
+}
+
+nav a:hover{
+    color:#2563eb;
+}
+
+.hero{
+    padding:85px 6%;
+    background:linear-gradient(135deg,#dbeafe,#eef2ff);
+    text-align:center;
+}
+
+.hero h1{
+    font-size:46px;
+    margin:0 auto 15px;
+    max-width:950px;
+}
+
+.hero p{
+    font-size:19px;
+    color:#475569;
+    max-width:820px;
+    margin:0 auto 28px;
+    line-height:1.6;
+}
+
+.btn{
+    display:inline-block;
+    padding:14px 22px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:700;
+    margin:5px;
+    background:#2563eb;
+    color:#fff;
+}
+
+.btn:hover{
+    opacity:.9;
+}
+
+.btn.alt{
+    background:#fff;
+    color:#1d4ed8;
+    border:1px solid #bfdbfe;
+}
+
+section{
+    padding:65px 5%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.section-title h2{
+    font-size:34px;
+    margin:0 0 10px;
+}
+
+.section-title p{
+    color:#64748b;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.feature{
+    background:#fff;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 7px 24px rgba(0,0,0,.07);
+    text-align:center;
+}
+
+.feature .icon{
+    font-size:38px;
+}
+
+.feature h3{
+    margin:12px 0 8px;
+}
+
+.feature p{
+    color:#64748b;
+    line-height:1.5;
+}
+
+.material-section{
+    background:#f5f8ff;
+}
+
+.material-search{
+    max-width:760px;
+    margin:0 auto 35px;
+}
+
+.material-search input{
+    width:100%;
+    padding:16px 20px;
+    border:2px solid #dbeafe;
+    border-radius:14px;
+    font-size:16px;
+    outline:none;
+}
+
+.material-search input:focus{
+    border-color:#2563eb;
+}
+
+.subject-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+    gap:22px;
+}
+
+.subject-card{
+    background:#fff;
+    border-radius:20px;
+    padding:22px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    border:1px solid #e2e8f0;
+}
+
+.subject-head{
+    display:flex;
+    gap:14px;
+    align-items:center;
+}
+
+.subject-icon{
+    font-size:40px;
+}
+
+.subject-card h3{
+    color:#1e3a8a;
+    margin:5px 0;
+}
+
+.subject-card p{
+    color:#64748b;
+    line-height:1.6;
+}
+
+.topic{
+    border:1px solid #dbeafe;
+    border-radius:12px;
+    margin:10px 0;
+    overflow:hidden;
+}
+
+.topic button.topic-btn{
+    width:100%;
+    border:0;
+    background:#eff6ff;
+    padding:14px;
+    text-align:left;
+    font-weight:bold;
+    color:#1e40af;
+    cursor:pointer;
+    font-size:15px;
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.topic button.topic-btn:hover{
+    background:#dbeafe;
+}
+
+.topic-content{
+    display:none;
+    padding:18px;
+    background:#fff;
+    color:#334155;
+    line-height:1.7;
+}
+
+.topic-content p{
+    margin:7px 0 14px;
+    color:#334155;
+}
+
+.label{
+    font-weight:800;
+    color:#1d4ed8;
+    margin-top:8px;
+}
+
+.box{
+    background:#f8fafc;
+    border-left:4px solid #60a5fa;
+    padding:12px;
+    border-radius:8px;
+    margin:7px 0 13px;
+    white-space:pre-line;
+}
+
+.example{
+    border-left-color:#22c55e;
+    background:#f0fdf4;
+}
+
+.mini-ai{
+    background:#1d4ed8 !important;
+    color:#fff !important;
+    border-radius:9px !important;
+    width:auto !important;
+    margin-top:8px !important;
+    padding:10px 14px !important;
+    font-size:14px !important;
+    border:0 !important;
+    cursor:pointer !important;
+}
+
+.mini-ai:hover{
+    background:#1e40af !important;
+}
+
+.assignment-box{
+    margin-top:45px;
+    background:#fff;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,.07);
+}
+
+.assignment-box h3{
+    color:#172554;
+    margin-top:28px;
+}
+
+.assignment-box li{
+    margin:9px 0;
+    line-height:1.55;
+}
+
+.ai-support{
+    margin-top:45px;
+    padding:35px;
+    border-radius:22px;
+    background:linear-gradient(135deg,#1d4ed8,#4338ca);
+    color:#fff;
+}
+
+.ai-chat{
+    background:#fff;
+    padding:20px;
+    border-radius:15px;
+    margin-top:20px;
+}
+
+.ai-chat textarea{
+    width:100%;
+    min-height:110px;
+    padding:15px;
+    border:1px solid #cbd5e1;
+    border-radius:10px;
+    resize:vertical;
+    font-size:15px;
+}
+
+.ai-chat button{
+    margin-top:12px;
+    padding:13px 22px;
+    background:#2563eb;
+    color:#fff;
+    border:0;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+#aiAnswer{
+    margin-top:15px;
+    padding:15px;
+    background:#eff6ff;
+    color:#1e293b;
+    border-radius:10px;
+    display:none;
+    line-height:1.7;
+    white-space:pre-wrap;
+}
+
+.status{
+    font-size:13px;
+    margin-top:8px;
+    color:#dbeafe;
+}
+
+footer{
+    background:#0f172a;
+    color:#cbd5e1;
+    text-align:center;
+    padding:35px 5%;
+}
+
+footer a{
+    color:#93c5fd;
+    text-decoration:none;
+}
+
+@media(max-width:700px){
+
+    nav{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    nav a{
+        margin:0 6px;
+        font-size:12px;
+    }
+
+    .hero h1{
+        font-size:32px;
+    }
+
+    .hero{
+        padding:60px 5%;
+    }
+
+    .section-title h2{
+        font-size:28px;
+    }
+
+    .subject-grid{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">Study <span>and Enjoy</span> 📚</div>
+
+    <div>
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#material">Material</a>
+        <a href="#assignments">Assignments</a>
+        <a href="#ai">AI Doubt</a>
+    </div>
+</nav>
+
+<header class="hero" id="home">
+
+    <h1>Padho, Samjho, Top Karo 🚀</h1>
+
+    <p>
+        AKTU B.Tech 1st Year students ke liye definitions,
+        concepts, formulas, examples, assignments aur AI doubt support —
+        sab ek hi jagah.
+    </p>
+
+    <a class="btn" href="#material">
+        📚 Explore Complete Material
+    </a>
+
+    <a class="btn alt" href="#ai">
+        🤖 Ask AI
+    </a>
+
+</header>
+
+
+<section id="features">
+
+    <div class="section-title">
+        <h2>Why Study and Enjoy?</h2>
+        <p>
+            Ab material sirf short notes nahi — har topic ko definition,
+            key points, examples aur exam tips ke saath diya gaya hai.
+        </p>
+    </div>
+
+    <div class="features">
+
+        <div class="feature">
+            <div class="icon">📚</div>
+            <h3>Detailed Material</h3>
+            <p>
+                40+ important topics with definition,
+                formulas, concepts and examples.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="icon">📝</div>
+            <h3>150+ Assignments</h3>
+            <p>
+                6 major subjects ke 25-25 practice questions.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="icon">💡</div>
+            <h3>Easy Explanations</h3>
+            <p>
+                Simple Hindi/Hinglish language aur exam-focused examples.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="icon">🤖</div>
+            <h3>AI Doubt Support</h3>
+            <p>
+                AI se kisi bhi topic ko aur simple examples ke saath samjho.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="material-section" id="material">
+
+<div class="section-title">
+
+    <h2>📚 Complete AKTU B.Tech Study Material</h2>
+
+    <p>
+        Har topic: Definition → Key Points/Formula →
+        Examples → Exam Tip → AI Explanation
+    </p>
+
+</div>
+
+
+<div class="material-search">
+
+    <input
+        id="materialSearch"
+        type="text"
+        placeholder="🔍 Search subject, topic or keyword..."
+        oninput="searchMaterial()"
+    >
+
+</div>
+
+
+<div class="subject-grid">
+
+
+<!-- MATHEMATICS -->
+
+<div class="subject-card searchable">
+
+<div class="subject-head">
+
+<div class="subject-icon">📐</div>
+
+<div>
+<h3>Engineering Mathematics-I</h3>
+
+<p>
+8 detailed topics • Definition • Key points • Formula • Examples • Quick tip
+</p>
+
+</div>
+
+</div>
+
+
+<div class="topic" data-topic="differential calculus">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>1. Differential Calculus</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Derivative kisi function ke change ki instantaneous rate ko batata hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Power rule: d(xⁿ)/dx = n xⁿ⁻¹.
+Product rule: (uv)' = u'v + uv'.
+Chain rule: d[f(g(x))]/dx = f'(g(x))g'(x).
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Example: y=x³+2x ⇒ dy/dx=3x²+2.
+
+Example: y=sin x² ⇒ dy/dx=2x cos(x²).
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Derivative ka use slope, velocity, maxima-minima aur approximation mein hota hai.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Differential Calculus from Engineering Mathematics-I in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="partial differentiation">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>2. Partial Differentiation</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Jab function mein ek se zyada independent variables hon aur ek variable ke respect mein derivative liya jaye, use partial differentiation kehte hain.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+∂/∂x means y,z ko constant maan kar x ke respect mein differentiate karna.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Example: z=x²y+3y² ⇒ ∂z/∂x=2xy; ∂z/∂y=x²+6y.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Jis variable ke respect mein derivative hai, baaki variables constants hote hain.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Partial Differentiation from Engineering Mathematics-I in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="maxima and minima">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>3. Maxima and Minima</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Function ka local maximum highest nearby value aur local minimum lowest nearby value hota hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Critical point ke liye f'(x)=0.
+
+Second derivative test:
+f''(x)&lt;0 ⇒ maximum
+f''(x)&gt;0 ⇒ minimum.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Example: f=x²-4x+3.
+f'=2x-4=0 ⇒ x=2.
+f''=2&gt;0, so minimum.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Engineering optimization problems mein iska use hota hai.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Maxima and Minima from Engineering Mathematics-I in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="taylor and maclaurin series">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>4. Taylor and Maclaurin Series</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Kisi function ko powers of x ke sum ke form mein approximate karne ki technique series expansion hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Taylor:
+f(x)=f(a)+(x-a)f'(a)+(x-a)²f''(a)/2!+...
+
+Maclaurin mein a=0.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+eˣ=1+x+x²/2!+x³/3!+...
+
+sin x=x-x³/3!+x⁵/5!-...
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Approximation aur numerical calculations mein useful.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Taylor and Maclaurin Series from Engineering Mathematics-I in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="matrices">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>5. Matrices</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Rows aur columns mein arranged numbers ka rectangular array matrix kehlata hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Determinant 2×2:
+|a b; c d| = ad-bc.
+
+Inverse:
+A⁻¹=adj(A)/|A|,
+when |A|≠0.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Example:
+A=[[2,1],[3,4]]
+|A|=8-3=5.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Matrices simultaneous equations, transformations aur engineering computation mein useful hain.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Matrices from Engineering Mathematics-I in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="rank of matrix">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>6. Rank of Matrix</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Matrix ki maximum number of linearly independent rows/columns ko rank kehte hain.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Elementary row operations se echelon form bana kar non-zero rows count ki ja sakti hain.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Example:
+[[1,2],[2,4]] ka rank 1 hai kyunki second row first ka 2 times hai.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Linear equations ki consistency check karne mein important.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Rank of Matrix from Engineering Mathematics-I in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="differential equations">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>7. Differential Equations</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Unknown function aur uske derivatives wali equation differential equation hoti hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Order highest derivative ka order hota hai.
+
+First-order equations mein variable separation, homogeneous aur linear methods common hain.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Example:
+dy/dx=2x ⇒ y=x²+C.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Physics, circuits, growth/decay aur dynamic systems model karne mein use hota hai.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Differential Equations from Engineering Mathematics-I in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="multiple integration">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>8. Multiple Integration</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Do ya zyada variables par integration ko multiple integration kehte hain.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Double integral: ∬ f(x,y)dA.
+
+Area/volume aur mass distribution jaise problems mein use hota hai.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Example:
+∬_R 1 dA region R ka area deta hai.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Limits ko region ke according carefully set karna sabse important step hai.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Multiple Integration from Engineering Mathematics-I in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+</div>
+
+
+<!-- PHYSICS -->
+
+<div class="subject-card searchable">
+
+<div class="subject-head">
+
+<div class="subject-icon">⚛️</div>
+
+<div>
+<h3>Engineering Physics</h3>
+<p>8 detailed topics • Definition • Key points • Formula • Examples</p>
+</div>
+
+</div>
+
+
+<div class="topic" data-topic="quantum mechanics">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>1. Quantum Mechanics</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Microscopic particles jaise electrons aur photons ke behaviour ka theory quantum mechanics hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Energy quantization, wave-particle duality, uncertainty principle aur wave function important ideas hain.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Photon energy E=hν.
+Frequency double ho to photon energy bhi double hoti hai.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Nanoelectronics, lasers aur semiconductor devices mein foundation.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Quantum Mechanics from Engineering Physics in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="wave-particle duality">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>2. Wave-Particle Duality</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Light aur matter dono wave aur particle jaise properties show kar sakte hain.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Photon:
+E=hν
+p=h/λ
+
+Matter wave:
+λ=h/p
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Electron ka momentum badhe to de Broglie wavelength kam hoti hai.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Modern physics ka fundamental concept.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Wave-Particle Duality from Engineering Physics in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="heisenberg uncertainty principle">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>3. Heisenberg Uncertainty Principle</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Position aur momentum ko ek saath arbitrarily high precision se measure nahi kiya ja sakta.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Δx Δp ≥ ħ/2.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Microscopic particle ko bahut small region mein confine karne par momentum uncertainty badh sakti hai.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Atomic-scale systems mein important.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Heisenberg Uncertainty Principle from Engineering Physics in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="laser">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>4. LASER</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+LASER ka full form Light Amplification by Stimulated Emission of Radiation hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Laser light highly coherent, directional aur generally monochromatic hoti hai.
+
+Population inversion aur stimulated emission key concepts hain.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Laser pointer mein narrow, directional beam milti hai.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Uses: communication, surgery, barcode scanners, industry.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain LASER from Engineering Physics in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="fibre optics">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>5. Fibre Optics</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Optical fibre glass/plastic medium hai jisme light ke through information transmit hoti hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Principle: Total Internal Reflection.
+
+Core ka refractive index cladding se higher hota hai.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Internet fibre mein data light pulses ke form mein travel karta hai.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+High bandwidth aur low signal loss ke karan communication mein useful.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Fibre Optics from Engineering Physics in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="numerical aperture">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>6. Numerical Aperture</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Optical fibre ki light-gathering ability ko numerical aperture describe karta hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+For air outside:
+NA = √(n₁²-n₂²)
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Example:
+n₁=1.50, n₂=1.47 ⇒ NA≈0.301.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Higher NA generally easier light coupling deta hai.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Numerical Aperture from Engineering Physics in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="semiconductors">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>7. Semiconductors</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Semiconductor ki electrical conductivity conductor aur insulator ke beech hoti hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Intrinsic semiconductor pure hota hai.
+
+Extrinsic mein doping se n-type/p-type banta hai.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Silicon mein phosphorus doping se n-type semiconductor milta hai.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Diodes, transistors aur ICs ka base.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Semiconductors from Engineering Physics in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="electromagnetic waves">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>8. Electromagnetic Waves</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Changing electric aur magnetic fields se propagate hone wali waves electromagnetic waves hoti hain.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Vacuum mein c≈3×10⁸ m/s aur c=fλ.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Radio waves, microwaves, visible light, X-rays sab EM spectrum ka part hain.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Communication, imaging aur sensing mein applications.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Electromagnetic Waves from Engineering Physics in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+</div>
+
+
+<!-- CHEMISTRY -->
+
+<div class="subject-card searchable">
+
+<div class="subject-head">
+
+<div class="subject-icon">🧪</div>
+
+<div>
+<h3>Engineering Chemistry</h3>
+<p>8 detailed topics • Definition • Key points • Formula • Examples</p>
+</div>
+
+</div>
+
+
+<div class="topic" data-topic="atomic structure">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>1. Atomic Structure</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Atom element ki basic chemical unit hai, jisme nucleus aur electrons hote hain.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Nucleus mein protons/neutrons; electrons quantized energy levels mein milte hain.
+
+Atomic number = protons.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Carbon ka atomic number 6 hai, neutral atom mein 6 electrons hote hain.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Electronic configuration chemical behaviour ko strongly influence karti hai.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Atomic Structure from Engineering Chemistry in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="quantum numbers">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>2. Quantum Numbers</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Electron ki state ko describe karne wale four quantum numbers n, l, mₗ, mₛ hain.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+n=shell
+l=subshell
+mₗ=orbital orientation
+mₛ=spin
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+n=2 mein l=0 or 1 possible hai.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Electronic configuration aur periodic properties samajhne mein useful.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Quantum Numbers from Engineering Chemistry in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="chemical bonding">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>3. Chemical Bonding</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Atoms stable electronic arrangement ke liye chemical bonds banate hain.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Ionic bond electron transfer se,
+covalent bond sharing se aur
+coordinate bond shared pair donation se banta hai.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+NaCl mein Na⁺ aur Cl⁻ ke beech ionic bonding hoti hai; H₂ mein covalent bond.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Molecular structure aur properties bonding par depend karti hain.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Chemical Bonding from Engineering Chemistry in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="hardness of water">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>4. Hardness of Water</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Water mein Ca²⁺ aur Mg²⁺ salts ki presence se hardness hoti hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Temporary hardness bicarbonates se aur permanent hardness sulphates/chlorides se related hoti hai.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Soap ke saath hard water mein scum banta hai.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Boiler problems aur water treatment ke liye important.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Hardness of Water from Engineering Chemistry in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="water softening">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>5. Water Softening</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Hardness-causing ions ko remove/reduce karne ki process water softening hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Methods:
+lime-soda, zeolite aur ion-exchange.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Ion-exchange plant hard water ko low-hardness water mein convert karta hai.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Industrial boilers mein scale prevention ke liye important.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Water Softening from Engineering Chemistry in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="corrosion">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>6. Corrosion</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Metal ka environment ke saath chemical/electrochemical reaction ke karan gradual deterioration corrosion hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Types:
+dry chemical corrosion
+wet electrochemical corrosion.
+
+Prevention:
+painting, coating, alloying, cathodic protection.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Iron rusting oxygen aur moisture ki presence mein hoti hai.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Bridges, pipelines aur machines ki life improve karne ke liye control zaroori.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Corrosion from Engineering Chemistry in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="polymers">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>7. Polymers</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Bahut saare repeating monomer units se bana high molecular mass molecule polymer hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Addition polymerization mein unsaturated monomers add hote hain.
+
+Condensation polymerization mein small molecule release ho sakta hai.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Ethene → polyethylene.
+
+Nylon is a common engineering polymer.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Packaging, fibres, insulation aur components mein use.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Polymers from Engineering Chemistry in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="green chemistry">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>8. Green Chemistry</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Chemical products/processes ko aise design karna ki hazardous substances aur waste minimum ho, green chemistry hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Waste prevention, safer solvents, energy efficiency aur renewable feedstocks key ideas hain.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Solvent-free or water-based processes hazardous organic solvents ko reduce kar sakte hain.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Sustainable engineering aur pollution reduction ke liye important.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Green Chemistry from Engineering Chemistry in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+</div>
+
+
+<!-- ELECTRICAL -->
+
+<div class="subject-card searchable">
+
+<div class="subject-head">
+
+<div class="subject-icon">🔌</div>
+
+<div>
+<h3>Basic Electrical Engineering</h3>
+<p>8 detailed topics • Definition • Key points • Formula • Examples</p>
+</div>
+
+</div>
+
+
+<div class="topic" data-topic="ohm law">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>1. Ohm's Law</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Constant physical conditions par current voltage ke directly proportional hota hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+V=IR
+I=V/R
+R=V/I
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+V=12V aur R=6Ω ⇒ I=2A.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Basic circuit calculations ka starting point.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Ohms Law from Basic Electrical Engineering in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="kirchhoff current law kcl">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>2. Kirchhoff's Current Law (KCL)</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Kisi junction par entering currents ka algebraic sum leaving currents ke equal hota hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+ΣI=0 at a node.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+2A aur 3A enter karte hain, to total 5A leave karega.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Complex networks ke node analysis mein use.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Kirchhoff Current Law KCL from Basic Electrical Engineering in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="kirchhoff voltage law kvl">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>3. Kirchhoff's Voltage Law (KVL)</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Closed loop mein all voltage rises aur drops ka algebraic sum zero hota hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+ΣV=0.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+10V source aur 4Ω+6Ω series resistance ⇒ I=10/10=1A.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Loop analysis aur circuit solving mein useful.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Kirchhoff Voltage Law KVL from Basic Electrical Engineering in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="ac dc">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>4. AC and DC</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+DC current ka direction ideally constant hota hai; AC current time ke saath magnitude/direction change karta hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Sinusoidal AC:
+v=Vₘ sinωt.
+
+RMS:
+V_rms=Vₘ/√2.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Household supply is AC; battery output is DC.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Transmission aur electronics mein dono ka role hai.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain AC and DC from Basic Electrical Engineering in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="power and energy">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>5. Power and Energy</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Electrical power energy transfer ki rate hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+P=VI=I²R=V²/R.
+
+Electrical energy E=Pt.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+100W bulb 5h chale ⇒ 500Wh = 0.5kWh.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Electricity consumption aur billing samajhne mein useful.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Power and Energy from Basic Electrical Engineering in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="power factor">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>6. Power Factor</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+AC circuit mein real power aur apparent power ka ratio power factor hota hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+pf=cosφ=P/S.
+
+Pure resistive load ka pf≈1.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Low power factor se same useful power ke liye higher current flow ho sakta hai.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Industrial systems mein power factor correction important.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Power Factor from Basic Electrical Engineering in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="transformer">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>7. Transformer</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Transformer mutual induction se AC voltage/current level change karta hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Ideal transformer:
+V₂/V₁=N₂/N₁.
+
+Step-up voltage badhata hai;
+step-down voltage ghataata hai.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+N₂&gt;N₁ ⇒ secondary voltage higher.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Power transmission aur distribution mein widely used.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Transformer from Basic Electrical Engineering in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="electrical machines">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>8. Electrical Machines</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Motors electrical energy ko mechanical energy mein aur generators mechanical energy ko electrical energy mein convert karte hain.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Motor principle:
+force on current-carrying conductor in magnetic field.
+
+Generator:
+electromagnetic induction.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Fan motor electrical input ko rotation mein convert karta hai.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Industry, transport aur household appliances mein common.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Electrical Machines from Basic Electrical Engineering in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+</div>
+
+
+<!-- C PROGRAMMING -->
+
+<div class="subject-card searchable">
+
+<div class="subject-head">
+
+<div class="subject-icon">💻</div>
+
+<div>
+<h3>Programming for Problem Solving (C)</h3>
+<p>8 detailed topics • Definition • Key points • Examples</p>
+</div>
+
+</div>
+
+
+<div class="topic" data-topic="c program structure">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>1. C Program Structure</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+C ek procedural, compiled programming language hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Typical structure:
+
+#include &lt;stdio.h&gt;
+
+int main(){
+    ...
+    return 0;
+}
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+printf("Hello"); screen par Hello print karta hai.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Clean structure debugging aur readability improve karta hai.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain C Program Structure from Programming for Problem Solving C in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="variables and data types">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>2. Variables and Data Types</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Variable memory location ka named identifier hai jisme value store hoti hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Common types:
+int, char, float, double.
+
+Declaration:
+int age=19;
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+int a=10,b=20;
+int sum=a+b;
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Correct data type memory aur calculation accuracy ke liye important.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Variables and Data Types from Programming for Problem Solving C in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="operators">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>3. Operators</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Operators values par operations perform karte hain.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Arithmetic: + - * / %
+
+Relational: &lt; &gt; == !=
+
+Logical: &amp;&amp; || !
+
+Assignment: =
+
+Increment: ++
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+if(a%2==0) even check hota hai.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Operator precedence ko expressions mein dhyan se use karo.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Operators from Programming for Problem Solving C in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="conditional statements">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>4. Conditional Statements</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Condition ke basis par different code execute karne ke liye if, if-else aur switch use hote hain.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+if(condition){
+    ...
+}
+else{
+    ...
+}
+
+switch fixed choices ke liye useful hai.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+marks&gt;=40 ? Pass : Fail;
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Decision-making programs ka base.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Conditional Statements from Programming for Problem Solving C in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="loops">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>5. Loops</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Repeated execution ke liye loops use hote hain.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+for loop known repetitions ke liye.
+
+while condition-based repetition ke liye.
+
+do-while at least once execute hota hai.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+for(i=1;i&lt;=5;i++)
+printf("%d ",i);
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Infinite loop se bachne ke liye update condition check karo.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Loops from Programming for Problem Solving C in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="arrays">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>6. Arrays</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Same data type ki multiple values ko contiguous indexed collection mein store karne ke liye array use hota hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+int a[5];
+
+indices 0 se 4.
+
+2D array matrix-like data ke liye.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Sum of array elements using for loop.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Searching, sorting aur tabular data mein useful.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Arrays from Programming for Problem Solving C in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="functions">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>7. Functions</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Reusable block of code jo specific task perform karta hai function kehlata hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Parts:
+declaration/prototype,
+definition,
+call.
+
+Parameters aur return value ho sakti hai.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+int add(int a,int b){
+    return a+b;
+}
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Modular programming aur code reuse improve hota hai.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Functions from Programming for Problem Solving C in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="pointers">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>8. Pointers</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Pointer ek variable ka memory address store karta hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+int *p=&amp;x;
+
+*p se x ki value access hoti hai.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Swap function mein addresses pass karke original values change kar sakte hain.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Dynamic memory, arrays aur low-level programming mein important.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Pointers from Programming for Problem Solving C in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+</div>
+
+
+<!-- SOFT SKILLS -->
+
+<div class="subject-card searchable">
+
+<div class="subject-head">
+
+<div class="subject-icon">🗣️</div>
+
+<div>
+<h3>Soft Skills &amp; Communication</h3>
+<p>8 detailed topics • Definition • Key points • Examples</p>
+</div>
+
+</div>
+
+
+<div class="topic" data-topic="communication skills">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>1. Communication Skills</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Ideas, information ya feelings ko sender se receiver tak effectively convey karna communication hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Sender, message, channel, receiver aur feedback basic elements hain.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Teacher ka concept explain karna + student ka question/feedback complete communication cycle hai.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Clear language aur active listening communication improve karte hain.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Communication Skills from Soft Skills and Communication in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="verbal and non verbal communication">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>2. Verbal and Non-Verbal Communication</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Words ke through verbal communication aur gestures, facial expressions, posture, eye contact etc. non-verbal communication hain.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Tone, pace aur body language message ke impact ko change kar sakte hain.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Interview mein confident posture aur clear answer positive impression create karte hain.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Professional life mein dono ko balance karna zaroori.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Verbal and Non-Verbal Communication from Soft Skills and Communication in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="active listening">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>3. Active Listening</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Speaker ko attention se sunna, understand karna aur relevant response dena active listening hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Eye contact, clarification questions, paraphrasing aur interruptions avoid karna useful habits hain.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Group discussion mein pehle dusre member ki point ko summarize karke apna point add karna.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Misunderstanding reduce hoti hai.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Active Listening from Soft Skills and Communication in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="presentation skills">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>4. Presentation Skills</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Information ko structured, clear aur engaging way mein audience ke saamne present karna presentation skill hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Structure:
+opening → main points → examples/data → conclusion.
+
+Slides simple rakho.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Problem + why it matters + what you will cover.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Confidence, voice modulation aur time management important.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Presentation Skills from Soft Skills and Communication in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="group discussion">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>5. Group Discussion</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+GD mein group ke members ek topic par ideas share aur evaluate karte hain.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Good GD participant relevant points, respectful disagreement, listening aur evidence-based reasoning dikhata hai.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+AI in education par advantages + limitations + practical solution discuss karna.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Sirf bolna nahi; listening aur collaboration bhi assess hote hain.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Group Discussion from Soft Skills and Communication in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="interview skills">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>6. Interview Skills</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Interview mein knowledge, communication, confidence, attitude aur problem-solving ko evaluate kiya ja sakta hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+STAR method:
+Situation, Task, Action, Result.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Project failure explain karte waqt problem, action aur measurable result batao.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Honest answers aur preparation strongest strategy hai.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Interview Skills from Soft Skills and Communication in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="resume writing">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>7. Resume Writing</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Resume ek concise professional document hai jo education, skills, projects aur achievements ko highlight karta hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+Sections:
+contact,
+summary/objective,
+education,
+skills,
+projects,
+achievements,
+certifications.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+Built a responsive study website with HTML/CSS/JS and search feature.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Truthful, readable aur role-focused resume best hota hai.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Resume Writing from Soft Skills and Communication in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+
+<div class="topic" data-topic="time management">
+
+<button class="topic-btn" onclick="toggleTopic(this)">
+<span>8. Time Management</span>
+<span class="plus">＋</span>
+</button>
+
+<div class="topic-content">
+
+<div class="label">📌 Definition</div>
+
+<p>
+Limited time ko priorities ke according plan karke productive use karna time management hai.
+</p>
+
+<div class="label">📚 Key Formula / Points</div>
+
+<div class="box">
+To-do list, priority matrix, Pomodoro blocks aur daily review useful techniques hain.
+</div>
+
+<div class="label">🧩 Examples</div>
+
+<div class="box example">
+50 min Maths + 10 min break,
+then 50 min C practice.
+</div>
+
+<div class="label">💡 Exam Tip</div>
+
+<p>
+Consistency motivation se zyada important hoti hai.
+</p>
+
+<button class="mini-ai"
+onclick="askTopicAI(this, 'Explain Time Management from Soft Skills and Communication in simple Hindi/Hinglish with more examples and exam tips.')">
+🤖 Is topic ko AI se aur samjhao
+</button>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ASSIGNMENTS -->
+
+<div class="assignment-box" id="assignments">
+
+<h2>📝 B.Tech Assignment Bank — 150 Questions</h2>
+
+<p>
+6 subjects × 25 questions = <b>150 practice questions</b>.
+</p>
+
+
+<h3>📐 Mathematics – 25</h3>
+
+<ol>
+
+<li>Find derivative of x⁵.</li>
+<li>Differentiate sin x cos x.</li>
+<li>Find derivative of eˣ.</li>
+<li>Find derivative of log x.</li>
+<li>Find ∂z/∂x if z=x²+y².</li>
+<li>Find ∂z/∂y if z=x²y+xy².</li>
+<li>Define partial differentiation.</li>
+<li>Find determinant of a 2×2 matrix.</li>
+<li>Find inverse of a 2×2 matrix.</li>
+<li>Explain rank of a matrix.</li>
+<li>Solve linear equations using matrices.</li>
+<li>Define differential equation.</li>
+<li>Find order and degree of a differential equation.</li>
+<li>Solve a first-order differential equation.</li>
+<li>Explain variable separable method.</li>
+<li>Evaluate a basic indefinite integral.</li>
+<li>Evaluate ∫x² dx.</li>
+<li>Evaluate ∫sin x dx.</li>
+<li>Explain definite integration.</li>
+<li>Find area under a curve.</li>
+<li>Explain multiple integration.</li>
+<li>Find a double integral.</li>
+<li>Explain maxima and minima.</li>
+<li>Find critical points of a function.</li>
+<li>Explain Taylor's theorem.</li>
+
+</ol>
+
+
+<h3>⚡ Physics – 25</h3>
+
+<ol>
+
+<li>What is quantum mechanics?</li>
+<li>Explain wave-particle duality.</li>
+<li>What is Planck's quantum theory?</li>
+<li>Explain uncertainty principle.</li>
+<li>What is a photon?</li>
+<li>Define laser.</li>
+<li>Explain properties of laser.</li>
+<li>Write applications of laser.</li>
+<li>What is optical fibre?</li>
+<li>Explain total internal reflection.</li>
+<li>Define numerical aperture.</li>
+<li>What is semiconductor?</li>
+<li>Differentiate conductor and semiconductor.</li>
+<li>Explain intrinsic semiconductor.</li>
+<li>Explain extrinsic semiconductor.</li>
+<li>What is electromagnetic wave?</li>
+<li>Explain Maxwell's equations.</li>
+<li>Define wavelength.</li>
+<li>Define frequency.</li>
+<li>Explain interference.</li>
+<li>Explain diffraction.</li>
+<li>What is polarization?</li>
+<li>Explain photoelectric effect.</li>
+<li>Write applications of fibre optics.</li>
+<li>Write applications of quantum physics.</li>
+
+</ol>
+
+
+<h3>🧪 Chemistry – 25</h3>
+
+<ol>
+
+<li>Define atom.</li>
+<li>Explain atomic structure.</li>
+<li>What are quantum numbers?</li>
+<li>Explain electronic configuration.</li>
+<li>What is chemical bonding?</li>
+<li>Explain ionic bond.</li>
+<li>Explain covalent bond.</li>
+<li>Explain coordinate bond.</li>
+<li>Define hydrogen bonding.</li>
+<li>What is hardness of water?</li>
+<li>Differentiate temporary and permanent hardness.</li>
+<li>Explain water softening.</li>
+<li>Explain ion exchange method.</li>
+<li>What is corrosion?</li>
+<li>Explain types of corrosion.</li>
+<li>How can corrosion be prevented?</li>
+<li>Define polymer.</li>
+<li>What is polymerization?</li>
+<li>Explain addition polymerization.</li>
+<li>Explain condensation polymerization.</li>
+<li>What are fuels?</li>
+<li>Explain calorific value.</li>
+<li>Define lubricant.</li>
+<li>Write properties of good lubricant.</li>
+<li>Explain green chemistry.</li>
+
+</ol>
+
+
+<h3>🔌 Electrical – 25</h3>
+
+<ol>
+
+<li>State Ohm's law.</li>
+<li>Define resistance.</li>
+<li>Define current.</li>
+<li>Define voltage.</li>
+<li>Explain KCL.</li>
+<li>Explain KVL.</li>
+<li>Calculate current using Ohm's law.</li>
+<li>Explain series circuit.</li>
+<li>Explain parallel circuit.</li>
+<li>Define electrical power.</li>
+<li>Define electrical energy.</li>
+<li>Explain AC current.</li>
+<li>Explain DC current.</li>
+<li>Differentiate AC and DC.</li>
+<li>What is RMS value?</li>
+<li>What is power factor?</li>
+<li>Explain transformer.</li>
+<li>Explain step-up transformer.</li>
+<li>Explain step-down transformer.</li>
+<li>What is an electric motor?</li>
+<li>What is a generator?</li>
+<li>Explain electromagnetic induction.</li>
+<li>Define magnetic flux.</li>
+<li>Explain three-phase supply.</li>
+<li>Write applications of transformers.</li>
+
+</ol>
+
+
+<h3>💻 PPS / C Programming – 25</h3>
+
+<ol>
+
+<li>What is C language?</li>
+<li>Write basic structure of a C program.</li>
+<li>What is a variable?</li>
+<li>Explain data types in C.</li>
+<li>What is an operator?</li>
+<li>Explain arithmetic operators.</li>
+<li>Explain relational operators.</li>
+<li>Explain logical operators.</li>
+<li>Write a program to add two numbers.</li>
+<li>Write a program to find largest of two numbers.</li>
+<li>Write a program to check even or odd.</li>
+<li>Write a program to check positive or negative.</li>
+<li>Write a program to find largest of three numbers.</li>
+<li>Explain if-else.</li>
+<li>Explain switch statement.</li>
+<li>Explain for loop.</li>
+<li>Explain while loop.</li>
+<li>Explain do-while loop.</li>
+<li>Write a program to print 1 to 100.</li>
+<li>Write a program to find factorial.</li>
+<li>Write a program to check prime number.</li>
+<li>Write a program to reverse a number.</li>
+<li>Explain arrays.</li>
+<li>Explain functions.</li>
+<li>Explain pointers.</li>
+
+</ol>
+
+
+<h3>🗣️ Soft Skills – 25</h3>
+
+<ol>
+
+<li>Define communication.</li>
+<li>Explain types of communication.</li>
+<li>What is verbal communication?</li>
+<li>What is non-verbal communication?</li>
+<li>Explain body language.</li>
+<li>What are communication barriers?</li>
+<li>How can communication barriers be removed?</li>
+<li>What is active listening?</li>
+<li>Explain presentation skills.</li>
+<li>How should a presentation start?</li>
+<li>What is group discussion?</li>
+<li>Explain interview skills.</li>
+<li>How should you introduce yourself?</li>
+<li>What is a resume?</li>
+<li>What information should be included in a resume?</li>
+<li>Explain email etiquette.</li>
+<li>What is professional communication?</li>
+<li>Explain leadership skills.</li>
+<li>Explain teamwork.</li>
+<li>What is time management?</li>
+<li>How can students manage time?</li>
+<li>Explain problem-solving skills.</li>
+<li>What is critical thinking?</li>
+<li>Explain confidence building.</li>
+<li>Write five tips for a successful interview.</li>
+
+</ol>
+
+</div>
+
+
+<!-- AI -->
+
+<div class="ai-support" id="ai">
+
+<h2>🤖 AI Doubt Support</h2>
+
+<p>
+Apna question type karo. Website ka secure backend AI ko request bhejega.
+API key HTML/GitHub mein nahi rakhi jayegi.
+</p>
+
+<div class="ai-chat">
+
+<textarea
+id="doubtInput"
+placeholder="Example: Partial differentiation mujhe bilkul beginner level par 3 examples ke saath samjhao..."
+></textarea>
+
+<button onclick="solveDoubt()">
+🤖 Explain My Doubt
+</button>
+
+<div class="status" id="aiStatus"></div>
+
+<div id="aiAnswer"></div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<p>
+<b>Study and Enjoy — AKTU B.Tech Study Material</b>
+</p>
+
+<p>
+Made for students • Created by Pawan Raj
+</p>
+
+<p>
+<a href="#home">Back to top ↑</a>
+</p>
+
+</footer>
+
+
+<script>
+
+/* ================================
+   MATERIAL OPEN / CLOSE
+================================ */
+
+function toggleTopic(button){
+
+    const content = button.nextElementSibling;
+
+    const plus = button.querySelector(".plus");
+
+    if(!content){
+        return;
+    }
+
+    const isOpen = content.style.display === "block";
+
+    content.style.display = isOpen ? "none" : "block";
+
+    if(plus){
+        plus.textContent = isOpen ? "＋" : "−";
+    }
+}
+
+
+/* ================================
+   MATERIAL SEARCH
+================================ */
+
+function searchMaterial(){
+
+    const input =
+        document.getElementById("materialSearch")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const cards =
+        document.querySelectorAll(".subject-card.searchable");
+
+    cards.forEach(card => {
+
+        const text =
+            card.innerText.toLowerCase();
+
+        card.style.display =
+            text.includes(input) ? "block" : "none";
+
+    });
+}
+
+
+/* ================================
+   ESCAPE HTML
+================================ */
+
+function escapeHTML(text){
+
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* ================================
+   MINI AI
+================================ */
+
+async function askTopicAI(button, question){
+
+    const input =
+        document.getElementById("doubtInput");
+
+    input.value = question;
+
+    document
+        .getElementById("ai")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+    await solveDoubt();
+}
+
+
+/* ================================
+   AI DOUBT SOLVER
+================================ */
+
+async function solveDoubt(){
+
+    const q =
+        document
+        .getElementById("doubtInput")
+        .value
+        .trim();
+
+    const answer =
+        document.getElementById("aiAnswer");
+
+    const status =
+        document.getElementById("aiStatus");
+
+
+    answer.style.display = "block";
+
+
+    if(!q){
+
+        answer.textContent =
+            "⚠️ Please apna doubt type karo.";
+
+        status.textContent = "";
+
+        return;
+    }
+
+
+    status.textContent =
+        "⏳ AI answer bana raha hai...";
+
+    answer.textContent = "";
+
+
+    try{
+
+        const response =
+            await fetch(
+                "/.netlify/functions/ai",
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                        "application/json"
+                    },
+
+                    body:
+                    JSON.stringify({
+                        question:q
+                    })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(!response.ok){
+
+            throw new Error(
+                data.error ||
+                "AI request failed"
+            );
+
+        }
+
+
+        answer.textContent =
+            data.answer ||
+            "No answer generated.";
+
+
+        status.textContent =
+            "✅ AI response received";
+
+
+    }
+
+    catch(error){
+
+        status.textContent =
+            "⚠️ AI backend abhi connected/configured nahi hai.";
+
+        answer.innerHTML =
+            "<b>Setup required:</b><br>" +
+            escapeHTML(error.message) +
+            "<br><br>" +
+            "Netlify par <b>OPENAI_API_KEY</b> " +
+            "environment variable add karke redeploy karein.";
+
+    }
+
+}
+
+
+/* ================================
+   PAGE READY
+================================ */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        console.log(
+            "Study and Enjoy website loaded successfully."
+        );
+
+    }
+);
+
+</script>
+
+</body>
+</html>
