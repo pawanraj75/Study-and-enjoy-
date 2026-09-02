@@ -1,1 +1,279 @@
+<!-- =========================
+     STUDY MATERIAL SECTION
+========================= -->
+<section id="material" class="material-section">
 
+<style>
+.material-section{
+    padding:70px 5%;
+    background:#f5f8ff;
+    font-family:Arial,sans-serif;
+}
+
+.material-title{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.material-title h2{
+    font-size:38px;
+    color:#172554;
+    margin-bottom:10px;
+}
+
+.material-title p{
+    color:#64748b;
+    font-size:17px;
+}
+
+.material-search{
+    max-width:700px;
+    margin:25px auto 40px;
+    display:flex;
+}
+
+.material-search input{
+    width:100%;
+    padding:16px 20px;
+    border:2px solid #dbeafe;
+    border-radius:14px;
+    font-size:16px;
+    outline:none;
+}
+
+.subject-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:22px;
+}
+
+.subject-card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    border:1px solid #e2e8f0;
+    transition:.3s;
+}
+
+.subject-card:hover{
+    transform:translateY(-5px);
+}
+
+.subject-icon{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.subject-card h3{
+    color:#1e3a8a;
+    margin:8px 0;
+}
+
+.subject-card p{
+    color:#64748b;
+    line-height:1.6;
+}
+
+.topic-list{
+    margin-top:18px;
+}
+
+.topic{
+    border:1px solid #dbeafe;
+    border-radius:12px;
+    margin-bottom:10px;
+    overflow:hidden;
+}
+
+.topic button{
+    width:100%;
+    border:0;
+    background:#eff6ff;
+    padding:14px;
+    text-align:left;
+    font-weight:bold;
+    color:#1e40af;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.topic-content{
+    display:none;
+    padding:16px;
+    background:#fff;
+    color:#334155;
+    line-height:1.7;
+}
+
+.topic-content ul{
+    padding-left:20px;
+}
+
+.explanation{
+    background:#f0fdf4;
+    border-left:5px solid #22c55e;
+    padding:12px;
+    margin-top:12px;
+    border-radius:8px;
+}
+
+.assignment-box{
+    margin-top:45px;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,.07);
+}
+
+.assignment-box h3{
+    color:#172554;
+    font-size:27px;
+}
+
+.assignment-box li{
+    margin:10px 0;
+    line-height:1.6;
+}
+
+.ai-support{
+    margin-top:45px;
+    padding:35px;
+    border-radius:22px;
+    background:linear-gradient(135deg,#1d4ed8,#4338ca);
+    color:white;
+}
+
+.ai-support h3{
+    font-size:30px;
+    margin-top:0;
+}
+
+.ai-chat{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    margin-top:20px;
+}
+
+.ai-chat textarea{
+    width:100%;
+    min-height:100px;
+    padding:15px;
+    border:1px solid #cbd5e1;
+    border-radius:10px;
+    resize:vertical;
+    box-sizing:border-box;
+}
+
+.ai-chat button{
+    margin-top:12px;
+    padding:13px 22px;
+    background:#2563eb;
+    color:white;
+    border:0;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+#aiAnswer{
+    margin-top:15px;
+    padding:15px;
+    background:#eff6ff;
+    color:#1e293b;
+    border-radius:10px;
+    display:none;
+    line-height:1.7;
+}
+
+.material-note{
+    margin-top:30px;
+    text-align:center;
+    color:#64748b;
+}
+
+@media(max-width:600px){
+    .material-title h2{
+        font-size:28px;
+    }
+
+    .material-section{
+        padding:50px 4%;
+    }
+}
+</style>
+
+<div class="material-title">
+    <h2>📚 AKTU B.Tech Study Material</h2>
+    <p>
+        Notes • Topics • Simple Explanations • Assignments • PYQs • AI Doubt Support
+    </p>
+</div>
+
+<div class="material-search">
+    <input
+        type="text"
+        id="materialSearch"
+        placeholder="🔍 Search subject or topic..."
+        onkeyup="searchMaterial()"
+    >
+</div>
+
+<div class="subject-grid" id="subjectGrid">
+
+<!-- ================= MATHEMATICS ================= -->
+
+<div class="subject-card searchable">
+    <div class="subject-icon">📐</div>
+    <h3>Engineering Mathematics-I</h3>
+    <p>Calculus, Differential Equations, Matrices and important AKTU concepts.</p>
+
+    <div class="topic-list">
+
+        <div class="topic">
+            <button onclick="toggleTopic(this)">
+                1. Differential Calculus
+            </button>
+            <div class="topic-content">
+                <b>Simple Explanation:</b>
+                <p>
+                    Differential calculus ka use kisi quantity ke change ko
+                    measure karne ke liye hota hai.
+                </p>
+
+                <div class="explanation">
+                    <b>Important:</b><br>
+                    Derivative of xⁿ = n xⁿ⁻¹<br>
+                    Derivative of sin x = cos x<br>
+                    Derivative of cos x = -sin x
+                </div>
+            </div>
+        </div>
+
+        <div class="topic">
+            <button onclick="toggleTopic(this)">
+                2. Partial Differentiation
+            </button>
+            <div class="topic-content">
+                <b>Simple Explanation:</b>
+                <p>
+                    Jab function mein x, y, z jaise multiple variables ho
+                    aur ek variable ke respect mein derivative nikalna ho,
+                    ise partial differentiation kehte hain.
+                </p>
+
+                <div class="explanation">
+                    Example:<br>
+                    z = x² + y²<br>
+                    ∂z/∂x = 2x<br>
+                    ∂z/∂y = 2y
+                </div>
+            </div>
+        </div>
+
+        <div class="topic">
+            <button onclick="toggleTopic(this)">
+                3. Matrices
+            </button>
+            <div class="
