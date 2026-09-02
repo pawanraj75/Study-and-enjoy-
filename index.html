@@ -872,4 +872,411 @@ function closeMaterial(){
 }
 
 </script>
-</body></html>
+</body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AKTU REC Mainpuri EduHub</title>
+  <meta name="description" content="AKTU B.Tech students ke liye notes, syllabus, PYQs aur study material.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f8ff;
+      color: #172033;
+    }
+
+    header {
+      background: #155eef;
+      color: white;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 22px;
+      font-weight: bold;
+    }
+
+    .hero {
+      padding: 70px 7%;
+      text-align: center;
+      background: linear-gradient(135deg, #155eef, #6c63ff);
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 13px 25px;
+      background: white;
+      color: #155eef;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 50px 7%;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 30px;
+      margin-bottom: 30px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      color: #155eef;
+    }
+
+    .material {
+      background: white;
+      margin: 12px auto;
+      padding: 18px;
+      border-radius: 10px;
+      max-width: 800px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+    }
+
+    .material button {
+      border: none;
+      background: #155eef;
+      color: white;
+      padding: 9px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .search {
+      width: 100%;
+      max-width: 600px;
+      padding: 14px;
+      margin: 0 auto 25px;
+      display: block;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .ai-box {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .ai-box input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      margin: 12px 0;
+    }
+
+    .ai-box button {
+      padding: 11px 20px;
+      background: #155eef;
+      color: white;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+    }
+
+    #answer {
+      margin-top: 18px;
+      padding: 15px;
+      background: #eef4ff;
+      border-radius: 8px;
+      display: none;
+    }
+
+    footer {
+      background: #111827;
+      color: white;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media(max-width: 650px) {
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .material {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🎓 AKTU REC Mainpuri EduHub</div>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#subjects">Subjects</a>
+    <a href="#material">Material</a>
+    <a href="#ai">AI Doubt</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <h1>AKTU B.Tech EduHub</h1>
+  <p>
+    Notes, Syllabus, PYQs aur useful study material
+    ek hi jagah par.
+  </p>
+
+  <a href="#material" class="btn">Explore Study Material</a>
+</section>
+
+<section id="subjects">
+  <h2 class="title">📚 Subjects</h2>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Mathematics</h3>
+      <p>Notes, formulas aur practice questions.</p>
+    </div>
+
+    <div class="card">
+      <h3>Physics</h3>
+      <p>Important topics aur study material.</p>
+    </div>
+
+    <div class="card">
+      <h3>Chemistry</h3>
+      <p>Unit-wise notes aur important questions.</p>
+    </div>
+
+    <div class="card">
+      <h3>PPS / C Programming</h3>
+      <p>C programming concepts aur practice.</p>
+    </div>
+
+    <div class="card">
+      <h3>Electrical</h3>
+      <p>Basic electrical engineering material.</p>
+    </div>
+
+    <div class="card">
+      <h3>Soft Skills</h3>
+      <p>Communication aur presentation skills.</p>
+    </div>
+  </div>
+</section>
+
+<section id="material">
+  <h2 class="title">📖 Study Material</h2>
+
+  <input
+    type="text"
+    id="search"
+    class="search"
+    placeholder="Search notes, syllabus, PYQ..."
+    onkeyup="searchMaterial()"
+  >
+
+  <div class="material">
+    <span>📘 AKTU Syllabus 2026-27</span>
+    <button onclick="openMaterial('syllabus')">Open</button>
+  </div>
+
+  <div class="material">
+    <span>📝 Previous Year Questions (PYQs)</span>
+    <button onclick="openMaterial('pyq')">Open</button>
+  </div>
+
+  <div class="material">
+    <span>📚 B.Tech 1st Year Notes</span>
+    <button onclick="openMaterial('notes')">Open</button>
+  </div>
+
+  <div class="material">
+    <span>🎥 Latest Update / Syllabus 2026-27</span>
+    <button onclick="openMaterial('video')">Watch</button>
+  </div>
+</section>
+
+<section id="ai">
+  <h2 class="title">🤖 Simple Doubt Solver</h2>
+
+  <div class="ai-box">
+    <p>Apna difficult word ya concept type kijiye:</p>
+
+    <input
+      type="text"
+      id="question"
+      placeholder="Example: What is derivative?"
+    >
+
+    <button onclick="solveDoubt()">Explain Simply</button>
+
+    <div id="answer"></div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 AKTU REC Mainpuri EduHub</p>
+  <p>Made for B.Tech Students ❤️</p>
+</footer>
+
+<script>
+
+function openMaterial(type) {
+
+  if (type === "video") {
+    window.open(
+      "https://www.youtube.com/live/7tzbkMe8QX4?si=5L2jVsgmmBujPvIG",
+      "_blank"
+    );
+  }
+
+  else if (type === "syllabus") {
+    alert("Syllabus section ready hai. Yahan actual PDF/link add kiya ja sakta hai.");
+  }
+
+  else if (type === "pyq") {
+    alert("PYQ section ready hai. Yahan PYQ PDF/link add kiya ja sakta hai.");
+  }
+
+  else if (type === "notes") {
+    alert("Notes section ready hai. Yahan notes PDF/link add kiya ja sakta hai.");
+  }
+}
+
+
+function searchMaterial() {
+
+  let input = document.getElementById("search").value.toLowerCase();
+
+  let materials = document.querySelectorAll(".material");
+
+  materials.forEach(function(item) {
+
+    let text = item.innerText.toLowerCase();
+
+    if (text.includes(input)) {
+      item.style.display = "flex";
+    } else {
+      item.style.display = "none";
+    }
+
+  });
+}
+
+
+function solveDoubt() {
+
+  let question = document
+    .getElementById("question")
+    .value
+    .trim()
+    .toLowerCase();
+
+  let answer = document.getElementById("answer");
+
+  if (question === "") {
+    answer.style.display = "block";
+    answer.innerHTML = "⚠️ Pehle apna question type kijiye.";
+    return;
+  }
+
+  if (question.includes("derivative")) {
+
+    answer.innerHTML =
+      "<b>Derivative:</b> Kisi quantity ke change hone ki rate ko derivative kehte hain. Example: y = x² ho to dy/dx = 2x.";
+
+  }
+
+  else if (question.includes("variable")) {
+
+    answer.innerHTML =
+      "<b>Variable:</b> Variable ek aisi value hoti hai jo change ho sakti hai. Example: x, y, z.";
+
+  }
+
+  else if (question.includes("algorithm")) {
+
+    answer.innerHTML =
+      "<b>Algorithm:</b> Kisi problem ko solve karne ke step-by-step instructions ko algorithm kehte hain.";
+
+  }
+
+  else {
+
+    answer.innerHTML =
+      "Simple explanation ke liye is concept ko thoda specific likhiye. Example: <b>What is variable in C?</b>";
+
+  }
+
+  answer.style.display = "block";
+}
+
+</script>
+
+</body>
+</html>
+</html>
