@@ -3,33 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AKTU B.Tech 1st Year Study Material Hub</title>
+    <title>AKTU B.Tech Study Material Portal</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- MathJax for rendering math formulas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         :root {
-            --bg-dark: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.75);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-light: rgba(255, 255, 255, 0.1);
+            --bg-color: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
 
         body {
-            background-color: var(--bg-dark);
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.15) 0px, transparent 50%),
-                radial-gradient(at 0% 100%, rgba(245, 158, 11, 0.15) 0px, transparent 50%);
-            background-attachment: fixed;
-            color: var(--text-main);
+            background-color: var(--bg-color);
+            color: var(--text-dark);
             min-height: 100vh;
             padding: 2rem 1rem;
         }
@@ -40,602 +37,521 @@
         }
 
         .header h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #6366f1, #ec4899, #f59e0b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #0f172a;
             margin-bottom: 0.5rem;
         }
 
         .header p {
             color: var(--text-muted);
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 850px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 2rem;
-        }
-
-        /* Color Themes */
-        .card-math { --accent: #6366f1; --gradient: linear-gradient(135deg, #4f46e5, #818cf8); --glow: rgba(99, 102, 241, 0.4); --border: #6366f1; }
-        .card-physics { --accent: #ec4899; --gradient: linear-gradient(135deg, #db2777, #f472b6); --glow: rgba(236, 72, 153, 0.4); --border: #ec4899; }
-        .card-ee { --accent: #f59e0b; --gradient: linear-gradient(135deg, #d97706, #fbbf24); --glow: rgba(245, 158, 11, 0.4); --border: #f59e0b; }
-        .card-cs { --accent: #10b981; --gradient: linear-gradient(135deg, #059669, #34d399); --glow: rgba(16, 185, 129, 0.4); --border: #10b981; }
-        .card-me { --accent: #06b6d4; --gradient: linear-gradient(135deg, #0891b2, #22d3ee); --glow: rgba(6, 182, 212, 0.4); --border: #06b6d4; }
-        .card-chem { --accent: #8b5cf6; --gradient: linear-gradient(135deg, #7c3aed, #a78bfa); --glow: rgba(139, 92, 246, 0.4); --border: #8b5cf6; }
-
+        /* Card Component Based on Clean Light Theme */
         .card {
             background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 2px solid var(--border);
-            border-radius: 1.25rem;
-            padding: 1.5rem;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 0 15px var(--glow);
+            border-radius: 20px;
+            padding: 1.8rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
             gap: 1rem;
-            margin-bottom: 1.25rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .card-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 0.75rem;
-            background: var(--gradient);
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Distinct Top Border Colors */
+        .card-green { border-top: 6px solid #10b981; }
+        .card-orange { border-top: 6px solid #f97316; }
+        .card-blue { border-top: 6px solid #3b82f6; }
+        .card-purple { border-top: 6px solid #8b5cf6; }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        /* Badges Styling */
+        .badge-container {
             display: flex;
+            gap: 0.6rem;
             align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: #fff;
-            box-shadow: 0 4px 12px var(--glow);
         }
 
-        .card-title h2 { font-size: 1.35rem; color: #fff; }
-        .card-title p { font-size: 0.85rem; color: var(--text-muted); }
-
-        .units-list {
-            list-style: none;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
+        .badge {
+            padding: 0.4rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
         }
 
-        .unit-item {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--border-light);
-            border-radius: 0.5rem;
-            margin-bottom: 0.5rem;
-            padding: 0.75rem 1rem;
-            font-size: 0.88rem;
+        .badge-green { background: #10b981; color: white; }
+        .badge-orange { background: #f97316; color: white; }
+        .badge-blue { background: #3b82f6; color: white; }
+        .badge-gray { background: #f1f5f9; color: #475569; }
+
+        .course-code {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 500;
         }
 
-        .unit-item span { font-weight: 700; color: var(--accent); margin-right: 0.4rem; }
-
+        /* Action Buttons */
         .btn-group {
             display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
         }
 
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1rem;
-            border-radius: 0.6rem;
+            padding: 0.65rem 1.4rem;
+            border-radius: 12px;
             font-weight: 600;
             font-size: 0.9rem;
             text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             cursor: pointer;
-            transition: all 0.2s ease;
             border: none;
+            transition: all 0.2s ease;
         }
 
-        .btn-primary { background: var(--gradient); color: white; box-shadow: 0 4px 14px var(--glow); }
-        .btn-primary:hover { opacity: 0.9; transform: scale(1.01); }
+        .btn-green { background: #10b981; color: white; }
+        .btn-green:hover { background: #059669; }
 
-        .btn-secondary { background: rgba(255, 255, 255, 0.05); color: var(--text-main); border: 1px solid rgba(255, 255, 255, 0.15); }
-        .btn-secondary:hover { background: rgba(255, 255, 255, 0.15); color: #fff; }
+        .btn-orange { background: #f97316; color: white; }
+        .btn-orange:hover { background: #ea580c; }
 
-        /* Modal Styles */
+        .btn-blue { background: #3b82f6; color: white; }
+        .btn-blue:hover { background: #2563eb; }
+
+        .btn-soft { background: #f1f5f9; color: #334155; }
+        .btn-soft:hover { background: #e2e8f0; }
+
+        /* Modal / Notes Drawer Styles */
         .modal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(8px);
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
             z-index: 1000;
             overflow-y: auto;
             padding: 2rem 1rem;
         }
 
         .modal-content {
-            background: #1e293b;
-            border: 1px solid #334155;
-            max-width: 850px;
+            background: #ffffff;
+            border-radius: 20px;
+            max-width: 900px;
             margin: 0 auto;
-            border-radius: 1rem;
             padding: 2rem;
             position: relative;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
         .close-btn {
             position: absolute;
             top: 1.2rem; right: 1.5rem;
-            font-size: 1.8rem; color: #94a3b8;
+            font-size: 1.8rem; color: #64748b;
             cursor: pointer;
         }
-        .close-btn:hover { color: #fff; }
+        .close-btn:hover { color: #0f172a; }
 
         .tab-menu {
             display: flex;
             gap: 0.5rem;
             margin: 1.5rem 0;
-            border-bottom: 1px solid #334155;
+            border-bottom: 2px solid #f1f5f9;
             padding-bottom: 0.5rem;
         }
 
         .tab-btn {
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem;
             background: transparent;
             border: none;
             color: var(--text-muted);
             font-weight: 600;
             cursor: pointer;
-            border-radius: 0.4rem;
+            border-radius: 8px;
         }
 
         .tab-btn.active {
-            background: #334155;
-            color: #fff;
+            background: #10b981;
+            color: #ffffff;
         }
 
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        .note-block {
-            background: rgba(15, 23, 42, 0.5);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-            border-left: 4px solid #6366f1;
+        /* Note Section Styling */
+        .note-section {
+            background: #f8fafc;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-bottom: 1.2rem;
         }
 
-        .note-block h4 { color: #38bdf8; margin-bottom: 0.4rem; }
-        .note-block p, .note-block ul { font-size: 0.95rem; line-height: 1.6; color: #cbd5e1; }
-        .note-block ul { padding-left: 1.2rem; }
-
-        .pyq-item {
-            background: #0f172a;
-            padding: 0.8rem 1rem;
-            border-radius: 0.4rem;
+        .note-section h3 {
+            color: #0f172a;
+            font-size: 1.15rem;
             margin-bottom: 0.6rem;
-            border: 1px solid #334155;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.4rem;
         }
+
+        .note-section p, .note-section ul {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #334155;
+        }
+
+        .note-section ul {
+            padding-left: 1.2rem;
+            margin-top: 0.4rem;
+        }
+
+        /* Matrix Table Styling */
+        .table-custom {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .table-custom th, .table-custom td {
+            border: 1px solid #cbd5e1;
+            padding: 0.6rem;
+            text-align: left;
+        }
+
+        .table-custom th {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        .pyq-card {
+            background: #ffffff;
+            border-left: 4px solid #10b981;
+            padding: 1rem;
+            margin-bottom: 0.8rem;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
         .pyq-tag {
             display: inline-block;
             font-size: 0.75rem;
-            padding: 0.2rem 0.5rem;
-            background: #0284c7;
-            color: #fff;
-            border-radius: 0.2rem;
-            margin-bottom: 0.3rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            background: #dcfce7;
+            color: #15803d;
+            border-radius: 50px;
+            margin-bottom: 0.4rem;
         }
 
-        .quiz-option {
-            display: block;
-            margin: 0.5rem 0;
-            cursor: pointer;
-        }
-
-        .submit-quiz-btn {
-            margin-top: 1rem;
-            padding: 0.6rem 1.2rem;
-            background: #10b981;
-            color: white;
-            border: none;
-            border-radius: 0.4rem;
-            cursor: pointer;
-            font-weight: 600;
+        @media (max-width: 600px) {
+            .card { padding: 1.2rem; }
+            .card-title { font-size: 1.2rem; }
+            .btn-group { flex-wrap: wrap; }
+            .modal-content { padding: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h1>AKTU B.Tech 1st Year Study Hub</h1>
-        <p>Complete Syllabus Notes, Important Questions, PYQs & Online Tests</p>
+        <h1>B.Tech Study Material Portal</h1>
+        <p>AKTU Examination-Oriented Detailed Teacher Notes & Previous Year Questions</p>
     </div>
 
     <div class="container">
-        <div class="grid">
 
-            <!-- Card 1: Mathematics -->
-            <div class="card card-math">
-                <div class="card-header">
-                    <div class="card-icon"><i class="fa-solid fa-calculator"></i></div>
-                    <div class="card-title">
-                        <h2>Engineering Mathematics</h2>
-                        <p>Code: BAS-103 / BAS-203</p>
-                    </div>
-                </div>
-                <ul class="units-list">
-                    <li class="unit-item"><span>Unit 1:</span> Matrices & Linear Algebra</li>
-                    <li class="unit-item"><span>Unit 2:</span> Differential Calculus I & II</li>
-                    <li class="unit-item"><span>Unit 3:</span> Multivariable Calculus</li>
-                    <li class="unit-item"><span>Unit 4:</span> Vector Calculus</li>
-                    <li class="unit-item"><span>Unit 5:</span> Differential Equations</li>
-                </ul>
-                <div class="btn-group">
-                    <button class="btn btn-primary" onclick="openModal('mathModal')">
-                        <i class="fa-solid fa-book-open"></i> View Full Notes & PYQs
-                    </button>
-                    <a href="https://www.youtube.com/results?search_query=aktu+engineering+mathematics+1+playlist" target="_blank" class="btn btn-secondary">
-                        <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> Video Lectures
-                    </a>
-                </div>
+        <!-- Card 1: Engineering Mathematics I (Matrices Notes Included) -->
+        <div class="card card-green">
+            <div class="badge-container">
+                <span class="badge badge-green">Sem 1</span>
+                <span class="badge badge-gray">Maths</span>
             </div>
-
-            <!-- Card 2: Physics -->
-            <div class="card card-physics">
-                <div class="card-header">
-                    <div class="card-icon"><i class="fa-solid fa-atom"></i></div>
-                    <div class="card-title">
-                        <h2>Engineering Physics</h2>
-                        <p>Code: BAS-101 / BAS-201</p>
-                    </div>
-                </div>
-                <ul class="units-list">
-                    <li class="unit-item"><span>Unit 1:</span> Relativistic Mechanics</li>
-                    <li class="unit-item"><span>Unit 2:</span> Electromagnetic Field Theory</li>
-                    <li class="unit-item"><span>Unit 3:</span> Quantum Mechanics</li>
-                    <li class="unit-item"><span>Unit 4:</span> Wave Optics & Interference</li>
-                    <li class="unit-item"><span>Unit 5:</span> Lasers & Fiber Optics</li>
-                </ul>
-                <div class="btn-group">
-                    <button class="btn btn-primary" onclick="openModal('physicsModal')">
-                        <i class="fa-solid fa-book-open"></i> View Full Notes & PYQs
-                    </button>
-                    <a href="https://www.youtube.com/results?search_query=aktu+engineering+physics+playlist" target="_blank" class="btn btn-secondary">
-                        <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> Video Lectures
-                    </a>
-                </div>
+            <h2 class="card-title">Engineering Mathematics I</h2>
+            <p class="course-code">Course code: BAS103 / BAS203</p>
+            <div class="btn-group">
+                <button onclick="openModal('mathModal')" class="btn btn-green">
+                    <i class="fa-solid fa-book-open"></i> Unit-1 Matrices Notes
+                </button>
+                <a href="https://drive.google.com" target="_blank" class="btn btn-soft">
+                    <i class="fa-solid fa-download"></i> Download PDF
+                </a>
             </div>
-
-            <!-- Card 3: Electrical -->
-            <div class="card card-ee">
-                <div class="card-header">
-                    <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
-                    <div class="card-title">
-                        <h2>Basic Electrical Engg.</h2>
-                        <p>Code: BEE-101 / BEE-201</p>
-                    </div>
-                </div>
-                <ul class="units-list">
-                    <li class="unit-item"><span>Unit 1:</span> DC Circuits & Theorems</li>
-                    <li class="unit-item"><span>Unit 2:</span> Steady State AC Circuits</li>
-                    <li class="unit-item"><span>Unit 3:</span> Transformers</li>
-                    <li class="unit-item"><span>Unit 4:</span> Electrical Machines</li>
-                    <li class="unit-item"><span>Unit 5:</span> Power Converters & Switchgear</li>
-                </ul>
-                <div class="btn-group">
-                    <button class="btn btn-primary" onclick="openModal('eeModal')">
-                        <i class="fa-solid fa-book-open"></i> View Full Notes & PYQs
-                    </button>
-                    <a href="https://www.youtube.com/results?search_query=aktu+basic+electrical+engineering+playlist" target="_blank" class="btn btn-secondary">
-                        <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> Video Lectures
-                    </a>
-                </div>
-            </div>
-
-            <!-- Card 4: Programming C -->
-            <div class="card card-cs">
-                <div class="card-header">
-                    <div class="card-icon"><i class="fa-solid fa-code"></i></div>
-                    <div class="card-title">
-                        <h2>Programming in C</h2>
-                        <p>Code: BCS-101 / BCS-201</p>
-                    </div>
-                </div>
-                <ul class="units-list">
-                    <li class="unit-item"><span>Unit 1:</span> Computer Basics & C Basics</li>
-                    <li class="unit-item"><span>Unit 2:</span> Control Flow & Loops</li>
-                    <li class="unit-item"><span>Unit 3:</span> Arrays & Functions</li>
-                    <li class="unit-item"><span>Unit 4:</span> Pointers & Memory</li>
-                    <li class="unit-item"><span>Unit 5:</span> Structures & File Handling</li>
-                </ul>
-                <div class="btn-group">
-                    <button class="btn btn-primary" onclick="openModal('csModal')">
-                        <i class="fa-solid fa-book-open"></i> View Full Notes & PYQs
-                    </button>
-                    <a href="https://www.youtube.com/results?search_query=aktu+c+programming+playlist" target="_blank" class="btn btn-secondary">
-                        <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> Video Lectures
-                    </a>
-                </div>
-            </div>
-
-            <!-- Card 5: Mechanical -->
-            <div class="card card-me">
-                <div class="card-header">
-                    <div class="card-icon"><i class="fa-solid fa-gears"></i></div>
-                    <div class="card-title">
-                        <h2>Mechanical Engg.</h2>
-                        <p>Code: BME-101 / BME-201</p>
-                    </div>
-                </div>
-                <ul class="units-list">
-                    <li class="unit-item"><span>Unit 1:</span> Fundamentals of Thermodynamics</li>
-                    <li class="unit-item"><span>Unit 2:</span> IC Engines & Refrigeration</li>
-                    <li class="unit-item"><span>Unit 3:</span> Fluid Mechanics & Turbines</li>
-                    <li class="unit-item"><span>Unit 4:</span> Measurement & Automation</li>
-                    <li class="unit-item"><span>Unit 5:</span> Engineering Materials</li>
-                </ul>
-                <div class="btn-group">
-                    <button class="btn btn-primary" onclick="openModal('meModal')">
-                        <i class="fa-solid fa-book-open"></i> View Full Notes & PYQs
-                    </button>
-                    <a href="https://www.youtube.com/results?search_query=aktu+fundamentals+of+mechanical+engineering+playlist" target="_blank" class="btn btn-secondary">
-                        <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> Video Lectures
-                    </a>
-                </div>
-            </div>
-
-            <!-- Card 6: Chemistry -->
-            <div class="card card-chem">
-                <div class="card-header">
-                    <div class="card-icon"><i class="fa-solid fa-flask"></i></div>
-                    <div class="card-title">
-                        <h2>Engineering Chemistry</h2>
-                        <p>Code: BAS-102 / BAS-202</p>
-                    </div>
-                </div>
-                <ul class="units-list">
-                    <li class="unit-item"><span>Unit 1:</span> Atomic Structure & Bonding</li>
-                    <li class="unit-item"><span>Unit 2:</span> Spectroscopic Techniques</li>
-                    <li class="unit-item"><span>Unit 3:</span> Electrochemistry & Corrosion</li>
-                    <li class="unit-item"><span>Unit 4:</span> Water Technology & Polymers</li>
-                    <li class="unit-item"><span>Unit 5:</span> Fuels & Combustion</li>
-                </ul>
-                <div class="btn-group">
-                    <button class="btn btn-primary" onclick="openModal('chemModal')">
-                        <i class="fa-solid fa-book-open"></i> View Full Notes & PYQs
-                    </button>
-                    <a href="https://www.youtube.com/results?search_query=aktu+engineering+chemistry+playlist" target="_blank" class="btn btn-secondary">
-                        <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> Video Lectures
-                    </a>
-                </div>
-            </div>
-
         </div>
+
+        <!-- Card 2: Essentials of Data Structure -->
+        <div class="card card-green">
+            <div class="badge-container">
+                <span class="badge badge-green">Sem 2</span>
+                <span class="badge badge-gray">Data Structure</span>
+            </div>
+            <h2 class="card-title">Essentials of Data Structure</h2>
+            <p class="course-code">Course code: ACS201</p>
+            <div class="btn-group">
+                <a href="https://drive.google.com" target="_blank" class="btn btn-green">
+                    <i class="fa-solid fa-file-pdf"></i> Full Notes (PDF)
+                </a>
+                <a href="https://drive.google.com" target="_blank" class="btn btn-soft">
+                    <i class="fa-solid fa-question-circle"></i> PYQs
+                </a>
+            </div>
+        </div>
+
+        <!-- Card 3: Data Structures (CSE) -->
+        <div class="card card-orange">
+            <div class="badge-container">
+                <span class="badge badge-orange">Sem 3</span>
+                <span class="badge badge-gray">CSE</span>
+            </div>
+            <h2 class="card-title">Data Structures</h2>
+            <p class="course-code">Course code: BCS301</p>
+            <div class="btn-group">
+                <a href="https://drive.google.com" target="_blank" class="btn btn-orange">
+                    <i class="fa-solid fa-file-pdf"></i> Full Notes (PDF)
+                </a>
+                <a href="https://drive.google.com" target="_blank" class="btn btn-soft">
+                    <i class="fa-solid fa-question-circle"></i> PYQs
+                </a>
+            </div>
+        </div>
+
+        <!-- Card 4: Computer Organization & Architecture -->
+        <div class="card card-orange">
+            <div class="badge-container">
+                <span class="badge badge-orange">Sem 3</span>
+                <span class="badge badge-gray">CSE</span>
+            </div>
+            <h2 class="card-title">Computer Organization & Architecture</h2>
+            <p class="course-code">Course code: BCS302</p>
+            <div class="btn-group">
+                <a href="https://drive.google.com" target="_blank" class="btn btn-orange">
+                    <i class="fa-solid fa-file-pdf"></i> Full Notes (PDF)
+                </a>
+                <a href="https://drive.google.com" target="_blank" class="btn btn-soft">
+                    <i class="fa-solid fa-question-circle"></i> PYQs
+                </a>
+            </div>
+        </div>
+
     </div>
 
-    <!-- ==================== MODALS WITH COMPLETE CONTENT ==================== -->
-
-    <!-- MATH MODAL -->
+    <!-- ==================== MATHEMATICS UNIT-1 DETAILED MODAL ==================== -->
     <div id="mathModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('mathModal')">&times;</span>
-            <h2>Engineering Mathematics (BAS-103)</h2>
+            <h2 style="color:#0f172a;">Engineering Mathematics–I (BAS103)</h2>
+            <p style="color:#64748b; font-size: 0.9rem;">AKTU Examination-Oriented Detailed Teacher Notes - Unit 1: Matrices</p>
+            
             <div class="tab-menu">
-                <button class="tab-btn active" onclick="switchTab(event, 'math-notes')">Unit Notes</button>
-                <button class="tab-btn" onclick="switchTab(event, 'math-pyq')">AKTU PYQs</button>
-                <button class="tab-btn" onclick="switchTab(event, 'math-test')">Practice Test</button>
+                <button class="tab-btn active" onclick="switchTab(event, 'm-notes')">Complete Notes</button>
+                <button class="tab-btn" onclick="switchTab(event, 'm-pyq')">AKTU Expected Questions</button>
             </div>
 
-            <div id="math-notes" class="tab-content active">
-                <div class="note-block">
-                    <h4>Unit 1: Matrices & Linear Algebra</h4>
-                    <p><b>Cayley-Hamilton Theorem:</b> Every square matrix satisfies its own characteristic equation $|A - \lambda I| = 0$. Used to find $A^{-1}$ and higher powers of matrices.</p>
-                    <p><b>Rank of Matrix:</b> Maximum number of linearly independent rows or columns. Reduced Echelon Form helps in finding Rank.</p>
+            <!-- TAB 1: COMPLETE DETAILED NOTES FROM PDF -->
+            <div id="m-notes" class="tab-content active">
+                
+                <div class="note-section">
+                    <h3>1. Introduction to Matrices & System Representation</h3>
+                    <p>Matrices numerical information ko compact form me systematic tarike se represent karne ke liye use hoti hain.</p>
+                    <p><b>Applications:</b> Computer Science, AI, Data Science, Machine Learning, Electrical/Mechanical Engineering, Dynamics.</p>
+                    <p style="margin-top: 0.5rem;"><b>System of Equations Representation:</b></p>
+                    <p>$$\begin{cases} x + 2y = 5 \\ 3x + 4y = 11 \end{cases} \implies \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 5 \\ 11 \end{bmatrix}$$</p>
                 </div>
-                <div class="note-block">
-                    <h4>Unit 2: Differential Calculus I & II</h4>
-                    <p><b>Leibnitz Theorem:</b> Used for finding the $n^{th}$ derivative of product of two functions: $(uv)_n = u_n v + n u_{n-1} v_1 + \frac{n(n-1)}{2!} u_{n-2} v_2 + ...$</p>
-                    <p><b>Euler's Theorem for Homogeneous Functions:</b> If $u$ is a homogeneous function of degree $n$, then $x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} = nu$.</p>
+
+                <div class="note-section">
+                    <h3>2. Basic Definition, Order & Elements</h3>
+                    <p><b>Definition:</b> Numbers, quantities, ya expressions ka rectangular arrangement rows aur columns me matrix kahlata hai. Capital letters $(A, B, C)$ se represent kiya jata hai.</p>
+                    <p><b>General Form:</b> $A = [a_{ij}]_{m \times n}$ jahan $m$ = rows, $n$ = columns, aur $a_{ij}$ element hai $i$-th row aur $j$-th column ka.</p>
+                    <p><b>Order:</b> Rows $\times$ Columns (Hamesha isi format me likhein, e.g., $2 \times 3$ ya $3 \times 2$).</p>
                 </div>
-                <div class="note-block">
-                    <h4>Unit 3: Multivariable Calculus & Taylor's Series</h4>
-                    <p>Expansion of $f(x,y)$ around point $(a,b)$ using Taylor's Theorem. Maxima & Minima condition for two variables: $rt - s^2 > 0$ and $r < 0$ (Maximum), $r > 0$ (Minimum).</p>
+
+                <div class="note-section">
+                    <h3>3. Types of Matrices</h3>
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>Matrix Type</th>
+                                <th>Definition / Property</th>
+                                <th>Example Structure</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Row Matrix</td>
+                                <td>Sirf 1 row hoti hai. Order: $1 \times n$</td>
+                                <td>$\begin{bmatrix} 2 & 5 & 7 & 9 \end{bmatrix}$</td>
+                            </tr>
+                            <tr>
+                                <td>Column Matrix</td>
+                                <td>Sirf 1 column hota hai. Order: $m \times 1$</td>
+                                <td>$\begin{bmatrix} 2 \\ 5 \\ 7 \end{bmatrix}$</td>
+                            </tr>
+                            <tr>
+                                <td>Square Matrix</td>
+                                <td>Rows aur Columns equal hote hain ($m = n$)</td>
+                                <td>$\begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$</td>
+                            </tr>
+                            <tr>
+                                <td>Zero / Null Matrix</td>
+                                <td>Sare elements zero hote hain ($O$)</td>
+                                <td>$\begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}$</td>
+                            </tr>
+                            <tr>
+                                <td>Diagonal Matrix</td>
+                                <td>Principal diagonal ke alawa baki sare 0 hote hain.</td>
+                                <td>$\begin{bmatrix} 3 & 0 & 0 \\ 0 & 5 & 0 \\ 0 & 0 & 7 \end{bmatrix}$</td>
+                            </tr>
+                            <tr>
+                                <td>Scalar Matrix</td>
+                                <td>Diagonal matrix jiske diagonal elements equal hon ($A = kI$)</td>
+                                <td>$\begin{bmatrix} 5 & 0 & 0 \\ 0 & 5 & 0 \\ 0 & 0 & 5 \end{bmatrix}$</td>
+                            </tr>
+                            <tr>
+                                <td>Identity Matrix ($I$)</td>
+                                <td>Diagonal elements 1 aur baki 0. Property: $AI = IA = A$</td>
+                                <td>$\begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$</td>
+                            </tr>
+                            <tr>
+                                <td>Upper Triangular</td>
+                                <td>Principal diagonal ke niche ke sare elements zero hon.</td>
+                                <td>$\begin{bmatrix} 2 & 4 & 6 \\ 0 & 3 & 5 \\ 0 & 0 & 7 \end{bmatrix}$</td>
+                            </tr>
+                            <tr>
+                                <td>Lower Triangular</td>
+                                <td>Principal diagonal ke upar ke sare elements zero hon.</td>
+                                <td>$\begin{bmatrix} 2 & 0 & 0 \\ 4 & 3 & 0 \\ 6 & 5 & 7 \end{bmatrix}$</td>
+                            </tr>
+                            <tr>
+                                <td>Symmetric Matrix</td>
+                                <td>Transpose lene par unchanged rahe: $A^T = A$ ($a_{ij} = a_{ji}$)</td>
+                                <td>$\begin{bmatrix} 2 & 3 & 5 \\ 3 & 4 & 7 \\ 5 & 7 & 8 \end{bmatrix}$</td>
+                            </tr>
+                            <tr>
+                                <td>Skew-Symmetric</td>
+                                <td>$A^T = -A$. Diagonal elements hamesha 0 hote hain.</td>
+                                <td>$\begin{bmatrix} 0 & 2 & -3 \\ -2 & 0 & 5 \\ 3 & -5 & 0 \end{bmatrix}$</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="note-section">
+                    <h3>4. Transpose & Operations</h3>
+                    <p><b>Transpose ($A^T$):</b> Rows ko columns me aur columns ko rows me interchange karna.</p>
+                    <ul>
+                        <li><b>Properties:</b> $(A^T)^T = A$, $(A+B)^T = A^T + B^T$, $(AB)^T = B^T A^T$ (Reversal Law)</li>
+                        <li><b>Equality:</b> Do matrices tabhi equal hoti hain jab order same ho aur corresponding elements identical hon.</li>
+                        <li><b>Scalar Multiplication:</b> Scalar $k$ matrix ke har element se multiply hota hai.</li>
+                    </ul>
+                </div>
+
+                <div class="note-section">
+                    <h3>5. Matrix Multiplication (Solved Example)</h3>
+                    <p>Order condition: Agar $A$ ka order $m \times n$ aur $B$ ka order $n \times p$ hai, tabhi $AB$ exist karega (Order: $m \times p$).</p>
+                    <p><b>Properties:</b> Not commutative ($AB \neq BA$), Associative [$A(BC) = (AB)C$], Distributive [$A(B+C) = AB + AC$].</p>
+                    <p style="margin-top:0.5rem;"><b>Solved Example:</b> Let $A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$ and $B = \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix}$. Find $AB$.</p>
+                    <p>$$AB = \begin{bmatrix} (1\times 5 + 2\times 7) & (1\times 6 + 2\times 8) \\ (3\times 5 + 4\times 7) & (3\times 6 + 4\times 8) \end{bmatrix} = \begin{bmatrix} 19 & 22 \\ 43 & 50 \end{bmatrix}$$</p>
+                </div>
+
+                <div class="note-section">
+                    <h3>6. Determinants, Minors & Inverse</h3>
+                    <p><b>Adjoint ($\text{adj } A$):</b> Cofactor matrix ka transpose $[C]^T$.</p>
+                    <p><b>Inverse Formula:</b> $A^{-1} = \frac{1}{|A|} \text{adj}(A)$, jahan $|A| \neq 0$.</p>
+                    <p><b>Singular vs Non-Singular:</b> Agar $|A| = 0$, toh matrix singular hai (Inverse exist nahi karta). Agar $|A| \neq 0$, toh Non-Singular hai.</p>
+                </div>
+
+                <div class="note-section">
+                    <h3>7. Rank of Matrix & System Consistency</h3>
+                    <p><b>Rank ($\rho(A)$):</b> Matrix me maximum number of linearly independent rows. Row Echelon form me non-zero rows hi Rank hoti hai.</p>
+                    <p style="margin-top:0.5rem;"><b>System Consistency ($AX = B$):</b></p>
+                    <ul>
+                        <li><b>Unique Solution:</b> $\rho(A) = \rho([A|B]) = n$ (variables count)</li>
+                        <li><b>Infinitely Many Solutions:</b> $\rho(A) = \rho([A|B]) < n$</li>
+                        <li><b>No Solution:</b> $\rho(A) \neq \rho([A|B])$</li>
+                    </ul>
+                </div>
+
+                <div class="note-section">
+                    <h3>8. Cayley-Hamilton Theorem & Eigenvalues</h3>
+                    <p><b>Characteristic Equation:</b> $|A - \lambda I| = 0$. Iske roots hi Eigenvalues hote hain.</p>
+                    <p><b>Cayley-Hamilton Theorem:</b> Har square matrix apni characteristic equation ko satisfy karti hai. Agar $\lambda^2 - 4\lambda + 3 = 0$ hai, toh $A^2 - 4A + 3I = 0$ hoga.</p>
+                    <p><b>Applications:</b> Higher powers of matrices ($A^4, A^8$) aur Inverse ($A^{-1}$) nikalne me.</p>
+                </div>
+
+            </div>
+
+            <!-- TAB 2: AKTU EXAM EXPECTED QUESTIONS -->
+            <div id="m-pyq" class="tab-content">
+                <h3 style="margin-bottom: 1rem; color:#0f172a;">AKTU Exam Expected & Assignment Questions</h3>
+                
+                <div class="pyq-card">
+                    <span class="pyq-tag">2 Marks - Very Short</span>
+                    <p><b>Q1:</b> Skew-symmetric matrix ke diagonal elements hamesha 0 kyun hote hain?</p>
+                </div>
+
+                <div class="pyq-card">
+                    <span class="pyq-tag">2 Marks - Very Short</span>
+                    <p><b>Q2:</b> Agar $|A| = 0$ ho toh matrix ko kya kehte hain? Kya iska inverse possible hai?</p>
+                </div>
+
+                <div class="pyq-card">
+                    <span class="pyq-tag">2 Marks - Very Short</span>
+                    <p><b>Q3:</b> State Cayley-Hamilton Theorem and write its two main applications.</p>
+                </div>
+
+                <div class="pyq-card">
+                    <span class="pyq-tag">2 Marks - Very Short</span>
+                    <p><b>Q4:</b> Matrix multiplication me commutative law apply kyun nahi hota? Explain ($AB \neq BA$).</p>
+                </div>
+
+                <div class="pyq-card">
+                    <span class="pyq-tag">7 / 10 Marks - Long Answer</span>
+                    <p><b>Q5:</b> Matrix $A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}$ ke liye Eigenvalues aur Eigenvectors find kijiye.</p>
+                </div>
+
+                <div class="pyq-card">
+                    <span class="pyq-tag">7 / 10 Marks - Long Answer</span>
+                    <p><b>Q6:</b> Echelon form ka use karke Rank nikaliye: $A = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 1 & 1 & 2 \end{bmatrix}$.</p>
+                </div>
+
+                <div class="pyq-card">
+                    <span class="pyq-tag">7 / 10 Marks - Long Answer</span>
+                    <p><b>Q7:</b> Cayley-Hamilton theorem verify kijiye for $A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}$ aur iski help se $A^{-1}$ nikalna seekhein.</p>
+                </div>
+
+                <div class="pyq-card">
+                    <span class="pyq-tag">7 / 10 Marks - Long Answer</span>
+                    <p><b>Q8:</b> Gauss Elimination Method se solve karein: $x + y = 5$ aur $2x + 3y = 12$.</p>
                 </div>
             </div>
 
-            <div id="math-pyq" class="tab-content">
-                <div class="pyq-item">
-                    <span class="pyq-tag">AKTU 2023 (10 Marks)</span>
-                    <p><b>Q:</b> State and prove Cayley-Hamilton Theorem. Find $A^{-1}$ if $A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$.</p>
-                </div>
-                <div class="pyq-item">
-                    <span class="pyq-tag">AKTU 2022 (7 Marks)</span>
-                    <p><b>Q:</b> If $u = \log(\frac{x^4+y^4}{x+y})$, show that $x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} = 3$.</p>
-                </div>
-            </div>
-
-            <div id="math-test" class="tab-content">
-                <form id="mathQuiz">
-                    <p><b>Q1. Matrix $A$ is singular if its determinant is:</b></p>
-                    <label class="quiz-option"><input type="radio" name="q1" value="0"> 0</label>
-                    <label class="quiz-option"><input type="radio" name="q1" value="1"> 1</label>
-
-                    <p style="margin-top:1rem;"><b>Q2. Euler's theorem is applicable to:</b></p>
-                    <label class="quiz-option"><input type="radio" name="q2" value="a"> Homogeneous functions</label>
-                    <label class="quiz-option"><input type="radio" name="q2" value="b"> Non-homogeneous functions</label>
-
-                    <button type="button" class="submit-quiz-btn" onclick="checkQuiz('mathQuiz', {q1:'0', q2:'a'})">Submit Test</button>
-                </form>
-            </div>
         </div>
     </div>
 
-    <!-- PHYSICS MODAL -->
-    <div id="physicsModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('physicsModal')">&times;</span>
-            <h2>Engineering Physics (BAS-101)</h2>
-            <div class="tab-menu">
-                <button class="tab-btn active" onclick="switchTab(event, 'phy-notes')">Unit Notes</button>
-                <button class="tab-btn" onclick="switchTab(event, 'phy-pyq')">AKTU PYQs</button>
-                <button class="tab-btn" onclick="switchTab(event, 'phy-test')">Practice Test</button>
-            </div>
-
-            <div id="phy-notes" class="tab-content active">
-                <div class="note-block">
-                    <h4>Unit 1: Relativistic Mechanics</h4>
-                    <p><b>Michelson-Morley Experiment:</b> Proved the non-existence of hypothetical medium 'Ether' and established speed of light is constant in all inertial frames.</p>
-                    <p><b>Einstein's Mass-Energy Relation:</b> $E = mc^2$. Length contraction: $L = L_0 \sqrt{1 - v^2/c^2}$.</p>
-                </div>
-                <div class="note-block">
-                    <h4>Unit 3: Quantum Mechanics</h4>
-                    <p><b>De-Broglie Hypothesis:</b> Dual nature of matter. Wavelength $\lambda = \frac{h}{p} = \frac{h}{mv}$.</p>
-                    <p><b>Schrodinger's Time-Independent Wave Equation:</b> $\frac{d^2\psi}{dx^2} + \frac{8\pi^2 m}{h^2}(E - V)\psi = 0$.</p>
-                </div>
-            </div>
-
-            <div id="phy-pyq" class="tab-content">
-                <div class="pyq-item">
-                    <span class="pyq-tag">AKTU 2023 (10 Marks)</span>
-                    <p><b>Q:</b> Derive Time-Independent Schrodinger Wave Equation for a particle in a 1D box.</p>
-                </div>
-                <div class="pyq-item">
-                    <span class="pyq-tag">AKTU 2021 (7 Marks)</span>
-                    <p><b>Q:</b> Discuss Michelson-Morley experiment and explain its negative result.</p>
-                </div>
-            </div>
-
-            <div id="phy-test" class="tab-content">
-                <form id="phyQuiz">
-                    <p><b>Q1. According to special theory of relativity, speed of light is:</b></p>
-                    <label class="quiz-option"><input type="radio" name="q1" value="a"> Constant in all inertial frames</label>
-                    <label class="quiz-option"><input type="radio" name="q1" value="b"> Dependent on frame velocity</label>
-
-                    <button type="button" class="submit-quiz-btn" onclick="checkQuiz('phyQuiz', {q1:'a'})">Submit Test</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- C PROGRAMMING MODAL -->
-    <div id="csModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('csModal')">&times;</span>
-            <h2>Programming for Problem Solving - C (BCS-101)</h2>
-            <div class="tab-menu">
-                <button class="tab-btn active" onclick="switchTab(event, 'cs-notes')">Unit Notes</button>
-                <button class="tab-btn" onclick="switchTab(event, 'cs-pyq')">AKTU PYQs</button>
-                <button class="tab-btn" onclick="switchTab(event, 'cs-test')">Practice Test</button>
-            </div>
-
-            <div id="cs-notes" class="tab-content active">
-                <div class="note-block">
-                    <h4>Unit 1 & 2: C Basics & Loops</h4>
-                    <p><b>Data Types:</b> <code>int</code> (2/4 bytes), <code>float</code> (4 bytes), <code>char</code> (1 byte).</p>
-                    <p><b>Loops:</b> <code>for</code>, <code>while</code> (Entry-controlled) vs <code>do-while</code> (Exit-controlled).</p>
-                </div>
-                <div class="note-block">
-                    <h4>Unit 4: Pointers & Dynamic Memory</h4>
-                    <p><b>Pointers:</b> Variable holding memory address of another variable. Syntax: <code>int *ptr = &a;</code></p>
-                    <p><b>Dynamic Memory Allocation:</b> <code>malloc()</code>, <code>calloc()</code>, <code>realloc()</code>, <code>free()</code> from <code>&lt;stdlib.h&gt;</code>.</p>
-                </div>
-            </div>
-
-            <div id="cs-pyq" class="tab-content">
-                <div class="pyq-item">
-                    <span class="pyq-tag">AKTU 2023 (10 Marks)</span>
-                    <p><b>Q:</b> What is a Pointer? Write a program to swap two numbers using Call by Reference.</p>
-                </div>
-                <div class="pyq-item">
-                    <span class="pyq-tag">AKTU 2022 (7 Marks)</span>
-                    <p><b>Q:</b> Differentiate between Structure and Union with suitable C code examples.</p>
-                </div>
-            </div>
-
-            <div id="cs-test" class="tab-content">
-                <form id="csQuiz">
-                    <p><b>Q1. Which function is used to release dynamically allocated memory?</b></p>
-                    <label class="quiz-option"><input type="radio" name="q1" value="free"> free()</label>
-                    <label class="quiz-option"><input type="radio" name="q1" value="delete"> delete()</label>
-
-                    <button type="button" class="submit-quiz-btn" onclick="checkQuiz('csQuiz', {q1:'free'})">Submit Test</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- ELECTRICAL MODAL -->
-    <div id="eeModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('eeModal')">&times;</span>
-            <h2>Basic Electrical Engg. (BEE-101)</h2>
-            <div class="tab-menu">
-                <button class="tab-btn active" onclick="switchTab(event, 'ee-notes')">Unit Notes</button>
-                <button class="tab-btn" onclick="switchTab(event, 'ee-pyq')">AKTU PYQs</button>
-            </div>
-            <div id="ee-notes" class="tab-content active">
-                <div class="note-block">
-                    <h4>Unit 1: DC Circuit Theorems</h4>
-                    <p><b>Thevenin's Theorem:</b> Any linear network can be replaced by a single voltage source $V_{th}$ in series with $R_{th}$.</p>
-                    <p><b>Norton's Theorem:</b> Dual of Thevenin's theorem. Replaced by current source $I_N$ in parallel with $R_N$.</p>
-                </div>
-            </div>
-            <div id="ee-pyq" class="tab-content">
-                <div class="pyq-item">
-                    <span class="pyq-tag">AKTU 2023</span>
-                    <p><b>Q:</b> State and prove Superposition Theorem with a circuit example.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MECHANICAL MODAL -->
-    <div id="meModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('meModal')">&times;</span>
-            <h2>Mechanical Engg. (BME-101)</h2>
-            <div class="tab-menu">
-                <button class="tab-btn active" onclick="switchTab(event, 'me-notes')">Unit Notes</button>
-            </div>
-            <div id="me-notes" class="tab-content active">
-                <div class="note-block">
-                    <h4>Unit 1 & 2: Thermodynamics & IC Engines</h4>
-                    <p><b>1st Law of Thermodynamics:</b> Energy can neither be created nor destroyed ($dQ = dU + dW$).</p>
-                    <p><b>2-Stroke vs 4-Stroke Engines:</b> 2-stroke completes cycle in 1 revolution of crankshaft; 4-stroke requires 2 revolutions.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CHEMISTRY MODAL -->
-    <div id="chemModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('chemModal')">&times;</span>
-            <h2>Engineering Chemistry (BAS-102)</h2>
-            <div class="tab-menu">
-                <button class="tab-btn active" onclick="switchTab(event, 'chem-notes')">Unit Notes</button>
-            </div>
-            <div id="chem-notes" class="tab-content active">
-                <div class="note-block">
-                    <h4>Unit 4: Water Technology</h4>
-                    <p><b>Hardness of Water:</b> Caused by dissolved salts of Ca and Mg. Expressed in ppm or mg/L.</p>
-                    <p><b>Zeolite Process:</b> Used for softening water by exchanging $Na^+$ ions with $Ca^{2+}$ and $Mg^{2+}$ ions.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- JAVASCRIPT LOGIC -->
     <script>
         function openModal(id) {
             document.getElementById(id).style.display = 'block';
@@ -657,22 +573,6 @@
             evt.target.classList.add('active');
         }
 
-        function checkQuiz(formId, correctAnswers) {
-            let form = document.getElementById(formId);
-            let score = 0;
-            let total = Object.keys(correctAnswers).length;
-
-            for (let q in correctAnswers) {
-                let selected = form.querySelector(`input[name="${q}"]:checked`);
-                if (selected && selected.value === correctAnswers[q]) {
-                    score++;
-                }
-            }
-
-            alert(`Aapka Score: ${score} / ${total}`);
-        }
-
-        // Close modal when clicking outside content
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) {
                 event.target.style.display = "none";
