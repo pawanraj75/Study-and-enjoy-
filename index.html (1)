@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AKTU StudyHub – B.Tech Study Material</title>
+<meta name="description" content="AKTU B.Tech study material, syllabus, notes, PYQs, important questions and resources for all branches and semesters.">
+<style>
+/* Color Palette & Variables for Themes */
+:root {
+  --sem1-bg: linear-gradient(135deg, #f3e8ff 0%, #e0e7ff 100%);
+  --sem1-btn: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+
+  --sem2-bg: linear-gradient(135deg, #e6f4ea 0%, #c8f7dc 100%);
+  --sem2-btn: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+
+  --sem3-bg: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+  --sem3-btn: linear-gradient(135deg, #fc4a1a 0%, #f7b733 100%);
+
+  --sem4-bg: linear-gradient(135deg, #ffe4e6 0%, #ffedd5 100%);
+  --sem4-btn: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+
+  --sem5-bg: linear-gradient(135deg, #e0f2fe 0%, #dbefeMerged 100%);
+  --sem5-btn: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+
+  --sem6-bg: linear-gradient(135deg, #fce7f3 0%, #ffe4e6 100%);
+  --sem6-btn: linear-gradient(135deg, #f857a6 0%, #ff5858 100%);
+
+  --sem7-bg: linear-gradient(135deg, #f3e8ff 0%, #ede9fe 100%);
+  --sem7-btn: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%);
+
+  --default-bg: #ffffff;
+  --default-btn: linear-gradient(135deg, #075be7, #7b2ff7);
+}
+
+*{box-sizing:border-box}
+body{margin:0;font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;background:#f0f4f9;color:#172033}
+
+header{background:linear-gradient(135deg,#075be7,#7b2ff7);color:white;padding:50px 18px;text-align:center;box-shadow:0 4px 20px rgba(7, 91, 231, 0.25)}
+header h1{margin:0;font-size:42px;font-weight:800;letter-spacing:-0.5px}
+header p{font-size:18px;opacity:.95;margin-top:8px}
+
+.container{max-width:1150px;margin:auto;padding:25px 16px}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:10px 0 24px}
+select,input{width:100%;padding:14px 16px;border:2px solid #e2e8f0;border-radius:14px;background:white;font-size:15px;outline:none;transition:all 0.3s ease}
+select:focus,input:focus{border-color:#075be7;box-shadow:0 0 0 4px rgba(7, 91, 231, 0.15)}
+
+.notice{background:white;border-left:6px solid #075be7;padding:18px;border-radius:14px;margin-bottom:24px;box-shadow:0 6px 18px rgba(16,42,91,0.06)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+
+/* Full Colour Cards */
+.card{
+  background: var(--card-bg, var(--default-bg));
+  padding:22px;
+  border-radius:20px;
+  box-shadow:0 8px 25px rgba(16,42,91,0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  position:relative;
+  overflow:hidden;
+  transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: var(--card-btn, var(--default-btn));
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(16,42,91,0.15);
+}
+
+.card h3{margin:8px 0 10px;color:#0f172a;font-size:19px;font-weight:700}
+
+/* Colourful Tags */
+.tag{
+  display:inline-block;
+  background: var(--card-btn, var(--default-btn));
+  color:white;
+  padding:5px 14px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:600;
+  margin:4px 4px 4px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.tag.alt-tag {
+  background: rgba(255, 255, 255, 0.8);
+  color: #334155;
+  box-shadow: none;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.btn{
+  display:inline-block;
+  text-decoration:none;
+  padding:10px 18px;
+  border-radius:12px;
+  background: var(--card-btn, var(--default-btn));
+  color:white;
+  font-size:13px;
+  font-weight:600;
+  transition:opacity 0.2s;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+.btn:hover{opacity:0.9}
+.btn.alt{background:rgba(255, 255, 255, 0.85);color:#1e293b;border: 1px solid rgba(0, 0, 0, 0.08)}
+.btn.alt:hover{background:#ffffff}
+
+section{margin:35px 0}
+section h2{font-size:28px;color:#0f172a;margin-bottom:18px}
+footer{text-align:center;background:#0f172a;color:#cbd5e1;padding:32px 15px;margin-top:45px}
+.small{font-size:13px;color:#475569;line-height:1.5}
+
+/* Dynamic Themes per Semester */
+.sem-1 { --card-bg: var(--sem1-bg); --card-btn: var(--sem1-btn); }
+.sem-2 { --card-bg: var(--sem2-bg); --card-btn: var(--sem2-btn); }
+.sem-3 { --card-bg: var(--sem3-bg); --card-btn: var(--sem3-btn); }
+.sem-4 { --card-bg: var(--sem4-bg); --card-btn: var(--sem4-btn); }
+.sem-5 { --card-bg: var(--sem5-bg); --card-btn: var(--sem5-btn); }
+.sem-6 { --card-bg: var(--sem6-bg); --card-btn: var(--sem6-btn); }
+.sem-7 { --card-bg: var(--sem7-bg); --card-btn: var(--sem7-btn); }
+
+@media(max-width:650px){header h1{font-size:32px}.controls{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <h1>📚 AKTU StudyHub</h1>
+  <p>One place for B.Tech syllabus, notes, PYQs, important questions & study resources</p>
+</header>
+
+<main class="container">
+  <div class="notice">
+    <b>🎯 Latest-focus:</b> AKTU B.Tech 2026–27 curriculum and semester-wise preparation.
+    <div class="small">Use the official AKTU links for the latest syllabus and university information.</div>
+  </div>
+
+  <div class="controls">
+    <select id="branch">
+      <option value="all">All Branches</option>
+      <option value="CSE">Computer Science & Engineering</option>
+      <option value="IT">Information Technology</option>
+      <option value="ECE">Electronics & Communication</option>
+      <option value="EE">Electrical Engineering</option>
+      <option value="ME">Mechanical Engineering</option>
+      <option value="CE">Civil Engineering</option>
+    </select>
+    <input id="search" placeholder="🔎 Search subject or topic...">
+  </div>
+
+  <section>
+    <h2>📖 Study Material</h2>
+    <div class="grid" id="cards"></div>
+  </section>
+
+  <section>
+    <h2>🔗 Official AKTU Resources</h2>
+    <div class="grid">
+      <div class="card sem-5"><h3>Official Syllabus</h3><p>Check the latest AKTU syllabus before preparing notes.</p>
+        <div class="links"><a class="btn" href="https://aktu.ac.in/" target="_blank">AKTU Website</a></div>
+      </div>
+      <div class="card sem-2"><h3>AKTU ILMS</h3><p>University learning courses and academic resources.</p>
+        <div class="links"><a class="btn" href="https://ilms.aktu.ac.in/course/index.php" target="_blank">Open ILMS</a></div>
+      </div>
+      <div class="card sem-3"><h3>Previous Year Papers</h3><p>Use the university's old-question-paper section.</p>
+        <div class="links"><a class="btn" href="https://aktu.ac.in/old-question-paper.html" target="_blank">PYQ Section</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>📝 What this site can contain</h2>
+    <div class="grid">
+      <div class="card sem-1"><h3>Unit-wise Notes</h3><p>Definitions, concepts, formulas, examples and diagrams.</p></div>
+      <div class="card sem-2"><h3>PYQs</h3><p>Semester-wise previous-year questions with important-question marking.</p></div>
+      <div class="card sem-3"><h3>Assignments</h3><p>Practice questions, numericals and revision sets.</p></div>
+      <div class="card sem-4"><h3>Video Classes</h3><p>Subject-wise lectures and revision playlists.</p></div>
+      <div class="card sem-5"><h3>Practical Files</h3><p>Lab experiments, viva questions and record-file help.</p></div>
+      <div class="card sem-6"><h3>Exam Planner</h3><p>Simple semester revision and daily-study planning section.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <b>AKTU StudyHub</b><br>
+  <span class="small">Student-focused educational resource website • Always verify the latest syllabus on the official AKTU website.</span>
+</footer>
+
+<script>
+const subjects=[
+["Applied Mathematics-I","Common","Sem 1","Maths","AAS103"],
+["Applied Physics","Common","Sem 1","Physics","AAS101"],
+["Applied Chemistry","Common","Sem 1","Chemistry","AAS102"],
+["Fundamentals of Electrical Engineering","EE/ECE","Sem 1","Electrical","AEE101"],
+["Programming Languages","CSE","Sem 1","Programming","ACS101"],
+["Introduction to Indian Knowledge System","Common","Sem 1","IKS","AAS104"],
+["Professional Communication & Technical Writing","Common","Sem 1","Communication","AAS105"],
+["Applied Mathematics-II","Common","Sem 2","Maths","AAS203"],
+["Essentials of Data Structure","CSE/IT","Sem 2","Data Structure","ACS201"],
+["Data Structures","CSE/IT","Sem 3","CSE","BCS301"],
+["Computer Organization & Architecture","CSE/IT","Sem 3","CSE","BCS302"],
+["Operating Systems","CSE/IT","Sem 4","CSE","BCS401"],
+["Object Oriented Programming with Java","CSE/IT","Sem 4","Programming","BCS403"],
+["Database Management Systems","CSE/IT","Sem 5","CSE","BCS501"],
+["Web Technology","CSE/IT","Sem 5","CSE","BCS502"],
+["Computer Networks","CSE/IT","Sem 6","CSE","BCS603"],
+["Compiler Design","CSE/IT","Sem 6","CSE","BCS602"],
+["Software Engineering","CSE/IT","Sem 6","CSE","BCS601"],
+["Artificial Intelligence","CSE/IT","Sem 7","AI","BCS701"],
+["Cloud Computing","CSE/IT","Sem 7","Cloud","BCS071"],
+["Cryptography & Network Security","CSE/IT","Sem 7","Security","BCS072"],
+["Machine Learning","CSE/IT","Sem 6/7","AI/ML","Elective"],
+["Engineering Mechanics","ME/CE","Sem 1/2","Mechanical","Core"],
+["Basic Electronics Engineering","ECE","Sem 1/2","Electronics","Core"]
+];
+
+function getSemClass(semStr) {
+  if (semStr.includes('1')) return 'sem-1';
+  if (semStr.includes('2')) return 'sem-2';
+  if (semStr.includes('3')) return 'sem-3';
+  if (semStr.includes('4')) return 'sem-4';
+  if (semStr.includes('5')) return 'sem-5';
+  if (semStr.includes('6')) return 'sem-6';
+  if (semStr.includes('7')) return 'sem-7';
+  return '';
+}
+
+function render(){
+ const b=document.getElementById('branch').value.toLowerCase(), q=document.getElementById('search').value.toLowerCase();
+ const root=document.getElementById('cards');
+ const filtered=subjects.filter(s=>{
+   const text=s.join(' ').toLowerCase();
+   const branchOK=b==='all'||s[1].toLowerCase().includes(b)||s[1].toLowerCase().includes('common');
+   return branchOK && text.includes(q);
+ });
+ root.innerHTML=filtered.map(s=>{
+   const semClass = getSemClass(s[2]);
+   return `
+   <div class="card ${semClass}">
+     <div>
+       <h3>${s[0]}</h3>
+       <span class="tag">${s[2]}</span><span class="tag alt-tag">${s[3]}</span>
+       <p class="small">Course code: <b>${s[4]}</b></p>
+     </div>
+     <div class="links">
+       <a class="btn" href="https://aktu.ac.in/" target="_blank">Syllabus</a>
+       <a class="btn alt" href="https://aktu.ac.in/old-question-paper.html" target="_blank">PYQs</a>
+     </div>
+   </div>`;
+ }).join('') || '<div class="card"><h3>No result</h3><p>Try another subject or branch.</p></div>';
+}
+document.getElementById('branch').addEventListener('change',render);
+document.getElementById('search').addEventListener('input',render);
+render();
+</script>
+</body>
+</html>
