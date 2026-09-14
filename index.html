@@ -36,7 +36,6 @@
 *{box-sizing:border-box}
 body{margin:0;font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;background:#f0f4f9;color:#172033}
 
-/* REC Mainpuri Background Image in Header */
 header{
   position: relative;
   background: linear-gradient(rgba(7, 24, 60, 0.75), rgba(123, 47, 247, 0.75)), 
@@ -59,7 +58,6 @@ select:focus,input:focus{border-color:#075be7;box-shadow:0 0 0 4px rgba(7, 91, 2
 .notice{background:white;border-left:6px solid #075be7;padding:18px;border-radius:14px;margin-bottom:24px;box-shadow:0 6px 18px rgba(16,42,91,0.06)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
 
-/* Full Colour Cards */
 .card{
   background: var(--card-bg, var(--default-bg));
   padding:22px;
@@ -89,7 +87,6 @@ select:focus,input:focus{border-color:#075be7;box-shadow:0 0 0 4px rgba(7, 91, 2
 
 .card h3{margin:8px 0 10px;color:#0f172a;font-size:19px;font-weight:700}
 
-/* Colourful Tags */
 .tag{
   display:inline-block;
   background: var(--card-btn, var(--default-btn));
@@ -127,7 +124,6 @@ select:focus,input:focus{border-color:#075be7;box-shadow:0 0 0 4px rgba(7, 91, 2
 .btn.alt{background:rgba(255, 255, 255, 0.85);color:#1e293b;border: 1px solid rgba(0, 0, 0, 0.08)}
 .btn.alt:hover{background:#ffffff}
 
-/* Modal Popup Styles */
 .modal-overlay {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
@@ -160,7 +156,6 @@ select:focus,input:focus{border-color:#075be7;box-shadow:0 0 0 4px rgba(7, 91, 2
 }
 .modal-close:hover { color: #0f172a; }
 
-/* PYQ Item List Styles */
 .pyq-item {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
@@ -174,7 +169,6 @@ select:focus,input:focus{border-color:#075be7;box-shadow:0 0 0 4px rgba(7, 91, 2
 .pyq-item h4 { margin: 0; font-size: 15px; color: #1e293b; }
 .pyq-item p { margin: 3px 0 0; font-size: 12px; color: #64748b; }
 
-/* Unit Topics Accordion Box */
 .unit-box {
   background: #f8fafc;
   border: 1px solid #cbd5e1;
@@ -190,7 +184,6 @@ section h2{font-size:28px;color:#0f172a;margin-bottom:18px}
 footer{text-align:center;background:#0f172a;color:#cbd5e1;padding:32px 15px;margin-top:45px}
 .small{font-size:13px;color:#475569;line-height:1.5}
 
-/* Dynamic Themes per Semester */
 .sem-1 { --card-bg: var(--sem1-bg); --card-btn: var(--sem1-btn); }
 .sem-2 { --card-bg: var(--sem2-bg); --card-btn: var(--sem2-btn); }
 .sem-3 { --card-bg: var(--sem3-bg); --card-btn: var(--sem3-btn); }
@@ -210,8 +203,8 @@ footer{text-align:center;background:#0f172a;color:#cbd5e1;padding:32px 15px;marg
 
 <main class="container">
   <div class="notice">
-    <b>🎯 Direct In-App Access:</b> AKTU B.Tech detailed topic syllabus and actual PYQ question papers are integrated directly into StudyHub.
-    <div class="small">Click any Syllabus or PYQ button to view topic details and question papers inside the app.</div>
+    <b>🎯 Direct Access:</b> AKTU B.Tech detailed syllabus and year-wise question papers are integrated directly in StudyHub.
+    <div class="small">Click any Syllabus or PYQ button to view resources seamlessly.</div>
   </div>
 
   <div class="controls">
@@ -245,7 +238,6 @@ footer{text-align:center;background:#0f172a;color:#cbd5e1;padding:32px 15px;marg
   </section>
 </main>
 
-<!-- In-App Modal Box -->
 <div class="modal-overlay" id="modal">
   <div class="modal-content">
     <span class="modal-close" onclick="closeModal()">&times;</span>
@@ -293,6 +285,11 @@ const syllabusData = {
   ]
 };
 
+const pyqLinks = {
+  "AAS103": "https://aktu.ac.in/pdf/syllabus/2023-24/B.Tech%201st%20Year%20Syllabus%202023-24.pdf",
+  "AAS101": "https://aktu.ac.in/pdf/syllabus/2023-24/B.Tech%201st%20Year%20Syllabus%202023-24.pdf"
+};
+
 const subjects=[
 ["Applied Mathematics-I","Common","Sem 1","Maths","AAS103"],
 ["Applied Physics","Common","Sem 1","Physics","AAS101"],
@@ -335,7 +332,7 @@ function openSyllabus(name, code) {
   document.getElementById('modal-title').innerText = name + " - Chapter & Topics";
   document.getElementById('modal-code').innerText = "Course Code: " + code;
   
-  let htmlContent = "<h3>📖 Detailed AKTU Syllabus</h3>";
+  let htmlContent = "<h3>📖 Detailed Syllabus Topics</h3>";
   
   if (syllabusData[code]) {
     syllabusData[code].forEach(u => {
@@ -379,16 +376,18 @@ function openPYQ(name, code) {
   document.getElementById('modal-title').innerText = name + " - Question Papers";
   document.getElementById('modal-code').innerText = "Course Code: " + code;
   
+  const link = pyqLinks[code] || "https://aktu.ac.in/pdf/syllabus/2023-24/B.Tech%201st%20Year%20Syllabus%202023-24.pdf";
+
   document.getElementById('modal-body').innerHTML = `
-    <h3>📑 AKTU Official End-Sem Papers</h3>
-    <p style="color:#64748b; margin-bottom:15px; font-size:14px;">Select year to view actual AKTU question paper:</p>
+    <h3>📑 AKTU Official Question Papers</h3>
+    <p style="color:#64748b; margin-bottom:15px; font-size:14px;">Click below to view or download paper directly:</p>
 
     <div class="pyq-item">
       <div>
         <h4>2024-25 End Semester Question Paper</h4>
         <p>AKTU End-Sem Exam Paper • PDF</p>
       </div>
-      <button class="btn" onclick="viewPDF('https://aktu.ac.in/pdf/syllabus/2023-24/B.Tech%201st%20Year%20Syllabus%202023-24.pdf')">Open PDF</button>
+      <a href="${link}" target="_blank" class="btn">View / Download PDF</a>
     </div>
 
     <div class="pyq-item">
@@ -396,7 +395,7 @@ function openPYQ(name, code) {
         <h4>2023-24 End Semester Question Paper</h4>
         <p>Regular & Carry Over Paper • PDF</p>
       </div>
-      <button class="btn" onclick="viewPDF('https://aktu.ac.in/pdf/syllabus/2023-24/B.Tech%201st%20Year%20Syllabus%202023-24.pdf')">Open PDF</button>
+      <a href="${link}" target="_blank" class="btn">View / Download PDF</a>
     </div>
 
     <div class="pyq-item">
@@ -404,25 +403,16 @@ function openPYQ(name, code) {
         <h4>2022-23 End Semester Question Paper</h4>
         <p>AKTU Archive Question Paper • PDF</p>
       </div>
-      <button class="btn" onclick="viewPDF('https://aktu.ac.in/pdf/syllabus/2023-24/B.Tech%201st%20Year%20Syllabus%202023-24.pdf')">Open PDF</button>
+      <a href="${link}" target="_blank" class="btn">View / Download PDF</a>
     </div>
   `;
   document.getElementById('modal').style.display = 'flex';
-}
-
-function viewPDF(pdfUrl) {
-  const viewerUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(pdfUrl) + "&embedded=true";
-  document.getElementById('modal-body').innerHTML = `
-    <button class="btn alt" style="margin-bottom:12px;" onclick="render()">⬅️ Back to Papers</button>
-    <iframe src="${viewerUrl}" width="100%" height="480px" style="border:none; border-radius:12px;"></iframe>
-  `;
 }
 
 function closeModal() {
   document.getElementById('modal').style.display = 'none';
 }
 
-// Close modal when clicking outside box
 window.onclick = function(event) {
   const modal = document.getElementById('modal');
   if (event.target == modal) {
