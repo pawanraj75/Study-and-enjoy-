@@ -581,3 +581,271 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B.Tech Notes & PYQ Portal</title>
+    <style>
+        :root {
+            --primary-bg: #f8fafc;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .main-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            color: #1e293b;
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+
+        .header p {
+            color: #64748b;
+            font-size: 1rem;
+        }
+
+        /* Common Subject Card Style */
+        .subject-card {
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-header {
+            padding: 20px 25px;
+            color: #ffffff;
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Color Variants for Subjects */
+        .maths-header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+        }
+
+        .cs-header {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+        }
+
+        .mech-header {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        /* Table Styling */
+        .table-wrapper {
+            padding: 10px 25px 25px 25px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th {
+            text-align: left;
+            padding: 14px 16px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 0.95rem;
+            vertical-align: middle;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: #f8fafc;
+        }
+
+        .file-name {
+            font-weight: 600;
+            color: #1e293b;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .badge-notes {
+            background-color: #e0e7ff;
+            color: #3730a3;
+        }
+
+        .badge-pyq {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .details-text {
+            color: #475569;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <div class="header">
+        <h1>🎓 B.Tech Academic Resources</h1>
+        <p>Subject Notes & Previous Year Question Papers Directory</p>
+    </div>
+
+    <!-- Subject 1: Engineering Mathematics -->
+    <div class="subject-card">
+        <div class="card-header maths-header">
+            <span>📐</span> Engineering Mathematics
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Type</th>
+                        <th style="width: 35%;">File Name</th>
+                        <th style="width: 50%;">Topics Covered</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge badge-notes">Notes</span></td>
+                        <td class="file-name">Engineering_Maths_v2_Exact_Notes.pdf</td>
+                        <td class="details-text">Matrices, Determinants, Rank of Matrix, System of Linear Equations, Eigenvalues & Eigenvectors, Cayley-Hamilton Theorem</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Subject 2: C Programming -->
+    <div class="subject-card">
+        <div class="card-header cs-header">
+            <span>💻</span> Computer Science & Programming
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Type</th>
+                        <th style="width: 35%;">File Name</th>
+                        <th style="width: 50%;">Topics Covered</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge badge-notes">Notes</span></td>
+                        <td class="file-name">C_Programming_BTech_Complete_Notes.pdf</td>
+                        <td class="details-text">Basic Syntax, Data Types, Control Statements, Functions, Recursion, Arrays, Pointers, Structures, Dynamic Memory Allocation, File Handling</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-notes">Notes</span></td>
+                        <td class="file-name">C_Programming_BTech_Complete_Notes-1.pdf</td>
+                        <td class="details-text">C Language Basics, Operators, Loops, Strings, Unions, Preprocessors, Storage Classes, 30 Must-Do Programs</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Subject 3: Mechanical Engineering -->
+    <div class="subject-card">
+        <div class="card-header mech-header">
+            <span>⚙️</span> Fundamentals of Mechanical Engineering
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Type</th>
+                        <th style="width: 35%;">File Name</th>
+                        <th style="width: 50%;">Paper Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge badge-pyq">Exam Paper</span></td>
+                        <td class="file-name">BME101 & 201-MECHANICAL_56a76b87...pdf</td>
+                        <td class="details-text">B.Tech (Sem I) Theory Examination 2025-26 (Subject Code: BME101)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-pyq">Exam Paper</span></td>
+                        <td class="file-name">BME201_Sem2_Exam_Paper_2024_25.pdf</td>
+                        <td class="details-text">B.Tech (Sem II) Theory Examination 2024-25 (Subject Code: BME201)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-pyq">Exam Paper</span></td>
+                        <td class="file-name">BME101_Sem1_Exam_Paper_2024_25.pdf</td>
+                        <td class="details-text">B.Tech (Sem I) Theory Examination 2024-25 (Subject Code: BME101)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-pyq">Exam Paper</span></td>
+                        <td class="file-name">BME201_Sem2_Exam_Paper_2023_24.pdf</td>
+                        <td class="details-text">B.Tech (Sem II) Theory Examination 2023-24 (Subject Code: BME201)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-pyq">Exam Paper</span></td>
+                        <td class="file-name">BME101_Sem1_Exam_Paper_2023_24.pdf</td>
+                        <td class="details-text">B.Tech (Sem I) Theory Examination 2023-24 (Subject Code: BME101)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-pyq">Exam Paper</span></td>
+                        <td class="file-name">BME201_Sem2_Exam_Paper_2022_23.pdf</td>
+                        <td class="details-text">B.Tech (Sem II) Theory Examination 2022-23 (Subject Code: BME201)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
