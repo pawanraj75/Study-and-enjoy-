@@ -1,456 +1,811 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AKTU StudyHub – B.Tech Study Material</title>
-<meta name="description" content="AKTU B.Tech study material, syllabus, notes, PYQs, important questions and resources for all branches and semesters.">
-<style>
-/* Color Palette & Variables for Themes */
-:root {
-  --sem1-bg: linear-gradient(135deg, #f3e8ff 0%, #e0e7ff 100%);
-  --sem1-btn: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B.Tech 1st Year Study Material Hub</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
 
-  --sem2-bg: linear-gradient(135deg, #e6f4ea 0%, #c8f7dc 100%);
-  --sem2-btn: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
 
-  --sem3-bg: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
-  --sem3-btn: linear-gradient(135deg, #fc4a1a 0%, #f7b733 100%);
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.15) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(245, 158, 11, 0.15) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
 
-  --sem4-bg: linear-gradient(135deg, #ffe4e6 0%, #ffedd5 100%);
-  --sem4-btn: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
 
-  --sem5-bg: linear-gradient(135deg, #e0f2fe 0%, #dbefe1 100%);
-  --sem5-btn: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1, #ec4899, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
 
-  --sem6-bg: linear-gradient(135deg, #fce7f3 0%, #ffe4e6 100%);
-  --sem6-btn: linear-gradient(135deg, #f857a6 0%, #ff5858 100%);
+        .header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
 
-  --sem7-bg: linear-gradient(135deg, #f3e8ff 0%, #ede9fe 100%);
-  --sem7-btn: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%);
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-  --default-bg: #ffffff;
-  --default-btn: linear-gradient(135deg, #075be7, #7b2ff7);
-}
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
 
-*{box-sizing:border-box}
-body{margin:0;font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;background:#f0f4f9;color:#172033}
+        /* Color Scheme Themes for Cards */
+        .card-math {
+            --accent: #6366f1;
+            --gradient: linear-gradient(135deg, #4f46e5, #818cf8);
+            --glow: rgba(99, 102, 241, 0.4);
+            --border: #6366f1;
+        }
 
-/* REC Mainpuri Background Image in Header */
-header{
-  position: relative;
-  background: linear-gradient(rgba(7, 24, 60, 0.75), rgba(123, 47, 247, 0.75)), 
-              url('https://recmainpuri.ac.in/wp-content/uploads/2021/08/REC-Mainpuri-Building.jpg');
-  background-size: cover;
-  background-position: center;
-  color: white;
-  padding: 65px 18px;
-  text-align: center;
-  box-shadow: 0 4px 20px rgba(7, 91, 231, 0.25);
-}
-header h1{margin:0;font-size:42px;font-weight:800;letter-spacing:-0.5px;text-shadow: 0 2px 10px rgba(0,0,0,0.4);}
-header p{font-size:18px;opacity:.95;margin-top:8px;text-shadow: 0 1px 5px rgba(0,0,0,0.4);}
+        .card-physics {
+            --accent: #ec4899;
+            --gradient: linear-gradient(135deg, #db2777, #f472b6);
+            --glow: rgba(236, 72, 153, 0.4);
+            --border: #ec4899;
+        }
 
-.container{max-width:1150px;margin:auto;padding:25px 16px}
-.controls{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:10px 0 24px}
-select,input{width:100%;padding:14px 16px;border:2px solid #e2e8f0;border-radius:14px;background:white;font-size:15px;outline:none;transition:all 0.3s ease}
-select:focus,input:focus{border-color:#075be7;box-shadow:0 0 0 4px rgba(7, 91, 231, 0.15)}
+        .card-ee {
+            --accent: #f59e0b;
+            --gradient: linear-gradient(135deg, #d97706, #fbbf24);
+            --glow: rgba(245, 158, 11, 0.4);
+            --border: #f59e0b;
+        }
 
-.notice{background:white;border-left:6px solid #075be7;padding:18px;border-radius:14px;margin-bottom:24px;box-shadow:0 6px 18px rgba(16,42,91,0.06)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+        .card-cs {
+            --accent: #10b981;
+            --gradient: linear-gradient(135deg, #059669, #34d399);
+            --glow: rgba(16, 185, 129, 0.4);
+            --border: #10b981;
+        }
 
-/* Full Colour Cards */
-.card{
-  background: var(--card-bg, var(--default-bg));
-  padding:22px;
-  border-radius:20px;
-  box-shadow:0 8px 25px rgba(16,42,91,0.08);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  position:relative;
-  overflow:hidden;
-  transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
+        .card-me {
+            --accent: #06b6d4;
+            --gradient: linear-gradient(135deg, #0891b2, #22d3ee);
+            --glow: rgba(6, 182, 212, 0.4);
+            --border: #06b6d4;
+        }
 
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 6px;
-  background: var(--card-btn, var(--default-btn));
-}
+        .card-chem {
+            --accent: #8b5cf6;
+            --gradient: linear-gradient(135deg, #7c3aed, #a78bfa);
+            --glow: rgba(139, 92, 246, 0.4);
+            --border: #8b5cf6;
+        }
 
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(16,42,91,0.15);
-}
+        /* Card Component */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 2px solid var(--border);
+            border-radius: 1.25rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 0 15px var(--glow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
 
-.card h3{margin:8px 0 10px;color:#0f172a;font-size:19px;font-weight:700}
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px -5px rgba(0, 0, 0, 0.4), 0 0 25px var(--glow);
+        }
 
-/* Colourful Tags */
-.tag{
-  display:inline-block;
-  background: var(--card-btn, var(--default-btn));
-  color:white;
-  padding:5px 14px;
-  border-radius:20px;
-  font-size:12px;
-  font-weight:600;
-  margin:4px 4px 4px 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-.tag.alt-tag {
-  background: rgba(255, 255, 255, 0.8);
-  color: #334155;
-  box-shadow: none;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-}
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
 
-.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.btn{
-  flex: 1;
-  text-align: center;
-  display:inline-block;
-  cursor:pointer;
-  text-decoration:none;
-  padding:10px 10px;
-  border-radius:12px;
-  background: var(--card-btn, var(--default-btn));
-  color:white;
-  font-size:12px;
-  font-weight:600;
-  border:none;
-  transition:opacity 0.2s;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-}
-.btn:hover{opacity:0.9}
-.btn.alt{background:rgba(255, 255, 255, 0.85);color:#1e293b;border: 1px solid rgba(0, 0, 0, 0.08)}
-.btn.alt:hover{background:#ffffff}
-.btn.notes-btn{background: #10b981; color: white;}
-.btn.notes-btn:hover{background: #059669;}
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 0.75rem;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #fff;
+            box-shadow: 0 4px 12px var(--glow);
+        }
 
-/* Modal Popup Styles */
-.modal-overlay {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(15, 23, 42, 0.7);
-  backdrop-filter: blur(4px);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  padding: 16px;
-}
-.modal-content {
-  background: white;
-  width: 100%;
-  max-width: 750px;
-  border-radius: 20px;
-  padding: 24px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-  position: relative;
-  max-height: 88vh;
-  overflow-y: auto;
-}
-.modal-close {
-  position: absolute;
-  top: 16px; right: 18px;
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
-  color: #64748b;
-}
-.modal-close:hover { color: #0f172a; }
+        .card-title h2 {
+            font-size: 1.35rem;
+            color: #fff;
+        }
 
-/* PYQ & Notes List Styles */
-.pyq-item {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  padding: 14px;
-  border-radius: 12px;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.pyq-item h4 { margin: 0; font-size: 15px; color: #1e293b; }
-.pyq-item p { margin: 3px 0 0; font-size: 12px; color: #64748b; }
+        .card-title p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
 
-/* Unit Topics Accordion Box */
-.unit-box {
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
-  border-radius: 12px;
-  padding: 14px 18px;
-  margin-bottom: 12px;
-}
-.unit-box h4 { margin: 0 0 6px; color: #075be7; font-size: 16px; }
-.unit-box p { margin: 0; color: #334155; font-size: 14px; line-height: 1.5; }
+        /* Syllabus Accordion / Units */
+        .units-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
 
-section{margin:35px 0}
-section h2{font-size:28px;color:#0f172a;margin-bottom:18px}
-footer{text-align:center;background:#0f172a;color:#cbd5e1;padding:32px 15px;margin-top:45px}
-.small{font-size:13px;color:#475569;line-height:1.5}
+        .unit-item {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-/* Dynamic Themes per Semester */
-.sem-1 { --card-bg: var(--sem1-bg); --card-btn: var(--sem1-btn); }
-.sem-2 { --card-bg: var(--sem2-bg); --card-btn: var(--sem2-btn); }
-.sem-3 { --card-bg: var(--sem3-bg); --card-btn: var(--sem3-btn); }
-.sem-4 { --card-bg: var(--sem4-bg); --card-btn: var(--sem4-btn); }
-.sem-5 { --card-bg: var(--sem5-bg); --card-btn: var(--sem5-btn); }
-.sem-6 { --card-bg: var(--sem6-bg); --card-btn: var(--sem6-btn); }
-.sem-7 { --card-bg: var(--sem7-bg); --card-btn: var(--sem7-btn); }
+        .unit-item span {
+            font-weight: 600;
+            color: var(--accent);
+            margin-right: 0.5rem;
+        }
 
-@media(max-width:650px){header h1{font-size:32px}.controls{grid-template-columns:1fr}}
-</style>
+        /* Colored Action Buttons */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.6rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 4px 14px var(--glow);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-<header>
-  <h1>📚 AKTU StudyHub</h1>
-  <p>Rajkiya Engineering College, Mainpuri & AKTU B.Tech Study Resources</p>
-</header>
 
-<main class="container">
-  <div class="notice">
-    <b>🎯 Direct In-App Access:</b> AKTU B.Tech detailed topic syllabus, actual PYQ question papers, and study notes are integrated directly into StudyHub.
-    <div class="small">Click any Syllabus, PYQ, or Notes button to view details and study materials inside the app.</div>
-  </div>
-
-  <div class="controls">
-    <select id="branch">
-      <option value="all">All Branches</option>
-      <option value="CSE">Computer Science & Engineering</option>
-      <option value="IT">Information Technology</option>
-      <option value="ECE">Electronics & Communication</option>
-      <option value="EE">Electrical Engineering</option>
-      <option value="ME">Mechanical Engineering</option>
-      <option value="CE">Civil Engineering</option>
-    </select>
-    <input id="search" placeholder="🔎 Search subject or topic...">
-  </div>
-
-  <section>
-    <h2>📖 Study Material</h2>
-    <div class="grid" id="cards"></div>
-  </section>
-
-  <section>
-    <h2>📝 Available Resources</h2>
-    <div class="grid">
-      <div class="card sem-1"><h3>Unit-wise Notes</h3><p>Definitions, concepts, formulas, examples and diagrams.</p></div>
-      <div class="card sem-2"><h3>PYQs Archive</h3><p>Semester-wise previous-year questions with solution keys.</p></div>
-      <div class="card sem-3"><h3>Assignments</h3><p>Practice questions, numericals and revision sets.</p></div>
-      <div class="card sem-4"><h3>Video Classes</h3><p>Subject-wise lectures and revision playlists.</p></div>
-      <div class="card sem-5"><h3>Practical Files</h3><p>Lab experiments, viva questions and record-file help.</p></div>
-      <div class="card sem-6"><h3>Exam Planner</h3><p>Simple semester revision and daily-study planning section.</p></div>
+    <div class="header">
+        <h1>B.Tech 1st Year Study Material</h1>
+        <p>Complete Syllabus Notes, Reference Books & Video Lectures</p>
     </div>
-  </section>
-</main>
 
-<!-- In-App Modal Box -->
-<div class="modal-overlay" id="modal">
-  <div class="modal-content">
-    <span class="modal-close" onclick="closeModal()">&times;</span>
-    <h2 id="modal-title" style="margin-top:0; color:#075be7;">Subject Title</h2>
-    <p id="modal-code" style="color:#64748b; font-weight:600;"></p>
-    <hr style="border:0; border-top:1px solid #e2e8f0; margin:15px 0;">
-    <div id="modal-body"></div>
-  </div>
-</div>
+    <div class="container">
+        <div class="grid">
 
-<footer>
-  <b>AKTU StudyHub</b><br>
-  <span class="small">Student-focused educational resource website • Rajkiya Engineering College, Mainpuri</span>
-</footer>
+            <!-- Card 1: Engineering Mathematics -->
+            <div class="card card-math">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-calculator"></i></div>
+                    <div class="card-title">
+                        <h2>Engineering Mathematics</h2>
+                        <p>Code: BAS-103 / BAS-203</p>
+                    </div>
+                </div>
+                <ul class="units-list">
+                    <div class="unit-item"><div><span>Unit 1:</span> Matrices & Linear Algebra</div></div>
+                    <div class="unit-item"><div><span>Unit 2:</span> Differential Calculus I & II</div></div>
+                    <div class="unit-item"><div><span>Unit 3:</span> Multivariable Calculus</div></div>
+                    <div class="unit-item"><div><span>Unit 4:</span> Vector Calculus</div></div>
+                    <div class="unit-item"><div><span>Unit 5:</span> Differential Equations</div></div>
+                </ul>
+                <div class="btn-group">
+                    <a href="https://example.com/math-notes.pdf" target="_blank" class="btn btn-primary">
+                        <i class="fa-solid fa-file-pdf"></i> Download Full Notes (PDF)
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="btn btn-secondary">
+                        <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> Video Lectures Playlist
+                    </a>
+                </div>
+            </div>
 
-<script>
-const syllabusData = {
-  "AAS103": [
-    { unit: "Unit 1: Matrices", topics: "Elementary Transformation, Rank of Matrix, Inverse by Gauss-Jordan Method, System of Linear Equations, Characteristic Equation, Cayley-Hamilton Theorem, Eigenvalues & Eigenvectors." },
-    { unit: "Unit 2: Differential Calculus I", topics: "Successive Differentiation, Leibnitz's Theorem, Taylor's & Maclaurin's Series, Expansion of functions, Partial Differentiation, Euler's Theorem on Homogeneous Functions." },
-    { unit: "Unit 3: Differential Calculus II", topics: "Jacobians, Approximation of Errors, Extrema of functions of two variables, Lagrange’s Method of Undetermined Multipliers." },
-    { unit: "Unit 4: Multivariable Calculus", topics: "Double and Triple Integrals, Change of Order of Integration, Change of Variables, Dirichlet's Integral, Applications to Area & Volume." },
-    { unit: "Unit 5: Vector Calculus", topics: "Gradient, Divergence and Curl, Directional Derivative, Line, Surface and Volume Integrals, Gauss Divergence, Green's & Stokes Theorems." }
-  ],
-  "AAS101": [
-    { unit: "Unit 1: Relativistic Mechanics", topics: "Frame of Reference, Michelson-Morley Experiment, Postulates of Special Theory of Relativity, Lorentz Transformation, Length Contraction, Time Dilation, Mass-Energy Equivalence." },
-    { unit: "Unit 2: Electromagnetic Field Theory", topics: "Gradient, Divergence and Curl, Gauss Law, Ampere Law, Maxwell’s Equations in differential and integral forms, Poynting Vector." },
-    { unit: "Unit 3: Quantum Mechanics", topics: "Wave-Particle Duality, de-Broglie Hypothesis, Heisenberg Uncertainty Principle, Schrödinger Wave Equation, Particle in a 1D Box." },
-    { unit: "Unit 4: Wave Optics", topics: "Interference in Thin Films, Newton's Rings, Fraunhofer Diffraction at Single Slit and Double Slit, Rayleigh Criterion, Resolving Power." },
-    { unit: "Unit 5: Fiber Optics & Laser", topics: "Principle of Laser, Einstein Coefficients, Ruby Laser, He-Ne Laser, Optical Fiber Acceptance Angle, Numerical Aperture, Attenuation." }
-  ],
-  "BCS301": [
-    { unit: "Unit 1: Introduction to Data Structures", topics: "Arrays, Sparse Matrices, Stacks: Operations, Applications (Infix to Postfix, Recursion), Queues: Circular Queue, Priority Queue, Deque." },
-    { unit: "Unit 2: Linked Lists", topics: "Singly Linked List, Doubly Linked List, Circular Linked List, Polynomial Representation and Addition using Linked List." },
-    { unit: "Unit 3: Trees", topics: "Binary Trees, Traversal Techniques (Inorder, Preorder, Postorder), Binary Search Trees (BST), AVL Trees, B-Trees, Heap Trees." },
-    { unit: "Unit 4: Graphs", topics: "Graph Terminology, Representation (Adjacency Matrix & List), Traversal: BFS & DFS, Spanning Trees (Prim's & Kruskal's Algorithm), Shortest Path Algorithms." },
-    { unit: "Unit 5: Searching & Sorting", topics: "Searching: Linear Search, Binary Search, Hashing techniques. Sorting: Bubble, Selection, Insertion, Quick, Merge and Heap Sort." }
-  ],
-  "BCS401": [
-    { unit: "Unit 1: Introduction & System Calls", topics: "Operating System Structure, Types of OS, System Calls, System Programs, Process Concept, Process Control Block (PCB)." },
-    { unit: "Unit 2: Process Management & Scheduling", topics: "CPU Scheduling Algorithms (FCFS, SJF, Priority, Round Robin), Process Synchronization, Critical Section Problem, Semaphores, Monitors." },
-    { unit: "Unit 3: Deadlocks", topics: "Deadlock Characterization, Handling Deadlocks, Deadlock Prevention, Avoidance (Banker's Algorithm), Detection and Recovery." },
-    { unit: "Unit 4: Memory Management", topics: "Contiguous Memory Allocation, Paging, Segmentation, Virtual Memory, Demand Paging, Page Replacement Algorithms (FIFO, LRU, Optimal)." },
-    { unit: "Unit 5: File & I/O Systems", topics: "File Concept, Access Methods, Directory Structure, Disk Scheduling Algorithms (FCFS, SSTF, SCAN, C-SCAN), Protection." }
-  ]
-};
+            <!-- Card 2: Engineering Physics -->
+            <div class="card card-physics">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-atom"></i></div>
+                    <div class="card-title">
+                        <h2>Engineering Physics</h2>
+                        <p>Code: BAS-101 / BAS-201</p>
+                    </div>
+                </div>
+                <ul class="units-list">
+                    <div class="unit-item"><div><span>Unit 1:</span> Relativistic Mechanics</div></div>
+                    <div class="unit-item"><div><span>Unit 2:</span> Electromagnetic Field Theory</div></div>
+                    <div class="unit-item"><div><span>Unit 3:</span> Quantum Mechanics</div></div>
+                    <div class="unit-item"><div><span>Unit 4:</span> Wave Optics & Interference</div></div>
+                    <div class="unit-item"><div><span>Unit 5:</span> Lasers & Fiber Optics</div></div>
+                </ul>
+                <div class="btn-group">
+                    <a href="https://example.com/physics-notes.pdf" target="_blank" class="btn btn-primary">
+                        <i class="fa-solid fa-file-pdf"></i> Download Full Notes (PDF)
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="btn btn-secondary">
+                        <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> Video Lectures Playlist
+                    </a>
+                </div>
+            </div>
 
-const subjects=[
-["Applied Mathematics-I","Common","Sem 1","Maths","AAS103"],
-["Applied Physics","Common","Sem 1","Physics","AAS101"],
-["Applied Chemistry","Common","Sem 1","Chemistry","AAS102"],
-["Fundamentals of Electrical Engineering","EE/ECE","Sem 1","Electrical","AEE101"],
-["Programming Languages","CSE","Sem 1","Programming","ACS101"],
-["Introduction to Indian Knowledge System","Common","Sem 1","IKS","AAS104"],
-["Professional Communication & Technical Writing","Common","Sem 1","Communication","AAS105"],
-["Applied Mathematics-II","Common","Sem 2","Maths","AAS203"],
-["Essentials of Data Structure","CSE/IT","Sem 2","Data Structure","ACS201"],
-["Data Structures","CSE/IT","Sem 3","CSE","BCS301"],
-["Computer Organization & Architecture","CSE/IT","Sem 3","CSE","BCS302"],
-["Operating Systems","CSE/IT","Sem 4","CSE","BCS401"],
-["Object Oriented Programming with Java","CSE/IT","Sem 4","Programming","BCS403"],
-["Database Management Systems","CSE/IT","Sem 5","CSE","BCS501"],
-["Web Technology","CSE/IT","Sem 5","CSE","BCS502"],
-["Computer Networks","CSE/IT","Sem 6","CSE","BCS603"],
-["Compiler Design","CSE/IT","Sem 6","CSE","BCS602"],
-["Software Engineering","CSE/IT","Sem 6","CSE","BCS601"],
-["Artificial Intelligence","CSE/IT","Sem 7","AI","BCS701"],
-["Cloud Computing","CSE/IT","Sem 7","Cloud","BCS071"],
-["Cryptography & Network Security","CSE/IT","Sem 7","Security","BCS072"],
-["Machine Learning","CSE/IT","Sem 6/7","AI/ML","Elective"],
-["Engineering Mechanics","ME/CE","Sem 1/2","Mechanical","Core"],
-["Basic Electronics Engineering","ECE","Sem 1/2","Electronics","Core"]
-];
+            <!-- Card 3: Basic Electrical Engg -->
+            <div class="card card-ee">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="card-title">
+                        <h2>Basic Electrical Engg.</h2>
+                        <p>Code: BEE-101 / BEE-201</p>
+                    </div>
+                </div>
+                <ul class="units-list">
+                    <div class="unit-item"><div><span>Unit 1:</span> DC Circuits & Theorems</div></div>
+                    <div class="unit-item"><div><span>Unit 2:</span> Steady State AC Circuits</div></div>
+                    <div class="unit-item"><div><span>Unit 3:</span> Transformers</div></div>
+                    <div class="unit-item"><div><span>Unit 4:</span> Electrical Machines (DC & AC)</div></div>
+                    <div class="unit-item"><div><span>Unit 5:</span> Power Converters & Switchgear</div></div>
+                </ul>
+                <div class="btn-group">
+                    <a href="https://example.com/ee-notes.pdf" target="_blank" class="btn btn-primary">
+                        <i class="fa-solid fa-file-pdf"></i> Download Full Notes (PDF)
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="btn btn-secondary">
+                        <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> Video Lectures Playlist
+                    </a>
+                </div>
+            </div>
 
-function getSemClass(semStr) {
-  if (semStr.includes('1')) return 'sem-1';
-  if (semStr.includes('2')) return 'sem-2';
-  if (semStr.includes('3')) return 'sem-3';
-  if (semStr.includes('4')) return 'sem-4';
-  if (semStr.includes('5')) return 'sem-5';
-  if (semStr.includes('6')) return 'sem-6';
-  if (semStr.includes('7')) return 'sem-7';
-  return '';
-}
+            <!-- Card 4: Programming for Problem Solving (C Programming) -->
+            <div class="card card-cs">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-code"></i></div>
+                    <div class="card-title">
+                        <h2>Programming in C</h2>
+                        <p>Code: BCS-101 / BCS-201</p>
+                    </div>
+                </div>
+                <ul class="units-list">
+                    <div class="unit-item"><div><span>Unit 1:</span> Basics of Computer & C</div></div>
+                    <div class="unit-item"><div><span>Unit 2:</span> Control Statements & Loops</div></div>
+                    <div class="unit-item"><div><span>Unit 3:</span> Arrays & Functions</div></div>
+                    <div class="unit-item"><div><span>Unit 4:</span> Pointers & Memory Allocation</div></div>
+                    <div class="unit-item"><div><span>Unit 5:</span> Structures, Union & File Handling</div></div>
+                </ul>
+                <div class="btn-group">
+                    <a href="https://example.com/c-notes.pdf" target="_blank" class="btn btn-primary">
+                        <i class="fa-solid fa-file-pdf"></i> Download Full Notes (PDF)
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="btn btn-secondary">
+                        <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> Video Lectures Playlist
+                    </a>
+                </div>
+            </div>
 
-function openSyllabus(name, code) {
-  document.getElementById('modal-title').innerText = name + " - Chapter & Topics";
-  document.getElementById('modal-code').innerText = "Course Code: " + code;
-  
-  let htmlContent = "<h3>📖 Detailed AKTU Syllabus</h3>";
-  
-  if (syllabusData[code]) {
-    syllabusData[code].forEach(u => {
-      htmlContent += `
-        <div class="unit-box">
-          <h4>${u.unit}</h4>
-          <p><b>Topics Covered:</b> ${u.topics}</p>
+            <!-- Card 5: Fundamental of Mechanical Engg -->
+            <div class="card card-me">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-gears"></i></div>
+                    <div class="card-title">
+                        <h2>Mechanical Engg.</h2>
+                        <p>Code: BME-101 / BME-201</p>
+                    </div>
+                </div>
+                <ul class="units-list">
+                    <div class="unit-item"><div><span>Unit 1:</span> Introduction to Thermodynamics</div></div>
+                    <div class="unit-item"><div><span>Unit 2:</span> IC Engines & Refrigeration</div></div>
+                    <div class="unit-item"><div><span>Unit 3:</span> Fluid Mechanics & Turbines</div></div>
+                    <div class="unit-item"><div><span>Unit 4:</span> Measurement & Automation</div></div>
+                    <div class="unit-item"><div><span>Unit 5:</span> Engineering Materials</div></div>
+                </ul>
+                <div class="btn-group">
+                    <a href="https://example.com/me-notes.pdf" target="_blank" class="btn btn-primary">
+                        <i class="fa-solid fa-file-pdf"></i> Download Full Notes (PDF)
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="btn btn-secondary">
+                        <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> Video Lectures Playlist
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 6: Engineering Chemistry -->
+            <div class="card card-chem">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-flask"></i></div>
+                    <div class="card-title">
+                        <h2>Engineering Chemistry</h2>
+                        <p>Code: BAS-102 / BAS-202</p>
+                    </div>
+                </div>
+                <ul class="units-list">
+                    <div class="unit-item"><div><span>Unit 1:</span> Atomic Structure & Bonding</div></div>
+                    <div class="unit-item"><div><span>Unit 2:</span> Spectroscopic Techniques</div></div>
+                    <div class="unit-item"><div><span>Unit 3:</span> Electrochemistry & Corrosion</div></div>
+                    <div class="unit-item"><div><span>Unit 4:</span> Water Technology & Polymers</div></div>
+                    <div class="unit-item"><div><span>Unit 5:</span> Fuels & Combustion</div></div>
+                </ul>
+                <div class="btn-group">
+                    <a href="https://example.com/chem-notes.pdf" target="_blank" class="btn btn-primary">
+                        <i class="fa-solid fa-file-pdf"></i> Download Full Notes (PDF)
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="btn btn-secondary">
+                        <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> Video Lectures Playlist
+                    </a>
+                </div>
+            </div>
+
         </div>
-      `;
-    });
-  } else {
-    htmlContent += `
-      <div class="unit-box">
-        <h4>Unit 1: Fundamentals & Basic Concepts</h4>
-        <p><b>Topics:</b> Definitions, basic laws, primary theorems and introductory formulations.</p>
-      </div>
-      <div class="unit-box">
-        <h4>Unit 2: Core Analytical Methods</h4>
-        <p><b>Topics:</b> Mathematical derivations, standard problem-solving techniques and proofs.</p>
-      </div>
-      <div class="unit-box">
-        <h4>Unit 3: Applied Systems & Design</h4>
-        <p><b>Topics:</b> System modeling, algorithms, practical implementations and circuit analysis.</p>
-      </div>
-      <div class="unit-box">
-        <h4>Unit 4: Advanced Principles</h4>
-        <p><b>Topics:</b> Modern techniques, optimization methods, extended applications and case studies.</p>
-      </div>
-      <div class="unit-box">
-        <h4>Unit 5: Recent Trends & Case Studies</h4>
-        <p><b>Topics:</b> Current industrial trends, emerging technologies, projects and end-term revision.</p>
-      </div>
-    `;
-  }
-  
-  document.getElementById('modal-body').innerHTML = htmlContent;
-  document.getElementById('modal').style.display = 'flex';
-}
-
-function openPYQ(name, code) {
-  document.getElementById('modal-title').innerText = name + " - Question Papers";
-  document.getElementById('modal-code').innerText = "Course Code: " + code;
-  
-  document.getElementById('modal-body').innerHTML = `
-    <h3>📑 AKTU Official End-Sem Papers</h3>
-    <p style="color:#64748b; margin-bottom:15px; font-size:14px;">Select year to view actual AKTU question paper:</p>
-
-    <div class="pyq-item">
-      <div>
-        <h4>2024-25 End Semester Question Paper</h4>
-        <p>AKTU End-Sem Exam Paper • PDF</p>
-      </div>
-      <button class="btn" onclick="viewPDF('https://aktu.ac.in/pdf/syllabus/2023-24/B.Tech%201st%20Year%20Syllabus%202023-24.pdf')">Open PDF</button>
     </div>
 
-    <div class="pyq-item">
-      <div>
-        <h4>2023-24 End Semester Question Paper</h4>
-        <p>Regular & Carry Over Paper • PDF</p>
-      </div>
-      <button class="btn" onclick="viewPDF('https://aktu.ac.in/pdf/syllabus/2023-24/B.Tech%201st%20Year%20Syllabus%202023-24.pdf')">Open PDF</button>
+</body><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B.Tech 1st Year Study Material Hub</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.15) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(245, 158, 11, 0.15) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1, #ec4899, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Color Scheme Themes for Cards */
+        .card-math {
+            --accent: #6366f1;
+            --gradient: linear-gradient(135deg, #4f46e5, #818cf8);
+            --glow: rgba(99, 102, 241, 0.4);
+            --border: #6366f1;
+        }
+
+        .card-physics {
+            --accent: #ec4899;
+            --gradient: linear-gradient(135deg, #db2777, #f472b6);
+            --glow: rgba(236, 72, 153, 0.4);
+            --border: #ec4899;
+        }
+
+        .card-ee {
+            --accent: #f59e0b;
+            --gradient: linear-gradient(135deg, #d97706, #fbbf24);
+            --glow: rgba(245, 158, 11, 0.4);
+            --border: #f59e0b;
+        }
+
+        .card-cs {
+            --accent: #10b981;
+            --gradient: linear-gradient(135deg, #059669, #34d399);
+            --glow: rgba(16, 185, 129, 0.4);
+            --border: #10b981;
+        }
+
+        .card-me {
+            --accent: #06b6d4;
+            --gradient: linear-gradient(135deg, #0891b2, #22d3ee);
+            --glow: rgba(6, 182, 212, 0.4);
+            --border: #06b6d4;
+        }
+
+        .card-chem {
+            --accent: #8b5cf6;
+            --gradient: linear-gradient(135deg, #7c3aed, #a78bfa);
+            --glow: rgba(139, 92, 246, 0.4);
+            --border: #8b5cf6;
+        }
+
+        /* Card Component */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 2px solid var(--border);
+            border-radius: 1.25rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 0 15px var(--glow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px -5px rgba(0, 0, 0, 0.4), 0 0 25px var(--glow);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 0.75rem;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #fff;
+            box-shadow: 0 4px 12px var(--glow);
+        }
+
+        .card-title h2 {
+            font-size: 1.35rem;
+            color: #fff;
+        }
+
+        .card-title p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Syllabus Accordion / Units */
+        .units-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .unit-item {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .unit-item span {
+            font-weight: 600;
+            color: var(--accent);
+            margin-right: 0.5rem;
+        }
+
+        /* Colored Action Buttons */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.6rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 4px 14px var(--glow);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>B.Tech 1st Year Study Material</h1>
+        <p>Complete Syllabus Notes, Reference Books & Video Lectures</p>
     </div>
 
-    <div class="pyq-item">
-      <div>
-        <h4>2022-23 End Semester Question Paper</h4>
-        <p>AKTU Archive Question Paper • PDF</p>
-      </div>
-      <button class="btn" onclick="viewPDF('https://aktu.ac.in/pdf/syllabus/2023-24/B.Tech%201st%20Year%20Syllabus%202023-24.pdf')">Open PDF</button>
+    <div class="container">
+        <div class="grid">
+
+            <!-- Card 1: Engineering Mathematics -->
+            <div class="card card-math">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-calculator"></i></div>
+                    <div class="card-title">
+                        <h2>Engineering Mathematics</h2>
+                        <p>Code: BAS-103 / BAS-203</p>
+                    </div>
+                </div>
+                <ul class="units-list">
+                    <div class="unit-item"><div><span>Unit 1:</span> Matrices & Linear Algebra</div></div>
+                    <div class="unit-item"><div><span>Unit 2:</span> Differential Calculus I & II</div></div>
+                    <div class="unit-item"><div><span>Unit 3:</span> Multivariable Calculus</div></div>
+                    <div class="unit-item"><div><span>Unit 4:</span> Vector Calculus</div></div>
+                    <div class="unit-item"><div><span>Unit 5:</span> Differential Equations</div></div>
+                </ul>
+                <div class="btn-group">
+                    <a href="https://example.com/math-notes.pdf" target="_blank" class="btn btn-primary">
+                        <i class="fa-solid fa-file-pdf"></i> Download Full Notes (PDF)
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="btn btn-secondary">
+                        <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> Video Lectures Playlist
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 2: Engineering Physics -->
+            <div class="card card-physics">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-atom"></i></div>
+                    <div class="card-title">
+                        <h2>Engineering Physics</h2>
+                        <p>Code: BAS-101 / BAS-201</p>
+                    </div>
+                </div>
+                <ul class="units-list">
+                    <div class="unit-item"><div><span>Unit 1:</span> Relativistic Mechanics</div></div>
+                    <div class="unit-item"><div><span>Unit 2:</span> Electromagnetic Field Theory</div></div>
+                    <div class="unit-item"><div><span>Unit 3:</span> Quantum Mechanics</div></div>
+                    <div class="unit-item"><div><span>Unit 4:</span> Wave Optics & Interference</div></div>
+                    <div class="unit-item"><div><span>Unit 5:</span> Lasers & Fiber Optics</div></div>
+                </ul>
+                <div class="btn-group">
+                    <a href="https://example.com/physics-notes.pdf" target="_blank" class="btn btn-primary">
+                        <i class="fa-solid fa-file-pdf"></i> Download Full Notes (PDF)
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="btn btn-secondary">
+                        <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> Video Lectures Playlist
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 3: Basic Electrical Engg -->
+            <div class="card card-ee">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="card-title">
+                        <h2>Basic Electrical Engg.</h2>
+                        <p>Code: BEE-101 / BEE-201</p>
+                    </div>
+                </div>
+                <ul class="units-list">
+                    <div class="unit-item"><div><span>Unit 1:</span> DC Circuits & Theorems</div></div>
+                    <div class="unit-item"><div><span>Unit 2:</span> Steady State AC Circuits</div></div>
+                    <div class="unit-item"><div><span>Unit 3:</span> Transformers</div></div>
+                    <div class="unit-item"><div><span>Unit 4:</span> Electrical Machines (DC & AC)</div></div>
+                    <div class="unit-item"><div><span>Unit 5:</span> Power Converters & Switchgear</div></div>
+                </ul>
+                <div class="btn-group">
+                    <a href="https://example.com/ee-notes.pdf" target="_blank" class="btn btn-primary">
+                        <i class="fa-solid fa-file-pdf"></i> Download Full Notes (PDF)
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="btn btn-secondary">
+                        <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> Video Lectures Playlist
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 4: Programming for Problem Solving (C Programming) -->
+            <div class="card card-cs">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-code"></i></div>
+                    <div class="card-title">
+                        <h2>Programming in C</h2>
+                        <p>Code: BCS-101 / BCS-201</p>
+                    </div>
+                </div>
+                <ul class="units-list">
+                    <div class="unit-item"><div><span>Unit 1:</span> Basics of Computer & C</div></div>
+                    <div class="unit-item"><div><span>Unit 2:</span> Control Statements & Loops</div></div>
+                    <div class="unit-item"><div><span>Unit 3:</span> Arrays & Functions</div></div>
+                    <div class="unit-item"><div><span>Unit 4:</span> Pointers & Memory Allocation</div></div>
+                    <div class="unit-item"><div><span>Unit 5:</span> Structures, Union & File Handling</div></div>
+                </ul>
+                <div class="btn-group">
+                    <a href="https://example.com/c-notes.pdf" target="_blank" class="btn btn-primary">
+                        <i class="fa-solid fa-file-pdf"></i> Download Full Notes (PDF)
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="btn btn-secondary">
+                        <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> Video Lectures Playlist
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 5: Fundamental of Mechanical Engg -->
+            <div class="card card-me">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-gears"></i></div>
+                    <div class="card-title">
+                        <h2>Mechanical Engg.</h2>
+                        <p>Code: BME-101 / BME-201</p>
+                    </div>
+                </div>
+                <ul class="units-list">
+                    <div class="unit-item"><div><span>Unit 1:</span> Introduction to Thermodynamics</div></div>
+                    <div class="unit-item"><div><span>Unit 2:</span> IC Engines & Refrigeration</div></div>
+                    <div class="unit-item"><div><span>Unit 3:</span> Fluid Mechanics & Turbines</div></div>
+                    <div class="unit-item"><div><span>Unit 4:</span> Measurement & Automation</div></div>
+                    <div class="unit-item"><div><span>Unit 5:</span> Engineering Materials</div></div>
+                </ul>
+                <div class="btn-group">
+                    <a href="https://example.com/me-notes.pdf" target="_blank" class="btn btn-primary">
+                        <i class="fa-solid fa-file-pdf"></i> Download Full Notes (PDF)
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="btn btn-secondary">
+                        <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> Video Lectures Playlist
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 6: Engineering Chemistry -->
+            <div class="card card-chem">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-flask"></i></div>
+                    <div class="card-title">
+                        <h2>Engineering Chemistry</h2>
+                        <p>Code: BAS-102 / BAS-202</p>
+                    </div>
+                </div>
+                <ul class="units-list">
+                    <div class="unit-item"><div><span>Unit 1:</span> Atomic Structure & Bonding</div></div>
+                    <div class="unit-item"><div><span>Unit 2:</span> Spectroscopic Techniques</div></div>
+                    <div class="unit-item"><div><span>Unit 3:</span> Electrochemistry & Corrosion</div></div>
+                    <div class="unit-item"><div><span>Unit 4:</span> Water Technology & Polymers</div></div>
+                    <div class="unit-item"><div><span>Unit 5:</span> Fuels & Combustion</div></div>
+                </ul>
+                <div class="btn-group">
+                    <a href="https://example.com/chem-notes.pdf" target="_blank" class="btn btn-primary">
+                        <i class="fa-solid fa-file-pdf"></i> Download Full Notes (PDF)
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="btn btn-secondary">
+                        <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> Video Lectures Playlist
+                    </a>
+                </div>
+            </div>
+
+        </div>
     </div>
-  `;
-  document.getElementById('modal').style.display = 'flex';
-}
 
-function openNotes(name, code) {
-  document.getElementById('modal-title').innerText = name + " - Revision Notes";
-  document.getElementById('modal-code').innerText = "Course Code: " + code;
-  
-  document.getElementById('modal-body').innerHTML = `
-    <h3>📝 Unit-wise Handwritten & Revision Notes</h3>
-    <p style="color:#64748b; margin-bottom:15px; font-size:14px;">Select unit to view study notes:</p>
-
-    <div class="pyq-item">
-      <div>
-        <h4>Complete Course Notes (Unit 1 to 5)</h4>
-        <p>Full Subject Revision Material • PDF</p>
-      </div>
-      <button class="btn notes-btn" onclick="viewPDF('https://aktu.ac.in/pdf/syllabus/2023-24/B.Tech%201st%20Year%20Syllabus%202023-24.pdf')">Open Notes</button>
-    </div>
-
-    <div class="pyq-item">
-      <div>
-        <h4>Unit 1 & 2 Short Notes</h4>
-        <p>Formulae, Definitions & Solved Examples • PDF</p>
-      </div>
-      <button class="btn notes-btn" onclick="viewPDF('https://aktu.ac.in/pdf/syllabus/2023-24/B.Tech%201st%20Year%20Syllabus%202023-24.pdf')">Open Notes</button>
-    </div>
-
-    <div class="pyq-item">
-      <div>
-        <h4>Important Questions & Solved Numericals</h4>
-        <p>Exam-oriented Important Questions • PDF</p>
-      </div>
-      <button class="btn notes-btn" onclick="viewPDF('https://aktu.ac.in/pdf/syllabus/2023-24/B.Tech%201st%20Year%20Syllabus%202023-24.pdf')">Open Notes</button>
-    </div>
-  `;
-  document.getElementById('modal').style.display = 'flex';
-}
-
-function viewPDF(pdfUrl) {
-  const viewerUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(pdfUrl) + "&embedded=true";
-  document.getElementById('modal-body').innerHTML = `
-    <button class="btn alt" style="margin-bottom:12px;" onclick="render()">⬅️ Back to Resources</button>
-    <iframe src
+</body>
+</html>
+</html>
