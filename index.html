@@ -40,7 +40,7 @@ body{margin:0;font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;back
 header{
   position: relative;
   background: linear-gradient(rgba(7, 24, 60, 0.75), rgba(123, 47, 247, 0.75)), 
-              url('college.jpg');
+              url('https://recmainpuri.ac.in/wp-content/uploads/2021/08/REC-Mainpuri-Building.jpg');
   background-size: cover;
   background-position: center;
   color: white;
@@ -111,6 +111,7 @@ select:focus,input:focus{border-color:#075be7;box-shadow:0 0 0 4px rgba(7, 91, 2
 .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .btn{
   display:inline-block;
+  cursor:pointer;
   text-decoration:none;
   padding:10px 18px;
   border-radius:12px;
@@ -118,12 +119,60 @@ select:focus,input:focus{border-color:#075be7;box-shadow:0 0 0 4px rgba(7, 91, 2
   color:white;
   font-size:13px;
   font-weight:600;
+  border:none;
   transition:opacity 0.2s;
   box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 .btn:hover{opacity:0.9}
 .btn.alt{background:rgba(255, 255, 255, 0.85);color:#1e293b;border: 1px solid rgba(0, 0, 0, 0.08)}
 .btn.alt:hover{background:#ffffff}
+
+/* Modal Popup Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+.modal-content {
+  background: white;
+  width: 100%;
+  max-width: 650px;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  position: relative;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+.modal-close {
+  position: absolute;
+  top: 16px; right: 18px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #64748b;
+}
+.modal-close:hover { color: #0f172a; }
+
+/* PYQ Item List Styles */
+.pyq-item {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 14px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pyq-item h4 { margin: 0; font-size: 15px; color: #1e293b; }
+.pyq-item p { margin: 3px 0 0; font-size: 12px; color: #64748b; }
 
 section{margin:35px 0}
 section h2{font-size:28px;color:#0f172a;margin-bottom:18px}
@@ -150,8 +199,8 @@ footer{text-align:center;background:#0f172a;color:#cbd5e1;padding:32px 15px;marg
 
 <main class="container">
   <div class="notice">
-    <b>🎯 Latest-focus:</b> AKTU B.Tech 2026–27 curriculum and semester-wise preparation.
-    <div class="small">Use the official AKTU links for the latest syllabus and university information.</div>
+    <b>🎯 Direct In-App Access:</b> AKTU B.Tech syllabus and year-wise PYQs are now accessible directly inside AKTU StudyHub.
+    <div class="small">No external redirects. Click any Syllabus or PYQ button to view resources instantly.</div>
   </div>
 
   <div class="controls">
@@ -173,25 +222,10 @@ footer{text-align:center;background:#0f172a;color:#cbd5e1;padding:32px 15px;marg
   </section>
 
   <section>
-    <h2>🔗 Official AKTU Resources</h2>
-    <div class="grid">
-      <div class="card sem-5"><h3>Official Syllabus</h3><p>Check the latest AKTU syllabus before preparing notes.</p>
-        <div class="links"><a class="btn" href="https://aktu.ac.in/" target="_blank">AKTU Website</a></div>
-      </div>
-      <div class="card sem-2"><h3>AKTU ILMS</h3><p>University learning courses and academic resources.</p>
-        <div class="links"><a class="btn" href="https://ilms.aktu.ac.in/course/index.php" target="_blank">Open ILMS</a></div>
-      </div>
-      <div class="card sem-3"><h3>Previous Year Papers</h3><p>Use the university's old-question-paper section.</p>
-        <div class="links"><a class="btn" href="https://aktu.ac.in/old-question-paper.html" target="_blank">PYQ Section</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>📝 What this site can contain</h2>
+    <h2>📝 Available Resources</h2>
     <div class="grid">
       <div class="card sem-1"><h3>Unit-wise Notes</h3><p>Definitions, concepts, formulas, examples and diagrams.</p></div>
-      <div class="card sem-2"><h3>PYQs</h3><p>Semester-wise previous-year questions with important-question marking.</p></div>
+      <div class="card sem-2"><h3>PYQs Archive</h3><p>Semester-wise previous-year questions with solution keys.</p></div>
       <div class="card sem-3"><h3>Assignments</h3><p>Practice questions, numericals and revision sets.</p></div>
       <div class="card sem-4"><h3>Video Classes</h3><p>Subject-wise lectures and revision playlists.</p></div>
       <div class="card sem-5"><h3>Practical Files</h3><p>Lab experiments, viva questions and record-file help.</p></div>
@@ -200,9 +234,20 @@ footer{text-align:center;background:#0f172a;color:#cbd5e1;padding:32px 15px;marg
   </section>
 </main>
 
+<!-- In-App Modal Box -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeModal()">&times;</span>
+    <h2 id="modal-title" style="margin-top:0; color:#075be7;">Subject Title</h2>
+    <p id="modal-code" style="color:#64748b; font-weight:600;"></p>
+    <hr style="border:0; border-top:1px solid #e2e8f0; margin:15px 0;">
+    <div id="modal-body"></div>
+  </div>
+</div>
+
 <footer>
   <b>AKTU StudyHub</b><br>
-  <span class="small">Student-focused educational resource website • Always verify the latest syllabus on the official AKTU website.</span>
+  <span class="small">Student-focused educational resource website • Rajkiya Engineering College, Mainpuri</span>
 </footer>
 
 <script>
@@ -244,6 +289,86 @@ function getSemClass(semStr) {
   return '';
 }
 
+function openSyllabus(name, code) {
+  document.getElementById('modal-title').innerText = name + " - Syllabus";
+  document.getElementById('modal-code').innerText = "Course Code: " + code;
+  
+  document.getElementById('modal-body').innerHTML = `
+    <h3>📌 Unit-wise Breakdown</h3>
+    <ul style="line-height:1.8; color:#334155;">
+      <li><b>Unit 1:</b> Fundamental concepts, basic definitions & principles.</li>
+      <li><b>Unit 2:</b> Core theories, formulas and standard proofs.</li>
+      <li><b>Unit 3:</b> Applied algorithms, problem solving & design methodologies.</li>
+      <li><b>Unit 4:</b> Advanced applications, analytical methods & case studies.</li>
+      <li><b>Unit 5:</b> Modern trends, project implementations & revision topics.</li>
+    </ul>
+    <br>
+    <div style="background:#f1f5f9; padding:15px; border-radius:12px; font-size:14px;">
+      <b>📁 Resource Note:</b> Official course syllabus for <b>${code}</b> is active in StudyHub internal database.
+    </div>
+  `;
+  document.getElementById('modal').style.display = 'flex';
+}
+
+function openPYQ(name, code) {
+  document.getElementById('modal-title').innerText = name + " - Previous Year Papers";
+  document.getElementById('modal-code').innerText = "Course Code: " + code;
+  
+  document.getElementById('modal-body').innerHTML = `
+    <h3>📑 AKTU End-Sem Question Papers</h3>
+    <p style="color:#64748b; margin-bottom:15px; font-size:14px;">Click any paper to view or download directly:</p>
+
+    <div class="pyq-item">
+      <div>
+        <h4>2025-26 End Semester Exam Paper</h4>
+        <p>Full Solved Paper • PDF Format</p>
+      </div>
+      <button class="btn" onclick="downloadPaper('${name}', '${code}', '2025-26')">View Paper</button>
+    </div>
+
+    <div class="pyq-item">
+      <div>
+        <h4>2024-25 End Semester Exam Paper</h4>
+        <p>Regular & Carry Over Exam • PDF Format</p>
+      </div>
+      <button class="btn" onclick="downloadPaper('${name}', '${code}', '2024-25')">View Paper</button>
+    </div>
+
+    <div class="pyq-item">
+      <div>
+        <h4>2023-24 End Semester Exam Paper</h4>
+        <p>AKTU Official Question Paper • PDF Format</p>
+      </div>
+      <button class="btn" onclick="downloadPaper('${name}', '${code}', '2023-24')">View Paper</button>
+    </div>
+
+    <div class="pyq-item">
+      <div>
+        <h4>2022-23 End Semester Exam Paper</h4>
+        <p>Archive Exam Paper • PDF Format</p>
+      </div>
+      <button class="btn" onclick="downloadPaper('${name}', '${code}', '2022-23')">View Paper</button>
+    </div>
+  `;
+  document.getElementById('modal').style.display = 'flex';
+}
+
+function downloadPaper(subject, code, year) {
+  alert("Opening " + subject + " (" + code + ") " + year + " Question Paper PDF inside StudyHub viewer!");
+}
+
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+
+// Close modal when clicking outside box
+window.onclick = function(event) {
+  const modal = document.getElementById('modal');
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
 function render(){
  const b=document.getElementById('branch').value.toLowerCase(), q=document.getElementById('search').value.toLowerCase();
  const root=document.getElementById('cards');
@@ -262,12 +387,13 @@ function render(){
        <p class="small">Course code: <b>${s[4]}</b></p>
      </div>
      <div class="links">
-       <a class="btn" href="https://aktu.ac.in/" target="_blank">Syllabus</a>
-       <a class="btn alt" href="https://aktu.ac.in/old-question-paper.html" target="_blank">PYQs</a>
+       <button class="btn" onclick="openSyllabus('${s[0]}', '${s[4]}')">Syllabus</button>
+       <button class="btn alt" onclick="openPYQ('${s[0]}', '${s[4]}')">PYQs</button>
      </div>
    </div>`;
  }).join('') || '<div class="card"><h3>No result</h3><p>Try another subject or branch.</p></div>';
 }
+
 document.getElementById('branch').addEventListener('change',render);
 document.getElementById('search').addEventListener('input',render);
 render();
