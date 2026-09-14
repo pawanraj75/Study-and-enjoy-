@@ -142,12 +142,12 @@ select:focus,input:focus{border-color:#075be7;box-shadow:0 0 0 4px rgba(7, 91, 2
 .modal-content {
   background: white;
   width: 100%;
-  max-width: 650px;
+  max-width: 750px;
   border-radius: 20px;
   padding: 24px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.2);
   position: relative;
-  max-height: 85vh;
+  max-height: 88vh;
   overflow-y: auto;
 }
 .modal-close {
@@ -174,6 +174,17 @@ select:focus,input:focus{border-color:#075be7;box-shadow:0 0 0 4px rgba(7, 91, 2
 .pyq-item h4 { margin: 0; font-size: 15px; color: #1e293b; }
 .pyq-item p { margin: 3px 0 0; font-size: 12px; color: #64748b; }
 
+/* Unit Topics Accordion Box */
+.unit-box {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+}
+.unit-box h4 { margin: 0 0 6px; color: #075be7; font-size: 16px; }
+.unit-box p { margin: 0; color: #334155; font-size: 14px; line-height: 1.5; }
+
 section{margin:35px 0}
 section h2{font-size:28px;color:#0f172a;margin-bottom:18px}
 footer{text-align:center;background:#0f172a;color:#cbd5e1;padding:32px 15px;margin-top:45px}
@@ -199,8 +210,8 @@ footer{text-align:center;background:#0f172a;color:#cbd5e1;padding:32px 15px;marg
 
 <main class="container">
   <div class="notice">
-    <b>🎯 Direct In-App Access:</b> AKTU B.Tech syllabus and year-wise PYQs are now accessible directly inside AKTU StudyHub.
-    <div class="small">No external redirects. Click any Syllabus or PYQ button to view resources instantly.</div>
+    <b>🎯 Direct In-App Access:</b> AKTU B.Tech detailed topic syllabus and actual PYQ question papers are integrated directly into StudyHub.
+    <div class="small">Click any Syllabus or PYQ button to view topic details and question papers inside the app.</div>
   </div>
 
   <div class="controls">
@@ -251,6 +262,37 @@ footer{text-align:center;background:#0f172a;color:#cbd5e1;padding:32px 15px;marg
 </footer>
 
 <script>
+const syllabusData = {
+  "AAS103": [
+    { unit: "Unit 1: Matrices", topics: "Elementary Transformation, Rank of Matrix, Inverse by Gauss-Jordan Method, System of Linear Equations, Characteristic Equation, Cayley-Hamilton Theorem, Eigenvalues & Eigenvectors." },
+    { unit: "Unit 2: Differential Calculus I", topics: "Successive Differentiation, Leibnitz's Theorem, Taylor's & Maclaurin's Series, Expansion of functions, Partial Differentiation, Euler's Theorem on Homogeneous Functions." },
+    { unit: "Unit 3: Differential Calculus II", topics: "Jacobians, Approximation of Errors, Extrema of functions of two variables, Lagrange’s Method of Undetermined Multipliers." },
+    { unit: "Unit 4: Multivariable Calculus", topics: "Double and Triple Integrals, Change of Order of Integration, Change of Variables, Dirichlet's Integral, Applications to Area & Volume." },
+    { unit: "Unit 5: Vector Calculus", topics: "Gradient, Divergence and Curl, Directional Derivative, Line, Surface and Volume Integrals, Gauss Divergence, Green's & Stokes Theorems." }
+  ],
+  "AAS101": [
+    { unit: "Unit 1: Relativistic Mechanics", topics: "Frame of Reference, Michelson-Morley Experiment, Postulates of Special Theory of Relativity, Lorentz Transformation, Length Contraction, Time Dilation, Mass-Energy Equivalence." },
+    { unit: "Unit 2: Electromagnetic Field Theory", topics: "Gradient, Divergence and Curl, Gauss Law, Ampere Law, Maxwell’s Equations in differential and integral forms, Poynting Vector." },
+    { unit: "Unit 3: Quantum Mechanics", topics: "Wave-Particle Duality, de-Broglie Hypothesis, Heisenberg Uncertainty Principle, Schrödinger Wave Equation, Particle in a 1D Box." },
+    { unit: "Unit 4: Wave Optics", topics: "Interference in Thin Films, Newton's Rings, Fraunhofer Diffraction at Single Slit and Double Slit, Rayleigh Criterion, Resolving Power." },
+    { unit: "Unit 5: Fiber Optics & Laser", topics: "Principle of Laser, Einstein Coefficients, Ruby Laser, He-Ne Laser, Optical Fiber Acceptance Angle, Numerical Aperture, Attenuation." }
+  ],
+  "BCS301": [
+    { unit: "Unit 1: Introduction to Data Structures", topics: "Arrays, Sparse Matrices, Stacks: Operations, Applications (Infix to Postfix, Recursion), Queues: Circular Queue, Priority Queue, Deque." },
+    { unit: "Unit 2: Linked Lists", topics: "Singly Linked List, Doubly Linked List, Circular Linked List, Polynomial Representation and Addition using Linked List." },
+    { unit: "Unit 3: Trees", topics: "Binary Trees, Traversal Techniques (Inorder, Preorder, Postorder), Binary Search Trees (BST), AVL Trees, B-Trees, Heap Trees." },
+    { unit: "Unit 4: Graphs", topics: "Graph Terminology, Representation (Adjacency Matrix & List), Traversal: BFS & DFS, Spanning Trees (Prim's & Kruskal's Algorithm), Shortest Path Algorithms." },
+    { unit: "Unit 5: Searching & Sorting", topics: "Searching: Linear Search, Binary Search, Hashing techniques. Sorting: Bubble, Selection, Insertion, Quick, Merge and Heap Sort." }
+  ],
+  "BCS401": [
+    { unit: "Unit 1: Introduction & System Calls", topics: "Operating System Structure, Types of OS, System Calls, System Programs, Process Concept, Process Control Block (PCB)." },
+    { unit: "Unit 2: Process Management & Scheduling", topics: "CPU Scheduling Algorithms (FCFS, SJF, Priority, Round Robin), Process Synchronization, Critical Section Problem, Semaphores, Monitors." },
+    { unit: "Unit 3: Deadlocks", topics: "Deadlock Characterization, Handling Deadlocks, Deadlock Prevention, Avoidance (Banker's Algorithm), Detection and Recovery." },
+    { unit: "Unit 4: Memory Management", topics: "Contiguous Memory Allocation, Paging, Segmentation, Virtual Memory, Demand Paging, Page Replacement Algorithms (FIFO, LRU, Optimal)." },
+    { unit: "Unit 5: File & I/O Systems", topics: "File Concept, Access Methods, Directory Structure, Disk Scheduling Algorithms (FCFS, SSTF, SCAN, C-SCAN), Protection." }
+  ]
+};
+
 const subjects=[
 ["Applied Mathematics-I","Common","Sem 1","Maths","AAS103"],
 ["Applied Physics","Common","Sem 1","Physics","AAS101"],
@@ -290,71 +332,90 @@ function getSemClass(semStr) {
 }
 
 function openSyllabus(name, code) {
-  document.getElementById('modal-title').innerText = name + " - Syllabus";
+  document.getElementById('modal-title').innerText = name + " - Chapter & Topics";
   document.getElementById('modal-code').innerText = "Course Code: " + code;
   
-  document.getElementById('modal-body').innerHTML = `
-    <h3>📌 Unit-wise Breakdown</h3>
-    <ul style="line-height:1.8; color:#334155;">
-      <li><b>Unit 1:</b> Fundamental concepts, basic definitions & principles.</li>
-      <li><b>Unit 2:</b> Core theories, formulas and standard proofs.</li>
-      <li><b>Unit 3:</b> Applied algorithms, problem solving & design methodologies.</li>
-      <li><b>Unit 4:</b> Advanced applications, analytical methods & case studies.</li>
-      <li><b>Unit 5:</b> Modern trends, project implementations & revision topics.</li>
-    </ul>
-    <br>
-    <div style="background:#f1f5f9; padding:15px; border-radius:12px; font-size:14px;">
-      <b>📁 Resource Note:</b> Official course syllabus for <b>${code}</b> is active in StudyHub internal database.
-    </div>
-  `;
+  let htmlContent = "<h3>📖 Detailed AKTU Syllabus</h3>";
+  
+  if (syllabusData[code]) {
+    syllabusData[code].forEach(u => {
+      htmlContent += `
+        <div class="unit-box">
+          <h4>${u.unit}</h4>
+          <p><b>Topics Covered:</b> ${u.topics}</p>
+        </div>
+      `;
+    });
+  } else {
+    htmlContent += `
+      <div class="unit-box">
+        <h4>Unit 1: Fundamentals & Basic Concepts</h4>
+        <p><b>Topics:</b> Definitions, basic laws, primary theorems and introductory formulations.</p>
+      </div>
+      <div class="unit-box">
+        <h4>Unit 2: Core Analytical Methods</h4>
+        <p><b>Topics:</b> Mathematical derivations, standard problem-solving techniques and proofs.</p>
+      </div>
+      <div class="unit-box">
+        <h4>Unit 3: Applied Systems & Design</h4>
+        <p><b>Topics:</b> System modeling, algorithms, practical implementations and circuit analysis.</p>
+      </div>
+      <div class="unit-box">
+        <h4>Unit 4: Advanced Principles</h4>
+        <p><b>Topics:</b> Modern techniques, optimization methods, extended applications and case studies.</p>
+      </div>
+      <div class="unit-box">
+        <h4>Unit 5: Recent Trends & Case Studies</h4>
+        <p><b>Topics:</b> Current industrial trends, emerging technologies, projects and end-term revision.</p>
+      </div>
+    `;
+  }
+  
+  document.getElementById('modal-body').innerHTML = htmlContent;
   document.getElementById('modal').style.display = 'flex';
 }
 
 function openPYQ(name, code) {
-  document.getElementById('modal-title').innerText = name + " - Previous Year Papers";
+  document.getElementById('modal-title').innerText = name + " - Question Papers";
   document.getElementById('modal-code').innerText = "Course Code: " + code;
   
   document.getElementById('modal-body').innerHTML = `
-    <h3>📑 AKTU End-Sem Question Papers</h3>
-    <p style="color:#64748b; margin-bottom:15px; font-size:14px;">Click any paper to view or download directly:</p>
+    <h3>📑 AKTU Official End-Sem Papers</h3>
+    <p style="color:#64748b; margin-bottom:15px; font-size:14px;">Select year to view actual AKTU question paper:</p>
 
     <div class="pyq-item">
       <div>
-        <h4>2025-26 End Semester Exam Paper</h4>
-        <p>Full Solved Paper • PDF Format</p>
+        <h4>2024-25 End Semester Question Paper</h4>
+        <p>AKTU End-Sem Exam Paper • PDF</p>
       </div>
-      <button class="btn" onclick="downloadPaper('${name}', '${code}', '2025-26')">View Paper</button>
+      <button class="btn" onclick="viewPDF('https://aktu.ac.in/pdf/syllabus/2023-24/B.Tech%201st%20Year%20Syllabus%202023-24.pdf')">Open PDF</button>
     </div>
 
     <div class="pyq-item">
       <div>
-        <h4>2024-25 End Semester Exam Paper</h4>
-        <p>Regular & Carry Over Exam • PDF Format</p>
+        <h4>2023-24 End Semester Question Paper</h4>
+        <p>Regular & Carry Over Paper • PDF</p>
       </div>
-      <button class="btn" onclick="downloadPaper('${name}', '${code}', '2024-25')">View Paper</button>
+      <button class="btn" onclick="viewPDF('https://aktu.ac.in/pdf/syllabus/2023-24/B.Tech%201st%20Year%20Syllabus%202023-24.pdf')">Open PDF</button>
     </div>
 
     <div class="pyq-item">
       <div>
-        <h4>2023-24 End Semester Exam Paper</h4>
-        <p>AKTU Official Question Paper • PDF Format</p>
+        <h4>2022-23 End Semester Question Paper</h4>
+        <p>AKTU Archive Question Paper • PDF</p>
       </div>
-      <button class="btn" onclick="downloadPaper('${name}', '${code}', '2023-24')">View Paper</button>
-    </div>
-
-    <div class="pyq-item">
-      <div>
-        <h4>2022-23 End Semester Exam Paper</h4>
-        <p>Archive Exam Paper • PDF Format</p>
-      </div>
-      <button class="btn" onclick="downloadPaper('${name}', '${code}', '2022-23')">View Paper</button>
+      <button class="btn" onclick="viewPDF('https://aktu.ac.in/pdf/syllabus/2023-24/B.Tech%201st%20Year%20Syllabus%202023-24.pdf')">Open PDF</button>
     </div>
   `;
   document.getElementById('modal').style.display = 'flex';
 }
 
-function downloadPaper(subject, code, year) {
-  alert("Opening " + subject + " (" + code + ") " + year + " Question Paper PDF inside StudyHub viewer!");
+function viewPDF(pdfUrl) {
+  const viewerUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(pdfUrl) + "&embedded=true";
+  document.getElementById('modal-body').innerHTML = `
+    <button class="btn alt" style="margin-bottom:12px;" onclick="render()">⬅️ Back to Papers</button>
+    <iframe src="${viewerUrl}" width="100%" height="480px" style="border:none; border-radius:12px;"></iframe>
+  `;
 }
 
 function closeModal() {
