@@ -1,39 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AKTU Study Hub - D.A.H. Rajkiya Engineering College Mainpuri</title>
+    <title>AKTU 1st Year Study Hub - D.A.H. Rajkiya Engineering College Mainpuri</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-blue: #087CFF;
-            --cyan: #00C7F5;
-            --navy: #061B43;
-            --navy-light: #0d285c;
-            --purple: #7627FF;
-            --green: #11A86A;
-            --orange: #F39A12;
-            --pink: #E83D8C;
-            
-            --bg-base: #eaf3ff;
-            --bg-card: rgba(255, 255, 255, 0.85);
-            --bg-card-hover: rgba(255, 255, 255, 0.95);
-            --text-main: #061B43;
-            --text-muted: #536b94;
-            --border-color: rgba(8, 124, 255, 0.15);
-            --glass-shadow: 0 8px 32px 0 rgba(8, 124, 255, 0.12);
-            --glow-color: rgba(0, 199, 245, 0.4);
-        }
-
-        [data-theme="dark"] {
-            --bg-base: #030a1a;
-            --bg-card: rgba(13, 40, 92, 0.6);
-            --bg-card-hover: rgba(13, 40, 92, 0.85);
-            --text-main: #e6f0ff;
-            --text-muted: #8caad9;
-            --border-color: rgba(0, 199, 245, 0.25);
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-            --glow-color: rgba(118, 39, 255, 0.5);
+            --primary-navy: #092C74;
+            --navbar-blue: #0A3B98;
+            --accent-blue: #1877F2;
+            --light-bg: #EBF2FA;
+            --card-white: #FFFFFF;
+            --text-dark: #1C2B4B;
+            --text-muted: #64748B;
+            --yellow-accent: #FFC107;
+            --green-accent: #10B981;
+            --purple-accent: #8B5CF6;
+            --orange-accent: #F97316;
+            --pink-accent: #EC4899;
+            --border-light: #DCE5F2;
         }
 
         * {
@@ -41,1406 +27,879 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
         body {
-            background-color: var(--bg-base);
-            color: var(--text-main);
-            overflow-x: hidden;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        /* Glassmorphism Classes */
-        .glass-panel {
-            background: var(--bg-card);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            box-shadow: var(--glass-shadow);
-        }
-
-        /* Sticky Navigation Bar */
-        navbar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: var(--navy);
-            border-bottom: 2px solid var(--cyan);
-            padding: 0.75rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        }
-
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #fff;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-
-        .nav-logo-mini {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid var(--cyan);
-            background: linear-gradient(45deg, var(--primary-blue), var(--purple));
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, #2BB0ED 0%, #1168DB 50%, #0A3084 100%);
+            padding: 1.5rem 3rem;
             color: white;
-            font-weight: bold;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            overflow-x: auto;
-            max-width: 60%;
-            scrollbar-width: none;
-        }
-
-        .nav-menu::-webkit-scrollbar { display: none; }
-
-        .nav-btn {
-            background: transparent;
-            border: none;
-            color: #d0e1ff;
-            padding: 0.5rem 0.8rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.95rem;
-        }
-
-        .nav-btn:hover, .nav-btn.active {
-            background: rgba(0, 199, 245, 0.2);
-            color: var(--cyan);
-        }
-
-        .nav-controls {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .control-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--cyan);
-            color: white;
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.85rem;
-        }
-
-        .control-btn:hover {
-            background: var(--cyan);
-            color: var(--navy);
-        }
-
-        /* Hero Section */
-        .hero {
             position: relative;
-            background: linear-gradient(135deg, var(--navy) 0%, var(--primary-blue) 50%, var(--purple) 100%);
-            padding: 3rem 2rem;
-            color: white;
-            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            min-height: 280px;
-            box-shadow: inset 0 -10px 20px rgba(0,0,0,0.2);
-        }
-
-        .hero-bg-graphic {
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.15;
-            background: repeating-linear-gradient(45deg, #00c7f5, #00c7f5 10px, transparent 10px, transparent 20px);
-            pointer-events: none;
+            overflow: hidden;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
         }
 
         .hero-left {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 1.5rem;
             z-index: 2;
         }
 
         .college-logo-container {
-            position: relative;
-        }
-
-        .college-logo {
-            width: 120px;
-            height: 120px;
+            width: 110px;
+            height: 110px;
+            background: #fff;
             border-radius: 50%;
-            border: 4px solid #fff;
-            box-shadow: 0 0 25px var(--cyan);
-            background: #fff linear-gradient(135deg, #087CFF, #7627FF);
+            padding: 5px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #fff;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
-        .hero-title h1 {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 0.3rem;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .hero-title h2 {
-            font-size: 1.2rem;
-            color: var(--cyan);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .hero-right {
-            z-index: 2;
-            max-width: 400px;
-            text-align: right;
-            background: rgba(6, 27, 67, 0.4);
-            padding: 1.5rem;
-            border-radius: 16px;
-            border: 1px solid rgba(0, 199, 245, 0.3);
-            backdrop-filter: blur(5px);
-        }
-
-        .quote {
-            font-size: 1.05rem;
-            font-style: italic;
-            font-weight: 600;
-            color: #ffdf6d;
-            margin-bottom: 0.8rem;
-        }
-
-        .hero-visuals {
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-end;
-            font-size: 1.5rem;
-        }
-
-        /* Layout Container */
-        .container {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-            display: grid;
-            grid-template-columns: 280px 1fr 300px;
-            gap: 1.5rem;
-            flex: 1;
-        }
-
-        /* Left Sidebar - Branches */
-        .sidebar-left {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .section-header {
-            font-size: 1.1rem;
-            font-weight: 700;
-            padding: 0.8rem 1rem;
-            border-bottom: 2px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .branch-btn {
+        .college-logo-badge {
             width: 100%;
-            padding: 0.8rem 1rem;
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 0.5rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transform: translateY(0);
-            transition: all 0.2s ease;
-        }
-
-        .branch-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-            filter: brightness(1.1);
-        }
-
-        .branch-btn.active {
-            outline: 3px solid var(--cyan);
-            outline-offset: 2px;
-        }
-
-        .b-cse { background: linear-gradient(45deg, #087CFF, #00C7F5); }
-        .b-it { background: linear-gradient(45deg, #7627FF, #E83D8C); }
-        .b-ece { background: linear-gradient(45deg, #11A86A, #00C7F5); }
-        .b-ee { background: linear-gradient(45deg, #F39A12, #E83D8C); }
-        .b-me { background: linear-gradient(45deg, #E83D8C, #7627FF); }
-        .b-ce { background: linear-gradient(45deg, #061B43, #087CFF); }
-
-        /* Main Content */
-        .main-content {
+            height: 100%;
+            border-radius: 50%;
+            border: 2px dashed #092C74;
+            background: #f8fafc;
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        /* Search Bar Section */
-        .search-box-container {
-            padding: 1rem;
-            display: flex;
-            gap: 10px;
-        }
-
-        .search-input {
-            flex: 1;
-            padding: 0.8rem 1.2rem;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            background: rgba(255, 255, 255, 0.5);
-            color: var(--text-main);
-            font-size: 1rem;
-            outline: none;
-        }
-
-        .search-input:focus {
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 10px var(--glow-color);
-        }
-
-        /* Semester Selector */
-        .semester-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .semester-card {
-            padding: 1.2rem;
-            cursor: pointer;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            border: 2px solid transparent;
-            transition: all 0.2s ease;
+            color: #092C74;
         }
 
-        .semester-card:hover {
-            border-color: var(--cyan);
-            transform: translateY(-2px);
+        .college-logo-badge i { font-size: 1.8rem; margin-bottom: 2px; color: var(--accent-blue); }
+        .college-logo-badge span { font-size: 0.55rem; font-weight: 800; line-height: 1; }
+
+        .hero-text h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            letter-spacing: -0.5px;
         }
 
-        .semester-card.active {
-            border-color: var(--primary-blue);
-            background: linear-gradient(135deg, rgba(8, 124, 255, 0.15), rgba(0, 199, 245, 0.15));
+        .hero-text h2 {
+            font-size: 1.3rem;
+            color: var(--yellow-accent);
+            font-weight: 800;
+            margin-top: 2px;
         }
 
-        .semester-card h3 {
-            font-size: 1.2rem;
-            color: var(--primary-blue);
-            margin-bottom: 0.3rem;
-        }
-
-        /* Subject Cards */
-        .subject-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.2rem;
-        }
-
-        .subject-card {
-            padding: 1.2rem;
+        .hero-badges {
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            overflow: hidden;
-            border-top: 4px solid var(--primary-blue);
-        }
-
-        .subject-card h4 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .subject-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
+            gap: 1.5rem;
             margin-top: 1rem;
         }
 
-        .sub-btn {
-            padding: 0.5rem;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.2);
-            color: var(--text-main);
-            font-size: 0.8rem;
+        .hero-badge-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            z-index: 2;
+        }
+
+        .quote-banner {
+            font-size: 1.15rem;
+            font-weight: 800;
+            font-style: italic;
+            color: #FFF;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 0.8rem;
+        }
+
+        .book-stack {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 3px;
+        }
+
+        .book-tag {
+            padding: 0.25rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 800;
+            font-size: 0.75rem;
+            color: white;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .bt-dream { background: #D92525; width: 120px; text-align: center; }
+        .bt-study { background: #0088CC; width: 135px; text-align: center; }
+        .bt-plan { background: #00A86B; width: 150px; text-align: center; }
+        .bt-achieve { background: #E67E22; width: 165px; text-align: center; }
+
+        /* Navigation Bar */
+        navbar {
+            background-color: var(--navbar-blue);
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .nav-link {
+            color: #C8D9F8;
+            text-decoration: none;
+            padding: 1rem 1.2rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #FFFFFF;
+            border-bottom-color: var(--yellow-accent);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-right-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .lang-selector {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
             font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
             cursor: pointer;
+        }
+
+        .icon-btn-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 4px;
-        }
-
-        .sub-btn:hover {
-            background: var(--primary-blue);
-            color: white;
-            border-color: var(--primary-blue);
-        }
-
-        .fav-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: transparent;
-            border: none;
-            font-size: 1.2rem;
             cursor: pointer;
-            color: #aaa;
+            border: none;
         }
 
-        .fav-btn.active {
-            color: #ffb400;
+        /* Main Dashboard Grid */
+        .dashboard-container {
+            max-width: 1440px;
+            margin: 1.5rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 240px 1fr 310px;
+            gap: 1.5rem;
+            flex: 1;
         }
 
-        /* Right Sidebar */
-        .sidebar-right {
+        .card-box {
+            background: var(--card-white);
+            border-radius: 16px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 4px 12px rgba(10, 59, 152, 0.05);
+            overflow: hidden;
+        }
+
+        /* Left Sidebar - Branch Buttons */
+        .sidebar-header {
+            background: var(--accent-blue);
+            color: white;
+            padding: 0.9rem 1.2rem;
+            font-weight: 800;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .branch-list {
+            padding: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .branch-item {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 800;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            transition: transform 0.15s ease;
+        }
+
+        .branch-item:hover { transform: translateX(3px); }
+
+        .b-cse { background: linear-gradient(90deg, #1877F2, #0A52BE); }
+        .b-it { background: linear-gradient(90deg, #10B981, #059669); }
+        .b-ece { background: linear-gradient(90deg, #8B5CF6, #6D28D9); }
+        .b-ee { background: linear-gradient(90deg, #F97316, #EA580C); }
+        .b-me { background: linear-gradient(90deg, #EF4444, #DC2626); }
+        .b-ce { background: linear-gradient(90deg, #06B6D4, #0891B2); }
+
+        .quote-card {
+            margin-top: 1rem;
+            padding: 1.2rem;
+            background: linear-gradient(180deg, #EBF5FF 0%, #D6E8FE 100%);
+            border-radius: 16px;
+            text-align: center;
+            position: relative;
+        }
+
+        .quote-card p {
+            font-weight: 800;
+            color: var(--primary-navy);
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+        }
+
+        .quote-card span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        /* Main Content Column */
+        .content-column {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
         }
 
-        .quick-list {
-            list-style: none;
-            padding: 0.5rem;
+        .section-title-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .quick-list li {
-            padding: 0.8rem;
-            border-bottom: 1px solid var(--border-color);
+        .section-title-bar h2 {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--primary-navy);
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
+            gap: 10px;
         }
 
-        .quick-list li:hover {
-            color: var(--primary-blue);
-            padding-left: 1.1rem;
+        /* Semester Cards */
+        .semester-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
         }
 
-        .quick-list li:last-child {
-            border-bottom: none;
+        .sem-card {
+            padding: 1.5rem;
+            border-radius: 18px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
         }
 
-        /* Modals & Overlay Windows */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(6, 27, 67, 0.7);
-            backdrop-filter: blur(6px);
-            z-index: 2000;
-            display: none;
+        .sem-1 { background: linear-gradient(135deg, #1890FF 0%, #0052CC 100%); }
+        .sem-2 { background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%); }
+
+        .sem-icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1rem;
+            font-size: 1.8rem;
         }
 
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal-container {
-            width: 100%;
-            max-width: 800px;
-            max-height: 85vh;
-            overflow-y: auto;
-            position: relative;
-            padding: 2rem;
-            animation: modalUp 0.3s ease-out;
-        }
-
-        @keyframes modalUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .modal-close {
+        .sem-info h3 { font-size: 1.3rem; font-weight: 800; }
+        .sem-badge {
             position: absolute;
             top: 1rem;
             right: 1rem;
-            background: rgba(255, 0, 0, 0.1);
-            color: red;
+            background: rgba(255, 255, 255, 0.25);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .btn-view-subjects {
+            margin-top: 0.8rem;
+            background: var(--yellow-accent);
+            color: #000;
             border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.85rem;
             cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        /* Content Specific Layouts */
-        .unit-block {
-            margin-bottom: 1.5rem;
-            border-left: 3px solid var(--primary-blue);
-            padding-left: 1rem;
+        /* Subjects Grid */
+        .badge-pill {
+            background: #1877F2;
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
         }
 
-        .unit-block h5 {
-            font-size: 1.1rem;
-            color: var(--primary-blue);
-            margin-bottom: 0.5rem;
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
         }
 
-        .test-q {
-            margin-bottom: 1.2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .test-opt {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .test-opt label {
-            padding: 0.5rem;
-            border-radius: 6px;
-            background: rgba(255,255,255,0.1);
-            cursor: pointer;
+        .subject-card-item {
+            padding: 1.2rem;
+            border-radius: 16px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 1rem;
+            border: 1px solid var(--border-light);
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        /* AI Assistant Interface */
-        .ai-chat-box {
+        .subject-card-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+        }
+
+        .sc-maths { background: #EBF5FF; border-color: #BEDBFE; }
+        .sc-physics { background: #F3E8FF; border-color: #E9D5FF; }
+        .sc-pps { background: #ECFDF5; border-color: #A7F3D0; }
+        .sc-ee { background: #FFF7ED; border-color: #FED7AA; }
+        .sc-env { background: #F0FDF4; border-color: #BBF7D0; }
+        .sc-english { background: #FDF2F8; border-color: #FBCFE8; }
+
+        .sub-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
             display: flex;
-            flex-direction: column;
-            height: 350px;
-        }
-
-        .chat-history {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        .chat-msg {
-            max-width: 80%;
-            padding: 0.8rem 1rem;
-            border-radius: 12px;
-            font-size: 0.95rem;
-        }
-
-        .chat-user {
-            align-self: flex-end;
-            background: var(--primary-blue);
+            align-items: center;
+            justify-content: center;
             color: white;
+            font-size: 1.3rem;
+            flex-shrink: 0;
         }
 
-        .chat-bot {
-            align-self: flex-start;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
+        .sub-info h4 { font-size: 0.95rem; font-weight: 800; color: var(--text-dark); line-height: 1.2; }
+        .sub-info span { font-size: 0.75rem; color: var(--text-muted); font-weight: 700; margin-top: 4px; display: block; }
+
+        /* Quick Links Bar */
+        .quick-links-panel {
+            padding: 1rem;
+            background: #F8FAFC;
         }
 
-        .chat-input-area {
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .ql-btn {
+            border: 1px solid var(--border-light);
+            background: white;
+            padding: 0.6rem;
+            border-radius: 10px;
             display: flex;
-            gap: 10px;
-            padding-top: 0.5rem;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 0.82rem;
+            cursor: pointer;
+            color: var(--text-dark);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
-        /* Planner Checkboxes */
-        .plan-item {
+        .ql-btn i { font-size: 1rem; }
+
+        /* Right Sidebar */
+        .right-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .search-box {
+            padding: 1.2rem;
+        }
+
+        .search-input-group {
+            display: flex;
+            gap: 8px;
+            margin-top: 0.8rem;
+        }
+
+        .search-input-group input {
+            flex: 1;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-search {
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 0 1.2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* AI Assistant Card */
+        .ai-assistant-card {
+            padding: 1.2rem;
+        }
+
+        .ai-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0.8rem;
-            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 0.8rem;
         }
 
-        .plan-item.done {
-            text-decoration: line-through;
-            opacity: 0.6;
+        .online-status {
+            background: #DEF7EC;
+            color: #03543F;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .online-dot { width: 6px; height: 6px; background: #0E9F6E; border-radius: 50%; }
+
+        .lang-chips {
+            display: flex;
+            gap: 6px;
+            margin: 0.8rem 0;
+            flex-wrap: wrap;
+        }
+
+        .chip {
+            padding: 0.3rem 0.7rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 1px solid var(--border-light);
+            background: #F8FAFC;
+            cursor: pointer;
+        }
+
+        .chip.active { background: var(--accent-blue); color: white; border-color: var(--accent-blue); }
+
+        .chat-input-box {
+            position: relative;
+            margin-top: 0.8rem;
+        }
+
+        .chat-input-box input {
+            width: 100%;
+            padding: 0.7rem 2.5rem 0.7rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+            outline: none;
+            font-size: 0.85rem;
+        }
+
+        .btn-send {
+            position: absolute;
+            right: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* Popular Resources List */
+        .resource-list {
+            list-style: none;
+            padding: 0.8rem;
+        }
+
+        .resource-item {
+            padding: 0.75rem 0.5rem;
+            border-bottom: 1px solid #F1F5F9;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        .resource-item:last-child { border-bottom: none; }
+
+        .res-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
         }
 
         /* Footer */
         footer {
-            background: var(--navy);
+            background: #061838;
             color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: auto;
-            border-top: 3px solid var(--cyan);
-        }
-
-        .footer-links {
+            padding: 0.8rem 2rem;
             display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 1rem 0;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-top: auto;
+            border-top: 3px solid var(--accent-blue);
         }
 
-        .footer-links button {
-            background: none;
-            border: none;
-            color: var(--cyan);
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-            .sidebar-left, .sidebar-right {
-                order: 2;
-            }
-            .main-content {
-                order: 1;
-            }
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                gap: 1.5rem;
-            }
-            .hero-left {
-                flex-direction: column;
-            }
-            .hero-right {
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 600px) {
-            navbar {
-                padding: 0.5rem 1rem;
-            }
-            .nav-menu {
-                max-width: 100%;
-            }
-            .subject-grid {
-                grid-template-columns: 1fr;
-            }
-            .semester-grid {
-                grid-template-columns: 1fr;
-            }
+        @media (max-width: 1100px) {
+            .dashboard-container { grid-template-columns: 1fr; }
+            .hero-banner { flex-direction: column; text-align: center; gap: 1.5rem; }
+            .hero-left { flex-direction: column; }
+            .hero-right { align-items: center; }
+            .subjects-grid { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Sticky Dark Navy Navigation -->
-    <navbar>
-        <a href="#" class="nav-brand" onclick="app.navigate('home')">
-            <div class="nav-logo-mini">A</div>
-            <span>AKTU Study Hub</span>
-        </a>
-        <div class="nav-menu">
-            <button class="nav-btn active" onclick="app.navigate('home')">🏠 <span data-i18n="nav_home">Home</span></button>
-            <button class="nav-btn" onclick="app.openModal('aboutModal')">ℹ️ <span data-i18n="nav_about">About</span></button>
-            <button class="nav-btn" onclick="app.scrollToSection('semesterSection')">📚 <span data-i18n="nav_syllabus">Syllabus</span></button>
-            <button class="nav-btn" onclick="app.scrollToSection('aiSection')">🤖 <span data-i18n="nav_ai">AI Assistant</span></button>
-            <button class="nav-btn" onclick="app.openModal('plannerModal')">📅 <span data-i18n="nav_plan">Study Plan</span></button>
-            <button class="nav-btn" onclick="app.openModal('folderModal')">📁 <span data-i18n="nav_folder">My Folder</span></button>
-        </div>
-        <div class="nav-controls">
-            <button class="control-btn" onclick="app.toggleLang()">🌐 <span id="langLabel">Hindi</span></button>
-            <button class="control-btn" onclick="app.toggleTheme()">🌙</button>
-        </div>
-    </navbar>
-
-    <!-- College Campus Hero Section -->
-    <div class="hero">
-        <div class="hero-bg-graphic"></div>
+    <!-- Hero Banner Header -->
+    <div class="hero-banner">
         <div class="hero-left">
             <div class="college-logo-container">
-                <div class="college-logo">REC</div>
+                <div class="college-logo-badge">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span>D.A.H. REC<br>MAINPURI</span>
+                </div>
             </div>
-            <div class="hero-title">
-                <h1>D.A.H. Rajkiya Engineering College Mainpuri</h1>
-                <h2>🎓 AKTU 1st Year Study Hub</h2>
+            <div class="hero-text">
+                <h1>D.A.H. Rajkiya Engineering College</h1>
+                <h2>Mainpuri</h2>
+                <div style="background: rgba(255,255,255,0.2); padding: 0.2rem 0.8rem; border-radius: 12px; display: inline-block; margin-top: 4px; font-weight: 800; font-size: 0.85rem;">AKTU 1st Year Study Hub</div>
+                <div class="hero-badges">
+                    <div class="hero-badge-item"><i class="fa-solid fa-book-open"></i> Learn</div>
+                    <div class="hero-badge-item"><i class="fa-solid fa-bullseye"></i> Practice</div>
+                    <div class="hero-badge-item"><i class="fa-solid fa-chart-line"></i> Grow</div>
+                    <div class="hero-badge-item"><i class="fa-solid fa-trophy"></i> Succeed</div>
+                </div>
             </div>
         </div>
         <div class="hero-right">
-            <div class="quote">“Mehnat itni karo ki success tumse milne ke liye tarse! 🚀”</div>
-            <div class="hero-visuals">
-                <span>📚</span>
-                <span>💻</span>
-                <span>🏆</span>
-                <span>💡</span>
+            <div class="quote-banner">“Mehnat itni karo ki success tumse milne ke liye tarse...”</div>
+            <div class="book-stack">
+                <div class="book-tag bt-dream">DREAM</div>
+                <div class="book-tag bt-study">STUDY</div>
+                <div class="book-tag bt-plan">PLAN</div>
+                <div class="book-tag bt-achieve">ACHIEVE</div>
             </div>
         </div>
     </div>
 
-    <!-- Main Container -->
-    <div class="container">
-        
-        <!-- Left Sidebar: Branch Selection -->
-        <div class="sidebar-left">
-            <div class="glass-panel">
-                <div class="section-header">
-                    📌 <span data-i18n="select_branch">Select Branch</span>
+    <!-- Navigation Bar -->
+    <navbar>
+        <div class="nav-links">
+            <a href="#" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="#" class="nav-link"><i class="fa-solid fa-circle-info"></i> About</a>
+            <a href="#" class="nav-link"><i class="fa-solid fa-book"></i> Syllabus</a>
+            <a href="#" class="nav-link"><i class="fa-solid fa-robot"></i> AI Assistant</a>
+            <a href="#" class="nav-link"><i class="fa-solid fa-calendar-days"></i> Study Plan</a>
+            <a href="#" class="nav-link"><i class="fa-solid fa-folder"></i> My Folder</a>
+        </div>
+        <div class="nav-right-controls">
+            <div class="lang-selector">
+                <i class="fa-solid fa-globe"></i> English <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <button class="icon-btn-circle"><i class="fa-solid fa-sun"></i></button>
+            <button class="icon-btn-circle"><i class="fa-solid fa-user"></i></button>
+        </div>
+    </navbar>
+
+    <!-- Main Dashboard Body -->
+    <div class="dashboard-container">
+
+        <!-- Left Sidebar -->
+        <div class="left-sidebar">
+            <div class="card-box">
+                <div class="sidebar-header">
+                    <i class="fa-solid fa-building-columns"></i> Select Branch
                 </div>
-                <div style="padding: 1rem;">
-                    <button class="branch-btn b-cse active" onclick="app.selectBranch('CSE')">💻 CSE</button>
-                    <button class="branch-btn b-it" onclick="app.selectBranch('IT')">🖥️ IT</button>
-                    <button class="branch-btn b-ece" onclick="app.selectBranch('ECE')">📡 ECE</button>
-                    <button class="branch-btn b-ee" onclick="app.selectBranch('EE')">⚡ EE</button>
-                    <button class="branch-btn b-me" onclick="app.selectBranch('ME')">⚙️ ME</button>
-                    <button class="branch-btn b-ce" onclick="app.selectBranch('CE')">🏗️ CE</button>
+                <div class="branch-list">
+                    <button class="branch-item b-cse"><span><i class="fa-solid fa-code"></i> CSE</span> <i class="fa-solid fa-chevron-right"></i></button>
+                    <button class="branch-item b-it"><span><i class="fa-solid fa-desktop"></i> IT</span> <i class="fa-solid fa-chevron-right"></i></button>
+                    <button class="branch-item b-ece"><span><i class="fa-solid fa-microchip"></i> ECE</span> <i class="fa-solid fa-chevron-right"></i></button>
+                    <button class="branch-item b-ee"><span><i class="fa-solid fa-bolt"></i> EE</span> <i class="fa-solid fa-chevron-right"></i></button>
+                    <button class="branch-item b-me"><span><i class="fa-solid fa-gear"></i> ME</span> <i class="fa-solid fa-chevron-right"></i></button>
+                    <button class="branch-item b-ce"><span><i class="fa-solid fa-helmet-safety"></i> CE</span> <i class="fa-solid fa-chevron-right"></i></button>
                 </div>
+            </div>
+
+            <div class="quote-card">
+                <p>“ Small steps every day lead to big dreams. ”</p>
+                <span>– Study & Grow</span>
             </div>
         </div>
 
-        <!-- Middle Content Area -->
-        <div class="main-content">
+        <!-- Middle Column Content -->
+        <div class="content-column">
             
-            <!-- Global Search Box -->
-            <div class="glass-panel search-box-container">
-                <input type="text" class="search-input" id="searchInput" placeholder="Search Mathematics, Physics, C Programming..." oninput="app.handleSearch()">
-                <button class="sub-btn" style="padding: 0 1.5rem; background: var(--primary-blue); color:white;" onclick="app.handleSearch()" data-i18n="btn_search">Search</button>
+            <div class="section-title-bar">
+                <h2><i class="fa-solid fa-code" style="color: var(--accent-blue);"></i> CSE - 1st Year</h2>
+                <span style="font-size: 0.9rem; font-style: italic; color: var(--accent-blue); font-weight: 700;">Choose your semester to get started ⤤</span>
             </div>
 
-            <!-- Semester Toggle Section -->
-            <div class="semester-grid" id="semesterSection">
-                <div class="glass-panel semester-card active" id="sem1Btn" onclick="app.selectSemester(1)">
-                    <h3>📘 <span data-i18n="sem1_title">Semester 1</span></h3>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="sem1_desc">Core first-semester subjects & resources</p>
-                </div>
-                <div class="glass-panel semester-card" id="sem2Btn" onclick="app.selectSemester(2)">
-                    <h3>📗 <span data-i18n="sem2_title">Semester 2</span></h3>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="sem2_desc">Second-semester subjects & resources</p>
-                </div>
-            </div>
-
-            <!-- Dynamic Branch Heading -->
-            <h2 id="currentBranchDisplay" style="margin-top: 0.5rem; font-size: 1.4rem;">CSE – 1st Year</h2>
-
-            <!-- Subject Cards Container -->
-            <div class="subject-grid" id="subjectGrid">
-                <!-- Subject Cards injected dynamically via JS -->
-            </div>
-
-            <!-- Embedded AI Doubt Assistant Section -->
-            <div class="glass-panel" id="aiSection" style="padding: 1.5rem;">
-                <div class="section-header" style="padding-left: 0;">
-                    🤖 <span data-i18n="ai_title">AI Doubt Assistant</span>
-                </div>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;" data-i18n="ai_desc">Ask your study doubts regarding KVL, KCL, C Programming, Maths, and more.</p>
-                <div class="ai-chat-box">
-                    <div class="chat-history" id="chatHistory">
-                        <div class="chat-msg chat-bot">Hello! I am your AKTU Study Hub Assistant. How can I help you with your 1st year studies today?</div>
+            <!-- Semester Options -->
+            <div class="semester-grid">
+                <div class="sem-card sem-1">
+                    <span class="sem-badge">6 Subjects</span>
+                    <div class="sem-icon-circle"><i class="fa-solid fa-book-open"></i></div>
+                    <div class="sem-info">
+                        <h3>Semester 1</h3>
+                        <button class="btn-view-subjects">View Subjects →</button>
                     </div>
-                    <div class="chat-input-area">
-                        <input type="text" class="search-input" id="chatInput" placeholder="Type your question here (e.g., KVL kya hai?)..." onkeypress="if(event.key==='Enter') app.sendChatMessage()">
-                        <button class="sub-btn" style="padding: 0 1.2rem; background: var(--primary-blue); color:white;" onclick="app.sendChatMessage()" data-i18n="btn_ask">Ask Doubt</button>
+                </div>
+                <div class="sem-card sem-2">
+                    <span class="sem-badge">6 Subjects</span>
+                    <div class="sem-icon-circle"><i class="fa-solid fa-book-bookmark"></i></div>
+                    <div class="sem-info">
+                        <h3>Semester 2</h3>
+                        <button class="btn-view-subjects">View Subjects →</button>
                     </div>
+                </div>
+            </div>
+
+            <!-- Subjects Section Header -->
+            <div class="section-title-bar" style="margin-top: 0.5rem;">
+                <h3 style="font-size: 1.1rem; font-weight: 800; color: var(--primary-navy);">Semester 1 - Subjects</h3>
+                <span class="badge-pill">6 Subjects</span>
+            </div>
+
+            <!-- Subjects Grid -->
+            <div class="subjects-grid">
+                <div class="subject-card-item sc-maths">
+                    <div class="sub-icon" style="background: #1877F2;"><i class="fa-solid fa-calculator"></i></div>
+                    <div class="sub-info">
+                        <h4>Mathematics - I</h4>
+                        <span>4 Resources ›</span>
+                    </div>
+                </div>
+
+                <div class="subject-card-item sc-physics">
+                    <div class="sub-icon" style="background: #8B5CF6;"><i class="fa-solid fa-atom"></i></div>
+                    <div class="sub-info">
+                        <h4>Applied Physics</h4>
+                        <span>5 Resources ›</span>
+                    </div>
+                </div>
+
+                <div class="subject-card-item sc-pps">
+                    <div class="sub-icon" style="background: #10B981;"><i class="fa-solid fa-code"></i></div>
+                    <div class="sub-info">
+                        <h4>Programming Problem Solving</h4>
+                        <span>5 Resources ›</span>
+                    </div>
+                </div>
+
+                <div class="subject-card-item sc-ee">
+                    <div class="sub-icon" style="background: #F97316;"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="sub-info">
+                        <h4>Basic Electrical Engineering</h4>
+                        <span>4 Resources ›</span>
+                    </div>
+                </div>
+
+                <div class="subject-card-item sc-env">
+                    <div class="sub-icon" style="background: #10B981;"><i class="fa-solid fa-leaf"></i></div>
+                    <div class="sub-info">
+                        <h4>Environmental Studies</h4>
+                        <span>3 Resources ›</span>
+                    </div>
+                </div>
+
+                <div class="subject-card-item sc-english">
+                    <div class="sub-icon" style="background: #EC4899;"><i class="fa-solid fa-user-group"></i></div>
+                    <div class="sub-info">
+                        <h4>Communication Skills</h4>
+                        <span>3 Resources ›</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="card-box quick-links-panel">
+                <span style="font-weight: 800; font-size: 0.9rem; color: var(--primary-navy);"><i class="fa-solid fa-link" style="color: var(--accent-blue);"></i> Quick Links</span>
+                <div class="quick-links-grid">
+                    <button class="ql-btn"><i class="fa-solid fa-book" style="color: #1877F2;"></i> Notes</button>
+                    <button class="ql-btn"><i class="fa-solid fa-file-lines" style="color: #8B5CF6;"></i> PYQ</button>
+                    <button class="ql-btn"><i class="fa-solid fa-square-root-variable" style="color: #F97316;"></i> Formula Sheet</button>
+                    <button class="ql-btn"><i class="fa-solid fa-notes-medical" style="color: #10B981;"></i> Short Notes</button>
+                    <button class="ql-btn"><i class="fa-solid fa-pen-to-square" style="color: #EC4899;"></i> Test</button>
                 </div>
             </div>
 
         </div>
 
-        <!-- Right Sidebar: Quick Links & Popular Resources -->
-        <div class="sidebar-right">
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
             
-            <div class="glass-panel">
-                <div class="section-header">
-                    ⚡ <span data-i18n="quick_links">Quick Links</span>
+            <!-- Search Widget -->
+            <div class="card-box search-box">
+                <span style="font-weight: 800; font-size: 0.95rem; color: var(--primary-navy);"><i class="fa-solid fa-magnifying-glass" style="color: var(--accent-blue);"></i> Search Subject</span>
+                <div class="search-input-group">
+                    <input type="text" placeholder="Enter subject name...">
+                    <button class="btn-search">Search</button>
                 </div>
-                <ul class="quick-list">
-                    <li onclick="app.scrollToSection('semesterSection')">📑 Syllabus <span>→</span></li>
-                    <li onclick="app.openResourceModal('pyq', 'Engineering Mathematics-I')">📝 PYQ Bank <span>→</span></li>
-                    <li onclick="app.openResourceModal('test', 'Programming for Problem Solving')">🧪 Online Test <span>→</span></li>
-                    <li onclick="app.openModal('plannerModal')">📅 Study Plan <span>→</span></li>
-                    <li onclick="app.openResourceModal('notes', 'Engineering Physics')">📚 Notes <span>→</span></li>
-                    <li onclick="app.openResourceModal('formula', 'Engineering Mathematics-I')">📌 Formula Sheet <span>→</span></li>
+            </div>
+
+            <!-- AI Doubt Assistant -->
+            <div class="card-box ai-assistant-card">
+                <div class="ai-header">
+                    <span style="font-weight: 800; font-size: 0.95rem; color: var(--primary-navy); display: flex; align-items: center; gap: 6px;"><i class="fa-solid fa-robot" style="color: var(--accent-blue);"></i> AI Doubt Assistant</span>
+                    <span class="online-status"><div class="online-dot"></div> Online</span>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Ask your doubts in English, Hindi, Hinglish or any language. I'm here to help!</p>
+                
+                <div class="lang-chips">
+                    <div class="chip active">✓ English</div>
+                    <div class="chip">Hindi</div>
+                    <div class="chip">Hinglish</div>
+                    <div class="chip">Other</div>
+                </div>
+
+                <div class="chat-input-box">
+                    <input type="text" placeholder="Type your question here...">
+                    <button class="btn-send"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+
+            <!-- Popular Resources List -->
+            <div class="card-box">
+                <div class="sidebar-header" style="background: transparent; color: var(--primary-navy); border-bottom: 1px solid var(--border-light);">
+                    <i class="fa-solid fa-star" style="color: #F59E0B;"></i> Popular Resources
+                </div>
+                <ul class="resource-list">
+                    <li class="resource-item">
+                        <div class="res-icon" style="background: #EC4899;"><i class="fa-solid fa-file-pdf"></i></div>
+                        Previous Year Questions (PYQ)
+                    </li>
+                    <li class="resource-item">
+                        <div class="res-icon" style="background: #1877F2;"><i class="fa-solid fa-calculator"></i></div>
+                        Important Formulas
+                    </li>
+                    <li class="resource-item">
+                        <div class="res-icon" style="background: #F97316;"><i class="fa-solid fa-book-open"></i></div>
+                        Subject Wise Notes
+                    </li>
+                    <li class="resource-item">
+                        <div class="res-icon" style="background: #10B981;"><i class="fa-solid fa-clipboard-list"></i></div>
+                        Short Notes (Last Minute)
+                    </li>
+                    <li class="resource-item">
+                        <div class="res-icon" style="background: #8B5CF6;"><i class="fa-solid fa-pen-nib"></i></div>
+                        Mock Tests & Practice
+                    </li>
                 </ul>
             </div>
 
-            <div class="glass-panel">
-                <div class="section-header">
-                    🔥 <span data-i18n="popular_res">Popular Resources</span>
-                </div>
-                <ul class="quick-list">
-                    <li onclick="app.openResourceModal('notes', 'Engineering Mathematics-I')">📐 Mathematics-I Notes <span>→</span></li>
-                    <li onclick="app.openResourceModal('notes', 'Engineering Physics')">⚛️ Physics Formulae <span>→</span></li>
-                    <li onclick="app.openResourceModal('notes', 'Programming for Problem Solving')">💻 C Programming PYQs <span>→</span></li>
-                    <li onclick="app.openResourceModal('notes', 'Fundamentals of Electrical Engineering')">⚡ Electrical Short Notes <span>→</span></li>
-                    <li onclick="app.openResourceModal('test', 'Engineering Physics')">🧪 Physics Mock Test <span>→</span></li>
-                </ul>
-            </div>
-
         </div>
 
-    </div>
-
-    <!-- MODAL WINDOWS -->
-
-    <!-- Common Resource Display Modal (Notes, PYQs, Formula, Short Notes, Test) -->
-    <div class="modal-overlay" id="resourceModal">
-        <div class="glass-panel modal-container">
-            <button class="modal-close" onclick="app.closeModal('resourceModal')">✕</button>
-            <div id="resourceModalContent"></div>
-        </div>
-    </div>
-
-    <!-- 7-Day Study Planner Modal -->
-    <div class="modal-overlay" id="plannerModal">
-        <div class="glass-panel modal-container">
-            <button class="modal-close" onclick="app.closeModal('plannerModal')">✕</button>
-            <div class="section-header" style="padding-left: 0; margin-bottom: 1rem;">
-                📅 <span data-i18n="planner_title">7-Day Study Planner</span>
-            </div>
-            <p id="plannerProgress" style="font-weight: bold; color: var(--primary-blue); margin-bottom: 1rem;">0/7 Days Completed</p>
-            <div id="plannerList"></div>
-        </div>
-    </div>
-
-    <!-- My Folder Modal -->
-    <div class="modal-overlay" id="folderModal">
-        <div class="glass-panel modal-container">
-            <button class="modal-close" onclick="app.closeModal('folderModal')">✕</button>
-            <div class="section-header" style="padding-left: 0; margin-bottom: 1rem;">
-                📁 <span data-i18n="folder_title">My Folder (Saved Resources)</span>
-            </div>
-            <div id="folderContent"></div>
-        </div>
-    </div>
-
-    <!-- About Modal -->
-    <div class="modal-overlay" id="aboutModal">
-        <div class="glass-panel modal-container">
-            <button class="modal-close" onclick="app.closeModal('aboutModal')">✕</button>
-            <div class="section-header" style="padding-left: 0; margin-bottom: 1rem;">
-                ℹ️ About AKTU Study Hub
-            </div>
-            <p style="line-height: 1.6; margin-bottom: 1rem;">
-                <strong>AKTU Study Hub</strong> is a comprehensive, student-focused study platform exclusively created for 1st Year engineering students at <strong>D.A.H. Rajkiya Engineering College Mainpuri</strong>.
-            </p>
-            <p style="line-height: 1.6; margin-bottom: 1rem;">
-                Our platform organizes all first-year academic materials into one seamless, internal portal. Access unit-wise notes, previous year question banks, revision formula sheets, short notes, interactive self-assessment tests, and AI-assisted doubt clearing—all operating completely inside this hub with zero external redirections.
-            </p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 1.5rem; text-align: center;">
-                <div style="padding: 0.8rem; background: rgba(8, 124, 255, 0.1); border-radius: 8px;">📚 Notes</div>
-                <div style="padding: 0.8rem; background: rgba(8, 124, 255, 0.1); border-radius: 8px;">📝 PYQs</div>
-                <div style="padding: 0.8rem; background: rgba(8, 124, 255, 0.1); border-radius: 8px;">🧪 Tests</div>
-                <div style="padding: 0.8rem; background: rgba(8, 124, 255, 0.1); border-radius: 8px;">📌 Formulas</div>
-            </div>
-        </div>
     </div>
 
     <!-- Footer -->
     <footer>
-        <div style="font-weight: 800; font-size: 1.2rem; margin-bottom: 0.3rem;">AKTU Study Hub</div>
-        <div style="font-size: 0.9rem; opacity: 0.8;">D.A.H. Rajkiya Engineering College Mainpuri</div>
-        <div style="font-size: 0.85rem; color: var(--cyan); margin-top: 0.5rem;">Made for Learning 📚</div>
-        
-        <div class="footer-links">
-            <button onclick="app.openModal('aboutModal')">About</button>
-            <button onclick="app.scrollToSection('semesterSection')">Syllabus</button>
-            <button onclick="app.scrollToSection('aiSection')">AI Assistant</button>
-            <button onclick="app.openModal('plannerModal')">Study Plan</button>
-            <button onclick="app.openModal('folderModal')">My Folder</button>
+        <div>
+            <span>AKTU 1st Year</span> | <span>D.A.H. Rajkiya Engineering College, Mainpuri</span>
         </div>
-        <div style="font-size: 0.75rem; opacity: 0.5; margin-top: 1rem;">© 2026 AKTU Study Hub REC Mainpuri. Self-Contained Educational Portal.</div>
+        <div style="color: var(--yellow-accent);">
+            Study Today ✨ Build Your Tomorrow
+        </div>
+        <div>
+            Made with <i class="fa-solid fa-heart" style="color: red;"></i> for Students | <i class="fa-solid fa-user"></i> Pawan Raj
+        </div>
     </footer>
 
-    <!-- Vanilla JavaScript Core Logic -->
-    <script>
-        // Centralized Structured Dataset
-        const database = {
-            branches: {
-                CSE: { name: "Computer Science & Engineering", sem1: ["math1", "physics", "pps"], sem2: ["ee", "env", "english"] },
-                IT: { name: "Information Technology", sem1: ["math1", "physics", "pps"], sem2: ["ee", "env", "english"] },
-                ECE: { name: "Electronics & Comm. Engg.", sem1: ["math1", "physics", "ee"], sem2: ["pps", "env", "english"] },
-                EE: { name: "Electrical Engineering", sem1: ["math1", "physics", "ee"], sem2: ["pps", "env", "english"] },
-                ME: { name: "Mechanical Engineering", sem1: ["math1", "physics", "env"], sem2: ["pps", "ee", "english"] },
-                CE: { name: "Civil Engineering", sem1: ["math1", "physics", "env"], sem2: ["pps", "ee", "english"] }
-            },
-            subjects: {
-                math1: {
-                    title: "Engineering Mathematics-I",
-                    code: "BAS103",
-                    icon: "📐",
-                    notes: [
-                        { unit: "Unit 1: Matrices", concept: "Elementary Transformations, Rank of Matrix, Cayley-Hamilton Theorem.", example: "Find rank of Matrix A = [[1,2],[3,4]].", practice: "State & Prove Cayley Hamilton Theorem for 3x3 Matrix." },
-                        { unit: "Unit 2: Differential Calculus I", concept: "Leibnitz's Theorem, Partial Derivatives, Euler's Theorem for Homogeneous functions.", example: "If u = x^2+y^2, evaluate du/dx.", practice: "Verify Euler Theorem for u = (x+y)/(x-y)." },
-                        { unit: "Unit 3: Differential Calculus II", concept: "Taylor's & Maclaurin's series, Jacobians, Maxima & Minima of two variables.", example: "Expand sin(x) in powers of x.", practice: "Find extreme values of f(x,y) = x^3 + y^3 - 3axy." }
-                    ],
-                    pyqs: [
-                        { year: "2023", unit: "Unit 1", q: "Find the eigenvalues and eigenvectors of matrix [[2,1],[1,2]].", marks: 7 },
-                        { year: "2022", unit: "Unit 2", q: "State Leibnitz Theorem and expand y = e^(a sin^-1 x).", marks: 10 }
-                    ],
-                    formulas: [
-                        { name: "Cayley-Hamilton Theorem", formula: "|A - λI| = 0", meaning: "Every square matrix satisfies its own characteristic equation." },
-                        { name: "Euler's Theorem", formula: "x(∂u/∂x) + y(∂u/∂y) = nu", meaning: "For homogeneous function u of degree n." }
-                    ],
-                    shortNotes: [
-                        { title: "Matrix Rank", body: "Max number of linearly independent rows/columns. Rank = non-zero rows in Echelon form." }
-                    ],
-                    test: [
-                        { q: "Rank of identity matrix of order n is?", opts: ["0", "1", "n", "n-1"], ans: 2 },
-                        { q: "Eigen values of a symmetric matrix are always?", opts: ["Real", "Imaginary", "Zero", "Complex"], ans: 0 }
-                    ]
-                },
-                physics: {
-                    title: "Engineering Physics",
-                    code: "BAS101",
-                    icon: "⚛️",
-                    notes: [
-                        { unit: "Unit 1: Relativistic Mechanics", concept: "Inertial frames, Michelson-Morley Experiment, Lorentz Transformations, Mass-Energy Equivalence.", example: "Calculate length contraction at 0.8c.", practice: "Derive E = mc^2." },
-                        { unit: "Unit 2: Electromagnetic Field Theory", concept: "Gauss Law, Ampere Law, Maxwell's Equations, Poynting Vector.", example: "Write Maxwell equations in differential form.", practice: "Derive wave equation in free space." }
-                    ],
-                    pyqs: [
-                        { year: "2023", unit: "Unit 1", q: "Derive Lorentz Transformation Equations.", marks: 10 },
-                        { year: "2022", unit: "Unit 2", q: "State and prove Poynting Theorem.", marks: 7 }
-                    ],
-                    formulas: [
-                        { name: "Mass Variation", formula: "m = m0 / √(1 - v^2/c^2)", meaning: "Relativistic mass increasing with velocity." },
-                        { name: "Poynting Vector", formula: "S = E x H", meaning: "Direction and rate of EM energy flow." }
-                    ],
-                    shortNotes: [
-                        { title: "Michelson-Morley Null Result", body: "Proved non-existence of hypothetical ether frame; speed of light is invariant." }
-                    ],
-                    test: [
-                        { q: "Speed of light in vacuum is constant in all inertial frames according to?", opts: ["Galilean relativity", "Special relativity", "General relativity", "Newtonian mechanics"], ans: 1 }
-                    ]
-                },
-                pps: {
-                    title: "Programming for Problem Solving",
-                    code: "BCS101",
-                    icon: "💻",
-                    notes: [
-                        { unit: "Unit 1: Basics of C", concept: "Flowcharts, Data Types, Operators, Precedence, Structure of C program.", example: "Swap two numbers without 3rd variable.", practice: "Draw flowchart for finding greatest of 3 numbers." },
-                        { unit: "Unit 2: Control Statements", concept: "If-Else, Switch, For, While, Do-While, Break & Continue.", example: "Check if number is Prime.", practice: "Generate Fibonacci sequence up to N terms." }
-                    ],
-                    pyqs: [
-                        { year: "2023", unit: "Unit 1", q: "Differentiate between Call by Value and Call by Reference.", marks: 7 },
-                        { year: "2022", unit: "Unit 2", q: "Write a program to multiply two 3x3 matrices in C.", marks: 10 }
-                    ],
-                    formulas: [
-                        { name: "Format Specifiers", formula: "%d (int), %f (float), %c (char)", meaning: "Used for standard input and output formatting in C." }
-                    ],
-                    shortNotes: [
-                        { title: "Pointers in C", body: "Variables storing memory address of another variable. Declared using asterisk (*)." }
-                    ],
-                    test: [
-                        { q: "Which operator is used to access value at address stored in pointer?", opts: ["&", "*", "->", "."], ans: 1 }
-                    ]
-                },
-                ee: {
-                    title: "Fundamentals of Electrical Engineering",
-                    code: "BEE101",
-                    icon: "⚡",
-                    notes: [
-                        { unit: "Unit 1: DC Circuits", concept: "KVL, KCL, Mesh Analysis, Nodal Analysis, Thevenin's & Norton's Theorem.", example: "Find current using KVL in single loop circuit.", practice: "State and prove Superposition Theorem." }
-                    ],
-                    pyqs: [
-                        { year: "2023", unit: "Unit 1", q: "State KVL and KCL with suitable circuit diagram.", marks: 7 }
-                    ],
-                    formulas: [
-                        { name: "Ohm's Law", formula: "V = I x R", meaning: "Voltage across conductor is proportional to current." },
-                        { name: "KVL", formula: "∑ V = 0", meaning: "Algebraic sum of voltages in closed loop equals zero." }
-                    ],
-                    shortNotes: [
-                        { title: "Thevenin Theorem", body: "Any linear two-terminal circuit can be replaced by equivalent voltage source Vth in series with Rth." }
-                    ],
-                    test: [
-                        { q: "KVL works on the principle of conservation of?", opts: ["Charge", "Energy", "Momentum", "Power"], ans: 1 }
-                    ]
-                },
-                env: {
-                    title: "Environment & Ecology",
-                    code: "BAS104",
-                    icon: "🌱",
-                    notes: [
-                        { unit: "Unit 1: Ecosystems", concept: "Abiotic & Biotic components, Food Chains, Food Webs, Ecological Pyramids.", example: "Explain Nitrogen Cycle.", practice: "Describe energy flow model in ecosystem." }
-                    ],
-                    pyqs: [
-                        { year: "2023", unit: "Unit 1", q: "Explain Bio-magnification with suitable example.", marks: 7 }
-                    ],
-                    formulas: [
-                        { name: "10% Energy Law", formula: "E_next = E_current x 0.10", meaning: "Only 10% energy transfers to next trophic level." }
-                    ],
-                    shortNotes: [
-                        { title: "Acid Rain", body: "Caused by atmospheric reaction of SO2 and NOx producing H2SO4 and HNO3." }
-                    ],
-                    test: [
-                        { q: "Which gas is primarily responsible for Global Warming?", opts: ["O2", "CO2", "N2", "Argon"], ans: 1 }
-                    ]
-                },
-                english: {
-                    title: "English / Communication Skills",
-                    code: "BAS105",
-                    icon: "📖",
-                    notes: [
-                        { unit: "Unit 1: Communication", concept: "Process, Barriers, 7 Cs of Effective Communication, Verbal & Non-Verbal.", example: "Draft formal leave application.", practice: "Explain Technical Report writing format." }
-                    ],
-                    pyqs: [
-                        { year: "2023", unit: "Unit 1", q: "Explain Noise as a barrier in communication process.", marks: 7 }
-                    ],
-                    formulas: [
-                        { name: "7 Cs", formula: "Clear, Concise, Concrete, Correct, Coherent, Complete, Courteous", meaning: "Seven pillars of effective communication." }
-                    ],
-                    shortNotes: [
-                        { title: "Kinesics", body: "Study of body language, facial expressions, and gestures in communication." }
-                    ],
-                    test: [
-                        { q: "Which of these is non-verbal communication?", opts: ["Email", "Body Gesture", "Speech", "Report"], ans: 1 }
-                    ]
-                }
-            },
-            aiResponses: {
-                "kvl": "KVL (Kirchhoff's Voltage Law) states that the algebraic sum of all potential differences (voltages) around any closed loop in a circuit is equal to zero (∑V = 0). It works on the law of conservation of energy.",
-                "kcl": "KCL (Kirchhoff's Current Law) states that the total current entering a junction or node equals the total current leaving that junction. It works on the conservation of charge.",
-                "ohm": "Ohm's Law states that current (I) flowing through a conductor between two points is directly proportional to voltage (V) across the two points: V = I * R.",
-                "c programming": "C is a procedural programming language developed by Dennis Ritchie. It forms the core foundation for 1st-year computer engineering studies.",
-                "variable": "A variable in programming is a named memory location used to store data that can be altered during program execution.",
-                "loop": "Loops (for, while, do-while) are used to execute a block of code repeatedly until a specified condition is met.",
-                "factorial": "Factorial of n (n!) is the product of all positive integers less than or equal to n. Example: 5! = 5*4*3*2*1 = 120."
-            },
-            i18n: {
-                en: {
-                    nav_home: "Home", nav_about: "About", nav_syllabus: "Syllabus", nav_ai: "AI Assistant", nav_plan: "Study Plan", nav_folder: "My Folder",
-                    select_branch: "Select Branch", sem1_title: "Semester 1", sem1_desc: "Core first-semester subjects & resources",
-                    sem2_title: "Semester 2", sem2_desc: "Second-semester subjects & resources",
-                    quick_links: "Quick Links", popular_res: "Popular Resources", btn_search: "Search", btn_ask: "Ask Doubt",
-                    ai_title: "AI Doubt Assistant", ai_desc: "Ask your study doubts regarding KVL, KCL, C Programming, Maths, and more.",
-                    planner_title: "7-Day Study Planner", folder_title: "My Folder (Saved Resources)"
-                },
-                hi: {
-                    nav_home: "होम", nav_about: "परिचय", nav_syllabus: "पाठ्यक्रम", nav_ai: "AI सहायक", nav_plan: "अध्ययन योजना", nav_folder: "मेरा फोल्डर",
-                    select_branch: "शाखा चुनें", sem1_title: "सेमेस्टर 1", sem1_desc: "प्रथम सेमेस्टर के विषय और संसाधन",
-                    sem2_title: "सेमेस्टर 2", sem2_desc: "द्वितीय सेमेस्टर के विषय और संसाधन",
-                    quick_links: "त्वरित लिंक", popular_res: "लोकप्रिय संसाधन", btn_search: "खोजें", btn_ask: "प्रश्न पूछें",
-                    ai_title: "AI डाउट असिस्टेंट", ai_desc: "KVL, KCL, C प्रोग्रामिंग, गणित आदि के संबंध में अपने संदेह पूछें।",
-                    planner_title: "7-दिवसीय अध्ययन योजना", folder_title: "मेरा फोल्डर (सुरक्षित संसाधन)"
-                }
-            }
-        };
-
-        // Application Controller
-        class App {
-            constructor() {
-                this.state = {
-                    branch: localStorage.getItem('aktu_branch') || 'CSE',
-                    semester: parseInt(localStorage.getItem('aktu_sem')) || 1,
-                    theme: localStorage.getItem('aktu_theme') || 'light',
-                    lang: localStorage.getItem('aktu_lang') || 'en',
-                    favorites: JSON.parse(localStorage.getItem('aktu_favs')) || [],
-                    planner: JSON.parse(localStorage.getItem('aktu_plan')) || [false, false, false, false, false, false, false]
-                };
-
-                this.init();
-            }
-
-            init() {
-                this.applyTheme(this.state.theme);
-                this.applyLang(this.state.lang);
-                this.selectBranch(this.state.branch, false);
-                this.selectSemester(this.state.semester, false);
-                this.renderPlanner();
-            }
-
-            // Theme Toggle
-            toggleTheme() {
-                this.state.theme = this.state.theme === 'light' ? 'dark' : 'light';
-                localStorage.setItem('aktu_theme', this.state.theme);
-                this.applyTheme(this.state.theme);
-            }
-
-            applyTheme(theme) {
-                document.documentElement.setAttribute('data-theme', theme);
-            }
-
-            // Language Toggle
-            toggleLang() {
-                this.state.lang = this.state.lang === 'en' ? 'hi' : 'en';
-                localStorage.setItem('aktu_lang', this.state.lang);
-                this.applyLang(this.state.lang);
-            }
-
-            applyLang(lang) {
-                document.documentElement.setAttribute('data-lang', lang);
-                document.getElementById('langLabel').textContent = lang === 'en' ? 'Hindi' : 'English';
-                
-                const dict = database.i18n[lang];
-                document.querySelectorAll('[data-i18n]').forEach(el => {
-                    const key = el.getAttribute('data-i18n');
-                    if (dict[key]) el.textContent = dict[key];
-                });
-            }
-
-            // Branch Selection
-            selectBranch(branchCode, save = true) {
-                this.state.branch = branchCode;
-                if(save) localStorage.setItem('aktu_branch', branchCode);
-
-                document.querySelectorAll('.branch-btn').forEach(btn => {
-                    btn.classList.toggle('active', btn.textContent.includes(branchCode));
-                });
-
-                document.getElementById('currentBranchDisplay').textContent = `${branchCode} – 1st Year`;
-                this.renderSubjects();
-            }
-
-            // Semester Selection
-            selectSemester(sem, save = true) {
-                this.state.semester = sem;
-                if(save) localStorage.setItem('aktu_sem', sem);
-
-                document.getElementById('sem1Btn').classList.toggle('active', sem === 1);
-                document.getElementById('sem2Btn').classList.toggle('active', sem === 2);
-
-                this.renderSubjects();
-            }
-
-            // Render Subjects according to Branch & Semester
-            renderSubjects() {
-                const grid = document.getElementById('subjectGrid');
-                grid.innerHTML = '';
-
-                const branchData = database.branches[this.state.branch];
-                const semKey = this.state.semester === 1 ? 'sem1' : 'sem2';
-                const subjectKeys = branchData[semKey];
-
-                subjectKeys.forEach(subKey => {
-                    const sub = database.subjects[subKey];
-                    if(!sub) return;
-
-                    const isFav = this.state.favorites.includes(sub.title);
-
-                    const card = document.createElement('div');
-                    card.className = 'glass-panel subject-card';
-                    card.innerHTML = `
-                        <button class="fav-btn ${isFav ? 'active' : ''}" onclick="app.toggleFav('${sub.title}')">★</button>
-                        <h4>${sub.icon} ${sub.title}</h4>
-                        <p style="font-size:0.8rem; color:var(--text-muted);">Code: ${sub.code}</p>
-                        <div class="subject-actions">
-                            <button class="sub-btn" onclick="app.openResourceModal('notes', '${sub.title}')">📚 Notes</button>
-                            <button class="sub-btn" onclick="app.openResourceModal('pyq', '${sub.title}')">📝 PYQ</button>
-                            <button class="sub-btn" onclick="app.openResourceModal('formula', '${sub.title}')">📌 Formula</button>
-                            <button class="sub-btn" onclick="app.openResourceModal('shortNotes', '${sub.title}')">⚡ Short Notes</button>
-                            <button class="sub-btn" style="grid-column: span 2; background: var(--primary-blue); color:white;" onclick="app.openResourceModal('test', '${sub.title}')">🧪 Start Online Test</button>
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                });
-            }
-
-            // Toggle Favorites
-            toggleFav(title) {
-                const idx = this.state.favorites.indexOf(title);
-                if(idx > -1) this.state.favorites.splice(idx, 1);
-                else this.state.favorites.push(title);
-
-                localStorage.setItem('aktu_favs', JSON.stringify(this.state.favorites));
-                this.renderSubjects();
-            }
-
-            // Open Resource Modal dynamically
-            openResourceModal(type, subjectTitle) {
-                let subObj = null;
-                for(let k in database.subjects) {
-                    if(database.subjects[k].title === subjectTitle) {
-                        subObj = database.subjects[k];
-                        break;
-                    }
-                }
-                if(!subObj) subObj = database.subjects['math1'];
-
-                const content = document.getElementById('resourceModalContent');
-                content.innerHTML = '';
-
-                if(type === 'notes') {
-                    let html = `<h3 style="margin-bottom:1rem;">📚 ${subObj.title} - Unit Notes</h3>`;
-                    subObj.notes.forEach(n => {
-                        html += `
-                            <div class="unit-block">
-                                <h5>${n.unit}</h5>
-                                <p><strong>Concept:</strong> ${n.concept}</p>
-                                <p><strong>Example:</strong> ${n.example}</p>
-                                <p><strong>Practice:</strong> ${n.practice}</p>
-                            </div>
-                        `;
-                    });
-                    content.innerHTML = html;
-                } 
-                else if(type === 'pyq') {
-                    let html = `<h3 style="margin-bottom:1rem;">📝 ${subObj.title} - PYQ Bank</h3>`;
-                    subObj.pyqs.forEach(q => {
-                        html += `
-                            <div class="unit-block">
-                                <h5>${q.year} [${q.unit}] - ${q.marks} Marks</h5>
-                                <p><strong>Question:</strong> ${q.q}</p>
-                            </div>
-                        `;
-                    });
-                    content.innerHTML = html;
-                }
-                else if(type === 'formula') {
-                    let html = `<h3 style="margin-bottom:1rem;">📌 ${subObj.title} - Formula Sheet</h3>`;
-                    subObj.formulas.forEach(f => {
-                        html += `
-                            <div class="unit-block">
-                                <h5>${f.name}</h5>
-                                <p style="font-size:1.2rem; color:var(--primary-blue); font-weight:bold;">${f.formula}</p>
-                                <p>${f.meaning}</p>
-                            </div>
-                        `;
-                    });
-                    content.innerHTML = html;
-                }
-                else if(type === 'shortNotes') {
-                    let html = `<h3 style="margin-bottom:1rem;">⚡ ${subObj.title} - Revision Notes</h3>`;
-                    subObj.shortNotes.forEach(sn => {
-                        html += `
-                            <div class="unit-block">
-                                <h5>${sn.title}</h5>
-                                <p>${sn.body}</p>
-                            </div>
-                        `;
-                    });
-                    content.innerHTML = html;
-                }
-                else if(type === 'test') {
-                    let html = `<h3 style="margin-bottom:1rem;">🧪 ${subObj.title} - Self Assessment Test</h3><form id="testForm">`;
-                    subObj.test.forEach((t, i) => {
-                        html += `
-                            <div class="test-q">
-                                <p><strong>Q${i+1}: ${t.q}</strong></p>
-                                <div class="test-opt">
-                                    ${t.opts.map((opt, oIdx) => `
-                                        <label><input type="radio" name="q${i}" value="${oIdx}"> ${opt}</label>
-                                    `).join('')}
-                                </div>
-                            </div>
-                        `;
-                    });
-                    html += `<button type="button" class="sub-btn" style="padding:0.8rem 1.5rem; background:var(--primary-blue); color:white;" onclick="app.submitTest('${subObj.title}')">Submit Test</button></form><div id="testResult" style="margin-top:1rem;"></div>`;
-                    content.innerHTML = html;
-                }
-
-                this.openModal('resourceModal');
-            }
-
-            // Interactive Online Test Logic
-            submitTest(subjectTitle) {
-                let subObj = Object.values(database.subjects).find(s => s.title === subjectTitle) || database.subjects['math1'];
-                let score = 0;
-                
-                subObj.test.forEach((t, i) => {
-                    const selected = document.querySelector(`input[name="q${i}"]:checked`);
-                    if(selected && parseInt(selected.value) === t.ans) {
-                        score++;
-                    }
-                });
-
-                const resDiv = document.getElementById('testResult');
-                const pct = (score / subObj.test.length) * 100;
-                resDiv.innerHTML = `
-                    <div class="glass-panel" style="padding:1rem; text-align:center;">
-                        <h4>Test Result</h4>
-                        <p style="font-size:1.5rem; font-weight:bold; color:var(--primary-blue); margin:0.5rem 0;">Score: ${score} / ${subObj.test.length} (${pct}%)</p>
-                        <p>${pct >= 50 ? '🎉 Excellent performance!' : '📖 Needs revision. Try again!'}</p>
-                    </div>
-                `;
-            }
-
-            // Search Filter
-            handleSearch() {
-                const query = document.getElementById('searchInput').value.toLowerCase().trim();
-                if(!query) {
-                    this.renderSubjects();
-                    return;
-                }
-
-                const grid = document.getElementById('subjectGrid');
-                grid.innerHTML = '';
-
-                Object.values(database.subjects).forEach(sub => {
-                    if(sub.title.toLowerCase().includes(query) || sub.code.toLowerCase().includes(query)) {
-                        const card = document.createElement('div');
-                        card.className = 'glass-panel subject-card';
-                        card.innerHTML = `
-                            <h4>${sub.icon} ${sub.title}</h4>
-                            <p style="font-size:0.8rem; color:var(--text-muted);">Code: ${sub.code}</p>
-                            <div class="subject-actions">
-                                <button class="sub-btn" onclick="app.openResourceModal('notes', '${sub.title}')">📚 Notes</button>
-                                <button class="sub-btn" onclick="app.openResourceModal('pyq', '${sub.title}')">📝 PYQ</button>
-                            </div>
-                        `;
-                        grid.appendChild(card);
-                    }
-                });
-            }
-
-            // AI Doubt Assistant Local Simulation
-            sendChatMessage() {
-                const input = document.getElementById('chatInput');
-                const text = input.value.trim();
-                if(!text) return;
-
-                const history = document.getElementById('chatHistory');
-                
-                // Add User Message
-                const userMsg = document.createElement('div');
-                userMsg.className = 'chat-msg chat-user';
-                userMsg.textContent = text;
-                history.appendChild(userMsg);
-
-                input.value = '';
-
-                // Bot Response Lookup
-                let botText = "I don't have a direct pre-configured response for that question yet, but you can check our Notes and PYQ sections for detailed information on this topic!";
-                const lower = text.toLowerCase();
-                
-                for(let key in database.aiResponses) {
-                    if(lower.includes(key)) {
-                        botText = database.aiResponses[key];
-                        break;
-                    }
-                }
-
-                setTimeout(() => {
-                    const botMsg = document.createElement('div');
-                    botMsg.className = 'chat-msg chat-bot';
-                    botMsg.textContent = botText;
-                    history.appendChild(botMsg);
-                    history.scrollTop = history.scrollHeight;
-                }, 400);
-
-                history.scrollTop = history.scrollHeight;
-            }
-
-            // Render Study Planner
-            renderPlanner() {
-                const planList = document.getElementById('plannerList');
-                if(!planList) return;
-
-                const days = [
-                    "Day 1: Mathematics + C Programming",
-                    "Day 2: Physics + Mathematics",
-                    "Day 3: Electrical + Programming",
-                    "Day 4: Mathematics + Physics",
-                    "Day 5: PYQ Practice Session",
-                    "Day 6: Complete Mock Test",
-                    "Day 7: Revision & Formula Practice"
-                ];
-
-                let completedCount = 0;
-                planList.innerHTML = '';
-
-                days.forEach((day, idx) => {
-                    const isDone = this.state.planner[idx];
-                    if(isDone) completedCount++;
-
-                    const item = document.createElement('div');
-                    item.className = `plan-item ${isDone ? 'done' : ''}`;
-                    item.innerHTML = `
-                        <span>${day}</span>
-                        <input type="checkbox" ${isDone ? 'checked' : ''} onchange="app.togglePlanStep(${idx})">
-                    `;
-                    planList.appendChild(item);
-                });
-
-                document.getElementById('plannerProgress').textContent = `${completedCount}/7 Days Completed`;
-            }
-
-            togglePlanStep(idx) {
-                this.state.planner[idx] = !this.state.planner[idx];
-                localStorage.setItem('aktu_plan', JSON.stringify(this.state.planner));
-                this.renderPlanner();
-            }
-
-            // Render My Folder
-            renderFolder() {
-                const folderContent = document.getElementById('folderContent');
-                if(this.state.favorites.length === 0) {
-                    folderContent.innerHTML = `<p style="color:var(--text-muted);">No saved or favorited resources yet. Click the ★ icon on any subject card to save it here!</p>`;
-                    return;
-                }
-
-                let html = `<h4>⭐ Saved Subjects</h4><ul class="quick-list">`;
-                this.state.favorites.forEach(fav => {
-                    html += `<li onclick="app.openResourceModal('notes', '${fav}')">${fav} <span>Open Notes →</span></li>`;
-                });
-                html += `</ul>`;
-                folderContent.innerHTML = html;
-            }
-
-            // General Modal Handler
-            openModal(modalId) {
-                if(modalId === 'folderModal') this.renderFolder();
-                document.getElementById(modalId).classList.add('active');
-            }
-
-            closeModal(modalId) {
-                document.getElementById(modalId).classList.remove('active');
-            }
-
-            scrollToSection(id) {
-                document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-            }
-
-            navigate(route) {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-
-        // Initialize Application
-        let app;
-        window.addEventListener('DOMContentLoaded', () => {
-            app = new App();
-        });
-    </script>
 </body>
 </html>
