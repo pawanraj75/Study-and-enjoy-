@@ -1,1446 +1,2855 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-lang="en">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AKTU Study Hub - D.A.H. Rajkiya Engineering College Mainpuri</title>
-    <style>
-        :root {
-            --primary-blue: #087CFF;
-            --cyan: #00C7F5;
-            --navy: #061B43;
-            --navy-light: #0d285c;
-            --purple: #7627FF;
-            --green: #11A86A;
-            --orange: #F39A12;
-            --pink: #E83D8C;
-            
-            --bg-base: #eaf3ff;
-            --bg-card: rgba(255, 255, 255, 0.85);
-            --bg-card-hover: rgba(255, 255, 255, 0.95);
-            --text-main: #061B43;
-            --text-muted: #536b94;
-            --border-color: rgba(8, 124, 255, 0.15);
-            --glass-shadow: 0 8px 32px 0 rgba(8, 124, 255, 0.12);
-            --glow-color: rgba(0, 199, 245, 0.4);
-        }
-
-        [data-theme="dark"] {
-            --bg-base: #030a1a;
-            --bg-card: rgba(13, 40, 92, 0.6);
-            --bg-card-hover: rgba(13, 40, 92, 0.85);
-            --text-main: #e6f0ff;
-            --text-muted: #8caad9;
-            --border-color: rgba(0, 199, 245, 0.25);
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-            --glow-color: rgba(118, 39, 255, 0.5);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-        }
-
-        body {
-            background-color: var(--bg-base);
-            color: var(--text-main);
-            overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Glassmorphism Classes */
-        .glass-panel {
-            background: var(--bg-card);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            box-shadow: var(--glass-shadow);
-        }
-
-        /* Sticky Navigation Bar */
-        navbar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: var(--navy);
-            border-bottom: 2px solid var(--cyan);
-            padding: 0.75rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        }
-
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #fff;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-
-        .nav-logo-mini {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid var(--cyan);
-            background: linear-gradient(45deg, var(--primary-blue), var(--purple));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            overflow-x: auto;
-            max-width: 60%;
-            scrollbar-width: none;
-        }
-
-        .nav-menu::-webkit-scrollbar { display: none; }
-
-        .nav-btn {
-            background: transparent;
-            border: none;
-            color: #d0e1ff;
-            padding: 0.5rem 0.8rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.95rem;
-        }
-
-        .nav-btn:hover, .nav-btn.active {
-            background: rgba(0, 199, 245, 0.2);
-            color: var(--cyan);
-        }
-
-        .nav-controls {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .control-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--cyan);
-            color: white;
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.85rem;
-        }
-
-        .control-btn:hover {
-            background: var(--cyan);
-            color: var(--navy);
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            background: linear-gradient(135deg, var(--navy) 0%, var(--primary-blue) 50%, var(--purple) 100%);
-            padding: 3rem 2rem;
-            color: white;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            min-height: 280px;
-            box-shadow: inset 0 -10px 20px rgba(0,0,0,0.2);
-        }
-
-        .hero-bg-graphic {
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.15;
-            background: repeating-linear-gradient(45deg, #00c7f5, #00c7f5 10px, transparent 10px, transparent 20px);
-            pointer-events: none;
-        }
-
-        .hero-left {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            z-index: 2;
-        }
-
-        .college-logo-container {
-            position: relative;
-        }
-
-        .college-logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 4px solid #fff;
-            box-shadow: 0 0 25px var(--cyan);
-            background: #fff linear-gradient(135deg, #087CFF, #7627FF);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #fff;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .hero-title h1 {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 0.3rem;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .hero-title h2 {
-            font-size: 1.2rem;
-            color: var(--cyan);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .hero-right {
-            z-index: 2;
-            max-width: 400px;
-            text-align: right;
-            background: rgba(6, 27, 67, 0.4);
-            padding: 1.5rem;
-            border-radius: 16px;
-            border: 1px solid rgba(0, 199, 245, 0.3);
-            backdrop-filter: blur(5px);
-        }
-
-        .quote {
-            font-size: 1.05rem;
-            font-style: italic;
-            font-weight: 600;
-            color: #ffdf6d;
-            margin-bottom: 0.8rem;
-        }
-
-        .hero-visuals {
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-end;
-            font-size: 1.5rem;
-        }
-
-        /* Layout Container */
-        .container {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-            display: grid;
-            grid-template-columns: 280px 1fr 300px;
-            gap: 1.5rem;
-            flex: 1;
-        }
-
-        /* Left Sidebar - Branches */
-        .sidebar-left {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .section-header {
-            font-size: 1.1rem;
-            font-weight: 700;
-            padding: 0.8rem 1rem;
-            border-bottom: 2px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .branch-btn {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 0.5rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transform: translateY(0);
-            transition: all 0.2s ease;
-        }
-
-        .branch-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-            filter: brightness(1.1);
-        }
-
-        .branch-btn.active {
-            outline: 3px solid var(--cyan);
-            outline-offset: 2px;
-        }
-
-        .b-cse { background: linear-gradient(45deg, #087CFF, #00C7F5); }
-        .b-it { background: linear-gradient(45deg, #7627FF, #E83D8C); }
-        .b-ece { background: linear-gradient(45deg, #11A86A, #00C7F5); }
-        .b-ee { background: linear-gradient(45deg, #F39A12, #E83D8C); }
-        .b-me { background: linear-gradient(45deg, #E83D8C, #7627FF); }
-        .b-ce { background: linear-gradient(45deg, #061B43, #087CFF); }
-
-        /* Main Content */
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        /* Search Bar Section */
-        .search-box-container {
-            padding: 1rem;
-            display: flex;
-            gap: 10px;
-        }
-
-        .search-input {
-            flex: 1;
-            padding: 0.8rem 1.2rem;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            background: rgba(255, 255, 255, 0.5);
-            color: var(--text-main);
-            font-size: 1rem;
-            outline: none;
-        }
-
-        .search-input:focus {
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 10px var(--glow-color);
-        }
-
-        /* Semester Selector */
-        .semester-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .semester-card {
-            padding: 1.2rem;
-            cursor: pointer;
-            text-align: center;
-            border: 2px solid transparent;
-            transition: all 0.2s ease;
-        }
-
-        .semester-card:hover {
-            border-color: var(--cyan);
-            transform: translateY(-2px);
-        }
-
-        .semester-card.active {
-            border-color: var(--primary-blue);
-            background: linear-gradient(135deg, rgba(8, 124, 255, 0.15), rgba(0, 199, 245, 0.15));
-        }
-
-        .semester-card h3 {
-            font-size: 1.2rem;
-            color: var(--primary-blue);
-            margin-bottom: 0.3rem;
-        }
-
-        /* Subject Cards */
-        .subject-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.2rem;
-        }
-
-        .subject-card {
-            padding: 1.2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            overflow: hidden;
-            border-top: 4px solid var(--primary-blue);
-        }
-
-        .subject-card h4 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .subject-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .sub-btn {
-            padding: 0.5rem;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.2);
-            color: var(--text-main);
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-        }
-
-        .sub-btn:hover {
-            background: var(--primary-blue);
-            color: white;
-            border-color: var(--primary-blue);
-        }
-
-        .fav-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: transparent;
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-            color: #aaa;
-        }
-
-        .fav-btn.active {
-            color: #ffb400;
-        }
-
-        /* Right Sidebar */
-        .sidebar-right {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .quick-list {
-            list-style: none;
-            padding: 0.5rem;
-        }
-
-        .quick-list li {
-            padding: 0.8rem;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .quick-list li:hover {
-            color: var(--primary-blue);
-            padding-left: 1.1rem;
-        }
-
-        .quick-list li:last-child {
-            border-bottom: none;
-        }
-
-        /* Modals & Overlay Windows */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(6, 27, 67, 0.7);
-            backdrop-filter: blur(6px);
-            z-index: 2000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal-container {
-            width: 100%;
-            max-width: 800px;
-            max-height: 85vh;
-            overflow-y: auto;
-            position: relative;
-            padding: 2rem;
-            animation: modalUp 0.3s ease-out;
-        }
-
-        @keyframes modalUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(255, 0, 0, 0.1);
-            color: red;
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        /* Content Specific Layouts */
-        .unit-block {
-            margin-bottom: 1.5rem;
-            border-left: 3px solid var(--primary-blue);
-            padding-left: 1rem;
-        }
-
-        .unit-block h5 {
-            font-size: 1.1rem;
-            color: var(--primary-blue);
-            margin-bottom: 0.5rem;
-        }
-
-        .test-q {
-            margin-bottom: 1.2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .test-opt {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .test-opt label {
-            padding: 0.5rem;
-            border-radius: 6px;
-            background: rgba(255,255,255,0.1);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* AI Assistant Interface */
-        .ai-chat-box {
-            display: flex;
-            flex-direction: column;
-            height: 350px;
-        }
-
-        .chat-history {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        .chat-msg {
-            max-width: 80%;
-            padding: 0.8rem 1rem;
-            border-radius: 12px;
-            font-size: 0.95rem;
-        }
-
-        .chat-user {
-            align-self: flex-end;
-            background: var(--primary-blue);
-            color: white;
-        }
-
-        .chat-bot {
-            align-self: flex-start;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-        }
-
-        .chat-input-area {
-            display: flex;
-            gap: 10px;
-            padding-top: 0.5rem;
-        }
-
-        /* Planner Checkboxes */
-        .plan-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.8rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .plan-item.done {
-            text-decoration: line-through;
-            opacity: 0.6;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--navy);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: auto;
-            border-top: 3px solid var(--cyan);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 1rem 0;
-            flex-wrap: wrap;
-        }
-
-        .footer-links button {
-            background: none;
-            border: none;
-            color: var(--cyan);
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-            .sidebar-left, .sidebar-right {
-                order: 2;
-            }
-            .main-content {
-                order: 1;
-            }
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                gap: 1.5rem;
-            }
-            .hero-left {
-                flex-direction: column;
-            }
-            .hero-right {
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 600px) {
-            navbar {
-                padding: 0.5rem 1rem;
-            }
-            .nav-menu {
-                max-width: 100%;
-            }
-            .subject-grid {
-                grid-template-columns: 1fr;
-            }
-            .semester-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AKTU Study Hub | B.Tech First Year</title>
+
+<style>
+:root{
+  --primary:#6c5ce7;
+  --blue:#0984e3;
+  --pink:#e84393;
+  --cyan:#00cec9;
+  --orange:#e17055;
+  --green:#00b894;
+  --dark:#172033;
+  --muted:#68738a;
+  --bg:#f4f7ff;
+  --white:#ffffff;
+  --border:#e5e9f2;
+  --shadow:0 15px 40px rgba(40,50,100,.12);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%,#ddd7ff,transparent 25%),
+    radial-gradient(circle at 90% 15%,#d5fff7,transparent 25%),
+    linear-gradient(135deg,#f8f9ff,#eef6ff,#fff3f9);
+  color:var(--dark);
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+  position:sticky;
+  top:0;
+  z-index:999;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--border);
+}
+
+.nav-inner{
+  max-width:1250px;
+  margin:auto;
+  padding:12px 18px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo-box{
+  width:48px;
+  height:48px;
+  border-radius:15px;
+  background:linear-gradient(135deg,var(--primary),var(--pink));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  color:white;
+  box-shadow:0 10px 25px #6c5ce744;
+}
+
+.brand{
+  font-weight:900;
+  font-size:18px;
+}
+
+.brand small{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:3px;
+}
+
+.nav-links{
+  margin-left:auto;
+  display:flex;
+  gap:4px;
+}
+
+.nav-links button{
+  border:0;
+  background:transparent;
+  padding:10px 12px;
+  border-radius:12px;
+  font-weight:bold;
+  color:var(--muted);
+  cursor:pointer;
+}
+
+.nav-links button:hover{
+  background:#eeeaff;
+  color:var(--primary);
+}
+
+.menu-btn{
+  display:none;
+  margin-left:auto;
+  border:0;
+  background:#eeeaff;
+  padding:10px;
+  border-radius:12px;
+  font-size:18px;
+}
+
+/* ================= HERO ================= */
+
+.container{
+  max-width:1250px;
+  margin:auto;
+  padding:0 18px;
+}
+
+.hero{
+  margin-top:25px;
+}
+
+.hero-box{
+  min-height:390px;
+  border-radius:32px;
+  overflow:hidden;
+  position:relative;
+  padding:48px;
+  color:white;
+  background:
+    linear-gradient(115deg,#17134d,#5945c8 52%,#df4b91);
+  box-shadow:var(--shadow);
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
+  align-items:center;
+}
+
+.hero-box:before{
+  content:"";
+  position:absolute;
+  width:430px;
+  height:430px;
+  border-radius:50%;
+  right:-150px;
+  top:-180px;
+  background:#ffffff12;
+}
+
+.hero-box:after{
+  content:"";
+  position:absolute;
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  left:55%;
+  bottom:-190px;
+  background:#00cec933;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+}
+
+.hero-label{
+  font-size:12px;
+  letter-spacing:3px;
+  font-weight:900;
+  opacity:.8;
+}
+
+.hero h1{
+  font-size:clamp(38px,5vw,64px);
+  line-height:1.04;
+  margin:14px 0;
+}
+
+.hero h1 span{
+  color:#ffe066;
+}
+
+.hero p{
+  max-width:690px;
+  line-height:1.7;
+  color:#eeeaff;
+  font-size:17px;
+}
+
+.motivation{
+  margin-top:18px;
+  border-left:4px solid #ffe066;
+  background:#ffffff13;
+  padding:13px 17px;
+  border-radius:12px;
+  font-weight:bold;
+}
+
+.hero-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:20px;
+}
+
+/* STUDY ART */
+
+.study-art{
+  width:300px;
+  height:260px;
+  position:relative;
+  margin:auto;
+}
+
+.book{
+  position:absolute;
+  width:240px;
+  height:110px;
+  left:20px;
+  bottom:20px;
+  border-radius:10px 20px 20px 10px;
+  background:linear-gradient(135deg,#ffe66d,#ff8c69);
+  transform:rotate(-8deg);
+  box-shadow:0 25px 35px #0005;
+}
+
+.book:before,
+.book:after{
+  content:"";
+  position:absolute;
+  left:28px;
+  right:25px;
+  height:2px;
+  background:#ffffff99;
+}
+
+.book:before{
+  top:36px;
+}
+
+.book:after{
+  top:62px;
+}
+
+.pen{
+  position:absolute;
+  width:14px;
+  height:160px;
+  left:120px;
+  top:20px;
+  border-radius:10px;
+  background:linear-gradient(#fff,#74e8ff);
+  transform:rotate(30deg);
+}
+
+.lamp{
+  position:absolute;
+  width:75px;
+  height:75px;
+  right:15px;
+  top:5px;
+  border-radius:50%;
+  background:#ffe66d;
+  box-shadow:0 0 60px #ffe66d;
+}
+
+.lamp:after{
+  content:"";
+  position:absolute;
+  width:7px;
+  height:95px;
+  left:34px;
+  top:70px;
+  background:white;
+  border-radius:10px;
+}
+
+/* ================= BUTTON ================= */
+
+.btn{
+  border:0;
+  border-radius:12px;
+  padding:10px 14px;
+  font-weight:800;
+  cursor:pointer;
+  background:#eef1ff;
+  color:#4d559d;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.primary{
+  background:linear-gradient(135deg,var(--primary),var(--blue));
+  color:white;
+}
+
+.pink{
+  background:#fff0f7;
+  color:#b52b70;
+}
+
+.green{
+  background:#e8fff6;
+  color:#087951;
+}
+
+.orange{
+  background:#fff2e7;
+  color:#a95d16;
+}
+
+/* ================= STATS ================= */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  margin:20px 0;
+}
+
+.stat{
+  background:#ffffffdd;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+  box-shadow:var(--shadow);
+}
+
+.stat b{
+  font-size:28px;
+}
+
+.stat small{
+  display:block;
+  color:var(--muted);
+  margin-top:5px;
+}
+
+/* ================= SECTION ================= */
+
+section{
+  scroll-margin-top:90px;
+}
+
+.section-head{
+  margin:35px 0 15px;
+}
+
+.section-head h2{
+  font-size:28px;
+}
+
+.section-head p{
+  color:var(--muted);
+  margin-top:5px;
+}
+
+/* ================= PHOTO / LOGO AREA ================= */
+
+.branding-area{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+  margin-top:20px;
+}
+
+.upload-box{
+  min-height:170px;
+  background:#ffffffdf;
+  border:2px dashed #cfd5e5;
+  border-radius:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  padding:20px;
+}
+
+.upload-box img{
+  max-width:100%;
+  max-height:120px;
+  border-radius:15px;
+  display:none;
+}
+
+.upload-box input{
+  margin-top:12px;
+}
+
+/* ================= SUBJECTS ================= */
+
+.subject-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.subject-card{
+  position:relative;
+  overflow:hidden;
+  background:#ffffffdf;
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:20px;
+  box-shadow:var(--shadow);
+  transition:.25s;
+}
+
+.subject-card:hover{
+  transform:translateY(-5px);
+}
+
+.color-line{
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:6px;
+  background:linear-gradient(90deg,var(--primary),var(--pink),var(--orange));
+}
+
+.subject-head{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.subject-icon{
+  width:55px;
+  height:55px;
+  border-radius:16px;
+  background:#f0efff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+}
+
+.subject-card h3{
+  font-size:18px;
+}
+
+.subject-card small{
+  color:var(--muted);
+}
+
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin:15px 0;
+}
+
+.chip{
+  font-size:11px;
+  font-weight:bold;
+  padding:6px 8px;
+  border-radius:30px;
+  background:#f0f2ff;
+  color:#555da2;
+}
+
+.card-buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+/* ================= PANEL ================= */
+
+.panel{
+  background:#ffffffdf;
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:20px;
+  box-shadow:var(--shadow);
+}
+
+.search-row{
+  display:grid;
+  grid-template-columns:1fr 220px;
+  gap:10px;
+}
+
+.input,
+select,
+textarea{
+  width:100%;
+  border:1px solid var(--border);
+  background:white;
+  border-radius:12px;
+  padding:12px;
+  outline:none;
+}
+
+.input:focus,
+select:focus,
+textarea:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 4px #6c5ce715;
+}
+
+/* ================= NOTES ================= */
+
+.note-list{
+  display:grid;
+  gap:10px;
+  margin-top:15px;
+}
+
+.note{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:16px;
+}
+
+.note h4{
+  margin-bottom:7px;
+  color:var(--primary);
+}
+
+.note p{
+  color:#59647c;
+  line-height:1.65;
+}
+
+.formula{
+  background:#f1efff;
+  color:#5549b3;
+  padding:11px;
+  border-radius:10px;
+  margin-top:10px;
+  font-weight:bold;
+}
+
+/* ================= PYQ ================= */
+
+.pyq-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:13px;
+}
+
+.pyq{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:16px;
+}
+
+.pyq h4{
+  color:var(--pink);
+  margin-bottom:8px;
+}
+
+.pyq p{
+  color:#59647c;
+  line-height:1.6;
+}
+
+/* ================= TEST ================= */
+
+.quiz-list{
+  display:grid;
+  gap:12px;
+}
+
+.quiz{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:16px;
+}
+
+.options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:12px;
+}
+
+.options button{
+  border:1px solid var(--border);
+  background:#f8f9ff;
+  border-radius:11px;
+  padding:10px;
+  cursor:pointer;
+  text-align:left;
+}
+
+.options button.selected{
+  background:#eae7ff;
+  border:2px solid var(--primary);
+}
+
+/* ================= AI ================= */
+
+.ai-box{
+  border-radius:25px;
+  padding:20px;
+  color:white;
+  background:
+    radial-gradient(circle at 85% 10%,#00cec933,transparent 25%),
+    linear-gradient(135deg,#11132d,#29205e,#173e58);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+.ai-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.ai-orb{
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:radial-gradient(circle,#fff,#80ffff,#6c5ce7,#e84393);
+  box-shadow:0 0 35px #72ffff88;
+  font-size:24px;
+}
+
+.chat{
+  height:320px;
+  overflow:auto;
+  background:#0004;
+  border:1px solid #ffffff15;
+  border-radius:17px;
+  padding:12px;
+  margin:15px 0;
+}
+
+.message{
+  max-width:82%;
+  padding:11px 13px;
+  border-radius:14px;
+  margin:8px 0;
+  line-height:1.55;
+  white-space:pre-wrap;
+}
+
+.ai-message{
+  background:#ffffff12;
+}
+
+.user-message{
+  margin-left:auto;
+  background:linear-gradient(135deg,var(--primary),var(--blue));
+}
+
+.ai-controls{
+  display:grid;
+  grid-template-columns:150px 1fr auto;
+  gap:8px;
+}
+
+.ai-controls input,
+.ai-controls select{
+  border:0;
+}
+
+.ai-quick{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:10px;
+}
+
+.ai-note{
+  opacity:.65;
+  font-size:12px;
+  margin-top:12px;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:#0c1024aa;
+  backdrop-filter:blur(7px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+  z-index:2000;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-card{
+  width:min(900px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:white;
+  border-radius:23px;
+  padding:22px;
+}
+
+.modal-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.close{
+  border:0;
+  background:#eef0f5;
+  padding:9px 12px;
+  border-radius:10px;
+  cursor:pointer;
+  height:max-content;
+}
+
+.detail{
+  background:#fafbff;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:15px;
+  margin-top:10px;
+}
+
+.detail h4{
+  color:var(--primary);
+  margin-bottom:7px;
+}
+
+.detail p{
+  color:#59647c;
+  line-height:1.65;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+  text-align:center;
+  padding:40px 15px;
+  color:var(--muted);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+  .hero-box{
+    grid-template-columns:1fr;
+  }
+
+  .study-art{
+    display:none;
+  }
+
+  .subject-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:650px){
+
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:72px;
+    left:10px;
+    right:10px;
+    background:white;
+    padding:10px;
+    border-radius:15px;
+    box-shadow:var(--shadow);
+    flex-direction:column;
+  }
+
+  .nav-links.open{
+    display:flex;
+  }
+
+  .menu-btn{
+    display:block;
+  }
+
+  .hero-box{
+    padding:28px;
+    border-radius:25px;
+  }
+
+  .hero h1{
+    font-size:40px;
+  }
+
+  .subject-grid,
+  .pyq-grid,
+  .branding-area{
+    grid-template-columns:1fr;
+  }
+
+  .search-row,
+  .ai-controls{
+    grid-template-columns:1fr;
+  }
+
+  .options{
+    grid-template-columns:1fr;
+  }
+
+  .container{
+    padding:0 10px;
+  }
+}
+</style>
 </head>
+
 <body>
 
-    <!-- Sticky Dark Navy Navigation -->
-    <navbar>
-        <a href="#" class="nav-brand" onclick="app.navigate('home')">
-            <div class="nav-logo-mini">A</div>
-            <span>AKTU Study Hub</span>
-        </a>
-        <div class="nav-menu">
-            <button class="nav-btn active" onclick="app.navigate('home')">🏠 <span data-i18n="nav_home">Home</span></button>
-            <button class="nav-btn" onclick="app.openModal('aboutModal')">ℹ️ <span data-i18n="nav_about">About</span></button>
-            <button class="nav-btn" onclick="app.scrollToSection('semesterSection')">📚 <span data-i18n="nav_syllabus">Syllabus</span></button>
-            <button class="nav-btn" onclick="app.scrollToSection('aiSection')">🤖 <span data-i18n="nav_ai">AI Assistant</span></button>
-            <button class="nav-btn" onclick="app.openModal('plannerModal')">📅 <span data-i18n="nav_plan">Study Plan</span></button>
-            <button class="nav-btn" onclick="app.openModal('folderModal')">📁 <span data-i18n="nav_folder">My Folder</span></button>
-        </div>
-        <div class="nav-controls">
-            <button class="control-btn" onclick="app.toggleLang()">🌐 <span id="langLabel">Hindi</span></button>
-            <button class="control-btn" onclick="app.toggleTheme()">🌙</button>
-        </div>
-    </navbar>
+<!-- ================= NAVBAR ================= -->
 
-    <!-- College Campus Hero Section -->
-    <div class="hero">
-        <div class="hero-bg-graphic"></div>
-        <div class="hero-left">
-            <div class="college-logo-container">
-                <div class="college-logo">REC</div>
-            </div>
-            <div class="hero-title">
-                <h1>D.A.H. Rajkiya Engineering College Mainpuri</h1>
-                <h2>🎓 AKTU 1st Year Study Hub</h2>
-            </div>
+<header class="navbar">
+
+<div class="nav-inner">
+
+<div class="logo-box">📚</div>
+
+<div class="brand">
+AKTU Study Hub
+<small>B.Tech First Year • Study • Practice • Grow</small>
+</div>
+
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+<div class="nav-links" id="navLinks">
+<button onclick="goTo('home')">Home</button>
+<button onclick="goTo('subjects')">Subjects</button>
+<button onclick="goTo('notes')">Notes</button>
+<button onclick="goTo('pyq')">PYQs</button>
+<button onclick="goTo('tests')">Tests</button>
+<button onclick="goTo('ai')">AI Mode</button>
+</div>
+
+</div>
+
+</header>
+
+
+<!-- ================= HOME ================= -->
+
+<main id="home">
+
+<div class="container hero">
+
+<div class="hero-box">
+
+<div class="hero-content">
+
+<div class="hero-label">
+YOUR DIGITAL STUDY DESK
+</div>
+
+<h1>
+Study Smart.<br>
+<span>Practice More. Improve Daily.</span>
+</h1>
+
+<p>
+A colorful study platform for B.Tech First Year students with
+notes, short notes, PYQs, tests, formulas and a smart study assistant.
+</p>
+
+<div class="motivation">
+“Small progress every day becomes big success.”
+</div>
+
+<div class="hero-buttons">
+
+<button class="btn primary"
+onclick="goTo('subjects')">
+🚀 Explore Subjects
+</button>
+
+<button class="btn"
+onclick="goTo('ai')">
+✨ Open AI Mode
+</button>
+
+</div>
+
+</div>
+
+<div class="study-art">
+
+<div class="lamp"></div>
+
+<div class="pen"></div>
+
+<div class="book"></div>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+
+<!-- ================= STATS ================= -->
+
+<div class="container">
+
+<div class="stats">
+
+<div class="stat">
+<b id="subjectCount">6</b>
+<small>Subjects</small>
+</div>
+
+<div class="stat">
+<b id="noteCount">0</b>
+<small>Note Topics</small>
+</div>
+
+<div class="stat">
+<b id="pyqCount">0</b>
+<small>PYQs</small>
+</div>
+
+<div class="stat">
+<b id="testCount">10</b>
+<small>Test Questions</small>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= LOGO + COLLEGE PHOTO ================= -->
+
+<section class="container">
+
+<div class="section-head">
+<h2>🏫 Your Branding</h2>
+<p>Yahan apna logo aur college photo add kar sakte ho.</p>
+</div>
+
+<div class="branding-area">
+
+<div class="upload-box">
+
+<h3>🪪 Website Logo</h3>
+
+<p>Upload your logo</p>
+
+<input
+type="file"
+accept="image/*"
+onchange="previewImage(this,'logoPreview')"
+>
+
+<img id="logoPreview">
+
+</div>
+
+
+<div class="upload-box">
+
+<h3>🏫 College Photo</h3>
+
+<p>Upload college image</p>
+
+<input
+type="file"
+accept="image/*"
+onchange="previewImage(this,'collegePreview')"
+>
+
+<img id="collegePreview">
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= SUBJECTS ================= -->
+
+<section class="container" id="subjects">
+
+<div class="section-head">
+
+<h2>🎓 B.Tech First Year Subjects</h2>
+
+<p>
+Har subject ka individual study box.
+</p>
+
+</div>
+
+<div class="subject-grid" id="subjectGrid"></div>
+
+</section>
+
+
+<!-- ================= NOTES ================= -->
+
+<section class="container" id="notes">
+
+<div class="section-head">
+
+<h2>📘 Notes & Short Notes</h2>
+
+<p>
+Topic search karke notes open karein.
+</p>
+
+</div>
+
+<div class="panel">
+
+<div class="search-row">
+
+<input
+id="noteSearch"
+class="input"
+placeholder="Search: matrix, determinant, rank..."
+oninput="renderNotes()"
+>
+
+<select id="subjectFilter" onchange="renderNotes()"></select>
+
+</div>
+
+<div class="note-list" id="noteList"></div>
+
+</div>
+
+</section>
+
+
+<!-- ================= PYQ ================= -->
+
+<section class="container" id="pyq">
+
+<div class="section-head">
+
+<h2>📝 PYQ Practice</h2>
+
+<p>
+Previous-year style questions for revision.
+</p>
+
+</div>
+
+<div class="pyq-grid" id="pyqGrid"></div>
+
+</section>
+
+
+<!-- ================= TEST ================= -->
+
+<section class="container" id="tests">
+
+<div class="section-head">
+
+<h2>🧠 Quick Test</h2>
+
+<p>
+Questions solve karo aur instant score dekho.
+</p>
+
+</div>
+
+<div class="panel">
+
+<div class="quiz-list" id="quizList"></div>
+
+<button
+class="btn primary"
+onclick="checkTest()"
+style="margin-top:15px"
+>
+✅ Check My Score
+</button>
+
+<div
+id="score"
+style="font-size:18px;font-weight:bold;margin-top:12px">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= AI ================= -->
+
+<section class="container" id="ai">
+
+<div class="section-head">
+
+<h2>✨ AI Study Mode</h2>
+
+<p>
+Study questions, explanations, formulas and revision help.
+</p>
+
+</div>
+
+<div class="ai-box">
+
+<div class="ai-title">
+
+<div class="ai-orb">
+✦
+</div>
+
+<div>
+
+<h3>Study AI</h3>
+
+<small>
+Offline Smart Study Assistant
+</small>
+
+</div>
+
+</div>
+
+
+<div class="chat" id="chat">
+
+<div class="message ai-message">
+
+Namaste! 👋
+
+Ask me about:
+Matrices
+Determinants
+Rank
+Eigenvalues
+Eigenvectors
+Cayley-Hamilton
+Revision plans
+Short notes
+
+</div>
+
+</div>
+
+
+<div class="ai-controls">
+
+<select id="language">
+
+<option value="en">
+English
+</option>
+
+<option value="hi">
+हिन्दी
+</option>
+
+<option value="hinglish">
+Hinglish
+</option>
+
+<option value="ur">
+اردو
+</option>
+
+</select>
+
+
+<input
+id="aiQuestion"
+placeholder="Type your study question..."
+onkeydown="if(event.key==='Enter') askAI()"
+>
+
+
+<button
+class="btn"
+style="background:#ffe066;color:#302700"
+onclick="askAI()"
+>
+Ask ✨
+</button>
+
+</div>
+
+
+<div class="ai-quick">
+
+<button
+class="btn"
+onclick="quickQuestion('Explain determinant in simple language')">
+Explain Determinant
+</button>
+
+<button
+class="btn"
+onclick="quickQuestion('Give short notes on matrices')">
+Short Notes
+</button>
+
+<button
+class="btn"
+onclick="quickQuestion('Explain eigenvalues')">
+Eigenvalues
+</button>
+
+<button
+class="btn"
+onclick="quickQuestion('Give a revision plan')">
+Revision Plan
+</button>
+
+<button
+class="btn"
+onclick="speakAnswer()">
+🔊 Voice
+</button>
+
+</div>
+
+<div class="ai-note">
+
+⚠️ This is a local browser study assistant. For real generative AI,
+connect the function to a secure backend. Never put a secret API key
+directly inside HTML.
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+📚 Books &nbsp; • &nbsp; ✏️ Pen &nbsp; • &nbsp; 💡 Ideas &nbsp; • &nbsp; 🎯 Goals
+
+<br><br>
+
+<b>AKTU Study Hub</b>
+
+<br>
+
+Study • Practice • Improve
+
+</footer>
+
+
+<!-- ================= MODAL ================= -->
+
+<div
+class="modal"
+id="modal"
+onclick="if(event.target===this)closeModal()"
+>
+
+<div class="modal-card">
+
+<div class="modal-top">
+
+<div>
+
+<h2 id="modalTitle"></h2>
+
+<p
+id="modalSubtitle"
+style="color:#68738a;margin-top:5px">
+</p>
+
+</div>
+
+<button
+class="close"
+onclick="closeModal()">
+✕
+</button>
+
+</div>
+
+<div id="modalBody"></div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   SUBJECT DATA
+========================================================= */
+
+const subjects = [
+
+{
+id:"math",
+title:"Engineering Mathematics-I",
+code:"BAS103",
+icon:"📐"
+},
+
+{
+id:"physics",
+title:"Engineering Physics",
+code:"BAS101",
+icon:"⚛️"
+},
+
+{
+id:"pps",
+title:"Programming for Problem Solving",
+code:"BCS101",
+icon:"💻"
+},
+
+{
+id:"electrical",
+title:"Fundamentals of Electrical Engineering",
+code:"BEE101",
+icon:"⚡"
+},
+
+{
+id:"chemistry",
+title:"Engineering Chemistry",
+code:"BAS102",
+icon:"🧪"
+},
+
+{
+id:"english",
+title:"Technical Communication",
+code:"BAS104",
+icon:"📖"
+}
+
+];
+
+
+/* =========================================================
+   NOTES
+========================================================= */
+
+/*
+These Mathematics topics are based on the notes supplied
+in the conversation.
+*/
+
+const notes = [
+
+{
+s:"math",
+concept:"Introduction to Matrices",
+body:"A matrix is a rectangular arrangement of numbers in rows and columns.",
+formula:"Example: A = [1 2; 3 4]. Order = 2 × 2."
+},
+
+{
+s:"math",
+concept:"Definition of Matrix",
+body:"A matrix is a rectangular arrangement of numbers, quantities or expressions in rows and columns.",
+formula:"General form: A = [aij]m×n."
+},
+
+{
+s:"math",
+concept:"Order of a Matrix",
+body:"Order is the number of rows multiplied by the number of columns.",
+formula:"Order = Rows × Columns."
+},
+
+{
+s:"math",
+concept:"Elements of a Matrix",
+body:"The individual numbers present in a matrix are called elements.",
+formula:"aij represents the element in ith row and jth column."
+},
+
+{
+s:"math",
+concept:"Types of Matrices",
+body:"Important types include Row Matrix, Column Matrix, Rectangular Matrix, Square Matrix, Zero Matrix, Diagonal Matrix, Scalar Matrix, Identity Matrix, Upper Triangular Matrix, Lower Triangular Matrix, Symmetric Matrix and Skew-Symmetric Matrix."
+},
+
+{
+s:"math",
+concept:"Row Matrix",
+body:"A matrix having only one row is called a row matrix.",
+formula:"Example: [2 5 7 9]. Order = 1 × 4."
+},
+
+{
+s:"math",
+concept:"Column Matrix",
+body:"A matrix having only one column is called a column matrix.",
+formula:"Example: [2; 5; 7; 9]. Order = 4 × 1."
+},
+
+{
+s:"math",
+concept:"Rectangular Matrix",
+body:"A matrix in which the number of rows is not equal to the number of columns is called a rectangular matrix.",
+formula:"Example: [1 2 3; 4 5 6] is 2 × 3."
+},
+
+{
+s:"math",
+concept:"Square Matrix",
+body:"A matrix having equal number of rows and columns is called a square matrix.",
+formula:"Example: [2 4; 5 7] is a 2 × 2 square matrix."
+},
+
+{
+s:"math",
+concept:"Zero Matrix",
+body:"A matrix in which all elements are zero is called a zero or null matrix.",
+formula:"Example: [0 0; 0 0]."
+},
+
+{
+s:"math",
+concept:"Diagonal Matrix",
+body:"A square matrix in which all elements except the principal diagonal elements are zero is called a diagonal matrix.",
+formula:"Example: [3 0 0; 0 5 0; 0 0 7]."
+},
+
+{
+s:"math",
+concept:"Scalar Matrix",
+body:"A diagonal matrix in which all diagonal elements are equal is called a scalar matrix.",
+formula:"Example: [5 0 0; 0 5 0; 0 0 5] = 5I."
+},
+
+{
+s:"math",
+concept:"Identity Matrix",
+body:"A square matrix whose principal diagonal elements are 1 and all other elements are zero is called an identity matrix.",
+formula:"AI = IA = A."
+},
+
+{
+s:"math",
+concept:"Upper Triangular Matrix",
+body:"A square matrix in which all elements below the principal diagonal are zero is called an upper triangular matrix."
+},
+
+{
+s:"math",
+concept:"Lower Triangular Matrix",
+body:"A square matrix in which all elements above the principal diagonal are zero is called a lower triangular matrix."
+},
+
+{
+s:"math",
+concept:"Symmetric Matrix",
+body:"A square matrix A is symmetric if its transpose is equal to itself.",
+formula:"Aᵀ = A; aij = aji."
+},
+
+{
+s:"math",
+concept:"Skew-Symmetric Matrix",
+body:"A square matrix A is skew-symmetric if its transpose is equal to its negative.",
+formula:"Aᵀ = −A. All diagonal elements are zero."
+},
+
+{
+s:"math",
+concept:"Transpose of a Matrix",
+body:"Transpose is obtained by changing rows into columns and columns into rows.",
+formula:"A 2 × 3 matrix becomes a 3 × 2 matrix."
+},
+
+{
+s:"math",
+concept:"Equality of Matrices",
+body:"Two matrices are equal if they have the same order and their corresponding elements are equal."
+},
+
+{
+s:"math",
+concept:"Matrix Multiplication",
+body:"If A is m × n and B is n × p, then AB exists and has order m × p.",
+formula:"(m×n)(n×p) = m×p."
+},
+
+{
+s:"math",
+concept:"Determinant",
+body:"A determinant is a numerical quantity associated with a square matrix.",
+formula:"For [a b; c d], |A| = ad − bc."
+},
+
+{
+s:"math",
+concept:"Minor of an Element",
+body:"To find Mij, delete the row and column containing the element and find the determinant of the remaining matrix.",
+formula:"Mij = Minor of aij."
+},
+
+{
+s:"math",
+concept:"Cofactor of an Element",
+body:"The cofactor is the minor multiplied by its sign factor.",
+formula:"Cij = (−1)^(i+j) Mij."
+},
+
+{
+s:"math",
+concept:"Singular and Non-Singular Matrix",
+body:"A square matrix is singular when its determinant is zero and non-singular when its determinant is non-zero.",
+formula:"Singular: |A| = 0; Non-singular: |A| ≠ 0."
+},
+
+{
+s:"math",
+concept:"Adjoint of a Matrix",
+body:"The adjoint is the transpose of the cofactor matrix.",
+formula:"adj(A) = Cᵀ."
+},
+
+{
+s:"math",
+concept:"Inverse of a Matrix",
+body:"For a non-singular square matrix, inverse can be obtained using its adjoint and determinant.",
+formula:"A⁻¹ = adj(A) / |A|."
+},
+
+{
+s:"math",
+concept:"Rank of a Matrix",
+body:"Rank is the maximum number of linearly independent rows or columns. It can be found using echelon form or non-zero minors."
+},
+
+{
+s:"math",
+concept:"Elementary Row Transformations",
+body:"There are three elementary row transformations: interchange rows, multiply a row by a non-zero constant, and add a multiple of one row to another.",
+formula:"Ri ↔ Rj; Ri → kRi; Ri → Ri + kRj."
+},
+
+{
+s:"math",
+concept:"System of Linear Equations",
+body:"A system of equations can be represented in matrix form.",
+formula:"AX = B."
+},
+
+{
+s:"math",
+concept:"Eigenvalues",
+body:"If AX = λX for X ≠ 0, then λ is an eigenvalue of A.",
+formula:"|A − λI| = 0."
+},
+
+{
+s:"math",
+concept:"Eigenvectors",
+body:"For an eigenvalue λ, a non-zero vector X satisfying the corresponding equation is an eigenvector.",
+formula:"(A − λI)X = 0."
+},
+
+{
+s:"math",
+concept:"Cayley-Hamilton Theorem",
+body:"Every square matrix satisfies its own characteristic equation.",
+formula:"If f(λ) = 0, then f(A) = 0."
+},
+
+{
+s:"math",
+concept:"Important Formula Sheet",
+body:"Quick revision formulas for important matrix topics.",
+formula:"|A| = ad−bc; A⁻¹ = adj(A)/|A|; |A−λI|=0; (A−λI)X=0; f(A)=0."
+}
+
+];
+
+
+/* =========================================================
+   PYQ
+========================================================= */
+
+const pyqs = [
+
+{
+s:"math",
+year:"2023",
+q:"Find the eigenvalues and eigenvectors of A = [2 1; 1 2]."
+},
+
+{
+s:"math",
+year:"2022",
+q:"Find the inverse of a 2 × 2 matrix using the adjoint method."
+},
+
+{
+s:"math",
+year:"Practice",
+q:"Find the rank of A = [1 2 3; 2 4 6; 3 6 9]."
+},
+
+{
+s:"math",
+year:"Practice",
+q:"Verify the Cayley-Hamilton theorem for A = [2 1; 1 2]."
+},
+
+{
+s:"math",
+year:"Practice",
+q:"Solve 2x + 3y = 8 and x + 2y = 5 using a matrix method."
+},
+
+{
+s:"math",
+year:"Practice",
+q:"Explain symmetric and skew-symmetric matrices with examples."
+},
+
+{
+s:"math",
+year:"Practice",
+q:"Find the determinant of [3 4; 2 5]."
+},
+
+{
+s:"math",
+year:"Practice",
+q:"Explain elementary row transformations."
+},
+
+{
+s:"math",
+year:"Practice",
+q:"Explain singular and non-singular matrices."
+},
+
+{
+s:"math",
+year:"Practice",
+q:"Find eigenvalues using the characteristic equation."
+}
+
+];
+
+
+/* =========================================================
+   QUIZ
+========================================================= */
+
+const quiz = [
+
+{
+q:"The order of a matrix is:",
+o:["Columns × Rows","Rows × Columns","Rows + Columns","Rows − Columns"],
+a:1
+},
+
+{
+q:"For [a b; c d], determinant is:",
+o:["ab − cd","ac − bd","ad − bc","a+b+c+d"],
+a:2
+},
+
+{
+q:"A matrix is singular when:",
+o:["|A|=1","|A|<0","|A|=0","|A|>0"],
+a:2
+},
+
+{
+q:"Condition for eigenvalues is:",
+o:["|A+λI|=1","|A−λI|=0","A=0","A=I"],
+a:1
+},
+
+{
+q:"Diagonal elements of a skew-symmetric matrix are:",
+o:["1","Equal","Zero","Negative"],
+a:2
+},
+
+{
+q:"Identity matrix satisfies:",
+o:["AI=IA=A","AI=0","IA=I only","A+I=A"],
+a:0
+},
+
+{
+q:"Matrix multiplication is generally:",
+o:["Commutative","Not commutative","Impossible","Only subtraction"],
+a:1
+},
+
+{
+q:"Cij equals:",
+o:["Mij","(−1)^(i+j)Mij","Mij²","i+j"],
+a:1
+},
+
+{
+q:"Rank can be found using:",
+o:["Echelon form","Only addition","Only subtraction","Only transpose"],
+a:0
+},
+
+{
+q:"Cayley-Hamilton theorem says every square matrix satisfies:",
+o:["Its inverse","Its own characteristic equation","Only determinant","Only transpose"],
+a:1
+}
+
+];
+
+
+/* =========================================================
+   BASIC FUNCTIONS
+========================================================= */
+
+function goTo(id){
+
+  const element=document.getElementById(id);
+
+  if(element){
+    element.scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+  }
+
+  document.getElementById("navLinks").classList.remove("open");
+}
+
+
+function toggleMenu(){
+
+  document
+  .getElementById("navLinks")
+  .classList.toggle("open");
+
+}
+
+
+/* =========================================================
+   IMAGE PREVIEW
+========================================================= */
+
+function previewImage(input,id){
+
+  const file=input.files[0];
+
+  if(!file)return;
+
+  const reader=new FileReader();
+
+  reader.onload=function(e){
+
+    const image=document.getElementById(id);
+
+    image.src=e.target.result;
+
+    image.style.display="block";
+
+  };
+
+  reader.readAsDataURL(file);
+
+}
+
+
+/* =========================================================
+   SUBJECTS
+========================================================= */
+
+function renderSubjects(){
+
+  document.getElementById("subjectGrid").innerHTML=
+
+  subjects.map(function(s){
+
+    return `
+
+    <div class="subject-card">
+
+      <div class="color-line"></div>
+
+      <div class="subject-head">
+
+        <div class="subject-icon">
+          ${s.icon}
         </div>
-        <div class="hero-right">
-            <div class="quote">“Mehnat itni karo ki success tumse milne ke liye tarse! 🚀”</div>
-            <div class="hero-visuals">
-                <span>📚</span>
-                <span>💻</span>
-                <span>🏆</span>
-                <span>💡</span>
-            </div>
+
+        <div>
+
+          <h3>${s.title}</h3>
+
+          <small>${s.code}</small>
+
         </div>
+
+      </div>
+
+
+      <div class="chips">
+
+        <span class="chip">📘 Notes</span>
+
+        <span class="chip">📝 PYQ</span>
+
+        <span class="chip">⚡ Short Notes</span>
+
+        <span class="chip">🧠 Test</span>
+
+      </div>
+
+
+      <div class="card-buttons">
+
+        <button
+        class="btn primary"
+        onclick="openSubject('${s.id}')">
+
+        📘 Notes
+
+        </button>
+
+
+        <button
+        class="btn pink"
+        onclick="openSubjectPYQ('${s.id}')">
+
+        📝 PYQ
+
+        </button>
+
+
+        <button
+        class="btn green"
+        onclick="openShortNotes('${s.id}')">
+
+        ⚡ Short
+
+        </button>
+
+
+        <button
+        class="btn orange"
+        onclick="goTo('tests')">
+
+        🧠 Test
+
+        </button>
+
+      </div>
+
     </div>
 
-    <!-- Main Container -->
-    <div class="container">
-        
-        <!-- Left Sidebar: Branch Selection -->
-        <div class="sidebar-left">
-            <div class="glass-panel">
-                <div class="section-header">
-                    📌 <span data-i18n="select_branch">Select Branch</span>
-                </div>
-                <div style="padding: 1rem;">
-                    <button class="branch-btn b-cse active" onclick="app.selectBranch('CSE')">💻 CSE</button>
-                    <button class="branch-btn b-it" onclick="app.selectBranch('IT')">🖥️ IT</button>
-                    <button class="branch-btn b-ece" onclick="app.selectBranch('ECE')">📡 ECE</button>
-                    <button class="branch-btn b-ee" onclick="app.selectBranch('EE')">⚡ EE</button>
-                    <button class="branch-btn b-me" onclick="app.selectBranch('ME')">⚙️ ME</button>
-                    <button class="branch-btn b-ce" onclick="app.selectBranch('CE')">🏗️ CE</button>
-                </div>
-            </div>
-        </div>
+    `;
 
-        <!-- Middle Content Area -->
-        <div class="main-content">
-            
-            <!-- Global Search Box -->
-            <div class="glass-panel search-box-container">
-                <input type="text" class="search-input" id="searchInput" placeholder="Search Mathematics, Physics, C Programming..." oninput="app.handleSearch()">
-                <button class="sub-btn" style="padding: 0 1.5rem; background: var(--primary-blue); color:white;" onclick="app.handleSearch()" data-i18n="btn_search">Search</button>
-            </div>
+  }).join("");
 
-            <!-- Semester Toggle Section -->
-            <div class="semester-grid" id="semesterSection">
-                <div class="glass-panel semester-card active" id="sem1Btn" onclick="app.selectSemester(1)">
-                    <h3>📘 <span data-i18n="sem1_title">Semester 1</span></h3>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="sem1_desc">Core first-semester subjects & resources</p>
-                </div>
-                <div class="glass-panel semester-card" id="sem2Btn" onclick="app.selectSemester(2)">
-                    <h3>📗 <span data-i18n="sem2_title">Semester 2</span></h3>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="sem2_desc">Second-semester subjects & resources</p>
-                </div>
-            </div>
+}
 
-            <!-- Dynamic Branch Heading -->
-            <h2 id="currentBranchDisplay" style="margin-top: 0.5rem; font-size: 1.4rem;">CSE – 1st Year</h2>
 
-            <!-- Subject Cards Container -->
-            <div class="subject-grid" id="subjectGrid">
-                <!-- Subject Cards injected dynamically via JS -->
-            </div>
+/* =========================================================
+   FILTER
+========================================================= */
 
-            <!-- Embedded AI Doubt Assistant Section -->
-            <div class="glass-panel" id="aiSection" style="padding: 1.5rem;">
-                <div class="section-header" style="padding-left: 0;">
-                    🤖 <span data-i18n="ai_title">AI Doubt Assistant</span>
-                </div>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;" data-i18n="ai_desc">Ask your study doubts regarding KVL, KCL, C Programming, Maths, and more.</p>
-                <div class="ai-chat-box">
-                    <div class="chat-history" id="chatHistory">
-                        <div class="chat-msg chat-bot">Hello! I am your AKTU Study Hub Assistant. How can I help you with your 1st year studies today?</div>
-                    </div>
-                    <div class="chat-input-area">
-                        <input type="text" class="search-input" id="chatInput" placeholder="Type your question here (e.g., KVL kya hai?)..." onkeypress="if(event.key==='Enter') app.sendChatMessage()">
-                        <button class="sub-btn" style="padding: 0 1.2rem; background: var(--primary-blue); color:white;" onclick="app.sendChatMessage()" data-i18n="btn_ask">Ask Doubt</button>
-                    </div>
-                </div>
-            </div>
+function setupFilter(){
 
-        </div>
+  const filter=document.getElementById("subjectFilter");
 
-        <!-- Right Sidebar: Quick Links & Popular Resources -->
-        <div class="sidebar-right">
-            
-            <div class="glass-panel">
-                <div class="section-header">
-                    ⚡ <span data-i18n="quick_links">Quick Links</span>
-                </div>
-                <ul class="quick-list">
-                    <li onclick="app.scrollToSection('semesterSection')">📑 Syllabus <span>→</span></li>
-                    <li onclick="app.openResourceModal('pyq', 'Engineering Mathematics-I')">📝 PYQ Bank <span>→</span></li>
-                    <li onclick="app.openResourceModal('test', 'Programming for Problem Solving')">🧪 Online Test <span>→</span></li>
-                    <li onclick="app.openModal('plannerModal')">📅 Study Plan <span>→</span></li>
-                    <li onclick="app.openResourceModal('notes', 'Engineering Physics')">📚 Notes <span>→</span></li>
-                    <li onclick="app.openResourceModal('formula', 'Engineering Mathematics-I')">📌 Formula Sheet <span>→</span></li>
-                </ul>
-            </div>
+  filter.innerHTML=
 
-            <div class="glass-panel">
-                <div class="section-header">
-                    🔥 <span data-i18n="popular_res">Popular Resources</span>
-                </div>
-                <ul class="quick-list">
-                    <li onclick="app.openResourceModal('notes', 'Engineering Mathematics-I')">📐 Mathematics-I Notes <span>→</span></li>
-                    <li onclick="app.openResourceModal('notes', 'Engineering Physics')">⚛️ Physics Formulae <span>→</span></li>
-                    <li onclick="app.openResourceModal('notes', 'Programming for Problem Solving')">💻 C Programming PYQs <span>→</span></li>
-                    <li onclick="app.openResourceModal('notes', 'Fundamentals of Electrical Engineering')">⚡ Electrical Short Notes <span>→</span></li>
-                    <li onclick="app.openResourceModal('test', 'Engineering Physics')">🧪 Physics Mock Test <span>→</span></li>
-                </ul>
-            </div>
+  `<option value="all">All Subjects</option>`+
 
-        </div>
+  subjects.map(function(s){
+
+    return `<option value="${s.id}">${s.title}</option>`;
+
+  }).join("");
+
+}
+
+
+/* =========================================================
+   NOTES
+========================================================= */
+
+function renderNotes(){
+
+  const search=
+  document
+  .getElementById("noteSearch")
+  .value
+  .toLowerCase();
+
+  const filter=
+  document
+  .getElementById("subjectFilter")
+  .value;
+
+
+  const result=notes.filter(function(n){
+
+    const matchSubject=
+    filter==="all" || n.s===filter;
+
+    const text=
+    (n.concept+" "+n.body+" "+(n.formula||""))
+    .toLowerCase();
+
+    return matchSubject && text.includes(search);
+
+  });
+
+
+  if(result.length===0){
+
+    document.getElementById("noteList").innerHTML=
+
+    `<div class="note">
+
+      <h4>No topic found</h4>
+
+      <p>Try another keyword.</p>
+
+    </div>`;
+
+    return;
+  }
+
+
+  document.getElementById("noteList").innerHTML=
+
+  result.map(function(n){
+
+    const index=notes.indexOf(n);
+
+    return `
+
+    <div class="note">
+
+      <h4>${n.concept}</h4>
+
+      <p>${n.body}</p>
+
+      ${
+        n.formula
+        ?
+        `<div class="formula">
+          📌 ${n.formula}
+        </div>`
+        :""
+      }
+
+      <button
+      class="btn primary"
+      style="margin-top:10px"
+      onclick="openNote(${index})">
+
+      Read Full Topic
+
+      </button>
 
     </div>
 
-    <!-- MODAL WINDOWS -->
+    `;
 
-    <!-- Common Resource Display Modal (Notes, PYQs, Formula, Short Notes, Test) -->
-    <div class="modal-overlay" id="resourceModal">
-        <div class="glass-panel modal-container">
-            <button class="modal-close" onclick="app.closeModal('resourceModal')">✕</button>
-            <div id="resourceModalContent"></div>
-        </div>
+  }).join("");
+
+}
+
+
+/* =========================================================
+   PYQ
+========================================================= */
+
+function renderPYQ(){
+
+  document.getElementById("pyqGrid").innerHTML=
+
+  pyqs.map(function(p,i){
+
+    return `
+
+    <div class="pyq">
+
+      <h4>${p.year}</h4>
+
+      <p>${p.q}</p>
+
+      <button
+      class="btn primary"
+      style="margin-top:10px"
+      onclick="openPYQ(${i})">
+
+      View Question
+
+      </button>
+
     </div>
 
-    <!-- 7-Day Study Planner Modal -->
-    <div class="modal-overlay" id="plannerModal">
-        <div class="glass-panel modal-container">
-            <button class="modal-close" onclick="app.closeModal('plannerModal')">✕</button>
-            <div class="section-header" style="padding-left: 0; margin-bottom: 1rem;">
-                📅 <span data-i18n="planner_title">7-Day Study Planner</span>
-            </div>
-            <p id="plannerProgress" style="font-weight: bold; color: var(--primary-blue); margin-bottom: 1rem;">0/7 Days Completed</p>
-            <div id="plannerList"></div>
-        </div>
+    `;
+
+  }).join("");
+
+}
+
+
+/* =========================================================
+   QUIZ
+========================================================= */
+
+let selectedAnswers={};
+
+
+function renderQuiz(){
+
+  document.getElementById("quizList").innerHTML=
+
+  quiz.map(function(q,i){
+
+    return `
+
+    <div class="quiz">
+
+      <b>
+      ${i+1}. ${q.q}
+      </b>
+
+      <div class="options">
+
+      ${
+        q.o.map(function(option,j){
+
+          return `
+
+          <button
+          onclick="selectAnswer(${i},${j},this)">
+
+          ${String.fromCharCode(65+j)}.
+          ${option}
+
+          </button>
+
+          `;
+
+        }).join("")
+      }
+
+      </div>
+
     </div>
 
-    <!-- My Folder Modal -->
-    <div class="modal-overlay" id="folderModal">
-        <div class="glass-panel modal-container">
-            <button class="modal-close" onclick="app.closeModal('folderModal')">✕</button>
-            <div class="section-header" style="padding-left: 0; margin-bottom: 1rem;">
-                📁 <span data-i18n="folder_title">My Folder (Saved Resources)</span>
-            </div>
-            <div id="folderContent"></div>
-        </div>
-    </div>
+    `;
 
-    <!-- About Modal -->
-    <div class="modal-overlay" id="aboutModal">
-        <div class="glass-panel modal-container">
-            <button class="modal-close" onclick="app.closeModal('aboutModal')">✕</button>
-            <div class="section-header" style="padding-left: 0; margin-bottom: 1rem;">
-                ℹ️ About AKTU Study Hub
-            </div>
-            <p style="line-height: 1.6; margin-bottom: 1rem;">
-                <strong>AKTU Study Hub</strong> is a comprehensive, student-focused study platform exclusively created for 1st Year engineering students at <strong>D.A.H. Rajkiya Engineering College Mainpuri</strong>.
-            </p>
-            <p style="line-height: 1.6; margin-bottom: 1rem;">
-                Our platform organizes all first-year academic materials into one seamless, internal portal. Access unit-wise notes, previous year question banks, revision formula sheets, short notes, interactive self-assessment tests, and AI-assisted doubt clearing—all operating completely inside this hub with zero external redirections.
-            </p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 1.5rem; text-align: center;">
-                <div style="padding: 0.8rem; background: rgba(8, 124, 255, 0.1); border-radius: 8px;">📚 Notes</div>
-                <div style="padding: 0.8rem; background: rgba(8, 124, 255, 0.1); border-radius: 8px;">📝 PYQs</div>
-                <div style="padding: 0.8rem; background: rgba(8, 124, 255, 0.1); border-radius: 8px;">🧪 Tests</div>
-                <div style="padding: 0.8rem; background: rgba(8, 124, 255, 0.1); border-radius: 8px;">📌 Formulas</div>
-            </div>
-        </div>
-    </div>
+  }).join("");
 
-    <!-- Footer -->
-    <footer>
-        <div style="font-weight: 800; font-size: 1.2rem; margin-bottom: 0.3rem;">AKTU Study Hub</div>
-        <div style="font-size: 0.9rem; opacity: 0.8;">D.A.H. Rajkiya Engineering College Mainpuri</div>
-        <div style="font-size: 0.85rem; color: var(--cyan); margin-top: 0.5rem;">Made for Learning 📚</div>
-        
-        <div class="footer-links">
-            <button onclick="app.openModal('aboutModal')">About</button>
-            <button onclick="app.scrollToSection('semesterSection')">Syllabus</button>
-            <button onclick="app.scrollToSection('aiSection')">AI Assistant</button>
-            <button onclick="app.openModal('plannerModal')">Study Plan</button>
-            <button onclick="app.openModal('folderModal')">My Folder</button>
-        </div>
-        <div style="font-size: 0.75rem; opacity: 0.5; margin-top: 1rem;">© 2026 AKTU Study Hub REC Mainpuri. Self-Contained Educational Portal.</div>
-    </footer>
+}
 
-    <!-- Vanilla JavaScript Core Logic -->
-    <script>
-        // Centralized Structured Dataset
-        const database = {
-            branches: {
-                CSE: { name: "Computer Science & Engineering", sem1: ["math1", "physics", "pps"], sem2: ["ee", "env", "english"] },
-                IT: { name: "Information Technology", sem1: ["math1", "physics", "pps"], sem2: ["ee", "env", "english"] },
-                ECE: { name: "Electronics & Comm. Engg.", sem1: ["math1", "physics", "ee"], sem2: ["pps", "env", "english"] },
-                EE: { name: "Electrical Engineering", sem1: ["math1", "physics", "ee"], sem2: ["pps", "env", "english"] },
-                ME: { name: "Mechanical Engineering", sem1: ["math1", "physics", "env"], sem2: ["pps", "ee", "english"] },
-                CE: { name: "Civil Engineering", sem1: ["math1", "physics", "env"], sem2: ["pps", "ee", "english"] }
-            },
-            subjects: {
-                math1: {
-                    title: "Engineering Mathematics-I",
-                    code: "BAS103",
-                    icon: "📐",
-                    notes: [
-                        { unit: "Unit 1: Matrices", concept: "Elementary Transformations, Rank of Matrix, Cayley-Hamilton Theorem.", example: "Find rank of Matrix A = [[1,2],[3,4]].", practice: "State & Prove Cayley Hamilton Theorem for 3x3 Matrix." },
-                        { unit: "Unit 2: Differential Calculus I", concept: "Leibnitz's Theorem, Partial Derivatives, Euler's Theorem for Homogeneous functions.", example: "If u = x^2+y^2, evaluate du/dx.", practice: "Verify Euler Theorem for u = (x+y)/(x-y)." },
-                        { unit: "Unit 3: Differential Calculus II", concept: "Taylor's & Maclaurin's series, Jacobians, Maxima & Minima of two variables.", example: "Expand sin(x) in powers of x.", practice: "Find extreme values of f(x,y) = x^3 + y^3 - 3axy." }
-                    ],
-                    pyqs: [
-                        { year: "2023", unit: "Unit 1", q: "Find the eigenvalues and eigenvectors of matrix [[2,1],[1,2]].", marks: 7 },
-                        { year: "2022", unit: "Unit 2", q: "State Leibnitz Theorem and expand y = e^(a sin^-1 x).", marks: 10 }
-                    ],
-                    formulas: [
-                        { name: "Cayley-Hamilton Theorem", formula: "|A - λI| = 0", meaning: "Every square matrix satisfies its own characteristic equation." },
-                        { name: "Euler's Theorem", formula: "x(∂u/∂x) + y(∂u/∂y) = nu", meaning: "For homogeneous function u of degree n." }
-                    ],
-                    shortNotes: [
-                        { title: "Matrix Rank", body: "Max number of linearly independent rows/columns. Rank = non-zero rows in Echelon form." }
-                    ],
-                    test: [
-                        { q: "Rank of identity matrix of order n is?", opts: ["0", "1", "n", "n-1"], ans: 2 },
-                        { q: "Eigen values of a symmetric matrix are always?", opts: ["Real", "Imaginary", "Zero", "Complex"], ans: 0 }
-                    ]
-                },
-                physics: {
-                    title: "Engineering Physics",
-                    code: "BAS101",
-                    icon: "⚛️",
-                    notes: [
-                        { unit: "Unit 1: Relativistic Mechanics", concept: "Inertial frames, Michelson-Morley Experiment, Lorentz Transformations, Mass-Energy Equivalence.", example: "Calculate length contraction at 0.8c.", practice: "Derive E = mc^2." },
-                        { unit: "Unit 2: Electromagnetic Field Theory", concept: "Gauss Law, Ampere Law, Maxwell's Equations, Poynting Vector.", example: "Write Maxwell equations in differential form.", practice: "Derive wave equation in free space." }
-                    ],
-                    pyqs: [
-                        { year: "2023", unit: "Unit 1", q: "Derive Lorentz Transformation Equations.", marks: 10 },
-                        { year: "2022", unit: "Unit 2", q: "State and prove Poynting Theorem.", marks: 7 }
-                    ],
-                    formulas: [
-                        { name: "Mass Variation", formula: "m = m0 / √(1 - v^2/c^2)", meaning: "Relativistic mass increasing with velocity." },
-                        { name: "Poynting Vector", formula: "S = E x H", meaning: "Direction and rate of EM energy flow." }
-                    ],
-                    shortNotes: [
-                        { title: "Michelson-Morley Null Result", body: "Proved non-existence of hypothetical ether frame; speed of light is invariant." }
-                    ],
-                    test: [
-                        { q: "Speed of light in vacuum is constant in all inertial frames according to?", opts: ["Galilean relativity", "Special relativity", "General relativity", "Newtonian mechanics"], ans: 1 }
-                    ]
-                },
-                pps: {
-                    title: "Programming for Problem Solving",
-                    code: "BCS101",
-                    icon: "💻",
-                    notes: [
-                        { unit: "Unit 1: Basics of C", concept: "Flowcharts, Data Types, Operators, Precedence, Structure of C program.", example: "Swap two numbers without 3rd variable.", practice: "Draw flowchart for finding greatest of 3 numbers." },
-                        { unit: "Unit 2: Control Statements", concept: "If-Else, Switch, For, While, Do-While, Break & Continue.", example: "Check if number is Prime.", practice: "Generate Fibonacci sequence up to N terms." }
-                    ],
-                    pyqs: [
-                        { year: "2023", unit: "Unit 1", q: "Differentiate between Call by Value and Call by Reference.", marks: 7 },
-                        { year: "2022", unit: "Unit 2", q: "Write a program to multiply two 3x3 matrices in C.", marks: 10 }
-                    ],
-                    formulas: [
-                        { name: "Format Specifiers", formula: "%d (int), %f (float), %c (char)", meaning: "Used for standard input and output formatting in C." }
-                    ],
-                    shortNotes: [
-                        { title: "Pointers in C", body: "Variables storing memory address of another variable. Declared using asterisk (*)." }
-                    ],
-                    test: [
-                        { q: "Which operator is used to access value at address stored in pointer?", opts: ["&", "*", "->", "."], ans: 1 }
-                    ]
-                },
-                ee: {
-                    title: "Fundamentals of Electrical Engineering",
-                    code: "BEE101",
-                    icon: "⚡",
-                    notes: [
-                        { unit: "Unit 1: DC Circuits", concept: "KVL, KCL, Mesh Analysis, Nodal Analysis, Thevenin's & Norton's Theorem.", example: "Find current using KVL in single loop circuit.", practice: "State and prove Superposition Theorem." }
-                    ],
-                    pyqs: [
-                        { year: "2023", unit: "Unit 1", q: "State KVL and KCL with suitable circuit diagram.", marks: 7 }
-                    ],
-                    formulas: [
-                        { name: "Ohm's Law", formula: "V = I x R", meaning: "Voltage across conductor is proportional to current." },
-                        { name: "KVL", formula: "∑ V = 0", meaning: "Algebraic sum of voltages in closed loop equals zero." }
-                    ],
-                    shortNotes: [
-                        { title: "Thevenin Theorem", body: "Any linear two-terminal circuit can be replaced by equivalent voltage source Vth in series with Rth." }
-                    ],
-                    test: [
-                        { q: "KVL works on the principle of conservation of?", opts: ["Charge", "Energy", "Momentum", "Power"], ans: 1 }
-                    ]
-                },
-                env: {
-                    title: "Environment & Ecology",
-                    code: "BAS104",
-                    icon: "🌱",
-                    notes: [
-                        { unit: "Unit 1: Ecosystems", concept: "Abiotic & Biotic components, Food Chains, Food Webs, Ecological Pyramids.", example: "Explain Nitrogen Cycle.", practice: "Describe energy flow model in ecosystem." }
-                    ],
-                    pyqs: [
-                        { year: "2023", unit: "Unit 1", q: "Explain Bio-magnification with suitable example.", marks: 7 }
-                    ],
-                    formulas: [
-                        { name: "10% Energy Law", formula: "E_next = E_current x 0.10", meaning: "Only 10% energy transfers to next trophic level." }
-                    ],
-                    shortNotes: [
-                        { title: "Acid Rain", body: "Caused by atmospheric reaction of SO2 and NOx producing H2SO4 and HNO3." }
-                    ],
-                    test: [
-                        { q: "Which gas is primarily responsible for Global Warming?", opts: ["O2", "CO2", "N2", "Argon"], ans: 1 }
-                    ]
-                },
-                english: {
-                    title: "English / Communication Skills",
-                    code: "BAS105",
-                    icon: "📖",
-                    notes: [
-                        { unit: "Unit 1: Communication", concept: "Process, Barriers, 7 Cs of Effective Communication, Verbal & Non-Verbal.", example: "Draft formal leave application.", practice: "Explain Technical Report writing format." }
-                    ],
-                    pyqs: [
-                        { year: "2023", unit: "Unit 1", q: "Explain Noise as a barrier in communication process.", marks: 7 }
-                    ],
-                    formulas: [
-                        { name: "7 Cs", formula: "Clear, Concise, Concrete, Correct, Coherent, Complete, Courteous", meaning: "Seven pillars of effective communication." }
-                    ],
-                    shortNotes: [
-                        { title: "Kinesics", body: "Study of body language, facial expressions, and gestures in communication." }
-                    ],
-                    test: [
-                        { q: "Which of these is non-verbal communication?", opts: ["Email", "Body Gesture", "Speech", "Report"], ans: 1 }
-                    ]
-                }
-            },
-            aiResponses: {
-                "kvl": "KVL (Kirchhoff's Voltage Law) states that the algebraic sum of all potential differences (voltages) around any closed loop in a circuit is equal to zero (∑V = 0). It works on the law of conservation of energy.",
-                "kcl": "KCL (Kirchhoff's Current Law) states that the total current entering a junction or node equals the total current leaving that junction. It works on the conservation of charge.",
-                "ohm": "Ohm's Law states that current (I) flowing through a conductor between two points is directly proportional to voltage (V) across the two points: V = I * R.",
-                "c programming": "C is a procedural programming language developed by Dennis Ritchie. It forms the core foundation for 1st-year computer engineering studies.",
-                "variable": "A variable in programming is a named memory location used to store data that can be altered during program execution.",
-                "loop": "Loops (for, while, do-while) are used to execute a block of code repeatedly until a specified condition is met.",
-                "factorial": "Factorial of n (n!) is the product of all positive integers less than or equal to n. Example: 5! = 5*4*3*2*1 = 120."
-            },
-            i18n: {
-                en: {
-                    nav_home: "Home", nav_about: "About", nav_syllabus: "Syllabus", nav_ai: "AI Assistant", nav_plan: "Study Plan", nav_folder: "My Folder",
-                    select_branch: "Select Branch", sem1_title: "Semester 1", sem1_desc: "Core first-semester subjects & resources",
-                    sem2_title: "Semester 2", sem2_desc: "Second-semester subjects & resources",
-                    quick_links: "Quick Links", popular_res: "Popular Resources", btn_search: "Search", btn_ask: "Ask Doubt",
-                    ai_title: "AI Doubt Assistant", ai_desc: "Ask your study doubts regarding KVL, KCL, C Programming, Maths, and more.",
-                    planner_title: "7-Day Study Planner", folder_title: "My Folder (Saved Resources)"
-                },
-                hi: {
-                    nav_home: "होम", nav_about: "परिचय", nav_syllabus: "पाठ्यक्रम", nav_ai: "AI सहायक", nav_plan: "अध्ययन योजना", nav_folder: "मेरा फोल्डर",
-                    select_branch: "शाखा चुनें", sem1_title: "सेमेस्टर 1", sem1_desc: "प्रथम सेमेस्टर के विषय और संसाधन",
-                    sem2_title: "सेमेस्टर 2", sem2_desc: "द्वितीय सेमेस्टर के विषय और संसाधन",
-                    quick_links: "त्वरित लिंक", popular_res: "लोकप्रिय संसाधन", btn_search: "खोजें", btn_ask: "प्रश्न पूछें",
-                    ai_title: "AI डाउट असिस्टेंट", ai_desc: "KVL, KCL, C प्रोग्रामिंग, गणित आदि के संबंध में अपने संदेह पूछें।",
-                    planner_title: "7-दिवसीय अध्ययन योजना", folder_title: "मेरा फोल्डर (सुरक्षित संसाधन)"
-                }
-            }
-        };
 
-        // Application Controller
-        class App {
-            constructor() {
-                this.state = {
-                    branch: localStorage.getItem('aktu_branch') || 'CSE',
-                    semester: parseInt(localStorage.getItem('aktu_sem')) || 1,
-                    theme: localStorage.getItem('aktu_theme') || 'light',
-                    lang: localStorage.getItem('aktu_lang') || 'en',
-                    favorites: JSON.parse(localStorage.getItem('aktu_favs')) || [],
-                    planner: JSON.parse(localStorage.getItem('aktu_plan')) || [false, false, false, false, false, false, false]
-                };
+function selectAnswer(question,answer,button){
 
-                this.init();
-            }
+  selectedAnswers[question]=answer;
 
-            init() {
-                this.applyTheme(this.state.theme);
-                this.applyLang(this.state.lang);
-                this.selectBranch(this.state.branch, false);
-                this.selectSemester(this.state.semester, false);
-                this.renderPlanner();
-            }
+  const buttons=
+  button.parentElement.querySelectorAll("button");
 
-            // Theme Toggle
-            toggleTheme() {
-                this.state.theme = this.state.theme === 'light' ? 'dark' : 'light';
-                localStorage.setItem('aktu_theme', this.state.theme);
-                this.applyTheme(this.state.theme);
-            }
+  buttons.forEach(function(b){
 
-            applyTheme(theme) {
-                document.documentElement.setAttribute('data-theme', theme);
-            }
+    b.classList.remove("selected");
 
-            // Language Toggle
-            toggleLang() {
-                this.state.lang = this.state.lang === 'en' ? 'hi' : 'en';
-                localStorage.setItem('aktu_lang', this.state.lang);
-                this.applyLang(this.state.lang);
-            }
+  });
 
-            applyLang(lang) {
-                document.documentElement.setAttribute('data-lang', lang);
-                document.getElementById('langLabel').textContent = lang === 'en' ? 'Hindi' : 'English';
-                
-                const dict = database.i18n[lang];
-                document.querySelectorAll('[data-i18n]').forEach(el => {
-                    const key = el.getAttribute('data-i18n');
-                    if (dict[key]) el.textContent = dict[key];
-                });
-            }
+  button.classList.add("selected");
 
-            // Branch Selection
-            selectBranch(branchCode, save = true) {
-                this.state.branch = branchCode;
-                if(save) localStorage.setItem('aktu_branch', branchCode);
+}
 
-                document.querySelectorAll('.branch-btn').forEach(btn => {
-                    btn.classList.toggle('active', btn.textContent.includes(branchCode));
-                });
 
-                document.getElementById('currentBranchDisplay').textContent = `${branchCode} – 1st Year`;
-                this.renderSubjects();
-            }
+function checkTest(){
 
-            // Semester Selection
-            selectSemester(sem, save = true) {
-                this.state.semester = sem;
-                if(save) localStorage.setItem('aktu_sem', sem);
+  let score=0;
 
-                document.getElementById('sem1Btn').classList.toggle('active', sem === 1);
-                document.getElementById('sem2Btn').classList.toggle('active', sem === 2);
+  quiz.forEach(function(q,i){
 
-                this.renderSubjects();
-            }
+    if(selectedAnswers[i]===q.a){
 
-            // Render Subjects according to Branch & Semester
-            renderSubjects() {
-                const grid = document.getElementById('subjectGrid');
-                grid.innerHTML = '';
+      score++;
 
-                const branchData = database.branches[this.state.branch];
-                const semKey = this.state.semester === 1 ? 'sem1' : 'sem2';
-                const subjectKeys = branchData[semKey];
+    }
 
-                subjectKeys.forEach(subKey => {
-                    const sub = database.subjects[subKey];
-                    if(!sub) return;
+  });
 
-                    const isFav = this.state.favorites.includes(sub.title);
 
-                    const card = document.createElement('div');
-                    card.className = 'glass-panel subject-card';
-                    card.innerHTML = `
-                        <button class="fav-btn ${isFav ? 'active' : ''}" onclick="app.toggleFav('${sub.title}')">★</button>
-                        <h4>${sub.icon} ${sub.title}</h4>
-                        <p style="font-size:0.8rem; color:var(--text-muted);">Code: ${sub.code}</p>
-                        <div class="subject-actions">
-                            <button class="sub-btn" onclick="app.openResourceModal('notes', '${sub.title}')">📚 Notes</button>
-                            <button class="sub-btn" onclick="app.openResourceModal('pyq', '${sub.title}')">📝 PYQ</button>
-                            <button class="sub-btn" onclick="app.openResourceModal('formula', '${sub.title}')">📌 Formula</button>
-                            <button class="sub-btn" onclick="app.openResourceModal('shortNotes', '${sub.title}')">⚡ Short Notes</button>
-                            <button class="sub-btn" style="grid-column: span 2; background: var(--primary-blue); color:white;" onclick="app.openResourceModal('test', '${sub.title}')">🧪 Start Online Test</button>
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                });
-            }
+  const result=document.getElementById("score");
 
-            // Toggle Favorites
-            toggleFav(title) {
-                const idx = this.state.favorites.indexOf(title);
-                if(idx > -1) this.state.favorites.splice(idx, 1);
-                else this.state.favorites.push(title);
+  result.innerHTML=
 
-                localStorage.setItem('aktu_favs', JSON.stringify(this.state.favorites));
-                this.renderSubjects();
-            }
+  `Your Score: ${score}/${quiz.length}
+  ${
+    score>=8
+    ?" 🎉 Great work!"
+    :
+    score>=5
+    ?" 👍 Keep practicing!"
+    :
+    " 📚 Revise your notes and try again!"
+  }`;
 
-            // Open Resource Modal dynamically
-            openResourceModal(type, subjectTitle) {
-                let subObj = null;
-                for(let k in database.subjects) {
-                    if(database.subjects[k].title === subjectTitle) {
-                        subObj = database.subjects[k];
-                        break;
-                    }
-                }
-                if(!subObj) subObj = database.subjects['math1'];
+}
 
-                const content = document.getElementById('resourceModalContent');
-                content.innerHTML = '';
 
-                if(type === 'notes') {
-                    let html = `<h3 style="margin-bottom:1rem;">📚 ${subObj.title} - Unit Notes</h3>`;
-                    subObj.notes.forEach(n => {
-                        html += `
-                            <div class="unit-block">
-                                <h5>${n.unit}</h5>
-                                <p><strong>Concept:</strong> ${n.concept}</p>
-                                <p><strong>Example:</strong> ${n.example}</p>
-                                <p><strong>Practice:</strong> ${n.practice}</p>
-                            </div>
-                        `;
-                    });
-                    content.innerHTML = html;
-                } 
-                else if(type === 'pyq') {
-                    let html = `<h3 style="margin-bottom:1rem;">📝 ${subObj.title} - PYQ Bank</h3>`;
-                    subObj.pyqs.forEach(q => {
-                        html += `
-                            <div class="unit-block">
-                                <h5>${q.year} [${q.unit}] - ${q.marks} Marks</h5>
-                                <p><strong>Question:</strong> ${q.q}</p>
-                            </div>
-                        `;
-                    });
-                    content.innerHTML = html;
-                }
-                else if(type === 'formula') {
-                    let html = `<h3 style="margin-bottom:1rem;">📌 ${subObj.title} - Formula Sheet</h3>`;
-                    subObj.formulas.forEach(f => {
-                        html += `
-                            <div class="unit-block">
-                                <h5>${f.name}</h5>
-                                <p style="font-size:1.2rem; color:var(--primary-blue); font-weight:bold;">${f.formula}</p>
-                                <p>${f.meaning}</p>
-                            </div>
-                        `;
-                    });
-                    content.innerHTML = html;
-                }
-                else if(type === 'shortNotes') {
-                    let html = `<h3 style="margin-bottom:1rem;">⚡ ${subObj.title} - Revision Notes</h3>`;
-                    subObj.shortNotes.forEach(sn => {
-                        html += `
-                            <div class="unit-block">
-                                <h5>${sn.title}</h5>
-                                <p>${sn.body}</p>
-                            </div>
-                        `;
-                    });
-                    content.innerHTML = html;
-                }
-                else if(type === 'test') {
-                    let html = `<h3 style="margin-bottom:1rem;">🧪 ${subObj.title} - Self Assessment Test</h3><form id="testForm">`;
-                    subObj.test.forEach((t, i) => {
-                        html += `
-                            <div class="test-q">
-                                <p><strong>Q${i+1}: ${t.q}</strong></p>
-                                <div class="test-opt">
-                                    ${t.opts.map((opt, oIdx) => `
-                                        <label><input type="radio" name="q${i}" value="${oIdx}"> ${opt}</label>
-                                    `).join('')}
-                                </div>
-                            </div>
-                        `;
-                    });
-                    html += `<button type="button" class="sub-btn" style="padding:0.8rem 1.5rem; background:var(--primary-blue); color:white;" onclick="app.submitTest('${subObj.title}')">Submit Test</button></form><div id="testResult" style="margin-top:1rem;"></div>`;
-                    content.innerHTML = html;
-                }
+/* =========================================================
+   MODAL
+========================================================= */
 
-                this.openModal('resourceModal');
-            }
+function openModal(title,subtitle,body){
 
-            // Interactive Online Test Logic
-            submitTest(subjectTitle) {
-                let subObj = Object.values(database.subjects).find(s => s.title === subjectTitle) || database.subjects['math1'];
-                let score = 0;
-                
-                subObj.test.forEach((t, i) => {
-                    const selected = document.querySelector(`input[name="q${i}"]:checked`);
-                    if(selected && parseInt(selected.value) === t.ans) {
-                        score++;
-                    }
-                });
+  document.getElementById("modalTitle").textContent=title;
 
-                const resDiv = document.getElementById('testResult');
-                const pct = (score / subObj.test.length) * 100;
-                resDiv.innerHTML = `
-                    <div class="glass-panel" style="padding:1rem; text-align:center;">
-                        <h4>Test Result</h4>
-                        <p style="font-size:1.5rem; font-weight:bold; color:var(--primary-blue); margin:0.5rem 0;">Score: ${score} / ${subObj.test.length} (${pct}%)</p>
-                        <p>${pct >= 50 ? '🎉 Excellent performance!' : '📖 Needs revision. Try again!'}</p>
-                    </div>
-                `;
-            }
+  document.getElementById("modalSubtitle").textContent=subtitle;
 
-            // Search Filter
-            handleSearch() {
-                const query = document.getElementById('searchInput').value.toLowerCase().trim();
-                if(!query) {
-                    this.renderSubjects();
-                    return;
-                }
+  document.getElementById("modalBody").innerHTML=body;
 
-                const grid = document.getElementById('subjectGrid');
-                grid.innerHTML = '';
+  document.getElementById("modal").classList.add("show");
 
-                Object.values(database.subjects).forEach(sub => {
-                    if(sub.title.toLowerCase().includes(query) || sub.code.toLowerCase().includes(query)) {
-                        const card = document.createElement('div');
-                        card.className = 'glass-panel subject-card';
-                        card.innerHTML = `
-                            <h4>${sub.icon} ${sub.title}</h4>
-                            <p style="font-size:0.8rem; color:var(--text-muted);">Code: ${sub.code}</p>
-                            <div class="subject-actions">
-                                <button class="sub-btn" onclick="app.openResourceModal('notes', '${sub.title}')">📚 Notes</button>
-                                <button class="sub-btn" onclick="app.openResourceModal('pyq', '${sub.title}')">📝 PYQ</button>
-                            </div>
-                        `;
-                        grid.appendChild(card);
-                    }
-                });
-            }
+}
 
-            // AI Doubt Assistant Local Simulation
-            sendChatMessage() {
-                const input = document.getElementById('chatInput');
-                const text = input.value.trim();
-                if(!text) return;
 
-                const history = document.getElementById('chatHistory');
-                
-                // Add User Message
-                const userMsg = document.createElement('div');
-                userMsg.className = 'chat-msg chat-user';
-                userMsg.textContent = text;
-                history.appendChild(userMsg);
+function closeModal(){
 
-                input.value = '';
+  document
+  .getElementById("modal")
+  .classList.remove("show");
 
-                // Bot Response Lookup
-                let botText = "I don't have a direct pre-configured response for that question yet, but you can check our Notes and PYQ sections for detailed information on this topic!";
-                const lower = text.toLowerCase();
-                
-                for(let key in database.aiResponses) {
-                    if(lower.includes(key)) {
-                        botText = database.aiResponses[key];
-                        break;
-                    }
-                }
+}
 
-                setTimeout(() => {
-                    const botMsg = document.createElement('div');
-                    botMsg.className = 'chat-msg chat-bot';
-                    botMsg.textContent = botText;
-                    history.appendChild(botMsg);
-                    history.scrollTop = history.scrollHeight;
-                }, 400);
 
-                history.scrollTop = history.scrollHeight;
-            }
+/* =========================================================
+   SUBJECT NOTES
+========================================================= */
 
-            // Render Study Planner
-            renderPlanner() {
-                const planList = document.getElementById('plannerList');
-                if(!planList) return;
+function openSubject(id){
 
-                const days = [
-                    "Day 1: Mathematics + C Programming",
-                    "Day 2: Physics + Mathematics",
-                    "Day 3: Electrical + Programming",
-                    "Day 4: Mathematics + Physics",
-                    "Day 5: PYQ Practice Session",
-                    "Day 6: Complete Mock Test",
-                    "Day 7: Revision & Formula Practice"
-                ];
+  const subject=
+  subjects.find(function(s){
+    return s.id===id;
+  });
 
-                let completedCount = 0;
-                planList.innerHTML = '';
 
-                days.forEach((day, idx) => {
-                    const isDone = this.state.planner[idx];
-                    if(isDone) completedCount++;
+  const list=
+  notes.filter(function(n){
+    return n.s===id;
+  });
 
-                    const item = document.createElement('div');
-                    item.className = `plan-item ${isDone ? 'done' : ''}`;
-                    item.innerHTML = `
-                        <span>${day}</span>
-                        <input type="checkbox" ${isDone ? 'checked' : ''} onchange="app.togglePlanStep(${idx})">
-                    `;
-                    planList.appendChild(item);
-                });
 
-                document.getElementById('plannerProgress').textContent = `${completedCount}/7 Days Completed`;
-            }
+  let body="";
 
-            togglePlanStep(idx) {
-                this.state.planner[idx] = !this.state.planner[idx];
-                localStorage.setItem('aktu_plan', JSON.stringify(this.state.planner));
-                this.renderPlanner();
-            }
 
-            // Render My Folder
-            renderFolder() {
-                const folderContent = document.getElementById('folderContent');
-                if(this.state.favorites.length === 0) {
-                    folderContent.innerHTML = `<p style="color:var(--text-muted);">No saved or favorited resources yet. Click the ★ icon on any subject card to save it here!</p>`;
-                    return;
-                }
+  if(list.length){
 
-                let html = `<h4>⭐ Saved Subjects</h4><ul class="quick-list">`;
-                this.state.favorites.forEach(fav => {
-                    html += `<li onclick="app.openResourceModal('notes', '${fav}')">${fav} <span>Open Notes →</span></li>`;
-                });
-                html += `</ul>`;
-                folderContent.innerHTML = html;
-            }
+    body=list.map(function(n){
 
-            // General Modal Handler
-            openModal(modalId) {
-                if(modalId === 'folderModal') this.renderFolder();
-                document.getElementById(modalId).classList.add('active');
-            }
+      return `
 
-            closeModal(modalId) {
-                document.getElementById(modalId).classList.remove('active');
-            }
+      <div class="detail">
 
-            scrollToSection(id) {
-                document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-            }
+        <h4>${n.concept}</h4>
 
-            navigate(route) {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+        <p>${n.body}</p>
+
+        ${
+          n.formula
+          ?
+          `<div class="formula">
+          ${n.formula}
+          </div>`
+          :""
         }
 
-        // Initialize Application
-        let app;
-        window.addEventListener('DOMContentLoaded', () => {
-            app = new App();
-        });
-    </script>
+      </div>
+
+      `;
+
+    }).join("");
+
+  }else{
+
+    body=
+
+    `<div class="detail">
+
+      <h4>📘 Notes Folder</h4>
+
+      <p>
+      Is subject ke notes yahan add kiye ja sakte hain.
+      Neeche JavaScript ke notes array mein data add karein.
+      </p>
+
+    </div>`;
+
+  }
+
+
+  openModal(
+    subject.title,
+    subject.code+" • Notes",
+    body
+  );
+
+}
+
+
+/* =========================================================
+   SUBJECT PYQ
+========================================================= */
+
+function openSubjectPYQ(id){
+
+  const subject=
+  subjects.find(function(s){
+    return s.id===id;
+  });
+
+
+  const list=
+  pyqs.filter(function(p){
+    return p.s===id;
+  });
+
+
+  let body="";
+
+
+  if(list.length){
+
+    body=list.map(function(p){
+
+      return `
+
+      <div class="detail">
+
+        <h4>${p.year}</h4>
+
+        <p>${p.q}</p>
+
+      </div>
+
+      `;
+
+    }).join("");
+
+  }else{
+
+    body=
+
+    `<div class="detail">
+
+      <h4>📝 PYQ Folder Ready</h4>
+
+      <p>
+      Is subject ke verified PYQs pyqs array mein add karein.
+      </p>
+
+    </div>`;
+
+  }
+
+
+  openModal(
+    subject.title,
+    subject.code+" • PYQs",
+    body
+  );
+
+}
+
+
+/* =========================================================
+   SHORT NOTES
+========================================================= */
+
+function openShortNotes(id){
+
+  const subject=
+  subjects.find(function(s){
+    return s.id===id;
+  });
+
+
+  const list=
+  notes.filter(function(n){
+    return n.s===id;
+  }).slice(0,12);
+
+
+  let body="";
+
+
+  if(list.length){
+
+    body=list.map(function(n){
+
+      return `
+
+      <div class="detail">
+
+        <h4>${n.concept}</h4>
+
+        <p>
+        ${n.formula || n.body}
+        </p>
+
+      </div>
+
+      `;
+
+    }).join("");
+
+  }else{
+
+    body=
+
+    `<div class="detail">
+
+      <h4>⚡ Short Notes Folder</h4>
+
+      <p>
+      Short revision points yahan add kiye ja sakte hain.
+      </p>
+
+    </div>`;
+
+  }
+
+
+  openModal(
+    subject.title,
+    subject.code+" • Short Notes",
+    body
+  );
+
+}
+
+
+/* =========================================================
+   SINGLE NOTE
+========================================================= */
+
+function openNote(index){
+
+  const n=notes[index];
+
+
+  openModal(
+
+    n.concept,
+
+    "📘 Study Notes",
+
+    `
+
+    <div class="detail">
+
+      <h4>Explanation</h4>
+
+      <p>${n.body}</p>
+
+    </div>
+
+
+    <div class="detail">
+
+      <h4>Formula / Example</h4>
+
+      <p>
+      ${n.formula || "Practice a suitable example."}
+      </p>
+
+    </div>
+
+
+    <div class="detail">
+
+      <h4>🎯 Exam Tip</h4>
+
+      <p>
+      Exam mein definition/condition likhne ke baad
+      formula aur suitable example ya calculation likhein.
+      </p>
+
+    </div>
+
+    `
+
+  );
+
+}
+
+
+/* =========================================================
+   PYQ MODAL
+========================================================= */
+
+function openPYQ(index){
+
+  const p=pyqs[index];
+
+
+  openModal(
+
+    "PYQ Question",
+
+    p.year,
+
+    `
+
+    <div class="detail">
+
+      <h4>Question</h4>
+
+      <p style="font-size:18px">
+      ${p.q}
+      </p>
+
+    </div>
+
+    `
+
+  );
+
+}
+
+
+/* =========================================================
+   AI STUDY ASSISTANT
+========================================================= */
+
+let lastAIAnswer="";
+
+
+function quickQuestion(question){
+
+  document.getElementById("aiQuestion").value=question;
+
+  askAI();
+
+}
+
+
+function addMessage(text,type){
+
+  const message=
+  document.createElement("div");
+
+  message.className=
+  "message "+type;
+
+  message.textContent=text;
+
+  document
+  .getElementById("chat")
+  .appendChild(message);
+
+  const chat=
+  document.getElementById("chat");
+
+  chat.scrollTop=chat.scrollHeight;
+
+}
+
+
+function askAI(){
+
+  const input=
+  document.getElementById("aiQuestion");
+
+  const question=input.value.trim();
+
+  if(!question)return;
+
+
+  addMessage(question,"user-message");
+
+  input.value="";
+
+
+  lastAIAnswer=
+  generateStudyAnswer(
+    question,
+    document.getElementById("language").value
+  );
+
+
+  setTimeout(function(){
+
+    addMessage(
+      lastAIAnswer,
+      "ai-message"
+    );
+
+  },250);
+
+}
+
+
+function generateStudyAnswer(question,language){
+
+  const q=question.toLowerCase();
+
+  let answer;
+
+
+  if(q.includes("determinant")){
+
+    answer=
+
+    `Determinant:
+
+A determinant is a numerical quantity associated with a square matrix.
+
+For a 2 × 2 matrix:
+
+| a  b |
+| c  d |
+
+Determinant = ad − bc.
+
+Exam tip:
+First write the determinant formula,
+then substitute the values and simplify.`;
+
+  }
+
+  else if(q.includes("eigenvalue")){
+
+    answer=
+
+    `Eigenvalue:
+
+If AX = λX for X ≠ 0,
+then λ is an eigenvalue of A.
+
+To find eigenvalues, use:
+
+|A − λI| = 0
+
+This equation is called the characteristic equation.`;
+
+  }
+
+  else if(q.includes("eigenvector")){
+
+    answer=
+
+    `Eigenvector:
+
+After finding an eigenvalue λ,
+solve:
+
+(A − λI)X = 0
+
+The non-zero vector X obtained is
+an eigenvector corresponding to λ.`;
+
+  }
+
+  else if(q.includes("rank")){
+
+    answer=
+
+    `Rank of Matrix:
+
+Rank is the maximum number of
+linearly independent rows or columns.
+
+A common method is to convert the
+matrix into echelon form.
+
+Number of non-zero rows = rank.`;
+
+  }
+
+  else if(q.includes("inverse")){
+
+    answer=
+
+    `Inverse of Matrix:
+
+For a non-singular square matrix:
+
+A⁻¹ = adj(A) / |A|
+
+The inverse exists only when:
+
+|A| ≠ 0`;
+
+  }
+
+  else if(q.includes("cayley")){
+
+    answer=
+
+    `Cayley-Hamilton Theorem:
+
+Every square matrix satisfies
+its own characteristic equation.
+
+If:
+
+f(λ) = 0
+
+then:
+
+f(A) = 0`;
+
+  }
+
+  else if(q.includes("matrix")){
+
+    answer=
+
+    `Matrix:
+
+A matrix is a rectangular arrangement
+of numbers in rows and columns.
+
+Order = Number of Rows ×
+Number of Columns.
+
+Important topics:
+• Types of matrices
+• Transpose
+• Matrix operations
+• Determinants
+• Inverse
+• Rank
+• Eigenvalues
+• Eigenvectors
+• Cayley-Hamilton theorem`;
+
+  }
+
+  else if(
+    q.includes("revision") ||
+    q.includes("plan")
+  ){
+
+    answer=
+
+    `Simple Revision Plan:
+
+25 min → Concepts
+25 min → Solved examples
+25 min → PYQs
+20 min → Test
+10 min → Formula revision
+
+Finally, revise the questions
+where you made mistakes.`;
+
+  }
+
+  else if(
+    q.includes("short note")
+  ){
+
+    answer=
+
+    `Matrix Short Notes:
+
+• Order = Rows × Columns
+• Identity matrix has 1 on main diagonal
+• Zero matrix has all elements zero
+• Symmetric: Aᵀ = A
+• Skew-symmetric: Aᵀ = −A
+• Singular: |A| = 0
+• Non-singular: |A| ≠ 0
+• Eigenvalues: |A−λI| = 0
+• Eigenvectors: (A−λI)X = 0`;
+
+  }
+
+  else{
+
+    answer=
+
+    `I can help with the study topics
+currently built into this website.
+
+Try asking:
+
+• Explain determinant
+• What is matrix?
+• Explain rank
+• Explain eigenvalues
+• Explain eigenvectors
+• Explain inverse
+• Explain Cayley-Hamilton
+• Give short notes
+• Give a revision plan`;
+
+  }
+
+
+  if(language==="hi"){
+
+    answer=
+    "हिन्दी:\n\n"+answer;
+
+  }
+
+  else if(language==="hinglish"){
+
+    answer=
+    "Hinglish:\n\n"+answer;
+
+  }
+
+  else if(language==="ur"){
+
+    answer=
+    "اردو / English:\n\n"+answer;
+
+  }
+
+
+  return answer;
+
+}
+
+
+/* =========================================================
+   VOICE
+========================================================= */
+
+function speakAnswer(){
+
+  if(!lastAIAnswer){
+
+    alert("Pehle AI se question poochhiye.");
+
+    return;
+
+  }
+
+
+  if(!("speechSynthesis" in window)){
+
+    alert(
+      "Aapke browser mein voice support available nahi hai."
+    );
+
+    return;
+
+  }
+
+
+  speechSynthesis.cancel();
+
+
+  const language=
+  document.getElementById("language").value;
+
+
+  const speech=
+  new SpeechSynthesisUtterance(lastAIAnswer);
+
+
+  if(language==="hi"){
+
+    speech.lang="hi-IN";
+
+  }
+
+  else if(language==="ur"){
+
+    speech.lang="ur-IN";
+
+  }
+
+  else{
+
+    speech.lang="en-IN";
+
+  }
+
+
+  speech.rate=.95;
+
+  speechSynthesis.speak(speech);
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+renderSubjects();
+
+setupFilter();
+
+renderNotes();
+
+renderPYQ();
+
+renderQuiz();
+
+
+document.getElementById("subjectCount")
+.textContent=subjects.length;
+
+document.getElementById("noteCount")
+.textContent=notes.length;
+
+document.getElementById("pyqCount")
+.textContent=pyqs.length;
+
+document.getElementById("testCount")
+.textContent=quiz.length;
+
+</script>
+
 </body>
 </html>
