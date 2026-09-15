@@ -3,289 +3,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study & Enjoy | L.D.A.H. REC Mainpuri | AKTU 1st Year Hub</title>
-    <meta name="description" content="AKTU B.Tech 1st Year Complete Study Hub for REC Mainpuri - Notes, PYQs, Quantum, AI Doubt Solver">
+    <title>Study & Enjoy | L.D.A.H. REC Mainpuri | AKTU 1st Year Premium Hub</title>
     
     <!-- Google Fonts & Font Awesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --bg-body: #f4f7fe;
+            --bg-main: #f0f4fd;
             --bg-card: #ffffff;
-            --text-main: #2b3674;
-            --text-muted: #707ebe;
-            --border-color: #e0e5f2;
-            --shadow: 0px 18px 40px rgba(112, 144, 176, 0.12);
-            --header-bg: linear-gradient(135deg, #071a3b 0%, #0b2e63 100%);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --border: #e2e8f0;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --nav-bg: rgba(7, 26, 59, 0.95);
+            --accent-blue: #3b82f6;
         }
 
-        body.dark-theme {
-            --bg-body: #0b1437;
-            --bg-card: #111c44;
-            --text-main: #ffffff;
-            --text-muted: #a3ed22;
-            --border-color: #222e5d;
-            --shadow: 0px 18px 40px rgba(0, 0, 0, 0.4);
-            --header-bg: linear-gradient(135deg, #020813 0%, #071126 100%);
+        body.dark-mode {
+            --bg-main: #0b1329;
+            --bg-card: #131f37;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border: #1e293b;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            --nav-bg: rgba(3, 10, 24, 0.98);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Poppins', sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
         }
 
         body {
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            padding-bottom: 50px;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Header / Navbar */
+        /* Top Header Navigation */
         header {
-            background: var(--header-bg);
-            color: #fff;
-            padding: 20px 5%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            color: #ffffff;
+            padding: 16px 6%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
         }
 
-        .college-title {
+        .brand-container {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 14px;
         }
 
-        .college-title i {
-            font-size: 2.2rem;
-            color: #ffb800;
-        }
-
-        .college-title h1 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        .college-title p {
-            font-size: 0.85rem;
-            color: #ffdf72;
-        }
-
-        .theme-toggle-btn {
-            background: rgba(255, 255, 255, 0.15);
-            border: 2px solid rgba(255,255,255,0.3);
+        .brand-logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ffb800, #ff5e7e);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
             color: #fff;
+            box-shadow: 0 4px 15px rgba(255, 184, 0, 0.4);
+        }
+
+        .brand-info h1 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            color: #ffffff;
+        }
+
+        .brand-info p {
+            font-size: 0.8rem;
+            color: #ffdf72;
+            font-weight: 600;
+        }
+
+        .theme-btn {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
             padding: 10px 18px;
             border-radius: 30px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
             gap: 8px;
-            backdrop-filter: blur(5px);
         }
 
-        .theme-toggle-btn:hover {
-            background: #ffb800;
-            color: #000;
-            border-color: #ffb800;
+        .theme-btn:hover {
+            background: #ffffff;
+            color: #071a3b;
         }
 
         /* Container Layout */
-        .container {
-            max-width: 1250px;
-            margin: 30px auto;
+        .main-container {
+            max-width: 1280px;
+            margin: 35px auto;
             padding: 0 20px;
+            flex: 1;
         }
 
-        /* Quotes Section */
-        .quotes-carousel {
+        /* Quotes Banner */
+        .quotes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 35px;
         }
 
-        .quote-card {
-            background: linear-gradient(135deg, #4318FF 0%, #868CFF 100%);
-            color: white;
-            padding: 20px;
+        .quote-box {
+            padding: 22px;
             border-radius: 20px;
-            box-shadow: var(--shadow);
+            color: #ffffff;
+            box-shadow: var(--shadow-sm);
             position: relative;
             overflow: hidden;
         }
 
-        .quote-card:nth-child(2) {
-            background: linear-gradient(135deg, #FF5E7E 0%, #FF99AC 100%);
-        }
+        .q-1 { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); }
+        .q-2 { background: linear-gradient(135deg, #059669 0%, #10b981 100%); }
+        .q-3 { background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%); }
 
-        .quote-card:nth-child(3) {
-            background: linear-gradient(135deg, #00B5D8 0%, #79E0EE 100%);
-        }
-
-        .quote-card p {
-            font-size: 0.95rem;
-            font-style: italic;
-            font-weight: 500;
+        .quote-box p {
+            font-size: 0.92rem;
+            font-weight: 600;
             line-height: 1.5;
         }
 
-        .quote-card span {
+        .quote-box span {
             display: block;
             margin-top: 10px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-align: right;
+            font-size: 0.78rem;
+            font-weight: 800;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.9;
         }
 
-        /* Section Titles */
-        .section-header {
-            margin: 30px 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .section-header h2 {
+        /* Filter Controls */
+        .section-title {
             font-size: 1.5rem;
-            position: relative;
-            padding-left: 15px;
-        }
-
-        .section-header h2::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 15%;
-            height: 70%;
-            width: 5px;
-            background: #4318FF;
-            border-radius: 10px;
-        }
-
-        /* Category Filter Buttons */
-        .filter-bar {
+            font-weight: 800;
+            margin-bottom: 20px;
             display: flex;
+            align-items: center;
             gap: 10px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 12px;
             overflow-x: auto;
             padding-bottom: 10px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
-        .filter-btn {
+        .tab-btn {
             background: var(--bg-card);
-            color: var(--text-main);
-            border: 2px solid var(--border-color);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
             padding: 10px 22px;
-            border-radius: 25px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.88rem;
             cursor: pointer;
-            font-weight: 600;
             white-space: nowrap;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            box-shadow: var(--shadow-sm);
         }
 
-        .filter-btn.active, .filter-btn:hover {
-            background: #4318FF;
-            color: #fff;
-            border-color: #4318FF;
+        .tab-btn.active, .tab-btn:hover {
+            background: #2563eb;
+            color: #ffffff;
+            border-color: #2563eb;
         }
 
-        /* Color Cards Grid */
-        .grid-container {
+        /* Color Subject Cards Grid */
+        .resources-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 25px;
         }
 
-        .folder-card {
+        .subject-card {
             background: var(--bg-card);
-            border-radius: 20px;
-            padding: 22px;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 24px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            position: relative;
         }
 
-        .folder-card:hover {
-            transform: translateY(-7px);
-            box-shadow: 0px 25px 50px rgba(112, 144, 176, 0.25);
+        .subject-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
         }
 
-        /* Subject Specific Colorful Top Borders */
-        .card-math { border-top: 6px solid #4318FF; }
-        .card-physics { border-top: 6px solid #FF5E7E; }
-        .card-chemistry { border-top: 6px solid #00B5D8; }
-        .card-electrical { border-top: 6px solid #FFB800; }
-        .card-pps { border-top: 6px solid #05CD99; }
-        .card-softskills { border-top: 6px solid #E31256; }
+        /* Distinct Color Accents for Subjects */
+        .c-math { border-top: 6px solid #4f46e5; }
+        .c-physics { border-top: 6px solid #ec4899; }
+        .c-electrical { border-top: 6px solid #f59e0b; }
+        .c-pps { border-top: 6px solid #10b981; }
+        .c-chemistry { border-top: 6px solid #06b6d4; }
+        .c-softskills { border-top: 6px solid #8b5cf6; }
+
+        .card-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
 
         .card-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 15px;
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            margin-bottom: 15px;
         }
 
-        .card-math .card-icon { background: #E9E3FF; color: #4318FF; }
-        .card-physics .card-icon { background: #FFE5EC; color: #FF5E7E; }
-        .card-chemistry .card-icon { background: #E0F7FA; color: #00B5D8; }
-        .card-electrical .card-icon { background: #FFF8E1; color: #FFB800; }
-        .card-pps .card-icon { background: #E6F9F3; color: #05CD99; }
-        .card-softskills .card-icon { background: #FCE4EC; color: #E31256; }
+        .c-math .card-icon { background: #e0e7ff; color: #4f46e5; }
+        .c-physics .card-icon { background: #fce7f3; color: #ec4899; }
+        .c-electrical .card-icon { background: #fef3c7; color: #d97706; }
+        .c-pps .card-icon { background: #d1fae5; color: #059669; }
+        .c-chemistry .card-icon { background: #cffaff; color: #0891b2; }
+        .c-softskills .card-icon { background: #ede9fe; color: #7c3aed; }
 
-        .folder-card h3 {
+        .type-badge {
+            padding: 4px 12px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .badge-notes { background: #dbeafe; color: #1e40af; }
+        .badge-pyq { background: #ffedd5; color: #9a3412; }
+        .badge-quantum { background: #dcfce7; color: #166534; }
+
+        .subject-card h3 {
             font-size: 1.15rem;
+            font-weight: 800;
             margin-bottom: 8px;
         }
 
-        .folder-card p {
+        .subject-card p {
             font-size: 0.85rem;
-            color: var(--text-muted);
+            color: var(--text-secondary);
+            line-height: 1.5;
             margin-bottom: 20px;
         }
 
-        .badge {
-            display: inline-block;
-            padding: 4px 10px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            border-radius: 8px;
-            margin-bottom: 12px;
-            width: fit-content;
-        }
-
-        .badge-pyq { background: #FFF3E0; color: #E65100; }
-        .badge-notes { background: #E8EAF6; color: #1A237E; }
-        .badge-quantum { background: #E8F5E9; color: #1B5E20; }
-
-        .action-btn {
+        .card-btn {
             width: 100%;
             padding: 12px;
-            background: #4318FF;
-            color: white;
+            border-radius: 14px;
             border: none;
-            border-radius: 12px;
-            font-weight: 600;
+            background: #2563eb;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.9rem;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -293,314 +294,310 @@
             gap: 8px;
         }
 
-        .action-btn:hover {
-            background: #3311CC;
+        .card-btn:hover {
+            background: #1d4ed8;
         }
 
         /* AI Doubt Solver Box */
-        .ai-solver-box {
+        .ai-section {
             background: var(--bg-card);
             border-radius: 24px;
             padding: 30px;
-            box-shadow: var(--shadow);
-            border: 2px solid #4318FF;
-            margin-top: 40px;
+            margin-top: 50px;
+            border: 2px solid #3b82f6;
+            box-shadow: var(--shadow-lg);
         }
 
-        .ai-header {
+        .ai-title {
             display: flex;
             align-items: center;
             gap: 15px;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
-        .ai-header i {
-            font-size: 2rem;
-            color: #4318FF;
+        .ai-title i {
+            font-size: 2.2rem;
+            color: #2563eb;
         }
 
         .ai-lang-select {
             margin-left: auto;
-            padding: 8px 15px;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-body);
-            color: var(--text-main);
-            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--bg-main);
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 0.85rem;
         }
 
-        .ai-input-group {
+        .ai-form {
             display: flex;
             gap: 12px;
             margin-bottom: 20px;
         }
 
-        .ai-input-group input {
+        .ai-form input {
             flex: 1;
-            padding: 15px 20px;
+            padding: 14px 20px;
             border-radius: 14px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-body);
-            color: var(--text-main);
+            border: 1px solid var(--border);
+            background: var(--bg-main);
+            color: var(--text-primary);
             font-size: 0.95rem;
             outline: none;
         }
 
-        .ai-input-group button {
-            padding: 15px 28px;
-            background: linear-gradient(135deg, #4318FF, #868CFF);
-            color: white;
-            border: none;
+        .ai-form button {
+            padding: 14px 28px;
             border-radius: 14px;
-            font-weight: 600;
+            border: none;
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
+            color: #ffffff;
+            font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .ai-response-area {
-            background: var(--bg-body);
+        .ai-output {
+            background: var(--bg-main);
             padding: 20px;
-            border-radius: 14px;
-            border-left: 5px solid #05CD99;
-            min-height: 80px;
-            font-size: 0.95rem;
-            line-height: 1.6;
+            border-radius: 16px;
+            border-left: 5px solid #10b981;
             display: none;
+            line-height: 1.6;
+            font-size: 0.95rem;
         }
 
-        /* Working PDF Viewer Modal */
-        .modal-overlay {
+        /* Reader Modal System */
+        .modal-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(6px);
             display: none;
             justify-content: center;
             align-items: center;
-            z-index: 2000;
+            z-index: 1000;
         }
 
-        .modal-content {
+        .modal-box {
             background: var(--bg-card);
             width: 90%;
-            max-width: 900px;
-            height: 85vh;
-            border-radius: 20px;
+            max-width: 850px;
+            max-height: 85vh;
+            border-radius: 24px;
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            box-shadow: var(--shadow-lg);
         }
 
         .modal-header {
             padding: 18px 25px;
-            background: var(--header-bg);
-            color: white;
+            background: var(--nav-bg);
+            color: #ffffff;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .modal-header h3 {
-            font-size: 1.1rem;
-        }
-
-        .close-modal-btn {
+        .modal-close {
             background: rgba(255,255,255,0.2);
             border: none;
-            color: white;
-            width: 35px;
-            height: 35px;
+            color: #fff;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             cursor: pointer;
             font-size: 1.1rem;
         }
 
         .modal-body {
-            flex: 1;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg-body);
-        }
-
-        .pdf-placeholder {
-            text-align: center;
             padding: 30px;
+            overflow-y: auto;
+            color: var(--text-primary);
         }
 
-        .pdf-placeholder i {
-            font-size: 4rem;
-            color: #FF5E7E;
-            margin-bottom: 15px;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            margin-top: 50px;
+        .content-block {
+            background: var(--bg-main);
             padding: 20px;
-            color: var(--text-muted);
+            border-radius: 16px;
+            margin-bottom: 15px;
+            border-left: 4px solid #2563eb;
+        }
+
+        .content-block h4 {
+            font-size: 1.05rem;
+            color: #2563eb;
+            margin-bottom: 8px;
+        }
+
+        footer {
+            background: var(--nav-bg);
+            color: #94a3b8;
+            text-align: center;
+            padding: 25px;
+            margin-top: 60px;
             font-size: 0.85rem;
-            border-top: 1px solid var(--border-color);
         }
 
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            .ai-input-group {
-                flex-direction: column;
-            }
-            .ai-lang-select {
-                margin-left: 0;
-                width: 100%;
-            }
+            header { flex-direction: column; gap: 12px; text-align: center; }
+            .ai-form { flex-direction: column; }
+            .ai-lang-select { margin-left: 0; width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Header -->
+    <!-- Header / Navbar -->
     <header>
-        <div class="college-title">
-            <i class="fa-solid fa-graduation-cap"></i>
-            <div>
+        <div class="brand-container">
+            <div class="brand-logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div class="brand-info">
                 <h1>L.D.A.H. Rajkiya Engineering College, Mainpuri</h1>
-                <p>AKTU B.Tech 1st Year Official Study Material & AI Hub</p>
+                <p>AKTU B.Tech 1st Year Complete Study Hub</p>
             </div>
         </div>
-        <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeBtn">
+        <button class="theme-btn" onclick="toggleTheme()" id="themeToggleBtn">
             <i class="fa-solid fa-moon"></i> Dark Mode
         </button>
     </header>
 
-    <div class="container">
+    <div class="main-container">
 
-        <!-- Motivational Quotes Carousel -->
-        <div class="quotes-carousel">
-            <div class="quote-card">
-                <p>"Success is not final, failure is not fatal: It is the courage to continue that counts."</p>
-                <span>— AKTU Topper Mindset</span>
+        <!-- Motivational Quotes -->
+        <div class="quotes-grid">
+            <div class="quote-box q-1">
+                <p>"इंजीनियरिंग में सफलता का कोई शॉर्टकट नहीं होता, सही नोट्स और मेहनत ही 9+ SGPA दिलाती है।"</p>
+                <span>— REC Mainpuri Seniors Advice</span>
             </div>
-            <div class="quote-card">
-                <p>"इंजीनियरिंग केवल किताबों से नहीं, बल्कि निरंतर प्रयास और सही नोट्स से क्रैक होती है।"</p>
-                <span>— REC Mainpuri Seniors</span>
+            <div class="quote-box q-2">
+                <p>"Small daily efforts over time lead to stunning semester exam results."</p>
+                <span>— Study & Enjoy Portal</span>
             </div>
-            <div class="quote-card">
-                <p>"Small daily improvements over time lead to stunning semester results."</p>
-                <span>— Study & Enjoy Hub</span>
+            <div class="quote-box q-3">
+                <p>"हर प्रश्न को हल करने की क्षमता आपमें है, बस निरंतर अभ्यास करते रहें।"</p>
+                <span>— AKTU Topper Strategy</span>
             </div>
         </div>
 
-        <!-- Material Filter Tabs -->
-        <div class="section-header">
-            <h2>Study Resources & Folders</h2>
+        <!-- Filter Controls -->
+        <div class="section-title">
+            <i class="fa-solid fa-folder-open" style="color:#2563eb;"></i>
+            <span>B.Tech 1st Year Study Material Folders</span>
         </div>
 
-        <div class="filter-bar">
-            <button class="filter-btn active" onclick="filterCategory('all', this)">All Items</button>
-            <button class="filter-btn" onclick="filterCategory('notes', this)"><i class="fa-solid fa-book"></i> Full Notes</button>
-            <button class="filter-btn" onclick="filterCategory('pyq', this)"><i class="fa-solid fa-file-lines"></i> PYQ Papers</button>
-            <button class="filter-btn" onclick="filterCategory('quantum', this)"><i class="fa-solid fa-bolt"></i> Quantum & Short Notes</button>
+        <div class="filter-tabs">
+            <button class="tab-btn active" onclick="filterCategory('all', this)">All Folder Items</button>
+            <button class="tab-btn" onclick="filterCategory('notes', this)"><i class="fa-solid fa-book"></i> Full Notes</button>
+            <button class="tab-btn" onclick="filterCategory('pyq', this)"><i class="fa-solid fa-file-circle-check"></i> Solved PYQs</button>
+            <button class="tab-btn" onclick="filterCategory('quantum', this)"><i class="fa-solid fa-bolt"></i> Quantum & Short Notes</button>
         </div>
 
-        <!-- Colorful Study Folders Grid -->
-        <div class="grid-container" id="materialGrid">
+        <!-- Material Cards Grid -->
+        <div class="resources-grid" id="cardGrid">
 
-            <!-- Maths 1 Card -->
-            <div class="folder-card card-math" data-category="notes">
+            <!-- Maths-1 Notes -->
+            <div class="subject-card c-math" data-cat="notes">
                 <div>
-                    <span class="badge badge-notes">Full Notes</span>
-                    <div class="card-icon"><i class="fa-solid fa-calculator"></i></div>
+                    <div class="card-head">
+                        <div class="card-icon"><i class="fa-solid fa-calculator"></i></div>
+                        <span class="type-badge badge-notes">Full Notes</span>
+                    </div>
                     <h3>Engg. Mathematics - I</h3>
-                    <p>BAS-101 | Matrices, Calculus, Multivariable & Vector Calculus (All Units)</p>
+                    <p>BAS-101 | Matrices, Differential & Integral Calculus, Vector Calculus (All Units Detailed)</p>
                 </div>
-                <button class="action-btn" onclick="openResource('Engineering Mathematics I - Full Handwritten Notes', 'MATHS1_NOTES.pdf')">
+                <button class="card-btn" onclick="openReader('Maths 1 Complete Notes', 'maths1_notes')">
                     <i class="fa-solid fa-folder-open"></i> Open Notes
                 </button>
             </div>
 
-            <!-- Maths PYQ Card -->
-            <div class="folder-card card-math" data-category="pyq">
+            <!-- Maths-1 PYQ -->
+            <div class="subject-card c-math" data-cat="pyq">
                 <div>
-                    <span class="badge badge-pyq">PYQ Solutions</span>
-                    <div class="card-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
-                    <h3>Maths-I Last 5 Yrs PYQ</h3>
-                    <p>AKTU Solved Question Papers (2019 - 2025) with detailed answers.</p>
+                    <div class="card-head">
+                        <div class="card-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                        <span class="type-badge badge-pyq">PYQ Solutions</span>
+                    </div>
+                    <h3>Maths - I Solved PYQs</h3>
+                    <p>AKTU Solved Papers (2020 to 2025) with step-by-step solved derivation & matrix proofs.</p>
                 </div>
-                <button class="action-btn" onclick="openResource('Maths-I Last 5 Years Solved PYQ', 'MATHS1_PYQ.pdf')">
-                    <i class="fa-solid fa-eye"></i> View PYQs
+                <button class="card-btn" onclick="openReader('Maths 1 Solved PYQ Collection', 'maths1_pyq')">
+                    <i class="fa-solid fa-eye"></i> View Solved PYQs
                 </button>
             </div>
 
-            <!-- Physics Card -->
-            <div class="folder-card card-physics" data-category="notes">
+            <!-- Physics Notes -->
+            <div class="subject-card c-physics" data-cat="notes">
                 <div>
-                    <span class="badge badge-notes">Full Notes</span>
-                    <div class="card-icon"><i class="fa-solid fa-atom"></i></div>
+                    <div class="card-head">
+                        <div class="card-icon"><i class="fa-solid fa-atom"></i></div>
+                        <span class="type-badge badge-notes">Full Notes</span>
+                    </div>
                     <h3>Engineering Physics</h3>
-                    <p>BAS-102 | Quantum Mechanics, Relativistic, Fiber Optics & Lasers.</p>
+                    <p>BAS-102 | Quantum Mechanics, Wave Optics, Fiber Optics & Relativistic Mechanics.</p>
                 </div>
-                <button class="action-btn" onclick="openResource('Engineering Physics Complete Notes', 'PHYSICS_NOTES.pdf')">
+                <button class="card-btn" onclick="openReader('Engineering Physics Complete Notes', 'physics_notes')">
                     <i class="fa-solid fa-folder-open"></i> Open Notes
                 </button>
             </div>
 
-            <!-- Physics Quantum Card -->
-            <div class="folder-card card-physics" data-category="quantum">
+            <!-- Physics Quantum -->
+            <div class="subject-card c-physics" data-cat="quantum">
                 <div>
-                    <span class="badge badge-quantum">Quantum Series</span>
-                    <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
-                    <h3>Physics Short Quantum</h3>
-                    <p>Unit-wise important derivations, formulas, and last-minute revision summaries.</p>
+                    <div class="card-head">
+                        <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
+                        <span class="type-badge badge-quantum">Quantum Notes</span>
+                    </div>
+                    <h3>Physics Short Revision</h3>
+                    <p>Important Derivations List, Formulas Sheet & Top 20 repeated AKTU Questions.</p>
                 </div>
-                <button class="action-btn" onclick="openResource('Engineering Physics Quantum Revision PDF', 'PHYSICS_QUANTUM.pdf')">
-                    <i class="fa-solid fa-file-pdf"></i> Open Quantum
+                <button class="card-btn" onclick="openReader('Physics Quantum & Quick Revision', 'physics_quantum')">
+                    <i class="fa-solid fa-file-code"></i> Open Short Notes
                 </button>
             </div>
 
-            <!-- Electrical Card -->
-            <div class="folder-card card-electrical" data-category="notes">
+            <!-- Basic Electrical Notes -->
+            <div class="subject-card c-electrical" data-cat="notes">
                 <div>
-                    <span class="badge badge-notes">Full Notes</span>
-                    <div class="card-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+                    <div class="card-head">
+                        <div class="card-icon"><i class="fa-solid fa-plug-circle-bolt"></i></div>
+                        <span class="type-badge badge-notes">Full Notes</span>
+                    </div>
                     <h3>Basic Electrical Engg.</h3>
-                    <p>BEE-101 | DC Circuits, AC Circuits, Transformers & Electrical Machines.</p>
+                    <p>BEE-101 | DC Circuits, AC Circuits, Transformers & Electrical Machines Formulas.</p>
                 </div>
-                <button class="action-btn" onclick="openResource('Basic Electrical Engineering Notes', 'BEE_NOTES.pdf')">
+                <button class="card-btn" onclick="openReader('Basic Electrical Engineering Notes', 'bee_notes')">
                     <i class="fa-solid fa-folder-open"></i> Open Notes
                 </button>
             </div>
 
-            <!-- Electrical PYQ Card -->
-            <div class="folder-card card-electrical" data-category="pyq">
+            <!-- Electrical PYQ -->
+            <div class="subject-card c-electrical" data-cat="pyq">
                 <div>
-                    <span class="badge badge-pyq">PYQ Solutions</span>
-                    <div class="card-icon"><i class="fa-solid fa-file-circle-check"></i></div>
-                    <h3>BEE Past Exam Papers</h3>
-                    <p>AKTU End-Sem Papers with Step-by-Step Circuit Solved Diagram.</p>
+                    <div class="card-head">
+                        <div class="card-icon"><i class="fa-solid fa-receipt"></i></div>
+                        <span class="type-badge badge-pyq">PYQ Solutions</span>
+                    </div>
+                    <h3>BEE Past 5 Year PYQs</h3>
+                    <p>AKTU Semester Solved Papers with Mesh Analysis & Transformer Diagrams.</p>
                 </div>
-                <button class="action-btn" onclick="openResource('BEE AKTU Solved Papers 2020-2025', 'BEE_PYQ.pdf')">
-                    <i class="fa-solid fa-eye"></i> View PYQs
+                <button class="card-btn" onclick="openReader('BEE Solved Question Papers', 'bee_pyq')">
+                    <i class="fa-solid fa-eye"></i> View Solved PYQs
                 </button>
             </div>
 
-            <!-- C Programming (PPS) Card -->
-            <div class="folder-card card-pps" data-category="notes">
+            <!-- C Programming Notes -->
+            <div class="subject-card c-pps" data-cat="notes">
                 <div>
-                    <span class="badge badge-notes">Full Notes</span>
-                    <div class="card-icon"><i class="fa-solid fa-code"></i></div>
-                    <h3>C Programming (PPS)</h3>
-                    <p>BCS-101 | Operators, Pointers, Arrays, Structures & File Handling.</p>
-                </div>
-                <button class="action-btn" onclick="openResource('Programming for Problem Solving (C Lang)', 'PPS_NOTES.pdf')">
+                    <div class="card-he
