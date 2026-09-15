@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study & Enjoy | L.D.A.H. REC Mainpuri | AKTU 1st Year Hub</title>
+    <meta name="description" content="AKTU B.Tech 1st Year Complete Study Hub for REC Mainpuri - Notes, PYQs, Quantum, AI Doubt Solver">
+    
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-body: #f4f7fe;
+            --bg-card: #ffffff;
+            --text-main: #2b3674;
+            --text-muted: #707ebe;
+            --border-color: #e0e5f2;
+            --shadow: 0px 18px 40px rgba(112, 144, 176, 0.12);
+            --header-bg: linear-gradient(135deg, #071a3b 0%, #0b2e63 100%);
+        }
+
+        body.dark-theme {
+            --bg-body: #0b1437;
+            --bg-card: #111c44;
+            --text-main: #ffffff;
+            --text-muted: #a3ed22;
+            --border-color: #222e5d;
+            --shadow: 0px 18px 40px rgba(0, 0, 0, 0.4);
+            --header-bg: linear-gradient(135deg, #020813 0%, #071126 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            padding-bottom: 50px;
+        }
+
+        /* Header / Navbar */
+        header {
+            background: var(--header-bg);
+            color: #fff;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .college-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .college-title i {
+            font-size: 2.2rem;
+            color: #ffb800;
+        }
+
+        .college-title h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .college-title p {
+            font-size: 0.85rem;
+            color: #ffdf72;
+        }
+
+        .theme-toggle-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(5px);
+        }
+
+        .theme-toggle-btn:hover {
+            background: #ffb800;
+            color: #000;
+            border-color: #ffb800;
+        }
+
+        /* Container Layout */
+        .container {
+            max-width: 1250px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Quotes Section */
+        .quotes-carousel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .quote-card {
+            background: linear-gradient(135deg, #4318FF 0%, #868CFF 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-card:nth-child(2) {
+            background: linear-gradient(135deg, #FF5E7E 0%, #FF99AC 100%);
+        }
+
+        .quote-card:nth-child(3) {
+            background: linear-gradient(135deg, #00B5D8 0%, #79E0EE 100%);
+        }
+
+        .quote-card p {
+            font-size: 0.95rem;
+            font-style: italic;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .quote-card span {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-align: right;
+            text-transform: uppercase;
+        }
+
+        /* Section Titles */
+        .section-header {
+            margin: 30px 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .section-header h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 15%;
+            height: 70%;
+            width: 5px;
+            background: #4318FF;
+            border-radius: 10px;
+        }
+
+        /* Category Filter Buttons */
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        .filter-btn {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 2px solid var(--border-color);
+            padding: 10px 22px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: #4318FF;
+            color: #fff;
+            border-color: #4318FF;
+        }
+
+        /* Color Cards Grid */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .folder-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 22px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .folder-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0px 25px 50px rgba(112, 144, 176, 0.25);
+        }
+
+        /* Subject Specific Colorful Top Borders */
+        .card-math { border-top: 6px solid #4318FF; }
+        .card-physics { border-top: 6px solid #FF5E7E; }
+        .card-chemistry { border-top: 6px solid #00B5D8; }
+        .card-electrical { border-top: 6px solid #FFB800; }
+        .card-pps { border-top: 6px solid #05CD99; }
+        .card-softskills { border-top: 6px solid #E31256; }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .card-math .card-icon { background: #E9E3FF; color: #4318FF; }
+        .card-physics .card-icon { background: #FFE5EC; color: #FF5E7E; }
+        .card-chemistry .card-icon { background: #E0F7FA; color: #00B5D8; }
+        .card-electrical .card-icon { background: #FFF8E1; color: #FFB800; }
+        .card-pps .card-icon { background: #E6F9F3; color: #05CD99; }
+        .card-softskills .card-icon { background: #FCE4EC; color: #E31256; }
+
+        .folder-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+
+        .folder-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            width: fit-content;
+        }
+
+        .badge-pyq { background: #FFF3E0; color: #E65100; }
+        .badge-notes { background: #E8EAF6; color: #1A237E; }
+        .badge-quantum { background: #E8F5E9; color: #1B5E20; }
+
+        .action-btn {
+            width: 100%;
+            padding: 12px;
+            background: #4318FF;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .action-btn:hover {
+            background: #3311CC;
+        }
+
+        /* AI Doubt Solver Box */
+        .ai-solver-box {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 2px solid #4318FF;
+            margin-top: 40px;
+        }
+
+        .ai-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .ai-header i {
+            font-size: 2rem;
+            color: #4318FF;
+        }
+
+        .ai-lang-select {
+            margin-left: auto;
+            padding: 8px 15px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-body);
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .ai-input-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .ai-input-group input {
+            flex: 1;
+            padding: 15px 20px;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-body);
+            color: var(--text-main);
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .ai-input-group button {
+            padding: 15px 28px;
+            background: linear-gradient(135deg, #4318FF, #868CFF);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ai-response-area {
+            background: var(--bg-body);
+            padding: 20px;
+            border-radius: 14px;
+            border-left: 5px solid #05CD99;
+            min-height: 80px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            display: none;
+        }
+
+        /* Working PDF Viewer Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            width: 90%;
+            max-width: 900px;
+            height: 85vh;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        .modal-header {
+            padding: 18px 25px;
+            background: var(--header-bg);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 1.1rem;
+        }
+
+        .close-modal-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .modal-body {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-body);
+        }
+
+        .pdf-placeholder {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .pdf-placeholder i {
+            font-size: 4rem;
+            color: #FF5E7E;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .ai-input-group {
+                flex-direction: column;
+            }
+            .ai-lang-select {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Header -->
+    <header>
+        <div class="college-title">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <div>
+                <h1>L.D.A.H. Rajkiya Engineering College, Mainpuri</h1>
+                <p>AKTU B.Tech 1st Year Official Study Material & AI Hub</p>
+            </div>
+        </div>
+        <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeBtn">
+            <i class="fa-solid fa-moon"></i> Dark Mode
+        </button>
+    </header>
+
+    <div class="container">
+
+        <!-- Motivational Quotes Carousel -->
+        <div class="quotes-carousel">
+            <div class="quote-card">
+                <p>"Success is not final, failure is not fatal: It is the courage to continue that counts."</p>
+                <span>— AKTU Topper Mindset</span>
+            </div>
+            <div class="quote-card">
+                <p>"इंजीनियरिंग केवल किताबों से नहीं, बल्कि निरंतर प्रयास और सही नोट्स से क्रैक होती है।"</p>
+                <span>— REC Mainpuri Seniors</span>
+            </div>
+            <div class="quote-card">
+                <p>"Small daily improvements over time lead to stunning semester results."</p>
+                <span>— Study & Enjoy Hub</span>
+            </div>
+        </div>
+
+        <!-- Material Filter Tabs -->
+        <div class="section-header">
+            <h2>Study Resources & Folders</h2>
+        </div>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterCategory('all', this)">All Items</button>
+            <button class="filter-btn" onclick="filterCategory('notes', this)"><i class="fa-solid fa-book"></i> Full Notes</button>
+            <button class="filter-btn" onclick="filterCategory('pyq', this)"><i class="fa-solid fa-file-lines"></i> PYQ Papers</button>
+            <button class="filter-btn" onclick="filterCategory('quantum', this)"><i class="fa-solid fa-bolt"></i> Quantum & Short Notes</button>
+        </div>
+
+        <!-- Colorful Study Folders Grid -->
+        <div class="grid-container" id="materialGrid">
+
+            <!-- Maths 1 Card -->
+            <div class="folder-card card-math" data-category="notes">
+                <div>
+                    <span class="badge badge-notes">Full Notes</span>
+                    <div class="card-icon"><i class="fa-solid fa-calculator"></i></div>
+                    <h3>Engg. Mathematics - I</h3>
+                    <p>BAS-101 | Matrices, Calculus, Multivariable & Vector Calculus (All Units)</p>
+                </div>
+                <button class="action-btn" onclick="openResource('Engineering Mathematics I - Full Handwritten Notes', 'MATHS1_NOTES.pdf')">
+                    <i class="fa-solid fa-folder-open"></i> Open Notes
+                </button>
+            </div>
+
+            <!-- Maths PYQ Card -->
+            <div class="folder-card card-math" data-category="pyq">
+                <div>
+                    <span class="badge badge-pyq">PYQ Solutions</span>
+                    <div class="card-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                    <h3>Maths-I Last 5 Yrs PYQ</h3>
+                    <p>AKTU Solved Question Papers (2019 - 2025) with detailed answers.</p>
+                </div>
+                <button class="action-btn" onclick="openResource('Maths-I Last 5 Years Solved PYQ', 'MATHS1_PYQ.pdf')">
+                    <i class="fa-solid fa-eye"></i> View PYQs
+                </button>
+            </div>
+
+            <!-- Physics Card -->
+            <div class="folder-card card-physics" data-category="notes">
+                <div>
+                    <span class="badge badge-notes">Full Notes</span>
+                    <div class="card-icon"><i class="fa-solid fa-atom"></i></div>
+                    <h3>Engineering Physics</h3>
+                    <p>BAS-102 | Quantum Mechanics, Relativistic, Fiber Optics & Lasers.</p>
+                </div>
+                <button class="action-btn" onclick="openResource('Engineering Physics Complete Notes', 'PHYSICS_NOTES.pdf')">
+                    <i class="fa-solid fa-folder-open"></i> Open Notes
+                </button>
+            </div>
+
+            <!-- Physics Quantum Card -->
+            <div class="folder-card card-physics" data-category="quantum">
+                <div>
+                    <span class="badge badge-quantum">Quantum Series</span>
+                    <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <h3>Physics Short Quantum</h3>
+                    <p>Unit-wise important derivations, formulas, and last-minute revision summaries.</p>
+                </div>
+                <button class="action-btn" onclick="openResource('Engineering Physics Quantum Revision PDF', 'PHYSICS_QUANTUM.pdf')">
+                    <i class="fa-solid fa-file-pdf"></i> Open Quantum
+                </button>
+            </div>
+
+            <!-- Electrical Card -->
+            <div class="folder-card card-electrical" data-category="notes">
+                <div>
+                    <span class="badge badge-notes">Full Notes</span>
+                    <div class="card-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+                    <h3>Basic Electrical Engg.</h3>
+                    <p>BEE-101 | DC Circuits, AC Circuits, Transformers & Electrical Machines.</p>
+                </div>
+                <button class="action-btn" onclick="openResource('Basic Electrical Engineering Notes', 'BEE_NOTES.pdf')">
+                    <i class="fa-solid fa-folder-open"></i> Open Notes
+                </button>
+            </div>
+
+            <!-- Electrical PYQ Card -->
+            <div class="folder-card card-electrical" data-category="pyq">
+                <div>
+                    <span class="badge badge-pyq">PYQ Solutions</span>
+                    <div class="card-icon"><i class="fa-solid fa-file-circle-check"></i></div>
+                    <h3>BEE Past Exam Papers</h3>
+                    <p>AKTU End-Sem Papers with Step-by-Step Circuit Solved Diagram.</p>
+                </div>
+                <button class="action-btn" onclick="openResource('BEE AKTU Solved Papers 2020-2025', 'BEE_PYQ.pdf')">
+                    <i class="fa-solid fa-eye"></i> View PYQs
+                </button>
+            </div>
+
+            <!-- C Programming (PPS) Card -->
+            <div class="folder-card card-pps" data-category="notes">
+                <div>
+                    <span class="badge badge-notes">Full Notes</span>
+                    <div class="card-icon"><i class="fa-solid fa-code"></i></div>
+                    <h3>C Programming (PPS)</h3>
+                    <p>BCS-101 | Operators, Pointers, Arrays, Structures & File Handling.</p>
+                </div>
+                <button class="action-btn" onclick="openResource('Programming for Problem Solving (C Lang)', 'PPS_NOTES.pdf')">
