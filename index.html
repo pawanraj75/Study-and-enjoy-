@@ -4193,6 +4193,484 @@ document.getElementById("testCount")
 .textContent=quiz.length;
 
 </script>
+<!-- =========================================================
+     🎤 VOICE STUDY AI
+     बोलकर सवाल पूछें + AI का जवाब सुनें
+========================================================= -->
 
+<style>
+.voice-study-box{
+  margin:25px 0;
+  padding:22px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#eef2ff,#e0f2fe,#ecfdf5);
+  border:1px solid #c7d2fe;
+  box-shadow:0 15px 40px rgba(37,56,120,.12);
+}
+
+.voice-study-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:22px;
+  font-weight:800;
+  color:#172554;
+  margin-bottom:8px;
+}
+
+.voice-study-subtitle{
+  color:#64748b;
+  margin-bottom:18px;
+}
+
+.voice-study-controls{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+}
+
+.voice-btn{
+  border:0;
+  border-radius:14px;
+  padding:13px 18px;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.voice-btn:hover{
+  transform:translateY(-2px);
+}
+
+.voice-start{
+  color:white;
+  background:linear-gradient(135deg,#4f46e5,#2563eb,#0891b2);
+  box-shadow:0 8px 22px rgba(37,99,235,.25);
+}
+
+.voice-stop{
+  color:#991b1b;
+  background:#fee2e2;
+}
+
+.voice-speak{
+  color:#065f46;
+  background:#d1fae5;
+}
+
+.voice-select{
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid #cbd5e1;
+  background:white;
+  font-weight:600;
+}
+
+.voice-status{
+  margin-top:15px;
+  padding:12px 15px;
+  border-radius:12px;
+  background:rgba(255,255,255,.75);
+  color:#475569;
+  font-size:14px;
+}
+
+.voice-mic-active{
+  animation:voicePulse 1s infinite;
+}
+
+@keyframes voicePulse{
+  0%{box-shadow:0 0 0 0 rgba(239,68,68,.45)}
+  70%{box-shadow:0 0 0 15px rgba(239,68,68,0)}
+  100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}
+}
+
+@media(max-width:650px){
+  .voice-study-box{
+    padding:17px;
+    border-radius:18px;
+  }
+
+  .voice-study-controls{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .voice-btn,
+  .voice-select{
+    width:100%;
+  }
+}
+</style>
+
+<div class="voice-study-box" id="voiceStudyBox">
+
+  <div class="voice-study-title">
+    🎤 Voice Study AI
+  </div>
+
+  <div class="voice-study-subtitle">
+    Bolkar question poochhiye aur AI ka answer suniye 🔊
+  </div>
+
+  <div class="voice-study-controls">
+
+    <select id="voiceLanguage" class="voice-select">
+      <option value="hi-IN">🇮🇳 Hindi</option>
+      <option value="en-IN">🇬🇧 English</option>
+      <option value="en-US">🇺🇸 English US</option>
+    </select>
+
+    <button
+      type="button"
+      class="voice-btn voice-start"
+      id="startVoiceBtn"
+      onclick="startVoiceStudy()">
+      🎤 Bolkar Poochhein
+    </button>
+
+    <button
+      type="button"
+      class="voice-btn voice-stop"
+      onclick="stopVoiceStudy()">
+      ⏹️ Stop
+    </button>
+
+    <button
+      type="button"
+      class="voice-btn voice-speak"
+      onclick="speakLatestAIAnswer()">
+      🔊 Answer Sunao
+    </button>
+
+  </div>
+
+  <div class="voice-status" id="voiceStatus">
+    🎤 Mic button dabakar bolna shuru karein...
+  </div>
+
+</div>
+
+<script>
+/* =========================================================
+   🎤 VOICE STUDY AI JAVASCRIPT
+========================================================= */
+
+let voiceRecognition = null;
+let voiceIsListening = false;
+
+/* Browser speech recognition check */
+
+function createVoiceRecognition(){
+
+  const SpeechRecognition =
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
+
+  if(!SpeechRecognition){
+    return null;
+  }
+
+  const recognition = new SpeechRecognition();
+
+  recognition.continuous = false;
+  recognition.interimResults = false;
+  recognition.lang =
+    document.getElementById("voiceLanguage").value;
+
+  recognition.onstart = function(){
+
+    voiceIsListening = true;
+
+    const btn =
+      document.getElementById("startVoiceBtn");
+
+    btn.classList.add("voice-mic-active");
+    btn.innerHTML = "🔴 Sun raha hoon...";
+
+    document.getElementById("voiceStatus").innerText =
+      "🎤 Boliyega... main aapki baat sun raha hoon.";
+  };
+
+  recognition.onresult = function(event){
+
+    const transcript =
+      event.results[0][0].transcript.trim();
+
+    document.getElementById("voiceStatus").innerText =
+      "✅ Aapne kaha: " + transcript;
+
+    putVoiceQuestionIntoAI(transcript);
+  };
+
+  recognition.onerror = function(event){
+
+    document.getElementById("voiceStatus").innerText =
+      "⚠️ Mic error: " + event.error;
+  };
+
+  recognition.onend = function(){
+
+    voiceIsListening = false;
+
+    const btn =
+      document.getElementById("startVoiceBtn");
+
+    btn.classList.remove("voice-mic-active");
+
+    btn.innerHTML = "🎤 Bolkar Poochhein";
+  };
+
+  return recognition;
+}
+
+
+/* Start listening */
+
+function startVoiceStudy(){
+
+  if(voiceIsListening){
+    return;
+  }
+
+  if(!("speechSynthesis" in window)){
+    document.getElementById("voiceStatus").innerText =
+      "⚠️ Aapke browser me voice feature available nahi hai.";
+    return;
+  }
+
+  voiceRecognition = createVoiceRecognition();
+
+  if(!voiceRecognition){
+
+    document.getElementById("voiceStatus").innerText =
+      "⚠️ Voice input is browser me supported nahi hai. Chrome try karein.";
+
+    return;
+  }
+
+  voiceRecognition.lang =
+    document.getElementById("voiceLanguage").value;
+
+  try{
+    voiceRecognition.start();
+  }catch(error){
+    console.log(error);
+  }
+}
+
+
+/* Stop listening */
+
+function stopVoiceStudy(){
+
+  if(voiceRecognition){
+
+    try{
+      voiceRecognition.stop();
+    }catch(error){
+      console.log(error);
+    }
+  }
+
+  window.speechSynthesis.cancel();
+
+  document.getElementById("voiceStatus").innerText =
+    "⏹️ Voice stopped.";
+}
+
+
+/* =========================================================
+   QUESTION KO EXISTING AI INPUT ME DENA
+========================================================= */
+
+function putVoiceQuestionIntoAI(question){
+
+  /*
+     Existing website ke input ko automatically
+     find karne ki koshish karega.
+  */
+
+  const inputs = [
+    document.querySelector("#aiInput"),
+    document.querySelector("#chatInput"),
+    document.querySelector("#questionInput"),
+    document.querySelector("textarea"),
+    document.querySelector('input[type="text"]')
+  ];
+
+  let input = null;
+
+  for(let i=0;i<inputs.length;i++){
+
+    if(inputs[i]){
+      input = inputs[i];
+      break;
+    }
+
+  }
+
+  if(!input){
+
+    document.getElementById("voiceStatus").innerText =
+      "🎤 Question suna gaya: " + question +
+      " | Ab ise AI box me paste karke Send karein.";
+
+    return;
+  }
+
+  input.value = question;
+
+  input.dispatchEvent(
+    new Event("input",{bubbles:true})
+  );
+
+  input.dispatchEvent(
+    new Event("change",{bubbles:true})
+  );
+
+
+  /* Existing Send button find karein */
+
+  const buttons =
+    Array.from(document.querySelectorAll("button"));
+
+  let sendButton = null;
+
+  for(const button of buttons){
+
+    const text =
+      (button.innerText || "").toLowerCase().trim();
+
+    if(
+      text.includes("send") ||
+      text.includes("ask") ||
+      text.includes("पूछ") ||
+      text.includes("जवाब")
+    ){
+
+      sendButton = button;
+      break;
+    }
+
+  }
+
+
+  if(sendButton){
+
+    setTimeout(function(){
+      sendButton.click();
+
+      document.getElementById("voiceStatus").innerText =
+        "🤖 Question AI ko bhej diya gaya. Answer aa raha hai...";
+
+    },300);
+
+  }else{
+
+    document.getElementById("voiceStatus").innerText =
+      "✅ Question AI box me daal diya gaya. Send button dabaiye.";
+
+  }
+
+}
+
+
+/* =========================================================
+   🔊 AI ANSWER KO BOLNA
+========================================================= */
+
+function speakText(text){
+
+  if(!text){
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const speech =
+    new SpeechSynthesisUtterance(text);
+
+  const language =
+    document.getElementById("voiceLanguage").value;
+
+  speech.lang = language;
+
+  speech.rate = 0.95;
+  speech.pitch = 1;
+  speech.volume = 1;
+
+  speech.onstart = function(){
+
+    document.getElementById("voiceStatus").innerText =
+      "🔊 AI answer bol raha hai...";
+  };
+
+  speech.onend = function(){
+
+    document.getElementById("voiceStatus").innerText =
+      "✅ Answer complete.";
+  };
+
+  window.speechSynthesis.speak(speech);
+}
+
+
+/* =========================================================
+   LATEST AI ANSWER FIND KARNA
+========================================================= */
+
+function speakLatestAIAnswer(){
+
+  const messages =
+    document.querySelectorAll(
+      ".ai-message"
+    );
+
+  if(!messages.length){
+
+    document.getElementById("voiceStatus").innerText =
+      "⚠️ Abhi AI ka answer nahi mila.";
+
+    return;
+  }
+
+  const latest =
+    messages[messages.length - 1];
+
+  const text =
+    latest.innerText.trim();
+
+  if(!text){
+
+    document.getElementById("voiceStatus").innerText =
+      "⚠️ AI answer empty hai.";
+
+    return;
+  }
+
+  speakText(text);
+}
+
+
+/* =========================================================
+   LANGUAGE CHANGE
+========================================================= */
+
+document
+  .getElementById("voiceLanguage")
+  .addEventListener("change",function(){
+
+    if(voiceRecognition){
+      voiceRecognition.lang = this.value;
+    }
+
+    window.speechSynthesis.cancel();
+
+  });
+
+</script>
 </body>
 </html>
