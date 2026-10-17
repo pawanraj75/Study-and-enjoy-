@@ -4698,3 +4698,603 @@ document
 </script>
 </body>
 </html>
+  <!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Study Battle: B.Tech 1st Year</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#1e293b; --panel2:#273548; --fg:#e2e8f0;
+    --muted:#94a3b8; --accent:#38bdf8; --good:#22c55e; --bad:#ef4444;
+    --warn:#f59e0b; --border:#334155; --radius:12px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    background:var(--bg); color:var(--fg); min-height:100vh;
+    display:flex; flex-direction:column;
+  }
+  header{
+    padding:15px 20px; border-bottom:1px solid var(--border);
+    display:flex; justify-content:space-between; align-items:center;
+    background:var(--panel); position:sticky; top:0; z-index:20;
+  }
+  header h1{font-size:20px; margin:0; font-weight:700;}
+  header .hstats{font-size:13px; color:var(--muted); text-align:right;}
+  header .hstats b{color:var(--accent)}
+  main{flex:1; width:100%; max-width:900px; margin:0 auto; padding:20px; padding-bottom:80px}
+  nav.bottom{
+    position:fixed; bottom:0; left:0; right:0; background:var(--panel);
+    border-top:1px solid var(--border); display:flex; justify-content:space-around;
+    padding:10px 0; z-index:20;
+  }
+  nav.bottom button{
+    background:none; border:0; color:var(--muted); display:flex; flex-direction:column;
+    align-items:center; font-size:12px; cursor:pointer;
+  }
+  nav.bottom button.on{color:var(--accent)}
+  nav.bottom button .ico{font-size:22px; margin-bottom:4px;}
+  
+  h2{font-size:22px; margin-top:0; margin-bottom:15px;}
+  h3{font-size:16px; margin-top:20px; margin-bottom:10px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px;}
+  
+  button{
+    background:var(--panel); color:var(--fg); border:1px solid var(--border);
+    border-radius:8px; padding:12px 18px; cursor:pointer; font-size:15px; transition: 0.2s;
+  }
+  button:hover{background:var(--panel2);}
+  button.primary{background:var(--accent); color:#000; font-weight:bold; border:none;}
+  
+  .card{background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:20px; margin-bottom:15px;}
+  .row{display:flex; gap:12px; flex-wrap:wrap; align-items:center;}
+  .row.between{justify-content:space-between;}
+  .muted{color:var(--muted); font-size:14px;}
+  .pill{padding:4px 10px; border-radius:20px; font-size:12px; border:1px solid var(--border); background:var(--bg);}
+  .pill.Easy{color:#86efac; border-color:#166534} .pill.Medium{color:#fbbf24; border-color:#92400e} .pill.Hard{color:#fca5a5; border-color:#991b1b}
+  
+  .grid{display:grid; gap:15px; grid-template-columns:1fr}
+  @media(min-width:600px){ .grid{grid-template-columns:1fr 1fr} }
+  
+  .subject-btn{text-align:left; display:flex; flex-direction:column; gap:8px; padding:20px;}
+  .subject-btn b{font-size:18px;}
+  .subject-btn small{color:var(--muted); font-size:14px;}
+  
+  .option{
+    text-align:left; padding:15px; margin-bottom:10px; border-radius:8px;
+    border:1px solid var(--border); background:var(--panel2); width:100%;
+    display:flex; gap:12px; font-size:16px; line-height:1.4;
+  }
+  .option.selected{border-color:var(--accent); background:#0b3b52;}
+  
+  .question{font-size:18px; line-height:1.6; margin:20px 0; white-space:pre-wrap; font-weight:500;}
+  .progress-bar{height:8px; background:var(--bg); border-radius:10px; overflow:hidden; margin-bottom:20px;}
+  .progress-bar > div{height:100%; background:var(--accent); transition:width 0.3s;}
+  
+  .timer{font-weight:bold; color:var(--warn); font-size:18px; font-family:monospace;}
+  .timer.urgent{color:var(--bad); animation:pulse 1s infinite;}
+  @keyframes pulse{50%{opacity:0.5;}}
+  
+  .explanation{margin-top:15px; padding:15px; border-radius:8px; background:var(--bg); border:1px solid var(--border); font-size:15px; line-height:1.6;}
+  .explanation b{color:var(--accent);}
+  
+  .score{font-size:50px; font-weight:bold; margin:15px 0;}
+  .good{color:var(--good);} .mid{color:var(--warn);} .bad{color:var(--bad);}
+  .review-item{padding:15px 0; border-bottom:1px solid var(--border);}
+  .review-item:last-child{border-bottom:0;}
+  .center{text-align:center;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>⚔️ Study Battle</h1>
+  <div class="hstats">
+    <div><b id="hdr-xp">0</b> XP · 🔥 <b id="hdr-streak">0</b> Days</div>
+    <div id="hdr-lvl" style="font-size:12px; color:var(--muted)">Level 1</div>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<nav class="bottom" id="nav">
+  <button data-nav="home"><span class="ico">🏠</span>Home</button>
+  <button data-nav="subjects"><span class="ico">📚</span>Subjects</button>
+  <button data-nav="bookmarks"><span class="ico">⭐</span>Saved</button>
+  <button data-nav="progress"><span class="ico">📊</span>Progress</button>
+</nav>
+
+<script>
+"use strict";
+
+// ==========================================
+// 1. DATABASE (All B.Tech 1st Year Subjects)
+// ==========================================
+const SUBJECTS = [
+  {
+    id: "math1", sem: 1, name: "Engineering Mathematics-I",
+    questions: [
+      { id: "m1-1", q: "The rank of a matrix equals:", options: ["Number of rows", "Number of linearly independent rows", "Determinant", "Zero entries"], correct: 1, explain: "Rank is the dimension of the row space, meaning the number of non-zero rows in its row echelon form.", difficulty: "Easy" },
+      { id: "m1-2", q: "If A is a 2x2 matrix with trace 7 and determinant 12, its eigenvalues are:", options: ["3 and 4", "2 and 6", "1 and 12", "-3 and -4"], correct: 0, explain: "Trace = sum of roots = 7. Det = product = 12. Equation: t^2 - 7t + 12 = 0 -> (t-3)(t-4) = 0.", difficulty: "Medium" },
+      { id: "m1-3", q: "lim (x->0) (sin x)/x = ?", options: ["0", "1", "Infinity", "Undefined"], correct: 1, explain: "This is a standard limit in calculus. Using L'Hopital's rule: derivative of sin(x) is cos(x), cos(0) = 1.", difficulty: "Easy" },
+      { id: "m1-4", q: "If u = x + y, v = x - y, then Jacobian d(u,v)/d(x,y) is:", options: ["0", "1", "-2", "2"], correct: 2, explain: "J = det([[1,1],[1,-1]]) = (1)(-1) - (1)(1) = -2.", difficulty: "Hard" },
+      { id: "m1-5", q: "Gradient of a scalar field is:", options: ["Scalar", "Vector", "Zero", "Tensor"], correct: 1, explain: "Gradient is a vector quantity pointing in the direction of greatest increase of the scalar field.", difficulty: "Easy" },
+      { id: "m1-6", q: "Area between y=x^2 and y=x is:", options: ["1/6", "1/3", "1/2", "2/3"], correct: 0, explain: "Intersections at x=0,1. Integral of (x - x^2) = x^2/2 - x^3/3. At 1: 1/2 - 1/3 = 1/6.", difficulty: "Hard" }
+    ]
+  },
+  {
+    id: "physics", sem: 1, name: "Engineering Physics",
+    questions: [
+      { id: "ph-1", q: "Fringe width beta in Young's double slit is:", options: ["lambda*D/d", "lambda*d/D", "d*D/lambda", "1"], correct: 0, explain: "beta = lambda * D / d, where D is distance to screen and d is slit separation.", difficulty: "Medium" },
+      { id: "ph-2", q: "De Broglie wavelength formula:", options: ["h/p", "h*p", "p/h", "h/p^2"], correct: 0, explain: "lambda = h/p, where h is Planck's constant and p is momentum.", difficulty: "Easy" },
+      { id: "ph-3", q: "LASER stands for:", options: ["Light Amplification by Stimulated Emission of Radiation", "Light Absorption", "Linear Amplification", "Long Amplified Signal"], correct: 0, explain: "It is an acronym for Light Amplification by Stimulated Emission of Radiation.", difficulty: "Easy" },
+      { id: "ph-4", q: "Heisenberg uncertainty principle states:", options: ["dx*dp >= hbar/2", "dx*dp = 0", "dx*dp <= hbar", "None"], correct: 0, explain: "Position and momentum cannot be precisely known simultaneously. The product is at least hbar/2.", difficulty: "Medium" },
+      { id: "ph-5", q: "In a purely inductive AC circuit, power factor is:", options: ["1", "0", "0.707", "-1"], correct: 1, explain: "Current lags voltage by 90 degrees. cos(90) = 0.", difficulty: "Medium" }
+    ]
+  },
+  {
+    id: "pps", sem: 1, name: "Programming for Problem Solving (C)",
+    questions: [
+      { id: "pp-1", q: "sizeof(int) in typical 32-bit C is:", options: ["2 bytes", "4 bytes", "8 bytes", "1 byte"], correct: 1, explain: "In most modern compilers, an integer takes 4 bytes.", difficulty: "Easy" },
+      { id: "pp-2", q: "int a=5, b=2; printf(\"%d\", a/b); Output?", options: ["2.5", "2", "3", "2.0"], correct: 1, explain: "Integer division truncates decimals. 5/2 = 2.", difficulty: "Medium" },
+      { id: "pp-3", q: "int a=10; int *p=&a; *p=20; printf(\"%d\",a); Output?", options: ["10", "20", "Address", "Error"], correct: 1, explain: "Pointer modifies the value at the address of a.", difficulty: "Medium" },
+      { id: "pp-4", q: "Which loop runs at least once?", options: ["for", "while", "do-while", "None"], correct: 2, explain: "do-while checks the condition after executing the loop body.", difficulty: "Easy" },
+      { id: "pp-5", q: "strlen(\"hello\") returns:", options: ["4", "5", "6", "Undefined"], correct: 1, explain: "Counts characters excluding the null terminator.", difficulty: "Medium" }
+    ]
+  },
+  {
+    id: "bee", sem: 1, name: "Basic Electrical Engineering",
+    questions: [
+      { id: "be-1", q: "Ohm's law is:", options: ["V=IR", "V=I/R", "I=VR", "R=V+I"], correct: 0, explain: "Voltage = Current x Resistance.", difficulty: "Easy" },
+      { id: "be-2", q: "Three resistors 2, 3, 5 ohm in series across 10V. I = ?", options: ["1 A", "2 A", "5 A", "0.5 A"], correct: 0, explain: "R = 2+3+5 = 10. I = 10/10 = 1 A.", difficulty: "Medium" },
+      { id: "be-3", q: "RMS of sine wave:", options: ["Vm", "Vm/sqrt(2)", "Vm/2", "2Vm"], correct: 1, explain: "Vm/sqrt(2) approx 0.707 Vm.", difficulty: "Easy" },
+      { id: "be-4", q: "Transformer works on:", options: ["Self induction", "Mutual induction", "Electrostatics", "Thermoelectric"], correct: 1, explain: "Changing primary current induces EMF in secondary.", difficulty: "Medium" }
+    ]
+  },
+  {
+    id: "em", sem: 1, name: "Engineering Mechanics",
+    questions: [
+      { id: "em-1", q: "Force is a:", options: ["Scalar", "Vector", "Dimensionless", "Tensor"], correct: 1, explain: "Has magnitude and direction.", difficulty: "Easy" },
+      { id: "em-2", q: "Perpendicular 3N and 4N. Resultant?", options: ["7N", "5N", "1N", "12N"], correct: 1, explain: "sqrt(3^2+4^2) = 5N.", difficulty: "Medium" },
+      { id: "em-3", q: "Limiting friction equals:", options: ["< mu*N", "= mu*N", "> mu*N", "Zero"], correct: 1, explain: "Limiting friction = mu * Normal reaction.", difficulty: "Medium" },
+      { id: "em-4", q: "Newton's 2nd law:", options: ["F=mv", "F=ma", "F=m/a", "F=m+a"], correct: 1, explain: "Force = mass x acceleration.", difficulty: "Easy" }
+    ]
+  },
+  {
+    id: "evs", sem: 1, name: "Environment & Sustainability",
+    questions: [
+      { id: "ev-1", q: "Primary energy source for ecosystems:", options: ["Wind", "Sun", "Geothermal", "Moon"], correct: 1, explain: "Sunlight drives photosynthesis.", difficulty: "Easy" },
+      { id: "ev-2", q: "10% law means:", options: ["100% transfer", "50% transfer", "10% transfer", "1% transfer"], correct: 2, explain: "Only 10% energy passes to next trophic level.", difficulty: "Medium" },
+      { id: "ev-3", q: "Ozone depletion mainly by:", options: ["CO2", "CFCs", "SO2", "NO2"], correct: 1, explain: "CFCs release chlorine which destroys ozone.", difficulty: "Medium" }
+    ]
+  },
+  {
+    id: "math2", sem: 2, name: "Engineering Mathematics-II",
+    questions: [
+      { id: "m2-1", q: "Order of DE:", options: ["Power", "Highest derivative", "Degree", "Terms"], correct: 1, explain: "Order = highest derivative present.", difficulty: "Easy" },
+      { id: "m2-2", q: "L{1} = ?", options: ["1", "1/s", "s", "s^2"], correct: 1, explain: "Laplace of constant 1 is 1/s.", difficulty: "Easy" },
+      { id: "m2-3", q: "Cauchy-Riemann eqns:", options: ["ux=vy, uy=-vx", "ux=vx, uy=vy", "ux=-vy, uy=vx", "None"], correct: 0, explain: "Standard CR equations.", difficulty: "Medium" },
+      { id: "m2-4", q: "y'' - 5y' + 6y = 0. Roots?", options: ["2,3", "-2,-3", "2,-3", "-2,3"], correct: 0, explain: "m^2 - 5m + 6 = 0 -> m=2,3.", difficulty: "Medium" }
+    ]
+  },
+  {
+    id: "chem", sem: 2, name: "Engineering Chemistry",
+    questions: [
+      { id: "ch-1", q: "Max electrons in shell n:", options: ["n", "n^2", "2n^2", "2n"], correct: 2, explain: "Formula is 2n^2.", difficulty: "Easy" },
+      { id: "ch-2", q: "Oxidation occurs at:", options: ["Cathode", "Anode", "Salt bridge", "Both"], correct: 1, explain: "AN OX (Anode Oxidation).", difficulty: "Easy" },
+      { id: "ch-3", q: "Galvanisation protects iron by:", options: ["Paint", "Zinc", "Aluminium", "Copper"], correct: 1, explain: "Zinc acts as sacrificial anode.", difficulty: "Medium" }
+    ]
+  },
+  {
+    id: "bec", sem: 2, name: "Basic Electronics Engineering",
+    questions: [
+      { id: "bc-1", q: "Diode conducts when:", options: ["Anode +", "Cathode +", "0V", "Always"], correct: 0, explain: "Forward bias approx 0.7V.", difficulty: "Easy" },
+      { id: "bc-2", q: "Ib=20uA, Ic=2mA. Beta = ?", options: ["10", "100", "1000", "0.01"], correct: 1, explain: "2e-3 / 20e-6 = 100.", difficulty: "Medium" },
+      { id: "bc-3", q: "A + A*B = ?", options: ["A", "B", "A+B", "AB"], correct: 0, explain: "A(1+B) = A.", difficulty: "Easy" }
+    ]
+  },
+  {
+    id: "english", sem: 2, name: "Technical English",
+    questions: [
+      { id: "en-1", q: "Correct sentence:", options: ["He has completed yesterday.", "He completed yesterday.", "He complete yesterday.", "He is complete yesterday."], correct: 1, explain: "Specific past time uses simple past.", difficulty: "Easy" },
+      { id: "en-2", q: "Correct article:", options: ["He is an engineer.", "He is a engineer.", "He is engineer.", "He is the engineer of all."], correct: 0, explain: "Use 'an' before vowel sound.", difficulty: "Easy" },
+      { id: "en-3", q: "Formal closing:", options: ["Later!", "Yours faithfully,", "Bye", "Catch you later"], correct: 1, explain: "Formal closings are used in official emails.", difficulty: "Medium" }
+    ]
+  }
+];
+
+// ==========================================
+// 2. STORAGE & GLOBAL STATE
+// ==========================================
+const STORE_KEY = "studybattle_v8";
+const app = document.getElementById("app");
+
+function loadStore() {
+  let data = localStorage.getItem(STORE_KEY);
+  if(!data) return { xp: 0, streak: 0, bookmarks: [], history: [], lastDate: "" };
+  return JSON.parse(data);
+}
+
+function saveStore(data) {
+  localStorage.setItem(STORE_KEY, JSON.stringify(data));
+}
+
+const state = {
+  screen: "home",
+  sem: 1,
+  subjectId: null,
+  quiz: null,
+  timer: null
+};
+
+// ==========================================
+// 3. RENDER & ROUTING
+// ==========================================
+function render() {
+  const store = loadStore();
+  
+  document.getElementById("hdr-xp").innerText = store.xp;
+  document.getElementById("hdr-streak").innerText = store.streak;
+  document.getElementById("hdr-lvl").innerText = "Level " + (Math.floor(store.xp / 200) + 1);
+
+  document.querySelectorAll("#nav button").forEach(btn => {
+    if (btn.dataset.nav === state.screen) btn.classList.add("on");
+    else btn.classList.remove("on");
+  });
+
+  if(state.screen === "home") renderHome(store);
+  else if(state.screen === "subjects") renderSubjects(store);
+  else if(state.screen === "subjectDetail") renderSubjectDetail(store);
+  else if(state.screen === "quiz") renderQuiz(store);
+  else if(state.screen === "results") renderResults(store);
+  else if(state.screen === "bookmarks") renderBookmarks(store);
+  else if(state.screen === "progress") renderProgress(store);
+}
+
+function go(screen) {
+  if(state.quiz && screen !== "quiz" && screen !== "results") {
+    if(!confirm("Quit current quiz? Progress will be lost.")) return;
+    clearInterval(state.timer);
+    state.quiz = null;
+  }
+  state.screen = screen;
+  window.scrollTo(0, 0);
+  render();
+}
+
+// ==========================================
+// 4. SCREENS
+// ==========================================
+function renderHome(store) {
+  app.innerHTML = `
+    <div class="card">
+      <h2>Welcome back! 👋</h2>
+      <p class="muted">Prepare for your B.Tech exams with our comprehensive practice questions.</p>
+      <div class="row" style="margin-top: 20px;">
+        <button class="primary" onclick="pickSem(1)">Semester 1</button>
+        <button class="primary" onclick="pickSem(2)">Semester 2</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Your Progress</h3>
+      <p>Total XP: <b>${store.xp}</b></p>
+      <p>Quizzes Taken: <b>${store.history.length}</b></p>
+      <p>Saved Questions: <b>${store.bookmarks.length}</b></p>
+    </div>
+  `;
+}
+
+function pickSem(sem) {
+  state.sem = sem;
+  go("subjects");
+}
+
+function renderSubjects(store) {
+  const subs = SUBJECTS.filter(s => s.sem === state.sem);
+  let html = `<h2>Semester ${state.sem} Subjects</h2><div class="grid">`;
+  subs.forEach(sub => {
+    html += `
+      <button class="subject-btn" onclick="openSubject('${sub.id}')">
+        <b>${sub.name}</b>
+        <small>${sub.questions.length} Questions available</small>
+      </button>
+    `;
+  });
+  html += `</div>`;
+  app.innerHTML = html;
+}
+
+function openSubject(id) {
+  state.subjectId = id;
+  go("subjectDetail");
+}
+
+function renderSubjectDetail(store) {
+  const sub = SUBJECTS.find(s => s.id === state.subjectId);
+  app.innerHTML = `
+    <button onclick="go('subjects')" style="margin-bottom: 20px;">← Back</button>
+    <h2>${sub.name}</h2>
+    <div class="card">
+      <p class="muted">Test your knowledge. Questions are randomized every time.</p>
+      <div class="row" style="margin-top: 15px;">
+        <button class="primary" onclick="startQuiz('${sub.id}', false)">Practice Mode</button>
+        <button onclick="startQuiz('${sub.id}', true)">Timed Mode (30s/Q)</button>
+      </div>
+    </div>
+  `;
+}
+
+// ==========================================
+// 5. QUIZ LOGIC & BOOKMARKS
+// ==========================================
+function startQuiz(subId, isTimed) {
+  const sub = SUBJECTS.find(s => s.id === subId);
+  let qs = [...sub.questions];
+  for (let i = qs.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [qs[i], qs[j]] = [qs[j], qs[i]];
+  }
+
+  state.quiz = {
+    subjectName: sub.name,
+    subjectId: sub.id,
+    questions: qs,
+    chosen: Array(qs.length).fill(-1),
+    current: 0,
+    isTimed: isTimed,
+    timeLeft: isTimed ? qs.length * 30 : 0
+  };
+
+  if(isTimed) {
+    state.timer = setInterval(() => {
+      if(!state.quiz) return;
+      state.quiz.timeLeft--;
+      if(state.quiz.timeLeft <= 0) {
+        clearInterval(state.timer);
+        finishQuiz();
+      } else {
+        const tEl = document.getElementById("timer-display");
+        if(tEl) {
+          tEl.innerText = formatTime(state.quiz.timeLeft);
+          if(state.quiz.timeLeft <= 10) tEl.classList.add("urgent");
+        }
+      }
+    }, 1000);
+  }
+  go("quiz");
+}
+
+function formatTime(sec) {
+  let m = Math.floor(sec / 60);
+  let s = sec % 60;
+  return m + ":" + (s < 10 ? "0" : "") + s;
+}
+
+function renderQuiz(store) {
+  const q = state.quiz;
+  if(!q) return go("home");
+
+  const curQ = q.questions[q.current];
+  const total = q.questions.length;
+  const progressPct = ((q.current) / total) * 100;
+  const isSaved = store.bookmarks.includes(curQ.id);
+
+  let html = `
+    <div class="row between" style="margin-bottom: 15px;">
+      <button onclick="go('home')">✕ Quit</button>
+      ${q.isTimed ? `<span class="timer" id="timer-display">${formatTime(q.timeLeft)}</span>` : `<span class="muted">Practice Mode</span>`}
+    </div>
+    
+    <div class="row between" style="margin-bottom: 5px;">
+      <span class="muted">Question ${q.current + 1} of ${total}</span>
+      <div class="row" style="gap:5px;">
+        <span class="pill ${curQ.difficulty}">${curQ.difficulty}</span>
+        <button onclick="toggleBookmark('${curQ.id}')" style="padding: 2px 8px; font-size: 16px; background:none; border:none; cursor:pointer;">
+          ${isSaved ? "⭐" : "☆"}
+        </button>
+      </div>
+    </div>
+    
+    <div class="progress-bar">
+      <div style="width: ${progressPct}%"></div>
+    </div>
+
+    <div class="card">
+      <div class="question">${curQ.q}</div>
+      <div id="options-area">
+  `;
+
+  curQ.options.forEach((opt, idx) => {
+    const isSelected = q.chosen[q.current] === idx;
+    html += `
+      <button class="option ${isSelected ? 'selected' : ''}" onclick="selectOption(${idx})">
+        <b>${String.fromCharCode(65 + idx)}.</b> ${opt}
+      </button>
+    `;
+  });
+
+  html += `
+      </div>
+      <div class="row between" style="margin-top: 25px;">
+        <button onclick="prevQ()" ${q.current === 0 ? 'disabled' : ''}>← Prev</button>
+        <button class="primary" onclick="nextQ()">${q.current === total - 1 ? 'Finish Quiz' : 'Next →'}</button>
+      </div>
+    </div>
+  `;
+  app.innerHTML = html;
+}
+
+function selectOption(idx) {
+  state.quiz.chosen[state.quiz.current] = idx;
+  renderQuiz(loadStore());
+}
+
+function nextQ() {
+  if(state.quiz.chosen[state.quiz.current] === -1) {
+    if(!confirm("You haven't selected an answer. Move to next?")) return;
+  }
+  if(state.quiz.current < state.quiz.questions.length - 1) {
+    state.quiz.current++;
+    renderQuiz(loadStore());
+  } else {
+    finishQuiz();
+  }
+}
+
+function prevQ() {
+  if(state.quiz.current > 0) {
+    state.quiz.current--;
+    renderQuiz(loadStore());
+  }
+}
+
+function toggleBookmark(id) {
+  let store = loadStore();
+  if(store.bookmarks.includes(id)) {
+    store.bookmarks = store.bookmarks.filter(b => b !== id);
+  } else {
+    store.bookmarks.push(id);
+  }
+  saveStore(store);
+  renderQuiz(store);
+}
+
+// ==========================================
+// 6. RESULTS & PROGRESS
+// ==========================================
+function finishQuiz() {
+  clearInterval(state.timer);
+  const q = state.quiz;
+  let correct = 0;
+  let details = [];
+
+  q.questions.forEach((item, idx) => {
+    const isCorrect = q.chosen[idx] === item.correct;
+    if(isCorrect) correct++;
+    details.push({
+      q: item.q,
+      chosenText: q.chosen[idx] === -1 ? "Skipped" : item.options[q.chosen[idx]],
+      correctText: item.options[item.correct],
+      isCorrect: isCorrect,
+      explain: item.explain
+    });
+  });
+
+  const total = q.questions.length;
+  const pct = Math.round((correct / total) * 100);
+  const xpEarned = correct * 10;
+
+  const store = loadStore();
+  store.xp += xpEarned;
+  
+  const today = new Date().toDateString();
+  if(store.lastDate !== today) {
+    store.streak += 1;
+    store.lastDate = today;
+  }
+
+  store.history.push({ subject: q.subjectName, pct: pct, date: new Date().toLocaleDateString() });
+  saveStore(store);
+
+  state.result = { correct, total, pct, xpEarned, details };
+  state.quiz = null;
+  go("results");
+}
+
+function renderResults() {
+  const r = state.result;
+  if(!r) return go("home");
+
+  const color = r.pct >= 80 ? "good" : r.pct >= 50 ? "mid" : "bad";
+  let html = `
+    <div class="card center">
+      <h2>Quiz Completed!</h2>
+      <div class="score ${color}">${r.pct}%</div>
+      <p>You answered <b>${r.correct}</b> out of ${r.total} correctly.</p>
+      <p class="muted">+${r.xpEarned} XP Earned</p>
+      <div class="row" style="justify-content: center; margin-top: 20px;">
+        <button onclick="go('home')">Go Home</button>
+      </div>
+    </div>
+
+    <h3>Review Answers</h3>
+    <div class="card">
+  `;
+
+  r.details.forEach((d, i) => {
+    html += `
+      <div class="review-item">
+        <p><b>Q${i + 1}.</b> ${d.q}</p>
+        <p class="muted" style="margin: 5px 0;">
+          Your answer: <span class="${d.isCorrect ? 'good' : 'bad'}">${d.chosenText}</span><br>
+          Correct answer: <span class="good">${d.correctText}</span>
+        </p>
+        <div class="explanation"><b>Why:</b> ${d.explain}</div>
+      </div>
+    `;
+  });
+
+  html += `</div>`;
+  app.innerHTML = html;
+}
+
+function renderBookmarks(store) {
+  let html = `<h2>Saved Questions ⭐</h2>`;
+  if(store.bookmarks.length === 0) {
+    html += `<div class="card empty">No saved questions yet.</div>`;
+  } else {
+    html += `<div class="card">`;
+    store.bookmarks.forEach(id => {
+      let found = null;
+      SUBJECTS.forEach(s => s.questions.forEach(q => { if(q.id === id) found = q; }));
+      if(found) {
+        html += `
+          <div class="review-item">
+            <p><b>${found.q}</b></p>
+            <div class="explanation"><b>Answer:</b> ${found.options[found.correct]}<br><br>${found.explain}</div>
+          </div>
+        `;
+      }
+    });
+    html += `</div>`;
+  }
+  app.innerHTML = html;
+}
+
+function renderProgress(store) {
+  let histHtml = store.history.map(h => `
+    <div class="review-item" style="display:flex; justify-content:space-between; padding: 10px 0;">
+      <div><b>${h.subject}</b></div>
+      <div class="${h.pct >= 50 ? 'good' : 'bad'}">${h.pct}%</div>
+      <div class="muted" style="font-size:12px;">${h.date}</div>
+    </div>
+  `).join("");
+
+  if(store.history.length === 0) histHtml = `<div class="empty">Take a quiz to see your history.</div>`;
+
+  app.innerHTML = `
+    <h2>Your Progress 📊</h2>
+    <div class="card">
+      <p>Total XP Earned: <b>${store.xp}</b></p>
+      <p>Current Streak: <b>${store.streak} Days</b> 🔥</p>
+    </div>
+    <h3>Recent History</h3>
+    <div class="card">${histHtml}</div>
+  `;
+}
+
+// ==========================================
+// 7. INIT
+// ==========================================
+document.querySelectorAll("#nav button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    go(btn.dataset.nav);
+  });
+});
+
+render();
+</script>
+</body>
+</html>
