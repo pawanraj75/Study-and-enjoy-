@@ -1,1 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Study Battle · AKTU CSE 2026-27</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
+    body {
+      font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #0b0f1c 0%, #141b2b 100%);
+      color: #eef2ff;
+      min-height: 100vh;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .app-container {
+      max-width: 780px;
+      width: 100%;
+      margin: 0 auto;
+      background: rgba(20, 27, 45, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid #2e3a5e;
+      border-radius: 36px;
+      padding: 22px 20px 28px;
+      box-shadow: 0 25px 40px -10px rgba(0, 0, 0, 0.7), 0 0 0 1px #1e2a44 inset;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      text-align: center;
+      background: linear-gradient(135deg, #b6c8ff, #7d9bff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .subhead {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #8f9bc0;
+      margin-bottom: 18px;
+      border-bottom: 1px dashed #2e3a5e;
+      padding-bottom: 12px;
+    }
+
+    .stats-panel {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      background: #0f1525;
+      padding: 16px 18px;
+      border-radius: 26px;
+      margin-bottom: 20px;
+      border: 1px solid #27314e;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 70px;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #7e8ab0;
+      font-weight: 600;
+    }
+
+    .stat-value {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #b9ccff;
+      line-height: 1.2;
+    }
+
+    .streak-fire {
+      color: #ffb347;
+      font-size: 1.5rem;
+      margin-right: 2px;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: #1e263b;
+      border-radius: 10px;
+      margin-top: 6px;
+      overflow: hidden;
+      border: 1px solid #2d3a5a;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #4f7cff, #9f7aff);
+      border-radius: 10px;
+      transition: width 0.3s ease;
+    }
+
+    .badge-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+      justify-content: center;
+    }
+
+    .badge {
+      background: #1d2642;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #aab8e0;
+      border: 1px solid #34436b;
+    }
+
+    .mode-tabs {
+      display: flex;
+      gap: 10px;
+      margin: 18px 0 20px;
+    }
+
+    .mode-btn {
+      flex: 1;
+      background: #161f35;
+      border: 1px solid #2b3659;
+      color: #a6b3da;
+      padding: 12px 6px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+    }
+
+    .mode-btn.active {
+      background: #2c3d6b;
+      color: white;
+      border-color: #5f7fd9;
+      box-shadow: 0 0 12px #3f5db0;
+    }
+
+    .quiz-card {
+      background: #101726;
+      border-radius: 26px;
+      padding: 20px 18px;
+      border: 1px solid #263355;
+      box-shadow: 0 10px 20px -8px black;
+      margin-bottom: 16px;
+    }
+
+    .subject-tag {
+      display: inline-block;
+      background: #1f2b4b;
+      padding: 5px 14px;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: #9ab0ff;
+      border: 1px solid #354a80;
+      margin-bottom: 14px;
+    }
+
+    .timer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .timer {
+      background: #1a233b;
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #b8cbff;
+      border: 1px solid #2e3d64;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .bookmark-btn {
+      background: none;
+      border: none;
+      font-size: 1.7rem;
+      line-height: 1;
+      cursor: pointer;
+      color: #5b6b95;
+      transition: 0.1s;
+      padding: 0 4px;
+    }
+
+    .bookmark-btn.bookmarked {
+      color: #ffc857;
+      text-shadow: 0 0 10px #ffb347;
+    }
+
+    .question-text {
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 22px;
+      color: #e5ebff;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .option {
+      background: #1b233b;
+      border: 1.5px solid #2d3a5e;
+      padding: 14px 18px;
+      border-radius: 60px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #ced9ff;
+      cursor: pointer;
+      transition: all 0.1s;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .option:hover {
+      background: #222e4f;
+      border-color: #4a66b0;
+    }
+
+    .option.selected-correct {
+      background: #1b4d3a;
+      border-color: #2ecc71;
+      color: #d4ffd4;
+      box-shadow: 0 0 12px #2ecc7150;
+    }
+
+    .option.selected-wrong {
+      background: #4d1e1e;
+      border-color: #e74c3c;
+      color: #ffd6d6;
+    }
+
+    .option.correct-reveal {
+      background: #1b4d3a;
+      border-color: #2ecc71;
+      color: #d4ffd4;
+    }
+
+    .option.disabled {
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    .explanation-box {
+      background: #0b111f;
+      padding: 14px 16px;
+      border-radius: 20px;
+      margin: 14px 0 6px;
+      border-left: 5px solid #4f7cff;
+      font-size: 0.88rem;
+      color: #b2c1f0;
+      line-height: 1.5;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .btn {
+      flex: 1;
+      background: #253055;
+      border: none;
+      color: #eef2ff;
+      font-weight: 700;
+      padding: 14px 6px;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: 0.1s;
+      border: 1px solid #3a4a78;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #3459cc, #5f4bb0);
+      border-color: #7f98ff;
+      box-shadow: 0 6px 14px #1c2c6033;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .history-section {
+      margin-top: 16px;
+      background: #0c1322;
+      border-radius: 20px;
+      padding: 12px 16px;
+      border: 1px solid #263354;
+    }
+
+    .history-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: #7d8ab8;
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .history-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      font-size: 0.75rem;
+      color: #a1b0df;
+    }
+
+    .history-item {
+      background: #1b2540;
+      padding: 4px 12px;
+      border-radius: 40px;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.65rem;
+      color: #4a5779;
+      margin-top: 18px;
+    }
+
+    .clear-btn {
+      background: transparent;
+      border: 1px solid #474f6b;
+      color: #b0b9d6;
+      font-size: 0.7rem;
+      padding: 4px 12px;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: 0.1s;
+    }
+
+    .clear-btn:hover {
+      background: #232e4b;
+    }
+
+    @media (max-width: 480px) {
+      .app-container {
+        padding: 16px 12px 20px;
+        border-radius: 26px;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+      .stat-value {
+        font-size: 1.2rem;
+      }
+      .question-text {
+        font-size: 1rem;
+      }
+      .option {
+        padding: 12px 14px;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="app-container" id="app">
+  <h1>⚔️ Study Battle</h1>
+  <div class="subhead">AKTU B.Tech CSE · 2026–27 · First Year (Sem 1 & 2)</div>
+
+  <!-- Stats panel -->
+  <div class="stats-panel">
+    <div class="stat-item">
+      <span class="stat-label">Level</span>
+      <span class="stat-value" id="levelDisplay">1</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">XP</span>
+      <span class="stat-value" id="xpDisplay">0</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label"><span class="streak-fire">🔥</span> Streak</span>
+      <span class="stat-value" id="streakDisplay">0</span>
+    </div>
+    <div class="stat-item" style="flex:1; min-width:100px;">
+      <span class="stat-label">Progress</span>
+      <div class="progress-bar-bg">
+        <div class="progress-fill" id="progressFill" style="width:0%"></div>
+      </div>
+      <span class="stat-value" id="progressText" style="font-size:0.8rem; margin-top:4px;">0/100</span>
+    </div>
+  </div>
+
+  <!-- Badges -->
+  <div class="badge-container" id="badgeContainer">
+    <span class="badge">🎯 100 MCQs</span>
+    <span class="badge">📚 Sem 1 & 2</span>
+    <span class="badge" id="bookmarkCountBadge">🔖 0</span>
+  </div>
+
+  <!-- Mode tabs: all / bookmarked -->
+  <div class="mode-tabs">
+    <div class="mode-btn active" id="modeAll">📖 All Questions</div>
+    <div class="mode-btn" id="modeBookmarks">🔖 Bookmarks</div>
+  </div>
+
+  <!-- Quiz card -->
+  <div class="quiz-card" id="quizCard">
+    <div class="subject-tag" id="subjectTag">Subject</div>
+
+    <div class="timer-row">
+      <div class="timer" id="timerDisplay">⏱️ 30s</div>
+      <button class="bookmark-btn" id="bookmarkBtn" title="Bookmark this question">☆</button>
+    </div>
+
+    <div class="question-text" id="questionText">Loading question...</div>
+
+    <div class="options" id="optionsContainer"></div>
+
+    <div class="explanation-box" id="explanationBox" style="display: none;"></div>
+
+    <div class="nav-buttons">
+      <button class="btn" id="prevBtn" disabled>◀ Prev</button>
+      <button class="btn btn-primary" id="nextBtn">Next ▶</button>
+    </div>
+  </div>
+
+  <!-- History / recent -->
+  <div class="history-section">
+    <div class="history-title">
+      <span>📋 Recent answers</span>
+      <button class="clear-btn" id="clearHistoryBtn">clear</button>
+    </div>
+    <div class="history-list" id="historyList">
+      <span style="color:#4f5e84;">no answers yet</span>
+    </div>
+  </div>
+
+  <div class="footer-note">XP • Streaks • Bookmarks • localStorage</div>
+</div>
+
+<script>
+  (function() {
+    // ---------- DATA ----------
+    // 100 meaningful MCQs (AKTU B.Tech CSE first year: Sem 1 & 2)
+    const QUESTIONS = [
+      // Sem 1: Engineering Mathematics-I (10)
+      { subject: "Maths-I", question: "What is the value of lim (x→0) (sin x)/x?", options: ["0", "1", "∞", "undefined"], correct: 1, explanation: "Standard limit: lim (x→0) sin x / x = 1." },
+      { subject: "Maths-I", question: "The derivative of x^n with respect to x is:", options: ["n x^{n-1}", "x^n / n", "n x^{n+1}", "x^{n-1}"], correct: 0, explanation: "Power rule: d/dx (x^n) = n x^{n-1}." },
+      { subject: "Maths-I", question: "∫ e^x dx = ?", options: ["e^x + C", "x e^x + C", "e^x / x + C", "ln x + C"], correct: 0, explanation: "The integral of e^x is e^x + C." },
+      { subject: "Maths-I", question: "The value of ∫₀^{π/2} sin x dx is:", options: ["1", "0", "2", "π/2"], correct: 0, explanation: "∫₀^{π/2} sin x dx = [-cos x]₀^{π/2} = -cos(π/2) + cos(0) = 0 + 1 = 1." },
+      { subject: "Maths-I", question: "If y = log x, then dy/dx = ?", options: ["1/x", "x", "ln x", "e^x"], correct: 0, explanation: "Derivative of natural log x is 1/x." },
+      { subject: "Maths-I", question: "The Maclaurin series for e^x is:", options: ["Σ x^n / n!", "Σ (-1)^n x^n / n!", "Σ x^n", "Σ n x^n"], correct: 0, explanation: "e^x = 1 + x + x²/2! + x³/3! + ... = Σ x^n / n!." },
+      { subject: "Maths-I", question: "The rank of a 3×3 identity matrix is:", options: ["3", "1", "0", "2"], correct: 0, explanation: "Identity matrix of order 3 has full rank 3." },
+      { subject: "Maths-I", question: "If A is a 2×2 matrix with determinant 0, then A is:", options: ["singular", "non-singular", "invertible", "orthogonal"], correct: 0, explanation: "Determinant zero ⇒ singular matrix (no inverse)." },
+      { subject: "Maths-I", question: "The sum of the series Σ (1/2^n) for n=1 to ∞ is:", options: ["1", "2", "1/2", "∞"], correct: 0, explanation: "Geometric series with a=1/2, r=1/2; sum = (1/2)/(1-1/2) = 1." },
+      { subject: "Maths-I", question: "The gradient of f(x,y)=x²+y² at (1,1) is:", options: ["(2,2)", "(1,1)", "(0,0)", "(2,0)"], correct: 0, explanation: "∇f = (2x, 2y). At (1,1) = (2,2)." },
+      // Sem 1: Engineering Physics (10)
+      { subject: "Physics", question: "The SI unit of electric field is:", options: ["N/C", "V/m", "J/C", "Both N/C and V/m"], correct: 3, explanation: "Electric field E = F/q (N/C) = -dV/dx (V/m). Both are equivalent." },
+      { subject: "Physics", question: "Which phenomenon shows the wave nature of light?", options: ["Photoelectric effect", "Compton effect", "Interference", "Blackbody radiation"], correct: 2, explanation: "Interference and diffraction are wave phenomena." },
+      { subject: "Physics", question: "The de Broglie wavelength of a particle is inversely proportional to its:", options: ["momentum", "energy", "velocity squared", "mass squared"], correct: 0, explanation: "λ = h/p, where p is momentum." },
+      { subject: "Physics", question: "The energy of a photon is given by:", options: ["hν", "h/ν", "mc²", "½mv²"], correct: 0, explanation: "E = hν, where h is Planck's constant and ν is frequency." },
+      { subject: "Physics", question: "The uncertainty principle is stated by:", options: ["Heisenberg", "Bohr", "Schrödinger", "Einstein"], correct: 0, explanation: "Werner Heisenberg formulated Δx·Δp ≥ ħ/2." },
+      { subject: "Physics", question: "In a semiconductor, the majority carriers in n-type material are:", options: ["electrons", "holes", "protons", "ions"], correct: 0, explanation: "n-type doping (e.g., P, As) donates extra electrons." },
+      { subject: "Physics", question: "The refractive index of a medium is 1.5. Speed of light in it is:", options: ["2×10⁸ m/s", "3×10⁸ m/s", "1.5×10⁸ m/s", "4.5×10⁸ m/s"], correct: 0, explanation: "v = c/n = 3×10⁸ / 1.5 = 2×10⁸ m/s." },
+      { subject: "Physics", question: "LASER stands for:", options: ["Light Amplification by Stimulated Emission of Radiation", "Light Amplification by Spontaneous Emission of Radiation", "Light Absorption by Stimulated Emission of Radiation", "Linear Amplification of Stimulated Emitted Rays"], correct: 0, explanation: "LASER = Light Amplification by Stimulated Emission of Radiation." },
+      { subject: "Physics", question: "The number of significant figures in 0.00250 is:", options: ["3", "5", "2", "4"], correct: 0, explanation: "Significant figures: 2,5,0 → 3 significant digits." },
+      { subject: "Physics", question: "The dimension of Planck's constant is:", options: ["[ML²T⁻¹]", "[ML²T⁻²]", "[MLT⁻¹]", "[ML⁻²T⁻¹]"], correct: 0, explanation: "h has dimensions of angular momentum: ML²T⁻¹." },
+      // Sem 1: Programming for Problem Solving (10)
+      { subject: "PPS", question: "Which language is known as the mother of all languages?", options: ["C", "Java", "Python", "FORTRAN"], correct: 0, explanation: "C is often called the mother of modern programming languages." },
+      { subject: "PPS", question: "What is the correct format specifier for float in C?", options: ["%f", "%d", "%c", "%s"], correct: 0, explanation: "%f is used for float in printf/scanf." },
+      { subject: "PPS", question: "Which loop is guaranteed to execute at least once?", options: ["do-while", "while", "for", "if-else"], correct: 0, explanation: "do-while checks condition after the body." },
+      { subject: "PPS", question: "The size of int in C (typical 32/64-bit) is usually:", options: ["4 bytes", "2 bytes", "8 bytes", "1 byte"], correct: 0, explanation: "On most modern systems, int is 4 bytes." },
+      { subject: "PPS", question: "Which operator has the highest precedence?", options: ["()", "+", "*", "="], correct: 0, explanation: "Parentheses () have the highest precedence." },
+      { subject: "PPS", question: "In C, arrays are:", options: ["0-indexed", "1-indexed", "-1-indexed", "depends"], correct: 0, explanation: "C arrays are zero-indexed." },
+      { subject: "PPS", question: "A pointer stores:", options: ["address of a variable", "value of a variable", "name of a variable", "size of a variable"], correct: 0, explanation: "A pointer holds the memory address of another variable." },
+      { subject: "PPS", question: "Which function is used to allocate memory dynamically in C?", options: ["malloc()", "alloc()", "new()", "mem()"], correct: 0, explanation: "malloc() (and calloc) allocate memory on heap." },
+      { subject: "PPS", question: "The output of printf(\"%d\", 10/3); is:", options: ["3", "3.33", "4", "0"], correct: 0, explanation: "Integer division 10/3 = 3." },
+      { subject: "PPS", question: "What does the '&' operator do in C?", options: ["returns address", "bitwise AND", "logical AND", "both address and bitwise AND"], correct: 3, explanation: "& is used for address-of and bitwise AND depending on context." },
+      // Sem 1: Basic Electrical Engineering (10)
+      { subject: "BEE", question: "The unit of resistance is:", options: ["ohm", "volt", "ampere", "watt"], correct: 0, explanation: "Resistance is measured in ohms (Ω)." },
+      { subject: "BEE", question: "Ohm's law is:", options: ["V = IR", "V = I/R", "I = VR", "R = VI"], correct: 0, explanation: "V = I × R (voltage = current × resistance)." },
+      { subject: "BEE", question: "In a series circuit, the current is:", options: ["same through all elements", "different in each", "zero", "infinite"], correct: 0, explanation: "Series: same current flows through each component." },
+      { subject: "BEE", question: "The power in a DC circuit is given by:", options: ["VI", "V/I", "I/V", "V²/I"], correct: 0, explanation: "P = V × I (also P = I²R = V²/R)." },
+      { subject: "BEE", question: "Kirchhoff's current law (KCL) is based on:", options: ["conservation of charge", "conservation of energy", "Ohm's law", "Faraday's law"], correct: 0, explanation: "KCL: sum of currents at a node = 0 (charge conservation)." },
+      { subject: "BEE", question: "A transformer works on the principle of:", options: ["mutual induction", "self induction", "electric field", "capacitance"], correct: 0, explanation: "Transformer uses mutual induction between windings." },
+      { subject: "BEE", question: "The RMS value of a sinusoidal voltage V = Vm sin ωt is:", options: ["Vm/√2", "Vm", "2Vm", "Vm/2"], correct: 0, explanation: "RMS = peak / √2 for sine wave." },
+      { subject: "BEE", question: "The unit of capacitance is:", options: ["farad", "henry", "ohm", "tesla"], correct: 0, explanation: "Capacitance is measured in farads (F)." },
+      { subject: "BEE", question: "In a three-phase system, the phase difference between phases is:", options: ["120°", "90°", "180°", "60°"], correct: 0, explanation: "Three-phase voltages are 120° apart." },
+      { subject: "BEE", question: "The efficiency of a transformer is maximum when:", options: ["copper loss = iron loss", "copper loss > iron loss", "copper loss < iron loss", "no load"], correct: 0, explanation: "Maximum efficiency when copper loss equals iron loss." },
+      // Sem 2: Engineering Mathematics-II (10)
+      { subject: "Maths-II", question: "The Laplace transform of 1 is:", options: ["1/s", "s", "1", "s²"], correct: 0, explanation: "L{1} = 1/s for s > 0." },
+      { subject: "Maths-II", question: "The Laplace transform of e^{at} is:", options: ["1/(s-a)", "1/(s+a)", "s/(s-a)", "a/s"], correct: 0, explanation: "L{e^{at}} = 1/(s-a)." },
+      { subject: "Maths-II", question: "The Fourier series of an even function contains only:", options: ["cosine terms", "sine terms", "both sine and cosine", "constant term only"], correct: 0, explanation: "Even functions have only cosine terms (and constant)." },
+      { subject: "Maths-II", question: "The inverse Laplace transform of 1/s² is:", options: ["t", "1", "t²", "e^t"], correct: 0, explanation: "L{t} = 1/s², so inverse is t." },
+      { subject: "Maths-II", question: "The order of the differential equation d²y/dx² + y = 0 is:", options: ["2", "1", "0", "3"], correct: 0, explanation: "Highest derivative is second order." },
+      { subject: "Maths-II", question: "The general solution of dy/dx = y is:", options: ["y = Ce^x", "y = Cx", "y = C", "y = e^x + C"], correct: 0, explanation: "Separating variables: dy/y = dx → ln y = x + C → y = Ce^x." },
+      { subject: "Maths-II", question: "A matrix is orthogonal if:", options: ["AᵀA = I", "A² = I", "A = Aᵀ", "det(A) = 0"], correct: 0, explanation: "Orthogonal matrix satisfies AᵀA = I." },
+      { subject: "Maths-II", question: "The eigenvalues of [[2,0],[0,3]] are:", options: ["2 and 3", "0 and 5", "1 and 6", "2 and 2"], correct: 0, explanation: "Diagonal matrix: eigenvalues are diagonal entries." },
+      { subject: "Maths-II", question: "The Fourier transform of a Gaussian is:", options: ["Gaussian", "sine", "cosine", "constant"], correct: 0, explanation: "Fourier transform of a Gaussian is another Gaussian." },
+      { subject: "Maths-II", question: "The integrating factor of dy/dx + y = e^x is:", options: ["e^x", "e^{-x}", "x", "1"], correct: 0, explanation: "Linear ODE: IF = e^{∫1 dx} = e^x." },
+      // Sem 2: Engineering Chemistry (10)
+      { subject: "Chemistry", question: "The pH of a neutral solution at 25°C is:", options: ["7", "0", "14", "1"], correct: 0, explanation: "Neutral: pH = 7 (at 25°C)." },
+      { subject: "Chemistry", question: "Which gas is responsible for the greenhouse effect?", options: ["CO₂", "O₂", "N₂", "H₂"], correct: 0, explanation: "CO₂ is a major greenhouse gas." },
+      { subject: "Chemistry", question: "The number of electrons in the outermost shell of sodium (Na, Z=11) is:", options: ["1", "2", "3", "11"], correct: 0, explanation: "Na: [Ne] 3s¹ → 1 valence electron." },
+      { subject: "Chemistry", question: "Hard water contains high amounts of:", options: ["Ca²⁺ and Mg²⁺", "Na⁺ and K⁺", "Cl⁻ and SO₄²⁻", "H⁺ and OH⁻"], correct: 0, explanation: "Hardness due to calcium and magnesium ions." },
+      { subject: "Chemistry", question: "The bond in NaCl is:", options: ["ionic", "covalent", "metallic", "hydrogen"], correct: 0, explanation: "NaCl is an ionic compound (metal + nonmetal)." },
+      { subject: "Chemistry", question: "The hybridisation of carbon in methane (CH₄) is:", options: ["sp³", "sp²", "sp", "sp³d"], correct: 0, explanation: "Methane: tetrahedral, sp³ hybridised carbon." },
+      { subject: "Chemistry", question: "The IUPAC name of CH₃COOH is:", options: ["ethanoic acid", "methanoic acid", "propanoic acid", "ethanol"], correct: 0, explanation: "CH₃COOH = ethanoic acid (acetic acid)." },
+      { subject: "Chemistry", question: "Which of the following is a noble gas?", options: ["Argon", "Oxygen", "Nitrogen", "Chlorine"], correct: 0, explanation: "Argon (Ar) is a noble gas (group 18)." },
+      { subject: "Chemistry", question: "The oxidation state of oxygen in H₂O is:", options: ["-2", "+2", "0", "-1"], correct: 0, explanation: "Oxygen is usually -2 in oxides." },
+      { subject: "Chemistry", question: "The process of corrosion of iron is called:", options: ["rusting", "galvanisation", "electrolysis", "annealing"], correct: 0, explanation: "Iron corrosion forms rust (hydrated iron oxide)." },
+      // Sem 2: Data Structures (10)
+      { subject: "Data Structures", question: "Which data structure uses LIFO principle?", options: ["Stack", "Queue", "Array", "Linked list"], correct: 0, explanation: "Stack: Last In First Out." },
+      { subject: "Data Structures", question: "The time complexity of binary search is:", options: ["O(log n)", "O(n)", "O(n log n)", "O(1)"], correct: 0, explanation: "Binary search halves the search space → O(log n)." },
+      { subject: "Data Structures", question: "A queue works on:", options: ["FIFO", "LIFO", "LILO", "Random"], correct: 0, explanation: "Queue: First In First Out." },
+      { subject: "Data Structures", question: "In a singly linked list, each node contains:", options: ["data and pointer to next", "only data", "only pointer", "two pointers"], correct: 0, explanation: "Node = data + next pointer." },
+      { subject: "Data Structures", question: "The worst-case time for insertion in a balanced BST is:", options: ["O(log n)", "O(n)", "O(1)", "O(n²)"], correct: 0, explanation: "Balanced BST height = O(log n)." },
+      { subject: "Data Structures", question: "Which traversal of BST gives sorted output?", options: ["inorder", "preorder", "postorder", "level order"], correct: 0, explanation: "Inorder traversal of BST visits nodes in ascending order." },
+      { subject: "Data Structures", question: "The maximum number of nodes at level 'L' in a binary tree is:", options: ["2^L", "L", "2L", "L²"], correct: 0, explanation: "Level L has at most 2^L nodes (root at level 0)." },
+      { subject: "Data Structures", question: "Which algorithm is used for shortest path in a weighted graph?", options: ["Dijkstra", "Bubble sort", "Binary search", "DFS"], correct: 0, explanation: "Dijkstra finds shortest paths from a source." },
+      { subject: "Data Structures", question: "A hash table uses:", options: ["key-value mapping", "sequential storage", "tree structure", "linked list only"], correct: 0, explanation: "Hash table maps keys to values using a hash function." },
+      { subject: "Data Structures", question: "The best case time complexity of quicksort is:", options: ["O(n log n)", "O(n²)", "O(n)", "O(log n)"], correct: 0, explanation: "Quicksort best/avg: O(n log n); worst: O(n²)." },
+      // Sem 2: Environmental Science (10)
+      { subject: "EVS", question: "The Kyoto Protocol is related to:", options: ["greenhouse gas emissions", "biodiversity", "ozone depletion", "water pollution"], correct: 0, explanation: "Kyoto Protocol aims to reduce greenhouse gas emissions." },
+      { subject: "EVS", question: "The main cause of ozone hole is:", options: ["CFCs", "CO₂", "SO₂", "NO"], correct: 0, explanation: "Chlorofluorocarbons (CFCs) deplete the ozone layer." },
+      { subject: "EVS", question: "BOD stands for:", options: ["Biochemical Oxygen Demand", "Biological Oxygen Deficiency", "Basic Oxygen Demand", "Biotic Oxidation Degree"], correct: 0, explanation: "BOD = Biochemical Oxygen Demand (water quality indicator)." },
+      { subject: "EVS", question: "Which of the following is a renewable resource?", options: ["Solar energy", "Coal", "Petroleum", "Natural gas"], correct: 0, explanation: "Solar energy is renewable and sustainable." },
+      { subject: "EVS", question: "The 'chipko movement' is associated with:", options: ["forest conservation", "water conservation", "air pollution", "soil erosion"], correct: 0, explanation: "Chipko movement aimed at protecting forests." },
+      { subject: "EVS", question: "The main greenhouse gas emitted by livestock is:", options: ["Methane", "CO₂", "N₂O", "O₃"], correct: 0, explanation: "Livestock (enteric fermentation) produces methane (CH₄)." },
+      { subject: "EVS", question: "The pH of acid rain is generally:", options: ["< 5.6", "> 7", "= 7", "> 10"], correct: 0, explanation: "Acid rain has pH below 5.6 due to dissolved acidic gases." },
+      { subject: "EVS", question: "The 'Montreal Protocol' is for:", options: ["ozone layer protection", "climate change", "biodiversity", "desertification"], correct: 0, explanation: "Montreal Protocol phases out ozone-depleting substances." },
+      { subject: "EVS", question: "Which of these is a non-point source of water pollution?", options: ["Agricultural runoff", "Factory pipe", "Sewage treatment plant", "Mine drainage"], correct: 0, explanation: "Agricultural runoff is diffuse (non-point) pollution." },
+      { subject: "EVS", question: "The term 'sustainable development' was popularized by:", options: ["Brundtland Report", "Kyoto Protocol", "Rio Summit", "Stockholm Conference"], correct: 0, explanation: "Brundtland Commission (1987) defined sustainable development." },
+      // Extra 10 to reach 100: mix (Sem 2: Engineering Graphics / Workshop / Extra)
+      { subject: "Graphics", question: "In engineering drawing, the line used for hidden edges is:", options: ["dashed", "continuous thick", "chain", "dotted"], correct: 0, explanation: "Hidden edges are shown by dashed (short dash) lines." },
+      { subject: "Graphics", question: "The angle of projection in first-angle projection is:", options: ["object between observer and plane", "plane between observer and object", "observer between object and plane", "none"], correct: 0, explanation: "First angle: object between observer and projection plane." },
+      { subject: "Workshop", question: "Which tool is used for measuring the diameter of a wire?", options: ["micrometer", "vernier caliper", "steel rule", "try square"], correct: 0, explanation: "Micrometer (screw gauge) measures small diameters precisely." },
+      { subject: "Workshop", question: "Galvanisation is the process of coating iron with:", options: ["zinc", "tin", "copper", "aluminium"], correct: 0, explanation: "Galvanisation: zinc coating to prevent rusting." },
+      { subject: "Maths-II", question: "The Laplace transform of sin(at) is:", options: ["a/(s²+a²)", "s/(s²+a²)", "1/(s+a)", "a/s"], correct: 0, explanation: "L{sin at} = a/(s² + a²)." },
+      { subject: "Physics", question: "The photoelectric effect shows the:", options: ["particle nature of light", "wave nature", "dual nature", "neither"], correct: 0, explanation: "Photoelectric effect is explained by photons (particle nature)." },
+      { subject: "PPS", question: "What is the output of the C expression: 2 == 2?", options: ["1", "0", "true", "false"], correct: 0, explanation: "In C, relational operators return 1 for true and 0 for false." },
+      { subject: "BEE", question: "The frequency of AC supply in India is:", options: ["50 Hz", "60 Hz", "100 Hz", "25 Hz"], correct: 0, explanation: "India uses 50 Hz AC power." },
+      { subject: "Data Structures", question: "Which data structure is used for BFS of a graph?", options: ["Queue", "Stack", "Tree", "Heap"], correct: 0, explanation: "BFS uses a queue (FIFO) for level-order traversal." },
+      { subject: "EVS", question: "The major cause of depletion of groundwater is:", options: ["over-extraction", "afforestation", "rainwater harvesting", "drip irrigation"], correct: 0, explanation: "Excessive extraction depletes groundwater tables." },
+    ];
+
+    // Ensure exactly 100 items (already 100). If any issue, fallback.
+    const TOTAL_QUESTIONS = QUESTIONS.length;
+
+    // ---------- STATE ----------
+    let currentMode = 'all'; // 'all' or 'bookmarks'
+    let filteredIndices = []; // array of original question indices (based on mode)
+    let currentFilteredPos = 0; // index inside filteredIndices
+
+    // User data (persisted)
+    let user = {
+      xp: 0,
+      level: 1,
+      streak: 0,
+      answered: {}, // key: originalIndex, value: { selected: number, correct: boolean }
+      bookmarks: [], // array of original indices
+      history: [], // recent events { index, correct, timestamp }
+    };
+
+    // Timer
+    let timerInterval = null;
+    let timeLeft = 30;
+    const MAX_TIME = 30;
+    let timerActive = false;
+
+    // ---------- DOM refs ----------
+    const levelDisplay = document.getElementById('levelDisplay');
+    const xpDisplay = document.getElementById('xpDisplay');
+    const streakDisplay = document.getElementById('streakDisplay');
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    const bookmarkCountBadge = document.getElementById('bookmarkCountBadge');
+    const modeAllBtn = document.getElementById('modeAll');
+    const modeBookmarksBtn = document.getElementById('modeBookmarks');
+    const subjectTag = document.getElementById('subjectTag');
+    const timerDisplay = document.getElementById('timerDisplay');
+    const bookmarkBtn = document.getElementById('bookmarkBtn');
+    const questionText = document.getElementById('questionText');
+    const optionsContainer = document.getElementById('optionsContainer');
+    const explanationBox = document.getElementById('explanationBox');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const historyList = document.getElementById('historyList');
+    const clearHistoryBtn = document.getElementById('clearHistoryBtn');
+
+    // ---------- UTILS ----------
+    function saveUser() {
+      localStorage.setItem('studyBattleUser', JSON.stringify(user));
+    }
+
+    function loadUser() {
+      const stored = localStorage.getItem('studyBattleUser');
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          user = { ...user, ...parsed };
+          // ensure types
+          user.answered = user.answered || {};
+          user.bookmarks = Array.isArray(user.bookmarks) ? user.bookmarks : [];
+          user.history = Array.isArray(user.history) ? user.history.slice(-10) : [];
+        } catch(e) {}
+      }
+      // calculate level from xp (simple: level = floor(sqrt(xp/50)) + 1 )
+      user.level = Math.floor(Math.sqrt(user.xp / 50)) + 1;
+    }
+
+    function updateUIStats() {
+      levelDisplay.textContent = user.level;
+      xpDisplay.textContent = user.xp;
+      streakDisplay.textContent = user.streak;
+
+      const answeredCount = Object.keys(user.answered).length;
+      const percent = (answeredCount / TOTAL_QUESTIONS) * 100;
+      progressFill.style.width = percent + '%';
+      progressText.textContent = `${answeredCount}/${TOTAL_QUESTIONS}`;
+      bookmarkCountBadge.textContent = `🔖 ${user.bookmarks.length}`;
+
+      // Update mode buttons active state
+      modeAllBtn.classList.toggle('active', currentMode === 'all');
+      modeBookmarksBtn.classList.toggle('active', currentMode === 'bookmarks');
+    }
+
+    function rebuildFilteredIndices() {
+      if (currentMode === 'all') {
+        filteredIndices = QUESTIONS.map((_, idx) => idx);
+      } else {
+        // bookmarks mode
+        filteredIndices = [...user.bookmarks].sort((a,b) => a - b);
+      }
+      // clamp currentFilteredPos
+      if (currentFilteredPos >= filteredIndices.length) {
+        currentFilteredPos = Math.max(0, filteredIndices.length - 1);
+      }
+      if (filteredIndices.length === 0) currentFilteredPos = 0;
+    }
+
+    // ---------- RENDER QUESTION ----------
+    function renderQuestion() {
+      // stop any timer
+      stopTimer();
+
+      if (filteredIndices.length === 0) {
+        // no questions in this mode
+        subjectTag.textContent = '—';
+        questionText.textContent = 'No questions available in this mode.';
+        optionsContainer.innerHTML = '';
+        explanationBox.style.display = 'none';
+        timerDisplay.textContent = '⏱️ --';
+        bookmarkBtn.textContent = '☆';
+        bookmarkBtn.classList.remove('bookmarked');
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        return;
+      }
+
+      const originalIdx = filteredIndices[currentFilteredPos];
+      const q = QUESTIONS[originalIdx];
+      subjectTag.textContent = q.subject;
+
+      // bookmark state
+      const isBookmarked = user.bookmarks.includes(originalIdx);
+      bookmarkBtn.textContent = isBookmarked ? '★' : '☆';
+      bookmarkBtn.classList.toggle('bookmarked', isBookmarked);
+
+      // question text
+      questionText.textContent = q.question;
+
+      // options
+      const answered = user.answered[originalIdx];
+      const selectedOption = answered ? answered.selected : null;
+      const isCorrect = answered ? answered.correct : false;
+
+      let optionsHtml = '';
+      q.options.forEach((opt, optIdx) => {
+        let classes = 'option';
+        if (answered) {
+          classes += ' disabled';
+          if (optIdx === q.correct) classes += ' correct-reveal';
+          else if (optIdx === selectedOption && !isCorrect) classes += ' selected-wrong';
+          else if (optIdx === selectedOption && isCorrect) classes += ' selected-correct';
+          // if correct option and selected correct, correct-reveal already applied, but we want green highlight
+          if (optIdx === selectedOption && isCorrect) classes = 'option selected-correct disabled';
+          if (optIdx === selectedOption && !isCorrect) classes = 'option selected-wrong disabled';
+          if (optIdx === q.correct && selectedOption !== q.correct) classes = 'option correct-reveal disabled';
+        }
+        optionsHtml += `<div class="${classes}" data-opt-index="${optIdx}">${String.fromCharCode(65+optIdx)}. ${opt}</div>`;
+      });
+      optionsContainer.innerHTML = optionsHtml;
+
+      // attach click handlers if not answered
+      if (!answered) {
+        document.querySelectorAll('.option').forEach(el => {
+          el.addEventListener('click', (e) => {
+            const optIdx = parseInt(el.dataset.optIndex, 10);
+            handleAnswer(originalIdx, optIdx);
+          });
+        });
+      }
+
+      // explanation
+      if (answered) {
+        explanationBox.style.display = 'block';
+        explanationBox.innerHTML = `<strong>${isCorrect ? '✅ Correct!' : '❌ Incorrect.'}</strong> ${q.explanation}`;
+      } else {
+        explanationBox.style.display = 'none';
+      }
+
+      // timer display
+      if (!answered) {
+        timerDisplay.textContent = `⏱️ ${MAX_TIME}s`;
+        startTimer(originalIdx);
+      } else {
+        timerDisplay.textContent = '⏱️ answered';
+      }
+
+      // navigation buttons
+      prevBtn.disabled = (currentFilteredPos === 0);
+      nextBtn.disabled = (currentFilteredPos === filteredIndices.length - 1);
+
+      updateUIStats();
+    }
+
+    // ---------- TIMER ----------
+    function startTimer(originalIdx) {
+      stopTimer();
+      timeLeft = MAX_TIME;
+      timerActive = true;
+      timerDisplay.textContent = `⏱️ ${timeLeft}s`;
+
+      timerInterval = setInterval(() => {
+        if (!timerActive) return;
+        timeLeft -= 1;
+        timerDisplay.textContent = `⏱️ ${Math.max(0, timeLeft)}s`;
+        if (timeLeft <= 0) {
+          // Time out: auto-select -1 (no answer)
+          stopTimer();
+          const q = QUESTIONS[originalIdx];
+          const alreadyAnswered = user.answered[originalIdx];
+          if (!alreadyAnswered) {
+            // mark as unanswered (incorrect, selected = -1)
+            user.answered[originalIdx] = { selected: -1, correct: false };
+            // XP penalty? no XP, streak reset
+            user.streak = 0;
+            addHistory(originalIdx, false);
+            saveUser();
+            renderQuestion(); // re-render to show explanation and disabled options
+          }
+        }
+      }, 1000);
+    }
+
+    function stopTimer() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+      timerActive = false;
+    }
+
+    // ---------- ANSWER HANDLING ----------
+    function handleAnswer(originalIdx, selectedOpt) {
+      if (user.answered[originalIdx]) return; // already answered
+      stopTimer();
+
+      const q = QUESTIONS[originalIdx];
+      const isCorrect = (selectedOpt === q.correct);
+      user.answered[originalIdx] = { selected: selectedOpt, correct: isCorrect };
+
+      // XP and streak
+      if (isCorrect) {
+        user.xp += 10;
+        user.streak += 1;
+      } else {
+        user.streak = 0;
+      }
+
+      // update level based on XP
+      user.level = Math.floor(Math.sqrt(user.xp / 50)) + 1;
+
+      addHistory(originalIdx, isCorrect);
+      saveUser();
+
+      // re-render question to show feedback
+      renderQuestion();
+      updateUIStats();
+    }
+
+    function addHistory(originalIdx, correct) {
+      user.history.push({
+        index: originalIdx,
+        correct: correct,
+        timestamp: Date.now()
+      });
+      if (user.history.length > 10) user.history.shift();
+      renderHistory();
+    }
+
+    function renderHistory() {
+      if (!user.history.length) {
+        historyList.innerHTML = '<span style="color:#4f5e84;">no answers yet</span>';
+        return;
+      }
+      let html = '';
+      user.history.slice().reverse().forEach(item => {
+        const q = QUESTIONS[item.index];
+        const icon = item.correct ? '✅' : '❌';
+        const shortSub = q.subject.substring(0, 8);
+        html += `<span class="history-item">${icon} ${shortSub}</span>`;
+      });
+      historyList.innerHTML = html;
+    }
+
+    // ---------- NAVIGATION ----------
+    function goPrev() {
+      if (currentFilteredPos > 0) {
+        currentFilteredPos--;
+        renderQuestion();
+      }
+    }
+
+    function goNext() {
+      if (currentFilteredPos < filteredIndices.length - 1) {
+        currentFilteredPos++;
+        renderQuestion();
+      }
+    }
+
+    // ---------- BOOKMARK TOGGLE ----------
+    function toggleBookmark() {
+      if (filteredIndices.length === 0) return;
+      const originalIdx = filteredIndices[currentFilteredPos];
+      const idx = user.bookmarks.indexOf(originalIdx);
+      if (idx === -1) {
+        user.bookmarks.push(originalIdx);
+      } else {
+        user.bookmarks.splice(idx, 1);
+      }
+      saveUser();
+      // if in bookmarks mode, rebuild filtered list and adjust position
+      if (currentMode === 'bookmarks') {
+        rebuildFilteredIndices();
+        // try to keep same original index if possible
+        const newPos = filteredIndices.indexOf(originalIdx);
+        if (newPos !== -1) currentFilteredPos = newPos;
+        else currentFilteredPos = Math.min(currentFilteredPos, filteredIndices.length - 1);
+      }
+      renderQuestion();
+      updateUIStats();
+    }
+
+    // ---------- MODE SWITCH ----------
+    function setMode(mode) {
+      currentMode = mode;
+      rebuildFilteredIndices();
+      currentFilteredPos = 0;
+      renderQuestion();
+      updateUIStats();
+    }
+
+    // ---------- CLEAR HISTORY ----------
+    function clearHistory() {
+      user.history = [];
+      saveUser();
+      renderHistory();
+    }
+
+    // ---------- INIT ----------
+    function init() {
+      loadUser();
+
+      // Ensure answered object has proper keys, bookmarks, etc.
+      if (typeof user.answered !== 'object') user.answered = {};
+
+      rebuildFilteredIndices();
+      currentFilteredPos = 0;
+      renderQuestion();
+      updateUIStats();
+      renderHistory();
+
+      // Event listeners
+      modeAllBtn.addEventListener('click', () => setMode('all'));
+      modeBookmarksBtn.addEventListener('click', () => setMode('bookmarks'));
+      prevBtn.addEventListener('click', goPrev);
+      nextBtn.addEventListener('click', goNext);
+      bookmarkBtn.addEventListener('click', toggleBookmark);
+      clearHistoryBtn.addEventListener('click', clearHistory);
+
+      // Keyboard navigation (bonus)
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') { e.preventDefault(); goPrev(); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); goNext(); }
+        if (e.key === 'b' || e.key === 'B') { e.preventDefault(); toggleBookmark(); }
+      });
+    }
+
+    // start app
+    init();
+  })();
+</script>
+</body>
+</html>
